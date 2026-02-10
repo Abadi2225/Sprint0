@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>c:/Users/abadi/OneDrive/Documents/CSE 3902/sprint0/Content/fonts/myFont.spritefont</SourceFile>
+  <SourceTime>2026-01-25T19:16:23.9624653-05:00</SourceTime>
+  <DestFile>c:/Users/abadi/OneDrive/Documents/CSE 3902/sprint0/Content/bin/DesktopGL/fonts/myFont.xnb</DestFile>
+  <DestTime>2026-01-25T19:16:29.9146307-05:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2025-10-20T10:25:32-04:00</ImporterTime>
+  <Processor>FontDescriptionProcessor</Processor>
+  <ProcessorTime>2025-10-20T10:25:32-04:00</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

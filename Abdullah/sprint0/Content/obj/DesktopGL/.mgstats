@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"c:/Users/abadi/OneDrive/Documents/CSE 3902/sprint0/Content/fonts/myFont.spritefont","c:/Users/abadi/OneDrive/Documents/CSE 3902/sprint0/Content/bin/DesktopGL/fonts/myFont.xnb","FontDescriptionProcessor","SpriteFontContent",2077,37913,0.1450535
+"c:/Users/abadi/OneDrive/Documents/CSE 3902/sprint0/Content/images/TLZ.png","c:/Users/abadi/OneDrive/Documents/CSE 3902/sprint0/Content/bin/DesktopGL/images/TLZ.xnb","TextureProcessor","Texture2DContent",19462,460125,0.0249331
