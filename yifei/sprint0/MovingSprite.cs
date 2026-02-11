@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace twoD_Game
+namespace TheLegendOfZilda
 {
     internal class MovingSprite : ISprite
 {

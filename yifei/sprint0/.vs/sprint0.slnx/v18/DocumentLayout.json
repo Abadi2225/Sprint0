@@ -1,12 +1,258 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|d:\\courses\\spring2026\\cse_3902\\visual_studio\\the_legend_of_zilda\\sprint0\\animatedsprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|solutionrelative:animatedsprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|d:\\courses\\spring2026\\cse_3902\\visual_studio\\the_legend_of_zilda\\sprint0\\movinganimatedsprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|solutionrelative:movinganimatedsprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|d:\\courses\\spring2026\\cse_3902\\visual_studio\\the_legend_of_zilda\\sprint0\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|d:\\courses\\spring2026\\cse_3902\\visual_studio\\the_legend_of_zilda\\sprint0\\textsprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|solutionrelative:textsprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|d:\\courses\\spring2026\\cse_3902\\visual_studio\\the_legend_of_zilda\\sprint0\\setcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|solutionrelative:setcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|d:\\courses\\spring2026\\cse_3902\\visual_studio\\the_legend_of_zilda\\sprint0\\quitcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|solutionrelative:quitcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|d:\\courses\\spring2026\\cse_3902\\visual_studio\\the_legend_of_zilda\\sprint0\\movingsprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|solutionrelative:movingsprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|d:\\courses\\spring2026\\cse_3902\\visual_studio\\the_legend_of_zilda\\sprint0\\originalsprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|solutionrelative:originalsprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|d:\\courses\\spring2026\\cse_3902\\visual_studio\\the_legend_of_zilda\\sprint0\\mousecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|solutionrelative:mousecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|d:\\courses\\spring2026\\cse_3902\\visual_studio\\the_legend_of_zilda\\sprint0\\keyboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|solutionrelative:keyboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|d:\\courses\\spring2026\\cse_3902\\visual_studio\\the_legend_of_zilda\\sprint0\\isprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|solutionrelative:isprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|d:\\courses\\spring2026\\cse_3902\\visual_studio\\the_legend_of_zilda\\sprint0\\icontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|solutionrelative:icontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|d:\\courses\\spring2026\\cse_3902\\visual_studio\\the_legend_of_zilda\\sprint0\\icommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|solutionrelative:icommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|d:\\courses\\spring2026\\cse_3902\\visual_studio\\the_legend_of_zilda\\sprint0\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4DB7A13-4151-8F05-3B8F-C16E80B55C8F}|sprint0.csproj|solutionrelative:game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "QuitCommand.cs",
+              "DocumentMoniker": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\QuitCommand.cs",
+              "RelativeDocumentMoniker": "QuitCommand.cs",
+              "ToolTip": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\QuitCommand.cs",
+              "RelativeToolTip": "QuitCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T03:43:34.783Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "OriginalSprite.cs",
+              "DocumentMoniker": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\OriginalSprite.cs",
+              "RelativeDocumentMoniker": "OriginalSprite.cs",
+              "ToolTip": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\OriginalSprite.cs",
+              "RelativeToolTip": "OriginalSprite.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T03:42:31.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MovingSprite.cs",
+              "DocumentMoniker": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\MovingSprite.cs",
+              "RelativeDocumentMoniker": "MovingSprite.cs",
+              "ToolTip": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\MovingSprite.cs",
+              "RelativeToolTip": "MovingSprite.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T03:42:28.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MovingAnimatedSprite.cs",
+              "DocumentMoniker": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\MovingAnimatedSprite.cs",
+              "RelativeDocumentMoniker": "MovingAnimatedSprite.cs",
+              "ToolTip": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\MovingAnimatedSprite.cs",
+              "RelativeToolTip": "MovingAnimatedSprite.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T03:42:26.135Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AnimatedSprite.cs",
+              "DocumentMoniker": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\AnimatedSprite.cs",
+              "RelativeDocumentMoniker": "AnimatedSprite.cs",
+              "ToolTip": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\AnimatedSprite.cs",
+              "RelativeToolTip": "AnimatedSprite.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T03:40:54.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SetCommand.cs",
+              "DocumentMoniker": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\SetCommand.cs",
+              "RelativeDocumentMoniker": "SetCommand.cs",
+              "ToolTip": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\SetCommand.cs",
+              "RelativeToolTip": "SetCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T03:43:51.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MouseController.cs",
+              "DocumentMoniker": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\MouseController.cs",
+              "RelativeDocumentMoniker": "MouseController.cs",
+              "ToolTip": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\MouseController.cs",
+              "RelativeToolTip": "MouseController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T03:42:23.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "KeyboardController.cs",
+              "DocumentMoniker": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\KeyboardController.cs",
+              "RelativeDocumentMoniker": "KeyboardController.cs",
+              "ToolTip": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\KeyboardController.cs",
+              "RelativeToolTip": "KeyboardController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T03:42:21.532Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TextSprite.cs",
+              "DocumentMoniker": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\TextSprite.cs",
+              "RelativeDocumentMoniker": "TextSprite.cs",
+              "ToolTip": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\TextSprite.cs",
+              "RelativeToolTip": "TextSprite.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T03:43:54.328Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T03:44:01.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ISprite.cs",
+              "DocumentMoniker": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\ISprite.cs",
+              "RelativeDocumentMoniker": "ISprite.cs",
+              "ToolTip": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\ISprite.cs",
+              "RelativeToolTip": "ISprite.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T03:42:19.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IController.cs",
+              "DocumentMoniker": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\IController.cs",
+              "RelativeDocumentMoniker": "IController.cs",
+              "ToolTip": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\IController.cs",
+              "RelativeToolTip": "IController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T03:42:17.375Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ICommand.cs",
+              "DocumentMoniker": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\ICommand.cs",
+              "RelativeDocumentMoniker": "ICommand.cs",
+              "ToolTip": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\ICommand.cs",
+              "RelativeToolTip": "ICommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T03:42:15.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\Game1.cs",
+              "RelativeDocumentMoniker": "Game1.cs",
+              "ToolTip": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\Game1.cs",
+              "RelativeToolTip": "Game1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-11T03:42:12.831Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

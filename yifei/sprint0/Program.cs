@@ -1,2 +1,2 @@
-﻿using var game = new twoD_Game.Game1();
+﻿using var game = new TheLegendOfZilda.Game1();
 game.Run();

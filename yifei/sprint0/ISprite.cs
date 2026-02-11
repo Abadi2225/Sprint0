@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace twoD_Game
+namespace TheLegendOfZilda
 {
     public interface ISprite
     {

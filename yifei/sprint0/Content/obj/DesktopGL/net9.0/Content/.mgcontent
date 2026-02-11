@@ -4,8 +4,8 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/Courses/Spring2026/CSE 3902/Visual Studio/The_Legend_of_Zilda/sprint0/Content/Font.spritefont</File>
-    <File>D:/Courses/Spring2026/CSE 3902/Visual Studio/The_Legend_of_Zilda/sprint0/Content/mario.png</File>
+    <File>D:/Courses/Spring2026/CSE_3902/Visual_Studio/The_Legend_of_Zilda/sprint0/Content/Font.spritefont</File>
+    <File>D:/Courses/Spring2026/CSE_3902/Visual_Studio/The_Legend_of_Zilda/sprint0/Content/mario.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

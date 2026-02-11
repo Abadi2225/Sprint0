@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Courses\\Spring2026\\CSE 3902\\Visual Studio\\The_Legend_of_Zilda\\sprint0\\sprint0.csproj": {}
+    "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\sprint0.csproj": {}
   },
   "projects": {
-    "D:\\Courses\\Spring2026\\CSE 3902\\Visual Studio\\The_Legend_of_Zilda\\sprint0\\sprint0.csproj": {
+    "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\sprint0.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Courses\\Spring2026\\CSE 3902\\Visual Studio\\The_Legend_of_Zilda\\sprint0\\sprint0.csproj",
+        "projectUniqueName": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\sprint0.csproj",
         "projectName": "sprint0",
-        "projectPath": "D:\\Courses\\Spring2026\\CSE 3902\\Visual Studio\\The_Legend_of_Zilda\\sprint0\\sprint0.csproj",
+        "projectPath": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\sprint0.csproj",
         "packagesPath": "C:\\Users\\Yifei Yu\\.nuget\\packages\\",
-        "outputPath": "D:\\Courses\\Spring2026\\CSE 3902\\Visual Studio\\The_Legend_of_Zilda\\sprint0\\obj\\",
+        "outputPath": "D:\\Courses\\Spring2026\\CSE_3902\\Visual_Studio\\The_Legend_of_Zilda\\sprint0\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace twoD_Game
+namespace TheLegendOfZilda
 {
 	internal class TextSprite : ISprite
 	{

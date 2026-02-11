@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
-namespace twoD_Game
+namespace TheLegendOfZilda
 {
 	internal class MouseController : IController
 	{
