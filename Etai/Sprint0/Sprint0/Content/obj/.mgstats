@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"/Users/etainorris/MonoGameProjects/Sprint0/Sprint0/Content/Fonts/FontPlz.spritefont","/Users/etainorris/MonoGameProjects/Sprint0/Sprint0/Content/bin/Fonts/FontPlz.xnb","FontDescriptionProcessor","SpriteFontContent",2008,21530,0.240375
+"/Users/etainorris/MonoGameProjects/Sprint0/Sprint0/Content/Images/Link_Spritesheet.png","/Users/etainorris/MonoGameProjects/Sprint0/Sprint0/Content/bin/Images/Link_Spritesheet.xnb","TextureProcessor","Texture2DContent",19462,460125,0.065273

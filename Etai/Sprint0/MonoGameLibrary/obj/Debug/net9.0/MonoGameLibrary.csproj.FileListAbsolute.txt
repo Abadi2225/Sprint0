@@ -1,0 +1,12 @@
+/Users/etainorris/MonoGameProjects/Sprint0/MonoGameLibrary/bin/Debug/net9.0/MonoGameLibrary.deps.json
+/Users/etainorris/MonoGameProjects/Sprint0/MonoGameLibrary/bin/Debug/net9.0/MonoGameLibrary.dll
+/Users/etainorris/MonoGameProjects/Sprint0/MonoGameLibrary/bin/Debug/net9.0/MonoGameLibrary.pdb
+/Users/etainorris/MonoGameProjects/Sprint0/MonoGameLibrary/obj/Debug/net9.0/MonoGameLibrary.csproj.AssemblyReference.cache
+/Users/etainorris/MonoGameProjects/Sprint0/MonoGameLibrary/obj/Debug/net9.0/MonoGameLibrary.GeneratedMSBuildEditorConfig.editorconfig
+/Users/etainorris/MonoGameProjects/Sprint0/MonoGameLibrary/obj/Debug/net9.0/MonoGameLibrary.AssemblyInfoInputs.cache
+/Users/etainorris/MonoGameProjects/Sprint0/MonoGameLibrary/obj/Debug/net9.0/MonoGameLibrary.AssemblyInfo.cs
+/Users/etainorris/MonoGameProjects/Sprint0/MonoGameLibrary/obj/Debug/net9.0/MonoGameLibrary.csproj.CoreCompileInputs.cache
+/Users/etainorris/MonoGameProjects/Sprint0/MonoGameLibrary/obj/Debug/net9.0/MonoGameLibrary.dll
+/Users/etainorris/MonoGameProjects/Sprint0/MonoGameLibrary/obj/Debug/net9.0/refint/MonoGameLibrary.dll
+/Users/etainorris/MonoGameProjects/Sprint0/MonoGameLibrary/obj/Debug/net9.0/MonoGameLibrary.pdb
+/Users/etainorris/MonoGameProjects/Sprint0/MonoGameLibrary/obj/Debug/net9.0/ref/MonoGameLibrary.dll
