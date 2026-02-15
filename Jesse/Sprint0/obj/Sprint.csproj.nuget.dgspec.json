@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shiel\\OneDrive\\Documents\\OSU\\Spring 2026\\CSE3902\\Sprint\\Sprint.csproj": {}
+    "C:\\Users\\shiel\\OneDrive\\Documents\\OSU\\Spring 2026\\CSE3902\\Clone\\The_Legend_of_Zilda\\Jesse\\Sprint0\\Sprint.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shiel\\OneDrive\\Documents\\OSU\\Spring 2026\\CSE3902\\Sprint\\Sprint.csproj": {
+    "C:\\Users\\shiel\\OneDrive\\Documents\\OSU\\Spring 2026\\CSE3902\\Clone\\The_Legend_of_Zilda\\Jesse\\Sprint0\\Sprint.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shiel\\OneDrive\\Documents\\OSU\\Spring 2026\\CSE3902\\Sprint\\Sprint.csproj",
+        "projectUniqueName": "C:\\Users\\shiel\\OneDrive\\Documents\\OSU\\Spring 2026\\CSE3902\\Clone\\The_Legend_of_Zilda\\Jesse\\Sprint0\\Sprint.csproj",
         "projectName": "Sprint",
-        "projectPath": "C:\\Users\\shiel\\OneDrive\\Documents\\OSU\\Spring 2026\\CSE3902\\Sprint\\Sprint.csproj",
+        "projectPath": "C:\\Users\\shiel\\OneDrive\\Documents\\OSU\\Spring 2026\\CSE3902\\Clone\\The_Legend_of_Zilda\\Jesse\\Sprint0\\Sprint.csproj",
         "packagesPath": "C:\\Users\\shiel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shiel\\OneDrive\\Documents\\OSU\\Spring 2026\\CSE3902\\Sprint\\obj\\",
+        "outputPath": "C:\\Users\\shiel\\OneDrive\\Documents\\OSU\\Spring 2026\\CSE3902\\Clone\\The_Legend_of_Zilda\\Jesse\\Sprint0\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shiel\\AppData\\Roaming\\NuGet\\NuGet.Config"

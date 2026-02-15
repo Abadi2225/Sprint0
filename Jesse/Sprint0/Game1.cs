@@ -21,17 +21,18 @@ public class Game1 : Game
     private GameState currState;
     private ISprite currSprite;
 
-     private ISprite staticSprite;
-    private ISprite animatedSprite;
-    private ISprite movingSprite;
-    private ISprite movingAnimatedSprite;
+    //private ISprite staticSprite;
+    //private ISprite animatedSprite;
+    //private ISprite movingSprite;
+    //private ISprite movingAnimatedSprite;
 
     public Game1()
     {
         graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        currState = GameState.StaticNonAnimated;
+        //Switch this to Start Screen after we implement it
+        currState = GameState.Running;
     }
 
     protected override void Initialize()
@@ -41,6 +42,7 @@ public class Game1 : Game
 
         base.Initialize();
     }
+
 
     protected override void LoadContent()
     {
@@ -52,13 +54,13 @@ public class Game1 : Game
 
         Vector2 center = new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2);
 
-        staticSprite = new StaticSprite(linkSheet, center, new Rectangle(0, 11, 16, 16));
+        //staticSprite = new StaticSprite(linkSheet, center, new Rectangle(0, 11, 16, 16));
 
-        animatedSprite = new AnimatedSprite(linkSheet, center, new int[] { 0, 17 }, 11, 16, 16, 0.2f);
+        //animatedSprite = new AnimatedSprite(linkSheet, center, new int[] { 0, 17 }, 11, 16, 16, 0.2f);
 
-        movingSprite = new MovingSprite(linkSheet, center, new int[] { 68, 85 }, 11, 16, 16, 0.2f);
+       // movingSprite = new MovingSprite(linkSheet, center, new int[] { 68, 85 }, 11, 16, 16, 0.2f);
 
-        movingAnimatedSprite = new MovingAnimatedSprite(linkSheet, center, new int[] { 34, 51 }, 11, 16, 16, 0.2f);
+       // movingAnimatedSprite = new MovingAnimatedSprite(linkSheet, center, new int[] { 34, 51 }, 11, 16, 16, 0.2f);
 
         SetState(currState);
     }
@@ -82,19 +84,19 @@ public class Game1 : Game
 
         spriteBatch.Begin();
 
-        float creditsScale = 0.3f;
-        float creditsX = (Window.ClientBounds.Width - credits.Width * creditsScale) / 2;
-        float creditsY = Window.ClientBounds.Height - credits.Height * creditsScale - 10;
+        //float creditsScale = 0.3f;
+        //float creditsX = (Window.ClientBounds.Width - credits.Width * creditsScale) / 2;
+        //float creditsY = Window.ClientBounds.Height - credits.Height * creditsScale - 10;
     
-        spriteBatch.Draw(credits, 
-        new Vector2(creditsX, creditsY), 
-        null, 
-        Color.White, 
-        0f, 
-        Vector2.Zero, 
-        creditsScale, 
-        SpriteEffects.None, 
-        0f);
+        //spriteBatch.Draw(credits, 
+        //new Vector2(creditsX, creditsY), 
+       // null, 
+        //Color.White, 
+        //0f, 
+       // Vector2.Zero, 
+        //creditsScale, 
+        //SpriteEffects.None, 
+        //0f);
 
         if (currSprite != null)
         {
@@ -106,26 +108,27 @@ public class Game1 : Game
     }
 
 
+    //Used to be animation state for the Sprint0, switched to Start Screen/Pause/Running/Game Over
     public void SetState(GameState newState)
     {
         currState = newState;
 
         switch (currState)
             {
-                case GameState.StaticNonAnimated:
-                    currSprite = staticSprite;
+                case GameState.StartScreen:
+                    //currSprite = staticSprite;
                     break;
 
-                case GameState.StaticAnimated:
-                    currSprite = animatedSprite;
+                case GameState.Running:
+                    //currSprite = animatedSprite;
                     break;
 
-                case GameState.MovingNonAnimated:
-                    currSprite = movingSprite;
+                case GameState.Pause:
+                    //currSprite = movingSprite;
                     break;
 
-                case GameState.MovingAnimated:
-                    currSprite = movingAnimatedSprite;
+                case GameState.GameOver:
+                    //currSprite = movingAnimatedSprite;
                     break;
             }        
     }
