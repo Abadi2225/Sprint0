@@ -32,6 +32,7 @@ namespace Sprint.Sprites
 
         public Rectangle Rect => rect;
 
+        //TODO: Refactor xPositions to incoroporate yPos and be a 2 dimensional array
         public AnimatedSprite(Texture2D texture, Vector2 position, int[] xPositions, int yPos, int spriteWidth, int spriteHeight, float frameTime)
         {
             this.texture = texture;
@@ -57,7 +58,7 @@ namespace Sprint.Sprites
                 frameHeight
             );
         }
-
+        
         public int Update(GameTime gameTime)
         {
             elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -82,6 +83,7 @@ namespace Sprint.Sprites
 
             Vector2 drawPos = new Vector2(location.X - frameWidth / 2, location.Y - frameHeight / 2);
 
+            //white is a the default no color mask
             spriteBatch.Draw(texture, drawPos, sourceRectangle, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
             
         }

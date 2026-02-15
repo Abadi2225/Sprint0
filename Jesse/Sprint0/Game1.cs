@@ -48,11 +48,11 @@ public class Game1 : Game
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        credits = Content.Load<Texture2D>("images/credits");
-
         linkSheet = Content.Load<Texture2D>("images/Link");
 
         Vector2 center = new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2);
+
+        //Left these as examples for how to load sprites with the current parameters
 
         //staticSprite = new StaticSprite(linkSheet, center, new Rectangle(0, 11, 16, 16));
 
@@ -108,7 +108,7 @@ public class Game1 : Game
     }
 
 
-    //Used to be animation state for the Sprint0, switched to Start Screen/Pause/Running/Game Over
+    //Used to be animation state for Sprint0, switched to Start Screen/Pause/Running/GameOver
     public void SetState(GameState newState)
     {
         currState = newState;
