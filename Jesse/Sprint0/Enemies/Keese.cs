@@ -29,10 +29,10 @@ namespace Sprint.Enemies.Keese
         // TODO point to right texture on sheet
         public Keese(Texture2D texture, Vector2 position) : base(texture, position, HEALTH, DAMAGE)
         {
-            int[] sheetXPositions = new int[] { 1, 10 };
+            int[] sheetXPositions = new int[] { 182, 200 };
             int sheetY = 15;
-            int spriteWidth = 7;
-            int spriteHeight = 8;
+            int spriteWidth = 16;
+            int spriteHeight = 16;
             float frameTime = 0.2f;
             
             sprite = new AnimatedSprite(texture, position, sheetXPositions, sheetY, 
