@@ -1,3 +1,0 @@
-Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"c:/Users/richie/Documents/School/SP2026/CSE 3902/sprint0/Content/fonts/CreditsFont.spritefont","c:/Users/richie/Documents/School/SP2026/CSE 3902/sprint0/Content/bin/Windows/Content/fonts/CreditsFont.xnb","FontDescriptionProcessor","SpriteFontContent",523,37914,0.0566964
-"c:/Users/richie/Documents/School/SP2026/CSE 3902/sprint0/Content/sprites/mario.png","c:/Users/richie/Documents/School/SP2026/CSE 3902/sprint0/Content/bin/Windows/Content/sprites/mario.xnb","TextureProcessor","Texture2DContent",26240,287125,0.1011774
