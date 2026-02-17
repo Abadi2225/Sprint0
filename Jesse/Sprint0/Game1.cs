@@ -8,6 +8,7 @@ using Sprint.UI;
 using Sprint.Character;
 using Sprint.Enemies;
 using Sprint.Enemies.Concrete;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Sprint;
 
@@ -85,8 +86,8 @@ public class Game1 : Game
 
 
         // commented out since this takes up half the screen
-        // titleScreen = new TitleScreen(titleSheet, new Rectangle(1, 11, 256, 254));
-        // uiManager.AddElement(titleScreen);
+        titleScreen = new TitleScreen(titleSheet, new Rectangle(1, 11, 256, 254));
+        uiManager.AddElement(titleScreen);
 
         SetState(currState);
 

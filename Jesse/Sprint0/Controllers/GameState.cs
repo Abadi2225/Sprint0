@@ -5,6 +5,6 @@ namespace Sprint.Controllers
             StaticNonAnimated,      
             StaticAnimated,         
             MovingNonAnimated,      
-            MovingAnimated          
+            MovingAnimated     
         }
 }
