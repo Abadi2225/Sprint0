@@ -1,11 +1,10 @@
-using System.Data.SqlTypes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
 
 namespace Sprint.Sprites
 {
-    public class AnimatedSprite : ISprite
+    public class DirectionalAnimatedSprite : ISprite
     {
         private Texture2D texture;
         private Vector2 pos;
@@ -18,6 +17,7 @@ namespace Sprint.Sprites
         private int frameWidth;
         private int frameHeight;
         private int sheetY;
+        private bool flipHorizontal;
 
         public Vector2 Position 
         { 
@@ -30,23 +30,34 @@ namespace Sprint.Sprites
         }
 
         public Texture2D Texture => texture;
-
+        
         public Rectangle Rect => rect;
 
-        public AnimatedSprite(Texture2D texture, Vector2 position, int[] sheetXPositions, int sheetYPos, int spriteWidth, int spriteHeight, float frameTime)
+        public DirectionalAnimatedSprite(Texture2D texture, Vector2 position, int[] xPositions, int yPos, 
+                              int spriteWidth, int spriteHeight, float frameTime, bool flipHorizontal = false)
         {
             this.texture = texture;
             pos = position;
-            this.frameCount = sheetXPositions.Length;
-            this.sheetXPositions = sheetXPositions;
+            this.frameCount = xPositions.Length;
+            sheetXPositions = xPositions;
             this.frameTime = frameTime;
             curFrame = 0;
             elapsedTime = 0f;
             frameWidth = spriteWidth;
             frameHeight = spriteHeight;
-            sheetY = sheetYPos;
+            sheetY = yPos;
+            this.flipHorizontal = flipHorizontal;
             
             UpdateRect();
+        }
+
+        public void UpdateFrames(int[] xPositions, bool flipHorizontal)
+        {
+            sheetXPositions = xPositions;
+            frameCount = xPositions.Length;
+            this.flipHorizontal = flipHorizontal;
+            curFrame = 0;
+            elapsedTime = 0f;
         }
 
         private void UpdateRect()
@@ -58,7 +69,7 @@ namespace Sprint.Sprites
                 frameHeight
             );
         }
-        
+
         public int Update(GameTime gameTime)
         {
             elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -81,11 +92,10 @@ namespace Sprint.Sprites
                 frameHeight
             );
 
-            Vector2 drawPos = new Vector2(location.X - frameWidth / 2, location.Y - frameHeight / 2);
-
-            //white is the default no color mask
-            spriteBatch.Draw(texture, drawPos, sourceRectangle, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
+            SpriteEffects effect = flipHorizontal ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Vector2 origin = new Vector2(frameWidth / 2, frameHeight / 2);
             
+            spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 0f, origin, 2f, effect, 0f);
         }
     }
 }

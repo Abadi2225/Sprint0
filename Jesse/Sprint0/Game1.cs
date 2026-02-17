@@ -6,6 +6,8 @@ using Sprint.Controllers;
 using Sprint.Sprites;
 using Sprint.UI;
 using Sprint.Character;
+using Sprint.Enemies;
+using Sprint.Enemies.Concrete;
 
 namespace Sprint;
 
@@ -14,11 +16,11 @@ public class Game1 : Game
     private Texture2D credits;
     private Texture2D linkSheet;
     private Texture2D titleSheet;
+    private Texture2D enemiesSheet;
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
 
     private IController keyboard;
-
     private IController mouse;
 
     private GameState currState;
@@ -32,6 +34,9 @@ public class Game1 : Game
     private UIManager uiManager;
     private TitleScreen titleScreen;
     private Link link;
+
+    private EnemyManager enemyManager;
+    private EnemyFactory enemyFactory;
 
     public Game1()
     {
@@ -57,18 +62,26 @@ public class Game1 : Game
 
         credits = Content.Load<Texture2D>("images/credits");
         linkSheet = Content.Load<Texture2D>("images/Link");
+        enemiesSheet = Content.Load<Texture2D>("images/enemiesSheet");
 
         titleSheet = Content.Load<Texture2D>("images/Title Screen & Story of Treasures");
 
         Vector2 center = new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2);
 
         staticSprite = new StaticSprite(linkSheet, center, new Rectangle(0, 11, 16, 16));
+        animatedSprite = new AnimatedSprite(linkSheet, center, [0, 17], 11, 16, 16, 0.2f);
+        movingSprite = new MovingSprite(linkSheet, center,
+                                new int[] { 0, 17 },    // down frames
+                                new int[] { 68, 85 },   // up frames  
+                                11, 16, 16, 0.2f);
+        movingAnimatedSprite = new MovingAnimatedSprite(linkSheet, center, [34, 51], 11, 16, 16, 0.2f);
 
-        animatedSprite = new AnimatedSprite(linkSheet, center, new int[] { 0, 17 }, 11, 16, 16, 0.2f);
+        enemyManager = new EnemyManager();
+        enemyFactory = new EnemyFactory(enemiesSheet);
 
-        movingSprite = new MovingSprite(linkSheet, center, new int[] { 68, 85 }, 11, 16, 16, 0.2f);
-
-        movingAnimatedSprite = new MovingAnimatedSprite(linkSheet, center, new int[] { 34, 51 }, 11, 16, 16, 0.2f);
+        // Can make push this to be generated in the enemyFactory if we want to create more enemies
+        enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Gel, center + new Vector2(100, 0)));
+        enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Stalfos, center + new Vector2(100, 0)));
 
 
         // commented out since this takes up half the screen
@@ -85,10 +98,9 @@ public class Game1 : Game
         keyboard.Update();
         mouse.Update();
 
-        if (currSprite != null)
-        {
-            currSprite.Update(gameTime);
-        }
+        currSprite?.Update(gameTime);
+
+        enemyManager?.Update(gameTime);
 
         uiManager.Update(gameTime);
 
@@ -114,17 +126,15 @@ public class Game1 : Game
         SpriteEffects.None,
         0f);
 
-        if (currSprite != null)
-        {
-            currSprite.Draw(spriteBatch, currSprite.Position);
-        }
+        currSprite?.Draw(spriteBatch, currSprite.Position);
 
         uiManager.Draw(spriteBatch);
 
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-
         link.Draw(spriteBatch);
+
+        enemyManager?.Draw(spriteBatch);
 
         spriteBatch.End();
 
@@ -134,26 +144,28 @@ public class Game1 : Game
 
     public void SetState(GameState newState)
     {
-        //currState = newState;
+        switch (currState)
+        {
+            case GameState.StaticNonAnimated:
+                currSprite = staticSprite;
+                enemyManager?.CycleNext();
+                break;
 
-        //switch (currState)
-        //    {
-        //        case GameState.StaticNonAnimated:
-        //            currSprite = staticSprite;
-        //            break;
+            case GameState.StaticAnimated:
+                currSprite = animatedSprite;
+                enemyManager?.CycleNext();
+                break;
 
-        //        case GameState.StaticAnimated:
-        //            currSprite = animatedSprite;
-        //            break;
+            case GameState.MovingNonAnimated:
+                currSprite = movingSprite;
+                enemyManager?.CycleNext();
+                break;
 
-        //        case GameState.MovingNonAnimated:
-        //            currSprite = movingSprite;
-        //            break;
-
-        //        case GameState.MovingAnimated:
-        //            currSprite = movingAnimatedSprite;
-        //            break;
-        //    }        
+            case GameState.MovingAnimated:
+                currSprite = movingAnimatedSprite;
+                enemyManager?.CycleNext();
+                break;
+        }
     }
 
     public GameState GetCurrentState()
