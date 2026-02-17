@@ -11,6 +11,6 @@ namespace Sprint.Interfaces
 
         public Vector2 Position { get; set; }
 
-        public Texture2D Texture { get; }
+        // public Texture2D Texture { get; }
     }
 }

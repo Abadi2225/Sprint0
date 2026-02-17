@@ -43,8 +43,8 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        //keyboard = new KeyboardController(this);
-        //mouse = new MouseController(this, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+        keyboard = new KeyboardController(this);
+        mouse = new MouseController(this, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
         uiManager = new UIManager();
 
@@ -55,6 +55,7 @@ public class Game1 : Game
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
 
+        credits = Content.Load<Texture2D>("images/credits");
         linkSheet = Content.Load<Texture2D>("images/Link");
 
         titleSheet = Content.Load<Texture2D>("images/Title Screen & Story of Treasures");
@@ -100,6 +101,8 @@ public class Game1 : Game
         float creditsX = (Window.ClientBounds.Width - credits.Width * creditsScale) / 2;
         float creditsY = Window.ClientBounds.Height - credits.Height * creditsScale - 10;
 
+        spriteBatch.Begin();
+
         spriteBatch.Draw(credits,
         new Vector2(creditsX, creditsY),
         null,
@@ -119,7 +122,6 @@ public class Game1 : Game
 
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        spriteBatch.Begin();
 
         link.Draw(spriteBatch);
 
