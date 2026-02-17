@@ -1,4 +1,0 @@
-Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"/Users/etainorris/Sprint0/Jesse/Sprint0/Content/images/credits.png","/Users/etainorris/Sprint0/Jesse/Sprint0/Content/bin/DesktopGL/Content/images/credits.xnb","TextureProcessor","Texture2DContent",46480,963157,0.326122
-"/Users/etainorris/Sprint0/Jesse/Sprint0/Content/images/Link.png","/Users/etainorris/Sprint0/Jesse/Sprint0/Content/bin/DesktopGL/Content/images/Link.xnb","TextureProcessor","Texture2DContent",19462,460125,0.025423
-"/Users/etainorris/Sprint0/Jesse/Sprint0/Content/images/Title Screen & Story of Treasures.png","/Users/etainorris/Sprint0/Jesse/Sprint0/Content/bin/DesktopGL/Content/images/Title Screen & Story of Treasures.xnb","TextureProcessor","Texture2DContent",47877,2967721,0.127737
