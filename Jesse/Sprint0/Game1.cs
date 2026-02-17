@@ -53,7 +53,7 @@ public class Game1 : Game
 
         credits = Content.Load<Texture2D>("images/credits");
         linkSheet = Content.Load<Texture2D>("images/Link");
-        enemiesSheet = Content.Load<Texture2D>("images/Enemies");
+        enemiesSheet = Content.Load<Texture2D>("images/enemiesSheet");
 
         Vector2 center = new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2);
 

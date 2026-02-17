@@ -38,7 +38,7 @@ namespace Sprint.Sprites
             this.texture = texture;
             pos = position;
             this.frameCount = sheetXPositions.Length;
-            sheetXPositions = this.sheetXPositions;
+            this.sheetXPositions = sheetXPositions;
             this.frameTime = frameTime;
             curFrame = 0;
             elapsedTime = 0f;
