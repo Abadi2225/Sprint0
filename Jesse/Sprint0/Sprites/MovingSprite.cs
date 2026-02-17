@@ -11,7 +11,8 @@ namespace Sprint.Sprites
         public Rectangle rect;
         private int frameCount;
         private int curFrame;
-        private int[] frameXPositions;
+        private int[] downFrameXPositions;
+        private int[] upFrameXPositions;
         private float frameTime;
         private float elapsedTime;
         private int frameWidth;
@@ -36,14 +37,15 @@ namespace Sprint.Sprites
         
         public Rectangle Rect { get { return rect; } }
 
-        public MovingSprite(Texture2D tex, Vector2 start, int[] xPositions, int yPos,
-                           int spriteWidth, int spriteHeight, float frameDuration,
-                           float moveSpeed = 100f, float range = 200f)
-        {
+       public MovingSprite(Texture2D tex, Vector2 start, int[] downXPositions, int[] upXPositions, int yPos,
+                   int spriteWidth, int spriteHeight, float frameDuration,
+                   float moveSpeed = 100f, float range = 200f)
+{
             texture = tex;
             pos = start;
-            frameCount = xPositions.Length;
-            frameXPositions = xPositions;
+            frameCount = downXPositions.Length;
+            downFrameXPositions = downXPositions;
+            upFrameXPositions = upXPositions;
             frameTime = frameDuration;
             curFrame = 0;
             elapsedTime = 0f;
@@ -104,12 +106,14 @@ namespace Sprint.Sprites
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
+            int[] currentFrames = goingDown ? downFrameXPositions : upFrameXPositions;
+    
             Rectangle source = new Rectangle(
-                frameXPositions[curFrame],
+                currentFrames[curFrame],
                 frameY,
                 frameWidth,
                 frameHeight
-            );
+    );
 
             Vector2 drawPos = new Vector2(location.X - frameWidth / 2, location.Y - frameHeight / 2);
             spriteBatch.Draw(texture, drawPos, source, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);

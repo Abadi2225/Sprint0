@@ -13,12 +13,12 @@ namespace Sprint.Sprites
         public Rectangle rect;
         private int frameCount;
         private int curFrame;
-        private int[] sheetXPositions;
+        private int[] sheetYPositions;
         private float frameTime;
         private float elapsedTime;
         private int frameWidth;
         private int frameHeight;
-        private int sheetY;
+        private int frameY;
         private float speed;
         private float minX;
         private float maxX;
@@ -41,8 +41,8 @@ namespace Sprint.Sprites
         public MovingAnimatedSprite(
             Texture2D texture, 
             Vector2 startPosition, 
-            int[] sheetXPositions,
-            int sheetY,
+            int[] sheetYPositions,
+            int frameY,
             int spriteWidth,
             int spriteHeight,
             float frameDuration,
@@ -51,14 +51,14 @@ namespace Sprint.Sprites
         {
             this.texture = texture;
             pos = startPosition;
-            this.frameCount = sheetXPositions.Length;
-            sheetXPositions = this.sheetXPositions;
+            this.frameCount = sheetYPositions.Length;
+            sheetYPositions = this.sheetYPositions;
             this.frameTime = frameDuration;
             curFrame = 0;
             elapsedTime = 0f;
             frameWidth = spriteWidth;
             frameHeight = spriteHeight;
-            sheetY = this.sheetY;
+            frameY = this.frameY;
             this.speed = moveSpeed;
             minX = startPosition.X - range / 2;
             maxX = startPosition.X + range / 2;
@@ -114,8 +114,8 @@ namespace Sprint.Sprites
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
             Rectangle sourceRectangle = new Rectangle(
-                sheetXPositions[curFrame],
-                sheetY,
+                sheetYPositions[curFrame],
+                frameY,
                 frameWidth,
                 frameHeight
             );

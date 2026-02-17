@@ -33,3 +33,13 @@ c:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Sprint\obj\Debug\net9.
 c:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Sprint\obj\Debug\net9.0\ref\Sprint.dll
 c:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Sprint\bin\Debug\net9.0\Content\images\credits.xnb
 c:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Sprint\bin\Debug\net9.0\Content\images\Link.xnb
+c:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Clone\The_Legend_of_Zilda\Jesse\Sprint0\obj\Debug\net9.0\mgcb.tool.restore
+c:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Clone\The_Legend_of_Zilda\Jesse\Sprint0\obj\Debug\net9.0\Sprint.csproj.AssemblyReference.cache
+c:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Clone\The_Legend_of_Zilda\Jesse\Sprint0\obj\Debug\net9.0\Sprint.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Clone\The_Legend_of_Zilda\Jesse\Sprint0\obj\Debug\net9.0\Sprint.AssemblyInfoInputs.cache
+c:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Clone\The_Legend_of_Zilda\Jesse\Sprint0\obj\Debug\net9.0\Sprint.AssemblyInfo.cs
+c:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Clone\The_Legend_of_Zilda\Jesse\Sprint0\obj\Debug\net9.0\Sprint.csproj.CoreCompileInputs.cache
+c:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Clone\The_Legend_of_Zilda\Jesse\Sprint0\obj\Debug\net9.0\Sprint.sourcelink.json
+c:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Clone\The_Legend_of_Zilda\Jesse\Sprint0\obj\Debug\net9.0\Sprint.dll
+c:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Clone\The_Legend_of_Zilda\Jesse\Sprint0\obj\Debug\net9.0\refint\Sprint.dll
+c:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Clone\The_Legend_of_Zilda\Jesse\Sprint0\obj\Debug\net9.0\Sprint.pdb

@@ -59,7 +59,10 @@ public class Game1 : Game
 
         staticSprite = new StaticSprite(linkSheet, center, new Rectangle(0, 11, 16, 16));
         animatedSprite = new AnimatedSprite(linkSheet, center, [0, 17], 11, 16, 16, 0.2f);
-        movingSprite = new MovingSprite(linkSheet, center, [68, 85], 11, 16, 16, 0.2f);
+        movingSprite = new MovingSprite(linkSheet, center, 
+                                new int[] { 0, 17 },    // down frames
+                                new int[] { 68, 85 },   // up frames  
+                                11, 16, 16, 0.2f);
         movingAnimatedSprite = new MovingAnimatedSprite(linkSheet, center, [34, 51], 11, 16, 16, 0.2f);
 
         enemyManager = new EnemyManager();
