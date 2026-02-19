@@ -31,10 +31,10 @@ namespace Sprint.Enemies.Concrete
         
         public Aquamentus(Texture2D texture, Vector2 position) : base(texture, position, HEALTH, DAMAGE)
         {
-            int[]sheetXPositions = new int[] {}; //Add spritesheet positions to x and y
-            int sheetY = 15;
-            int spriteWidth = 16;
-            int spriteHeight = 16;
+            int[]sheetXPositions = new int[] {1, 25, 49, 73}; 
+            int sheetY = 11;
+            int spriteWidth = 24;
+            int spriteHeight = 24;
             float frameTime = 0.2f;
             moveDirectionTimer = 0f;
             directionChangeTimer = GetRandomFloat(DIRECTION_SWAP_MIN,DIRECTION_SWAP_MAX);
