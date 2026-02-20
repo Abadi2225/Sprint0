@@ -118,6 +118,7 @@ public class Game1 : Game
         float creditsX = (Window.ClientBounds.Width - credits.Width * creditsScale) / 2;
         float creditsY = Window.ClientBounds.Height - credits.Height * creditsScale - 10;
 
+        // Changed to remove the brouder from the sprites, might result in pixelation when scalling.
         spriteBatch.Begin(
             SpriteSortMode.Deferred,
             BlendState.AlphaBlend,
