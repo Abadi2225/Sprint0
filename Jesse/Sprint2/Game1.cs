@@ -118,7 +118,12 @@ public class Game1 : Game
         float creditsX = (Window.ClientBounds.Width - credits.Width * creditsScale) / 2;
         float creditsY = Window.ClientBounds.Height - credits.Height * creditsScale - 10;
 
-        spriteBatch.Begin();
+        spriteBatch.Begin(
+            SpriteSortMode.Deferred,
+            BlendState.AlphaBlend,
+            SamplerState.PointClamp,  // No interpolation
+            null, null
+        );
 
         spriteBatch.Draw(credits,
         new Vector2(creditsX, creditsY),
