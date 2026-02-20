@@ -64,6 +64,7 @@ public class Game1 : Game
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Keese, center + new Vector2(100, 0)));
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Aquamentus, center + new Vector2(-100, 0)));
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Goriya, center + new Vector2(100, 0)));
+        enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Rope, center + new Vector2(100, 0)));
 
         SetState(currState);
     }
@@ -72,7 +73,7 @@ public class Game1 : Game
     {
         keyboard.Update();
         mouse.Update();
-         if (currState == GameState.Test)
+        if (currState == GameState.Test)
         {
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             testCycleTimer += dt;
@@ -123,7 +124,6 @@ public class Game1 : Game
         switch (currState)
             {
                 case GameState.Test:
-                    
                     break;
 
                 case GameState.Running:

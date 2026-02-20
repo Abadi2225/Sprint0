@@ -41,17 +41,17 @@ namespace Sprint.Enemies
                  case EnemyType.Goriya:
                      return new Goriya(enemySpriteSheet, position);
                     
-                // case EnemyType.Zol:
-                //     return new Zol(enemySpriteSheet, position);
+                case EnemyType.Zol:
+                    return new Zol(enemySpriteSheet, position);
                     
-                // case EnemyType.WallMaster:
-                //     return new WallMaster(enemySpriteSheet, position);
+                case EnemyType.WallMaster:
+                    return new WallMaster(enemySpriteSheet, position);
                     
-                // case EnemyType.Trap:
-                //     return new Trap(enemySpriteSheet, position);
+                case EnemyType.Trap:
+                    return new Trap(enemySpriteSheet, position);
                     
-                // case EnemyType.Rope:
-                //     return new Rope(enemySpriteSheet, position);
+                case EnemyType.Rope:
+                    return new Rope(enemySpriteSheet, position);
                     
                  case EnemyType.Aquamentus:
                      return new Aquamentus(bossSpriteSheet, position);

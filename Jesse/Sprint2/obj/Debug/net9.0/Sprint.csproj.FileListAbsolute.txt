@@ -75,3 +75,41 @@ C:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Clone\The_Legend_of_Zi
 C:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Clone\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\Sprint.genruntimeconfig.cache
 C:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Clone\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\ref\Sprint.dll
 C:\Users\shiel\OneDrive\Documents\OSU\Spring 2026\CSE3902\Clone\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\Content\images\BossesSpriteSheet.xnb
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\mgcb.tool.restore
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\Sprint.csproj.AssemblyReference.cache
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\Sprint.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\Sprint.AssemblyInfoInputs.cache
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\Sprint.AssemblyInfo.cs
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\Sprint.csproj.CoreCompileInputs.cache
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\Sprint.sourcelink.json
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\Sprint.dll
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\refint\Sprint.dll
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\Sprint.pdb
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\Content\images\BossesSpriteSheet.xnb
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\Content\images\credits.xnb
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\Content\images\enemiesSheet.xnb
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\Content\images\Link.xnb
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\Sprint.exe
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\Sprint.deps.json
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\Sprint.runtimeconfig.json
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\Sprint.dll
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\Sprint.pdb
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\MonoGame.Framework.dll
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\NVorbis.dll
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\runtimes\android-arm\native\libopenal.so
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\runtimes\android-arm64\native\libopenal.so
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\runtimes\android-x64\native\libopenal.so
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\runtimes\android-x86\native\libopenal.so
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\runtimes\ios-arm64\native\libopenal.a
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\runtimes\iossimulator-arm64\native\libopenal.a
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\runtimes\iossimulator-x64\native\libopenal.a
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\runtimes\linux-arm64\native\libopenal.so
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\runtimes\linux-x64\native\libopenal.so
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\runtimes\osx\native\libopenal.dylib
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\runtimes\win-x64\native\openal.dll
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\runtimes\osx\native\libSDL2-2.0.0.dylib
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\bin\Debug\net9.0\runtimes\win-x64\native\SDL2.dll
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\Sprint.csproj.Up2Date
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\Sprint.genruntimeconfig.cache
+C:\Users\abadi\The_Legend_of_Zilda\Jesse\Sprint2\obj\Debug\net9.0\ref\Sprint.dll
