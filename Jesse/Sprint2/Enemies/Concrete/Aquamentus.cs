@@ -26,10 +26,10 @@ namespace Sprint.Enemies.Concrete
         
         public Aquamentus(Texture2D texture, Vector2 position) : base(texture, position, HEALTH, DAMAGE)
         {
-            int[]sheetXPositions = new int[] {1, 25, 49, 73}; 
+            int[]sheetXPositions = new int[] {1, 26, 51, 76}; 
             int sheetY = 11;
-            int spriteWidth = 24;
-            int spriteHeight = 24;
+            int spriteWidth = 25;
+            int spriteHeight = 32;
             float frameTime = 0.2f;
             moveDirectionTimer = 0f;
             directionChangeTimer = GetRandomFloat(DIRECTION_SWAP_MIN,DIRECTION_SWAP_MAX);
@@ -52,15 +52,15 @@ namespace Sprint.Enemies.Concrete
                 if (moveLeft)
                 {
                     velocity = new Vector2(-MOVE_SPEED, 0);
-                    Position += velocity;
+
                 } else
                 {
                     velocity = new Vector2(MOVE_SPEED, 0);
-                    Position += velocity;
                 }
                 directionChangeTimer = GetRandomFloat(DIRECTION_SWAP_MIN, DIRECTION_SWAP_MAX);
                 moveLeft = !moveLeft;
             }
+            Position += velocity * deltaTime;
             
             return sprite.Update(gameTime);
         }

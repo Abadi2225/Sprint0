@@ -17,7 +17,6 @@ namespace Sprint.Enemies.Concrete
         private const float TURN_INTERVAL = 1f;
         private const float MOVE_SPEED = 0.7f;
         private readonly Random random;
-        private bool isOnGround;
 
         public Gel(Texture2D texture, Vector2 position) : base(texture, position, HEALTH, DAMAGE)
         {
@@ -51,7 +50,7 @@ namespace Sprint.Enemies.Concrete
                     turnTimer = TURN_INTERVAL;
                 }
             
-            
+            Position += velocity * deltaTime;
             
             return base.Update(gameTime);
         }
@@ -59,7 +58,6 @@ namespace Sprint.Enemies.Concrete
         public override void Reset()
         {
             base.Reset();
-            isOnGround = true;
             turnTimer = TURN_INTERVAL;
             velocity = Vector2.Zero;
         }

@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Enemies.Base;
+using Sprint.Interfaces;
 using Sprint.Sprites;
 
 namespace Sprint.Enemies.Concrete
@@ -10,7 +11,7 @@ namespace Sprint.Enemies.Concrete
     {
         private const int HEALTH = 1;
         private const int DAMAGE = 1;
-         private const float MOVE_SPEED = 80f;
+         private const float MOVE_SPEED = 40f;
         private const float REST_TIME_MIN = 0.5f;
         private const float REST_TIME_MAX = 2.0f;
         private const float MOVE_TIME_MIN = 1.0f;
@@ -20,6 +21,8 @@ namespace Sprint.Enemies.Concrete
         private float actionTimer;
         private float actionDuration;
         private bool isResting;
+        private ISprite flyingSprite;
+        private ISprite restingSprite;
         
         // Rests against walls first before taking flight
         // Moves erratically in random directions, stopping sometimes to rest
@@ -27,14 +30,19 @@ namespace Sprint.Enemies.Concrete
         // Never drop any items
         public Keese(Texture2D texture, Vector2 position) : base(texture, position, HEALTH, DAMAGE)
         {
-            int[] sheetXPositions = new int[] { 182, 200 };
+            int[] flyingXPositions = new int[] { 182, 200 };
+            int[] restingXPositions = new int[] {200};
             int sheetY = 11;
             int spriteWidth = 16;
             int spriteHeight = 16;
             float frameTime = 0.2f;
             
-            sprite = new AnimatedSprite(texture, position, sheetXPositions, sheetY, 
+            flyingSprite = new AnimatedSprite(texture, position, flyingXPositions, sheetY, 
                                         spriteWidth, spriteHeight, frameTime);
+        
+            restingSprite = new AnimatedSprite(texture, position, restingXPositions, sheetY, 
+                                        spriteWidth, spriteHeight, frameTime);
+
             random = new Random();
             isResting = true;
             actionTimer = 0f;
@@ -60,12 +68,20 @@ namespace Sprint.Enemies.Concrete
                 {
                     // Start resting
                     actionDuration = GetRandomFloat(REST_TIME_MIN, REST_TIME_MAX);
+                    sprite = restingSprite;
+
                 }
                 else
                 {
                     // Start moving in a new random direction
                     actionDuration = GetRandomFloat(MOVE_TIME_MIN, MOVE_TIME_MAX);
+                    sprite = flyingSprite;
                     ChooseRandomDirection();
+                }
+
+                if (sprite != null)
+                {
+                    sprite.Position = Position;
                 }
             }
             
@@ -75,7 +91,11 @@ namespace Sprint.Enemies.Concrete
                 Position += moveDirection * MOVE_SPEED * dt;
             }
             
-            return sprite.Update(gameTime);
+            if (sprite != null)
+            {
+                return sprite.Update(gameTime);
+            }
+            return 0;
         }
         
         private void ChooseRandomDirection()
