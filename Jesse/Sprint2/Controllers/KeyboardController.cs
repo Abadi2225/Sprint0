@@ -22,10 +22,13 @@ namespace Sprint.Controllers
 
         private void InitializeKeyMapping()
         {
-            keyCommands[Keys.D0] = new QuitCommand(game);
-            keyCommands[Keys.NumPad0] = new QuitCommand(game);
+            keyCommands[Keys.Q] = new QuitCommand(game);
             keyCommands[Keys.O] = new CycleEnemyCommand(game, true);
             keyCommands[Keys.P] = new CycleEnemyCommand(game, false);
+            keyCommands[Keys.I] = new CycleItemCommand(game, true);
+            keyCommands[Keys.U] = new CycleItemCommand(game, false);
+            keyCommands[Keys.Y] = new CycleBlockCommand(game, true);
+            keyCommands[Keys.T] = new CycleBlockCommand(game, false);
         }
 
         public void Update()
