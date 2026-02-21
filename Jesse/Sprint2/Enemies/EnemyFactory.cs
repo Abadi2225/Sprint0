@@ -66,7 +66,7 @@ namespace Sprint.Enemies
                 //     return new Dodongo(enemySpriteSheet, position);
 
                 default:
-                    return new Gel(enemySpriteSheet, position);
+                    return new Goriya(enemySpriteSheet, position);
             }
         }   
     }

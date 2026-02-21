@@ -4,11 +4,11 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/abadi/The_Legend_of_Zilda/Jesse/Sprint2/Content/images/BossesSpriteSheet.png</File>
-    <File>C:/Users/abadi/The_Legend_of_Zilda/Jesse/Sprint2/Content/images/credits.png</File>
-    <File>C:/Users/abadi/The_Legend_of_Zilda/Jesse/Sprint2/Content/images/enemiesSheet.png</File>
-    <File>C:/Users/abadi/The_Legend_of_Zilda/Jesse/Sprint2/Content/images/Link.png</File>
-    <File>C:/Users/abadi/The_Legend_of_Zilda/Jesse/Sprint2/Content/images/Title Screen &amp; Story of Treasures.png</File>
+    <File>C:/Users/shiel/OneDrive/Documents/OSU/Spring 2026/CSE3902/Clone/The_Legend_of_Zilda/Jesse/Sprint2/Content/images/BossesSpriteSheet.png</File>
+    <File>C:/Users/shiel/OneDrive/Documents/OSU/Spring 2026/CSE3902/Clone/The_Legend_of_Zilda/Jesse/Sprint2/Content/images/credits.png</File>
+    <File>C:/Users/shiel/OneDrive/Documents/OSU/Spring 2026/CSE3902/Clone/The_Legend_of_Zilda/Jesse/Sprint2/Content/images/enemiesSheet.png</File>
+    <File>C:/Users/shiel/OneDrive/Documents/OSU/Spring 2026/CSE3902/Clone/The_Legend_of_Zilda/Jesse/Sprint2/Content/images/Link.png</File>
+    <File>C:/Users/shiel/OneDrive/Documents/OSU/Spring 2026/CSE3902/Clone/The_Legend_of_Zilda/Jesse/Sprint2/Content/images/Title Screen &amp; Story of Treasures.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

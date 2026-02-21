@@ -300,19 +300,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\abadi\\.nuget\\packages\\": {}
+    "C:\\Users\\shiel\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\abadi\\The_Legend_of_Zilda\\Jesse\\Sprint2\\Sprint.csproj",
+      "projectUniqueName": "C:\\Users\\shiel\\OneDrive\\Documents\\OSU\\Spring 2026\\CSE3902\\Clone\\The_Legend_of_Zilda\\Jesse\\Sprint2\\Sprint.csproj",
       "projectName": "Sprint",
-      "projectPath": "C:\\Users\\abadi\\The_Legend_of_Zilda\\Jesse\\Sprint2\\Sprint.csproj",
-      "packagesPath": "C:\\Users\\abadi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\abadi\\The_Legend_of_Zilda\\Jesse\\Sprint2\\obj\\",
+      "projectPath": "C:\\Users\\shiel\\OneDrive\\Documents\\OSU\\Spring 2026\\CSE3902\\Clone\\The_Legend_of_Zilda\\Jesse\\Sprint2\\Sprint.csproj",
+      "packagesPath": "C:\\Users\\shiel\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\shiel\\OneDrive\\Documents\\OSU\\Spring 2026\\CSE3902\\Clone\\The_Legend_of_Zilda\\Jesse\\Sprint2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\abadi\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\shiel\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"

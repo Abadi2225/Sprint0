@@ -8,6 +8,8 @@ namespace Sprint.Enemies.Concrete
 {
     public class Goriya : Enemy
     {
+        private enum GoriyaState { Walking, Throwing }
+        private GoriyaState currentState;
         private const int HEALTH = 3;
         private const int DAMAGE = 1;
         private const float STEP_SIZE = 16f;  // One tile/step
@@ -18,14 +20,15 @@ namespace Sprint.Enemies.Concrete
         
         private Direction currentDirection;
         private Vector2 targetPosition;
-        private bool isMovingToTarget;
         private float stepTimer;
+        private bool spriteHorizontalFlip;
         private readonly Random random;
         
         // Sprite positions for each direction
         private readonly int[] upFrames = [239];      
         private readonly int[] downFrames = [222];   
         private readonly int[] sideFrames = [256, 273];
+
         
         // Attacks with boomerangs
         // Drops a heart, one rupee, four bombs, or a clock
@@ -34,16 +37,17 @@ namespace Sprint.Enemies.Concrete
         public Goriya(Texture2D texture, Vector2 position) : base(texture, position, HEALTH, DAMAGE)
         {
             this.texture = texture;
+            random = new Random();
             int sheetY = 11;
             int spriteWidth = 15;
             int spriteHeight = 15;
             float frameTime = 0.2f;
             
-            random = new Random();
+            currentState = GoriyaState.Walking;
             currentDirection = Direction.Down;
             targetPosition = position;
-            isMovingToTarget = false;
             stepTimer = STEP_DELAY;
+            spriteHorizontalFlip = true;
             
             sprite = new DirectionalAnimatedSprite(texture, position, downFrames, sheetY, 
                                         spriteWidth, spriteHeight, frameTime, true);
@@ -55,89 +59,83 @@ namespace Sprint.Enemies.Concrete
                 return base.Update(gameTime);
             
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
-            if (isMovingToTarget)
-            {
-                Vector2 currentPos = Position;
-                Vector2 direction = targetPosition - currentPos;
-                float distance = direction.Length();
 
-                if (distance < MOVE_SPEED * dt)
-                {
-                    Position = targetPosition;
-                    isMovingToTarget = false;
-                    stepTimer = STEP_DELAY;
-                }
-                else
-                {
-                    direction.Normalize();
-                    Position = currentPos + (direction * MOVE_SPEED * dt);
-                }
-            }
-            else
+            switch (currentState)
             {
-                stepTimer -= dt;
-                if (stepTimer <= 0)
-                {
-                    TakeStep();
-                }
+                case GoriyaState.Walking:
+                UpdateWalking(dt);
+                break;
+                
+                case GoriyaState.Throwing:
+                break;
             }
-            
             return sprite.Update(gameTime);
         }
-        
-        private void TakeStep()
+            
+            private void UpdateWalking(float deltaTime)
         {
-            int numSteps = random.Next(1, 3);
-            float totalDistance = STEP_SIZE * numSteps;
-            
-            currentDirection = (Direction)random.Next(4);
-            
-            Vector2 currentPos = sprite.Position;
-
-            //Console.WriteLine($"Current pos: {currentPos}, Moving: {currentDirection}, Distance: {totalDistance}");
-            switch (currentDirection)
+            // Check if we're moving to a target
+            if (Vector2.Distance(Position, targetPosition) > 1f)
             {
-                case Direction.Up:
-                    targetPosition = new Vector2(currentPos.X, currentPos.Y - totalDistance);
-                    UpdateSpriteDirection(upFrames, true);
-                    break;
-                case Direction.Down:
-                    targetPosition = new Vector2(currentPos.X, currentPos.Y + totalDistance);
-                    UpdateSpriteDirection(downFrames, true);
-                    break;
-                case Direction.Left:
-                    targetPosition = new Vector2(currentPos.X - totalDistance, currentPos.Y);
-                    UpdateSpriteDirection(sideFrames, true);
-                    break;
-                case Direction.Right:
-                    targetPosition = new Vector2(currentPos.X + totalDistance, currentPos.Y);
-                    UpdateSpriteDirection(sideFrames, false);
-                    break;
-            }
-            
-            isMovingToTarget = true;
-        }
-        
-        private void UpdateSpriteDirection(int[] frames, bool flipHorizontal)
-        {
-            int sheetY = 11;
-            int spriteWidth = 15;
-            int spriteHeight = 15;
-            float frameTime = 0.2f;
-            
-            Vector2 currentPos = sprite.Position;
-            
-            var dirSprite = sprite as DirectionalAnimatedSprite;
-            if (dirSprite != null)
-            {
-                dirSprite.UpdateFrames(frames, flipHorizontal);
+                // Move toward target
+                Vector2 direction = targetPosition - Position;
+                direction.Normalize();
+                Position += direction * MOVE_SPEED * deltaTime;
             }
             else
             {
-                sprite = new DirectionalAnimatedSprite(texture, currentPos, frames, sheetY, 
-                                            spriteWidth, spriteHeight, frameTime, flipHorizontal);
+                // Reached target, wait before next step
+                Position = targetPosition;
+                stepTimer -= deltaTime;
+                
+                if (stepTimer <= 0)
+                {
+                    ChooseNextStep();
+                    stepTimer = STEP_DELAY;
+                }
             }
+        }
+        
+        private void ChooseNextStep()
+        {
+            // Pick random direction and distance
+            int numSteps = random.Next(1, 3);
+            float distance = STEP_SIZE * numSteps;
+            currentDirection = (Direction)random.Next(4);
+            
+            // Calculate new target position
+            targetPosition = currentDirection switch
+            {
+                Direction.Up => Position + new Vector2(0, -distance),
+                Direction.Down => Position + new Vector2(0, distance),
+                Direction.Left => Position + new Vector2(-distance, 0),
+                Direction.Right => Position + new Vector2(distance, 0),
+                _ => Position
+            };
+            
+            // Update sprite based on direction
+            UpdateSprite();
+        }
+        
+       private void UpdateSprite()
+        {
+            var dirSprite = sprite as DirectionalAnimatedSprite;
+            
+                if (currentDirection == Direction.Up || currentDirection == Direction.Down)
+                {
+                    SpriteEffects effect = spriteHorizontalFlip ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                    spriteHorizontalFlip = !spriteHorizontalFlip;
+                    int[] frames = currentDirection == Direction.Up ? upFrames : downFrames;
+                    dirSprite?.UpdateFrames(frames, spriteHorizontalFlip);
+                }
+                else if (currentDirection == Direction.Left)
+                {
+                    dirSprite?.UpdateFrames(sideFrames, true);
+                }
+                else // Right
+                {
+                    dirSprite?.UpdateFrames(sideFrames, false);
+                }
         }
     }
 }

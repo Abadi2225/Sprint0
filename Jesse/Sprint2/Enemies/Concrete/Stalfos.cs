@@ -15,8 +15,6 @@ namespace Sprint.Enemies.Concrete
         private float directionChangeTimer;
         private const float DIRECTION_CHANGE_INTERVAL = 2.0f;
         private readonly Random random;
-
-        // Sprite flipping for animation
         private Rectangle sourceRect;
         private bool isFlipped;
         private float flipTimer;
