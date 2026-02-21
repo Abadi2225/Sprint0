@@ -94,17 +94,6 @@ public class Game1 : Game
     {
         keyboard.Update();
         mouse.Update();
-        if (currState == GameState.Test)
-        {
-            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            testCycleTimer += dt;
-            
-            if (testCycleTimer >= CYCLE_INTERVAL)
-            {
-                testCycleTimer = 0f;
-                enemyManager?.CycleNext();
-            }
-        }
 
         enemyManager?.Update(gameTime);
 
@@ -178,5 +167,10 @@ public class Game1 : Game
     public GameState GetCurrentState()
     {
         return currState;
+    }
+
+    public EnemyManager GetEnemyManager()
+    {
+        return enemyManager;
     }
 }

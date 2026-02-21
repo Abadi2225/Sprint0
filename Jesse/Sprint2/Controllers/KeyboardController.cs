@@ -1,9 +1,7 @@
-using System.Collections.Generic;
-using Microsoft.Xna.Framework.Input;
 using Sprint.Interfaces;
 using Sprint.Commands;
-using Sprint.Controllers;
-using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input;
 
 namespace Sprint.Controllers
 {
@@ -11,44 +9,38 @@ namespace Sprint.Controllers
     {
         private Dictionary<Keys, ICommand> keyCommands;
         private KeyboardState prevKeyState;
+        private Game1 game;
 
         public KeyboardController(Game1 game)
         {
+            this.game = game;
             prevKeyState = Keyboard.GetState();
-            
-            keyCommands = new Dictionary<Keys, ICommand>
-            {
-                { Keys.D0, new QuitCommand(game) },
-                //{ Keys.D1, new SetStateCommand(game, GameState.StaticNonAnimated) },
-                //{ Keys.D2, new SetStateCommand(game, GameState.StaticAnimated) },
-                //{ Keys.D3, new SetStateCommand(game, GameState.MovingNonAnimated) },
-                //{ Keys.D4, new SetStateCommand(game, GameState.MovingAnimated) },
-                { Keys.NumPad0, new QuitCommand(game)},
-                //{ Keys.NumPad1, new SetStateCommand(game, GameState.StaticNonAnimated) },
-                //{ Keys.NumPad2, new SetStateCommand(game, GameState.StaticAnimated) },
-                //{ Keys.NumPad3, new SetStateCommand(game, GameState.MovingNonAnimated) },
-                //{ Keys.NumPad4, new SetStateCommand(game, GameState.MovingAnimated) }
-            };
+            keyCommands = new Dictionary<Keys, ICommand>();
+
+            InitializeKeyMapping();
+        }
+
+        private void InitializeKeyMapping()
+        {
+            keyCommands[Keys.D0] = new QuitCommand(game);
+            keyCommands[Keys.NumPad0] = new QuitCommand(game);
+            keyCommands[Keys.O] = new CycleEnemyCommand(game, true);
+            keyCommands[Keys.P] = new CycleEnemyCommand(game, false);
         }
 
         public void Update()
         {
             KeyboardState keys = Keyboard.GetState();
 
-            foreach (var pair in keyCommands)
+            foreach (var key in keyCommands.Keys)
             {
-                if (WasPressed(pair.Key, keys))
+                if (keys.IsKeyDown(key) && prevKeyState.IsKeyUp(key))
                 {
-                    pair.Value.Execute(0);
+                    keyCommands[key].Execute(0);
                 }
             }
 
             prevKeyState = keys;
-        }
-
-        private bool WasPressed(Keys key, KeyboardState current)
-        {
-            return current.IsKeyDown(key) && prevKeyState.IsKeyUp(key);
         }
     }
 }

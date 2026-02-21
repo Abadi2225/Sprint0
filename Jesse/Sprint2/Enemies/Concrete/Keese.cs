@@ -48,6 +48,7 @@ namespace Sprint.Enemies.Concrete
             actionTimer = 0f;
             actionDuration = GetRandomFloat(REST_TIME_MIN, REST_TIME_MAX);
             ChooseRandomDirection();
+            sprite = restingSprite;
         }
         
         public override int Update(GameTime gameTime)

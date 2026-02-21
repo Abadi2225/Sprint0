@@ -22,7 +22,6 @@ namespace Sprint.Enemies
         {
             enemies.Add(enemy);
             
-            // If this is the first enemy, make it current
             if (enemies.Count == 1)
             {
                 currentEnemyIndex = 0;
@@ -30,7 +29,6 @@ namespace Sprint.Enemies
             }
         }
         
-        // Cycle to the next enemy in the list (Useful for displaying different enemies for sprint2)
         public void CycleNext()
         {
             if (enemies.Count == 0)
@@ -40,16 +38,22 @@ namespace Sprint.Enemies
             currentEnemy = enemies[currentEnemyIndex];
         }
     
+        public void CyclePrevious()
+        {
+            if (enemies.Count == 0)
+                return;
+                
+            currentEnemyIndex = (currentEnemyIndex - 1 + enemies.Count) % enemies.Count;
+            currentEnemy = enemies[currentEnemyIndex];
+        }
         
         public void Update(GameTime gameTime)
         {
-            // Only update the current enemy being displayed
             currentEnemy?.Update(gameTime);
         }
         
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Only draw the current enemy being displayed
             currentEnemy?.Draw(spriteBatch, currentEnemy.Position);
         }
         
@@ -66,22 +70,11 @@ namespace Sprint.Enemies
                 currentEnemy = enemies[0];
             }
         }
-        
 
-        // Optional: Methods to get current enemy info for UI display
-        // public IEnemy GetCurrentEnemy()
-        // {
-        //     return currentEnemy;
-        // }
+        public IEnemy GetCurrentEnemy() => currentEnemy;
         
-        // public int GetEnemyCount()
-        // {
-        //     return enemies.Count;
-        // }
+        public int GetEnemyCount() => enemies.Count;
         
-        // public int GetCurrentIndex()
-        // {
-        //     return currentEnemyIndex;
-        // }
+        public int GetCurrentIndex() => currentEnemyIndex;
     }
 }
