@@ -11,16 +11,13 @@ internal class Boomerang : AbstractItem
 {
     private static string ResourceName = "items/boomerang";
 
-    public Boomerang(Vector2 pos, ContentManager contentManager) : base("boomerang", contentManager, ResourceName, pos)
+    public Boomerang(Vector2 pos, Vector2 vel, ContentManager contentManager) : base("boomerang", contentManager, ResourceName, pos)
     {
-        sprite = new MovingAnimatedSprite(
+        sprite = new BoomerangSprite(
                 texture,
                 DrawPos,
-                [0],
-                0,
-                18,
-                32,
-                0f
+                vel,
+                0.2f
                 );
     }
 
@@ -31,6 +28,7 @@ internal class Boomerang : AbstractItem
 
     public override int Update(GameTime time)
     {
+        sprite.Update(time);
         return 0;
     }
 }

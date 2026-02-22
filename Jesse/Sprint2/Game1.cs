@@ -98,6 +98,7 @@ public class Game1 : Game
                     ));
         items.CreateItem(new Boomerang(
                     new Vector2(70, 50),
+                    new Vector2(5, 0),
                     Content
                     ));
     }
@@ -113,6 +114,7 @@ public class Game1 : Game
 
         base.Update(gameTime);
         link.Update(gameTime);
+        items.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
