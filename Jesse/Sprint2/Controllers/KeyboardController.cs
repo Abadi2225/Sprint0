@@ -13,6 +13,7 @@ namespace Sprint.Controllers
         public KeyboardController(Game1 game)
         {
             current = Keyboard.GetState();
+            previous = Keyboard.GetState();
         }
 
         public void Update()
