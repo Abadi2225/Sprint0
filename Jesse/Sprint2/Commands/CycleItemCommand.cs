@@ -15,7 +15,11 @@ namespace Sprint.Commands
 
         public void Execute(int id)
         {
-            // Logic for cycling through items in the inventory
+            var itemManager = game.GetItemManager();
+            if (forward)
+                itemManager?.CycleNext();
+            else
+                itemManager?.CyclePrevious();
         }
 
         public void Unexecute() { }
