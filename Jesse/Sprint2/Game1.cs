@@ -92,7 +92,14 @@ public class Game1 : Game
         link = new Link(linkSheet, center);
 
         // item test
-        items.CreateItem(new Compass(Content, new Vector2(30, 30)));
+        items.CreateItem(new Compass(
+                    new Vector2(50, 50),
+                    Content
+                    ));
+        items.CreateItem(new Boomerang(
+                    new Vector2(70, 50),
+                    Content
+                    ));
     }
 
     protected override void Update(GameTime gameTime)
@@ -141,7 +148,7 @@ public class Game1 : Game
 
         enemyManager?.Draw(spriteBatch);
 
-        items.DrawAllItems(spriteBatch);
+        items.DrawActiveItem(spriteBatch);
 
         spriteBatch.End();
 
@@ -179,5 +186,10 @@ public class Game1 : Game
     public EnemyManager GetEnemyManager()
     {
         return enemyManager;
+    }
+
+    public ItemManager GetItemManager()
+    {
+        return items;
     }
 }

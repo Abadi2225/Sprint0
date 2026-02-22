@@ -7,19 +7,19 @@ using Sprint.Sprites;
 
 namespace Sprint.Item;
 
-internal class Compass : AbstractItem
+internal class Boomerang : AbstractItem
 {
-    private static string ResourceName = "items/compass";
+    private static string ResourceName = "items/boomerang";
 
-    public Compass(Vector2 pos, ContentManager contentManager) : base("compass", contentManager, ResourceName, pos)
+    public Boomerang(Vector2 pos, ContentManager contentManager) : base("boomerang", contentManager, ResourceName, pos)
     {
-        sprite = new AnimatedSprite(
+        sprite = new MovingAnimatedSprite(
                 texture,
                 DrawPos,
                 [0],
                 0,
-                64,
-                64,
+                18,
+                32,
                 0f
                 );
     }
