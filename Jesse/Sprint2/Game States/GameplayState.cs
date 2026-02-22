@@ -8,6 +8,7 @@ using Sprint.Commands;
 using System.Collections.Generic;
 using Sprint.Block;
 using Microsoft.Xna.Framework.Input;
+using Sprint.Item;
 
 class GameplayState : IGameState
 {
@@ -20,6 +21,7 @@ class GameplayState : IGameState
     private GameServices services;
     private Dictionary<Keys, ICommand> pressedKeys;
     private MapManager mapManager;
+    private ItemManager items = new ItemManager();
 
     public GameplayState(GameServices services)
     {
@@ -35,6 +37,17 @@ class GameplayState : IGameState
         link = new Link(linkSheet, center);
 
         mapManager = new MapManager(services.Content, new Vector2(100, 50));
+
+        // item test
+        items.CreateItem(new Compass(
+                    new Vector2(50, 50),
+                    services.Content
+                    ));
+        items.CreateItem(new Boomerang(
+                    new Vector2(70, 50),
+                    new Vector2(5, 0),
+                    services.Content
+                    ));
     }
 
     public void Enter()
@@ -44,8 +57,8 @@ class GameplayState : IGameState
             {Keys.Q, new QuitCommand(services.GameActions)},
             // {Keys.O, new CycleEnemyCommand(this.services, true)},
             // {Keys.P, new CycleEnemyCommand(this.services, false)},
-            // {Keys.I, new CycleItemCommand(this.services, true)},
-            // {Keys.U, new CycleItemCommand(this.services, false)},
+            {Keys.I, new CycleItemCommand(items, true)},
+            {Keys.U, new CycleItemCommand(items, false)},
             {Keys.Y, new CycleBlockCommand(mapManager, true)},
             {Keys.T, new CycleBlockCommand(mapManager, false)},
         };
@@ -54,6 +67,7 @@ class GameplayState : IGameState
     public void Update(GameTime gameTime)
     {
         link.Update(gameTime);
+        items.Update(gameTime);
 
         foreach (var binding in pressedKeys)
         {
@@ -68,5 +82,6 @@ class GameplayState : IGameState
     {
         link.Draw(spriteBatch);
         mapManager.DrawMap(spriteBatch);
+        items.DrawActiveItem(spriteBatch);
     }
 }

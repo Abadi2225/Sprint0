@@ -27,9 +27,6 @@ public class Game1 : Game, IGameActions
     //private EnemyManager enemyManager;
     //private EnemyFactory enemyFactory;
 
-    //private ItemManager items = new ItemManager();
-    //private MapManager mapManager;
-
     private IGameState currentState;
     private GameServices services;
 
@@ -89,17 +86,6 @@ public class Game1 : Game, IGameActions
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Trap, center + new Vector2(100, 0)));
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Dodongo, center + new Vector2(-100, 0)));
 
-        // item test
-        items.CreateItem(new Compass(
-                    new Vector2(50, 50),
-                    Content
-                    ));
-        items.CreateItem(new Boomerang(
-                    new Vector2(70, 50),
-                    new Vector2(5, 0),
-                    Content
-                    ));
-
         */
     }
 
@@ -112,8 +98,6 @@ public class Game1 : Game, IGameActions
 
         /*
         enemyManager?.Update(gameTime);
-
-        items.Update(gameTime);
         */
 
         base.Update(gameTime);
@@ -150,8 +134,6 @@ public class Game1 : Game, IGameActions
         0f);
 
         enemyManager?.Draw(spriteBatch);
-
-        items.DrawActiveItem(spriteBatch);
         */
 
         spriteBatch.End();
