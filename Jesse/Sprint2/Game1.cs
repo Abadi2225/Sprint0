@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 using Sprint.Interfaces;
 using Sprint.Controllers;
 using Sprint.Sprites;
@@ -9,6 +10,7 @@ using Sprint.Character;
 using Sprint.Enemies;
 using Sprint.Enemies.Concrete;
 using Sprint.Item;
+using Sprint.Block;
 using System.Runtime.InteropServices.Marshalling;
 using System.ComponentModel;
 
@@ -37,6 +39,7 @@ public class Game1 : Game
     private EnemyFactory enemyFactory;
 
     private ItemManager items = new ItemManager();
+    private MapManager mapManager;
 
     public Game1()
     {
@@ -101,6 +104,7 @@ public class Game1 : Game
                     new Vector2(5, 0),
                     Content
                     ));
+        mapManager = new MapManager(Content, new Vector2(100, 50));
     }
 
     protected override void Update(GameTime gameTime)
@@ -152,6 +156,8 @@ public class Game1 : Game
 
         items.DrawActiveItem(spriteBatch);
 
+        mapManager.DrawMap(spriteBatch);
+
         spriteBatch.End();
 
         base.Draw(gameTime);
@@ -193,5 +199,9 @@ public class Game1 : Game
     public ItemManager GetItemManager()
     {
         return items;
+    }
+    internal MapManager GetMapManager()
+    {
+        return mapManager;
     }
 }

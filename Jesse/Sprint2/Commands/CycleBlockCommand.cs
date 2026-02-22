@@ -15,7 +15,15 @@ namespace Sprint.Commands
 
         public void Execute(int id)
         {
-            // Logic for cycling through blocks
+            var mapManager = game.GetMapManager();
+            if (forward)
+            {
+                mapManager.CycleNext();
+            }
+            else
+            {
+                mapManager.CyclePrevious();
+            }
         }
 
         public void Unexecute() { }

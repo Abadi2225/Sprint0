@@ -1,0 +1,26 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace Sprint.Block;
+
+internal class StatueRight : AbstractBlock
+{
+    private const string ResourceName = "blocks/tiles";
+    private Rectangle textureMask = new Rectangle(
+            2 * (16 + 1),
+            0 * (16 + 1),
+            16,
+            16
+            );
+
+    public StatueRight(ContentManager content, Vector2 pos, int width = 16) : base(content, ResourceName, pos, false)
+    {
+        Sprite = new TileSprite(
+                texture,
+                textureMask,
+                pos,
+                width
+                );
+    }
+}
