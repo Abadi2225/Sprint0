@@ -8,6 +8,7 @@ using Sprint.UI;
 using Sprint.Character;
 using Sprint.Enemies;
 using Sprint.Enemies.Concrete;
+using Sprint.Item;
 using System.Runtime.InteropServices.Marshalling;
 using System.ComponentModel;
 
@@ -34,6 +35,8 @@ public class Game1 : Game
 
     private EnemyManager enemyManager;
     private EnemyFactory enemyFactory;
+
+    private ItemManager items = new ItemManager();
 
     public Game1()
     {
@@ -87,6 +90,9 @@ public class Game1 : Game
         SetState(currState);
 
         link = new Link(linkSheet, center);
+
+        // item test
+        items.CreateItem(new Compass(Content, new Vector2(30, 30)));
     }
 
     protected override void Update(GameTime gameTime)
@@ -135,6 +141,8 @@ public class Game1 : Game
 
         enemyManager?.Draw(spriteBatch);
 
+        items.DrawAllItems(spriteBatch);
+
         spriteBatch.End();
 
         base.Draw(gameTime);
@@ -145,22 +153,22 @@ public class Game1 : Game
     {
 
         switch (currState)
-            {
-                case GameState.Test:
-                    break;
+        {
+            case GameState.Test:
+                break;
 
-                case GameState.Running:
-                    break;
+            case GameState.Running:
+                break;
 
-                case GameState.StartScreen:
-                    break;
+            case GameState.StartScreen:
+                break;
 
-                case GameState.Pause:
-                    break;
+            case GameState.Pause:
+                break;
 
-                case GameState.Inventory:
-                    break;
-            }        
+            case GameState.Inventory:
+                break;
+        }
     }
 
     public GameState GetCurrentState()
