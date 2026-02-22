@@ -4,21 +4,16 @@ namespace Sprint.Commands
 {
     public class QuitCommand : ICommand
     {
-        private Game1 game;
+        private IGameActions gameActions;
 
-        public QuitCommand(Game1 game)
+        public QuitCommand(IGameActions actions)
         {
-            this.game = game;
+            gameActions = actions;
         }
 
-        public void Execute(int id)
+        public void Execute()
         {
-            game.Exit();
-        }
-
-        public void Unexecute()
-        {
-            
+            gameActions.Quit();
         }
     }
 }

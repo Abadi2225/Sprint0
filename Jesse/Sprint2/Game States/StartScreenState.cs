@@ -3,6 +3,9 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
 using Sprint.UI;
+using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using Sprint.Commands;
 
 class StartScreenState : IGameState
 {
@@ -12,9 +15,18 @@ class StartScreenState : IGameState
     private TitleScreen titleScreen;
     private GameServices services;
 
+    private Dictionary<Keys, ICommand> pressedKeys;
+
     public StartScreenState(GameServices services)
     {
         this.services = services;
+
+        // Set up key bindings
+        pressedKeys = new Dictionary<Keys, ICommand>
+        {
+            {Keys.Q, new QuitCommand(services.GameActions)},
+            {Keys.Enter, new SetStateCommand(services.GameActions, new GameplayState(services))}
+        };
 
         // UIManager should be initialized before loading content, since LoadContent adds elements to it
         uiManager = new UIManager();
@@ -32,6 +44,15 @@ class StartScreenState : IGameState
     public void Update(GameTime gameTime)
     {
         uiManager.Update(gameTime);
+
+        
+        foreach (var binding in pressedKeys)
+        {
+            if (services.KeyInput.IsKeyPressed(binding.Key))
+            {
+                binding.Value.Execute();
+            }
+        }
     }
 
     public void Draw(SpriteBatch spriteBatch)

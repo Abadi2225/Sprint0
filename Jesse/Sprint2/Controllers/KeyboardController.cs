@@ -7,43 +7,37 @@ namespace Sprint.Controllers
 {
     public class KeyboardController : IController
     {
-        private Dictionary<Keys, ICommand> keyCommands;
-        private KeyboardState prevKeyState;
-        private Game1 game;
+        private KeyboardState previous;
+        private KeyboardState current;
 
         public KeyboardController(Game1 game)
         {
-            this.game = game;
-            prevKeyState = Keyboard.GetState();
-            keyCommands = new Dictionary<Keys, ICommand>();
-
-            InitializeKeyMapping();
-        }
-
-        private void InitializeKeyMapping()
-        {
-            keyCommands[Keys.Q] = new QuitCommand(game);
-            keyCommands[Keys.O] = new CycleEnemyCommand(game, true);
-            keyCommands[Keys.P] = new CycleEnemyCommand(game, false);
-            keyCommands[Keys.I] = new CycleItemCommand(game, true);
-            keyCommands[Keys.U] = new CycleItemCommand(game, false);
-            keyCommands[Keys.Y] = new CycleBlockCommand(game, true);
-            keyCommands[Keys.T] = new CycleBlockCommand(game, false);
+            current = Keyboard.GetState();
         }
 
         public void Update()
         {
-            KeyboardState keys = Keyboard.GetState();
+            previous = current;
+            current = Keyboard.GetState();
+        }
 
-            foreach (var key in keyCommands.Keys)
-            {
-                if (keys.IsKeyDown(key) && prevKeyState.IsKeyUp(key))
-                {
-                    keyCommands[key].Execute(0);
-                }
-            }
+        public bool IsKeyPressed(Keys key)
+        {
+            return current.IsKeyDown(key) && previous.IsKeyUp(key);
+        }
 
-            prevKeyState = keys;
+        public bool IsKeyDown(Keys key)
+        {
+            return current.IsKeyDown(key);
+        }
+        public bool IsKeyReleased(Keys key)
+        {
+            return current.IsKeyUp(key) && previous.IsKeyDown(key);
+        }
+
+        public bool IsKeyUp(Keys key)
+        {
+            return current.IsKeyUp(key);
         }
     }
 }

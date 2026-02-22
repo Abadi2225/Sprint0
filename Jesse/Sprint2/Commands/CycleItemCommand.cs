@@ -13,7 +13,7 @@ namespace Sprint.Commands
             this.forward = forward;
         }
 
-        public void Execute(int id)
+        public void Execute()
         {
             /*var itemManager = game.GetItemManager();
             if (forward)
@@ -21,7 +21,5 @@ namespace Sprint.Commands
             else
                 itemManager?.CyclePrevious();*/
         }
-
-        public void Unexecute() { }
     }
 }

@@ -13,7 +13,7 @@ namespace Sprint.Commands
             this.forward = forward;
         }
 
-        public void Execute(int id)
+        public void Execute()
         {
             /*var enemyManager = game.GetEnemyManager();
             if (forward)
@@ -21,7 +21,5 @@ namespace Sprint.Commands
             else
                 enemyManager?.CyclePrevious();*/
         }
-
-        public void Unexecute() { }
     }
 }

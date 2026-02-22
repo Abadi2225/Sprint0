@@ -17,6 +17,18 @@ class GameplayState : IGameState
     public GameplayState(GameServices services)
     {
         this.services = services;
+        /*
+        keyBindings = new Dictionary<Keys, ICommand>
+        {
+            [Keys.Q] = new QuitCommand(this.services),
+            [Keys.O] = new CycleEnemyCommand(this.services, true),
+            [Keys.P] = new CycleEnemyCommand(this.services, false),
+            [Keys.I] = new CycleItemCommand(this.services, true),
+            [Keys.U] = new CycleItemCommand(this.services, false),
+            [Keys.Y] = new CycleBlockCommand(this.services, true),
+            [Keys.T] = new CycleBlockCommand(this.services, false),
+        };
+        */
     }
 
     public void LoadContent()

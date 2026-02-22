@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
 using Sprint.Interfaces;
 using Sprint.Commands;
-using Sprint.Controllers;
 
 namespace Sprint.Controllers
 {
@@ -14,12 +13,15 @@ namespace Sprint.Controllers
         private int screenHeight;
         private Dictionary<string, ICommand> clickCommands;
 
-        public MouseController(Game1 game, int width, int height)
+        private GameServices services = new GameServices();
+
+        public MouseController(Game1 game, int width, int height, GameServices services)
         {
             this.game = game;
             screenWidth = width;
             screenHeight = height;
             prevMouse = Mouse.GetState();
+            services = this.services;
             
             clickCommands = new Dictionary<string, ICommand>
             {
@@ -27,7 +29,7 @@ namespace Sprint.Controllers
                 //{ "TopRight", new SetStateCommand(game, GameState.StaticAnimated) },
                 //{ "BottomLeft", new SetStateCommand(game, GameState.MovingNonAnimated) },
                 //{ "BottomRight", new SetStateCommand(game, GameState.MovingAnimated) },
-                //{ "RightClick", new QuitCommand(game) }
+                { "RightClick", new QuitCommand(services.GameActions) }
             };
         }
 
@@ -38,7 +40,7 @@ namespace Sprint.Controllers
             if (mouse.RightButton == ButtonState.Pressed && 
                 prevMouse.RightButton == ButtonState.Released)
             {
-                clickCommands["RightClick"].Execute(0);
+                clickCommands["RightClick"].Execute();
             }
 
             if (mouse.LeftButton == ButtonState.Pressed && 
@@ -50,7 +52,7 @@ namespace Sprint.Controllers
                 string quadrant = GetQuadrant(mouse.X, mouse.Y, midX, midY);
                 if (clickCommands.ContainsKey(quadrant))
                 {
-                    clickCommands[quadrant].Execute(0);
+                    clickCommands[quadrant].Execute();
                 }
             }
 

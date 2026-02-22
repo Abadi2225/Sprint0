@@ -15,7 +15,7 @@ using System.ComponentModel;
 
 namespace Sprint;
 
-public class Game1 : Game
+public class Game1 : Game, IGameActions
 {
     
     private GraphicsDeviceManager graphics;
@@ -31,6 +31,7 @@ public class Game1 : Game
     //private MapManager mapManager;
 
     private IGameState currentState;
+    private GameServices services;
 
     public Game1()
     {
@@ -38,15 +39,16 @@ public class Game1 : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
 
-        GameServices services = new GameServices
+        services = new GameServices
         {
             Content = Content,
-            GraphicsDevice = GraphicsDevice,
+            KeyInput = new KeyboardController(this),
+            GameActions = this,
             ScaleFactor = 3
         };
 
         //currentState = new StartScreenState(services);
-        currentState = new GameplayState(services);
+        currentState = new StartScreenState(services);
 
         // Set the window size to be 3 times the original NES resolution (256x224)
         graphics.PreferredBackBufferWidth = services.GameWidth;
@@ -55,8 +57,7 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        keyboard = new KeyboardController(this);
-        mouse = new MouseController(this, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+        mouse = new MouseController(this, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, services);
 
         base.Initialize();
     }
@@ -104,8 +105,9 @@ public class Game1 : Game
 
     protected override void Update(GameTime gameTime)
     {
+        services.KeyInput.Update();
+        
         currentState.Update(gameTime);
-        keyboard.Update();
         mouse.Update();
 
         /*
@@ -161,7 +163,7 @@ public class Game1 : Game
         base.Draw(gameTime);
     }
 
-    public void changeState(IGameState newState)
+    public void ChangeState(IGameState newState)
     {
         currentState = newState;
         currentState.LoadContent();
@@ -188,4 +190,9 @@ public class Game1 : Game
     }
 
     */
+
+    public void Quit()
+    {
+        Exit();
+    }
 }

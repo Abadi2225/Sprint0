@@ -1,29 +1,21 @@
 using Sprint.Interfaces;
-using Sprint.Controllers;
 
 namespace Sprint.Commands
 {
     public class SetStateCommand : ICommand
     {
-        private Game1 game;
-        //private GameState newState;
-        // GameState prevState;
+        private IGameActions gameActions;
+        private IGameState newState;
 
-        public SetStateCommand(Game1 game/*, GameState state*/)
+        public SetStateCommand(IGameActions actions, IGameState newState)
         {
-            this.game = game;
-            //newState = state;
+            gameActions = actions;
+            this.newState = newState;
         }
 
-        public void Execute(int id)
+        public void Execute()
         {
-            //prevState = game.GetCurrentState();
-            //game.SetState(newState);
-        }
-
-        public void Unexecute()
-        {
-            //game.SetState(prevState);
+            gameActions.ChangeState(newState);
         }
     }
 }
