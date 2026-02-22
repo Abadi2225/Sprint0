@@ -47,6 +47,13 @@ public class Game1 : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
         currState = GameState.Test;
+
+        // Set the window size to be 3 times the original NES resolution (256x224)
+        int scaleFactor = 3;
+        int gameWidth = 256 * scaleFactor;
+        int gameHeight = 224 * scaleFactor;
+        graphics.PreferredBackBufferWidth = gameWidth;
+        graphics.PreferredBackBufferHeight = gameHeight;
     }
 
     protected override void Initialize()
