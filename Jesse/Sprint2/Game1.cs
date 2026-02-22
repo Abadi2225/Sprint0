@@ -6,7 +6,6 @@ using Sprint.Interfaces;
 using Sprint.Controllers;
 using Sprint.Sprites;
 using Sprint.UI;
-using Sprint.Character;
 using Sprint.Enemies;
 using Sprint.Enemies.Concrete;
 using Sprint.Item;
@@ -18,26 +17,18 @@ namespace Sprint;
 
 public class Game1 : Game
 {
-    private Texture2D credits;
-    private Texture2D linkSheet;
-    private Texture2D titleSheet;
-    private Texture2D enemiesSheet;
-    private Texture2D BossesSheet;
+    
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
 
     private IController keyboard;
     private IController mouse;
 
-    private GameState currState;
+    //private EnemyManager enemyManager;
+    //private EnemyFactory enemyFactory;
 
-    private Link link;
-
-    private EnemyManager enemyManager;
-    private EnemyFactory enemyFactory;
-
-    private ItemManager items = new ItemManager();
-    private MapManager mapManager;
+    //private ItemManager items = new ItemManager();
+    //private MapManager mapManager;
 
     private IGameState currentState;
 
@@ -46,15 +37,19 @@ public class Game1 : Game
         graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        currState = GameState.Test;
-        currentState = new StartScreenState();
+
+        GameServices services = new GameServices
+        {
+            Content = Content,
+            GraphicsDevice = GraphicsDevice,
+            ScaleFactor = 3
+        };
+
+        currentState = new StartScreenState(services);
 
         // Set the window size to be 3 times the original NES resolution (256x224)
-        int scaleFactor = 3;
-        int gameWidth = 256 * scaleFactor;
-        int gameHeight = 224 * scaleFactor;
-        graphics.PreferredBackBufferWidth = gameWidth;
-        graphics.PreferredBackBufferHeight = gameHeight;
+        graphics.PreferredBackBufferWidth = services.GameWidth;
+        graphics.PreferredBackBufferHeight = services.GameHeight;
     }
 
     protected override void Initialize()
@@ -69,15 +64,13 @@ public class Game1 : Game
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        currentState.LoadContent(Content);
+        currentState.LoadContent();
 
         /*
         credits = Content.Load<Texture2D>("images/credits");
-        linkSheet = Content.Load<Texture2D>("images/Link");
         enemiesSheet = Content.Load<Texture2D>("images/enemiesSheet");
         BossesSheet = Content.Load<Texture2D>("images/BossesSpriteSheet");
 
-        Vector2 center = new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2);
         enemyManager = new EnemyManager();
         enemyFactory = new EnemyFactory(enemiesSheet, BossesSheet);
 
@@ -92,10 +85,6 @@ public class Game1 : Game
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.WallMaster, center + new Vector2(100, 0)));
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Trap, center + new Vector2(100, 0)));
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Dodongo, center + new Vector2(-100, 0)));
-
-        SetState(currState);
-
-        link = new Link(linkSheet, center);
 
         // item test
         items.CreateItem(new Compass(
@@ -177,32 +166,10 @@ public class Game1 : Game
     public void changeState(IGameState newState)
     {
         currentState = newState;
-        currentState.LoadContent(Content);
+        currentState.LoadContent();
     }
 
-
-    public void SetState(GameState newState)
-    {
-
-        switch (currState)
-        {
-            case GameState.Test:
-                break;
-
-            case GameState.Running:
-                break;
-
-            case GameState.StartScreen:
-                break;
-
-            case GameState.Pause:
-                break;
-
-            case GameState.Inventory:
-                break;
-        }
-    }
-
+    /*
     public GameState GetCurrentState()
     {
         return currState;
@@ -221,4 +188,6 @@ public class Game1 : Game
     {
         return mapManager;
     }
+
+    */
 }

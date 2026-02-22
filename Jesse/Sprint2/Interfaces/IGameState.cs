@@ -6,7 +6,8 @@ namespace Sprint.Interfaces;
 
 public interface IGameState
 {
-    void LoadContent(ContentManager content);
+
+    void LoadContent();
     void Update(GameTime gameTime);
     void Draw(SpriteBatch spriteBatch);
 }

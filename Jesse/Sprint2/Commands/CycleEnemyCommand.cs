@@ -15,11 +15,11 @@ namespace Sprint.Commands
 
         public void Execute(int id)
         {
-            var enemyManager = game.GetEnemyManager();
+            /*var enemyManager = game.GetEnemyManager();
             if (forward)
                 enemyManager?.CycleNext();
             else
-                enemyManager?.CyclePrevious();
+                enemyManager?.CyclePrevious();*/
         }
 
         public void Unexecute() { }

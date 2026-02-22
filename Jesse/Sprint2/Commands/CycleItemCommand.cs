@@ -15,11 +15,11 @@ namespace Sprint.Commands
 
         public void Execute(int id)
         {
-            var itemManager = game.GetItemManager();
+            /*var itemManager = game.GetItemManager();
             if (forward)
                 itemManager?.CycleNext();
             else
-                itemManager?.CyclePrevious();
+                itemManager?.CyclePrevious();*/
         }
 
         public void Unexecute() { }

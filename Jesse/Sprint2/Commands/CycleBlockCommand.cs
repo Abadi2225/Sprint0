@@ -15,7 +15,7 @@ namespace Sprint.Commands
 
         public void Execute(int id)
         {
-            var mapManager = game.GetMapManager();
+            /*var mapManager = game.GetMapManager();
             if (forward)
             {
                 mapManager.CycleNext();
@@ -23,7 +23,7 @@ namespace Sprint.Commands
             else
             {
                 mapManager.CyclePrevious();
-            }
+            }*/
         }
 
         public void Unexecute() { }
