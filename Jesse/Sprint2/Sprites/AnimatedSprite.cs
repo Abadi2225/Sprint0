@@ -84,8 +84,17 @@ namespace Sprint.Sprites
             Vector2 origin = new Vector2(frameWidth / 2, frameHeight / 2);
 
             //white is the default no color mask
-            spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 0f, origin, 2f, SpriteEffects.None, 0f);
-            
+            spriteBatch.Draw(
+                texture,                // texture
+                drawPos,                // position
+                sourceRectangle,        // sourceRectangle
+                Color.White,            // color
+                0.0f,                   // rotation
+                Vector2.Zero,           // origin
+                3.0f,                   // scale
+                SpriteEffects.None,     // effects
+                0.0f                    // layerDepth
+            );
         }
     }
 }

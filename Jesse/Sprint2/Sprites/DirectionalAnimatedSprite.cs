@@ -95,7 +95,17 @@ namespace Sprint.Sprites
             SpriteEffects effect = flipHorizontal ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Vector2 origin = new Vector2(frameWidth / 2, frameHeight / 2);
             
-            spriteBatch.Draw(texture, location, sourceRectangle, Color.White, 0f, origin, 2f, effect, 0f);
+            spriteBatch.Draw(
+                texture,                // texture
+                location,               // position
+                sourceRectangle,        // sourceRectangle
+                Color.White,            // color
+                0.0f,                   // rotation
+                origin,                 // origin
+                3.0f,                   // scale
+                effect,                 // effects
+                0.0f                    // layerDepth
+            );
         }
     }
 }

@@ -6,7 +6,6 @@ using Sprint.Interfaces;
 using Sprint.Controllers;
 using Sprint.Sprites;
 using Sprint.UI;
-using Sprint.Character;
 using Sprint.Enemies;
 using Sprint.Enemies.Concrete;
 using Sprint.Item;
@@ -16,46 +15,53 @@ using System.ComponentModel;
 
 namespace Sprint;
 
-public class Game1 : Game
+public class Game1 : Game, IGameActions
 {
+<<<<<<< Zelda-UI
+    
+=======
     private Texture2D credits;
     private Texture2D linkSheet;
     private Texture2D titleSheet;
     private Texture2D enemiesSheet;
     private Texture2D BossesSheet;
     private Texture2D dustSheet;
+>>>>>>> main
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
 
     private IController keyboard;
     private IController mouse;
 
-    private GameState currState;
-
-    private UIManager uiManager;
-    private TitleScreen titleScreen;
-    private Link link;
-
-    private EnemyManager enemyManager;
-    private EnemyFactory enemyFactory;
-
-    private ItemManager items = new ItemManager();
-    private MapManager mapManager;
+    private IGameState currentState;
+    private GameServices services;
 
     public Game1()
     {
         graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        currState = GameState.Test;
+
+        services = new GameServices
+        {
+            Content = Content,
+            KeyInput = new KeyboardController(this),
+            GameActions = this,
+            ScaleFactor = 3
+        };
+
+        //currentState = new StartScreenState(services);
+        currentState = new StartScreenState(services);
+        currentState.Enter();
+
+        // Set the window size to be 3 times the original NES resolution (256x224)
+        graphics.PreferredBackBufferWidth = services.GameWidth;
+        graphics.PreferredBackBufferHeight = services.GameHeight;
     }
 
     protected override void Initialize()
     {
-        keyboard = new KeyboardController(this);
-        mouse = new MouseController(this, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-
-        uiManager = new UIManager();
+        mouse = new MouseController(this, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, services);
 
         base.Initialize();
     }
@@ -64,6 +70,9 @@ public class Game1 : Game
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
 
+<<<<<<< Zelda-UI
+        currentState.LoadContent();
+=======
         credits = Content.Load<Texture2D>("images/credits");
         linkSheet = Content.Load<Texture2D>("images/Link");
         enemiesSheet = Content.Load<Texture2D>("images/enemiesSheet");
@@ -107,27 +116,21 @@ public class Game1 : Game
                     Content
                     ));
         mapManager = new MapManager(Content, new Vector2(100, 50));
+>>>>>>> main
     }
 
     protected override void Update(GameTime gameTime)
     {
-        keyboard.Update();
+        services.KeyInput.Update();
+        
+        currentState.Update(gameTime);
         mouse.Update();
 
-        enemyManager?.Update(gameTime);
-
-        uiManager.Update(gameTime);
-
         base.Update(gameTime);
-        link.Update(gameTime);
-        items.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
-        float creditsScale = 0.3f;
-        float creditsX = (Window.ClientBounds.Width - credits.Width * creditsScale) / 2;
-        float creditsY = Window.ClientBounds.Height - credits.Height * creditsScale - 10;
 
         // Changed to remove the brouder from the sprites, might result in pixelation when scalling.
         spriteBatch.Begin(
@@ -137,57 +140,22 @@ public class Game1 : Game
             null, null
         );
 
-        spriteBatch.Draw(credits,
-        new Vector2(creditsX, creditsY),
-        null,
-        Color.White,
-        0f,
-        Vector2.Zero,
-        creditsScale,
-        SpriteEffects.None,
-        0f);
-
-
-        uiManager.Draw(spriteBatch);
-
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        link.Draw(spriteBatch);
-
-        enemyManager?.Draw(spriteBatch);
-
-        items.DrawActiveItem(spriteBatch);
-
-        mapManager.DrawMap(spriteBatch);
+        currentState.Draw(spriteBatch);
 
         spriteBatch.End();
-
         base.Draw(gameTime);
     }
 
-
-    public void SetState(GameState newState)
+    public void ChangeState(IGameState newState)
     {
-
-        switch (currState)
-        {
-            case GameState.Test:
-                break;
-
-            case GameState.Running:
-                break;
-
-            case GameState.StartScreen:
-                break;
-
-            case GameState.Pause:
-                break;
-
-            case GameState.Inventory:
-                break;
-        }
+        currentState = newState;
+        currentState.LoadContent();
+        currentState.Enter();
     }
 
+    /*
     public GameState GetCurrentState()
     {
         return currState;
@@ -202,8 +170,10 @@ public class Game1 : Game
     {
         return items;
     }
-    internal MapManager GetMapManager()
+    */
+
+    public void Quit()
     {
-        return mapManager;
+        Exit();
     }
 }

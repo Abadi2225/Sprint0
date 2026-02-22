@@ -10,9 +10,9 @@ class TitleScreen : IUIElement
     private StaticSprite background;
     private Rectangle sourceRect;
 
-    public TitleScreen(Texture2D backgroundTexture, Rectangle sourceRect)
+    public TitleScreen(Texture2D backgroundTexture)
     {
-        this.sourceRect = sourceRect;
+        sourceRect = new Rectangle(1, 11, 256, 224);
         background = new StaticSprite(backgroundTexture, Vector2.Zero, sourceRect);
     }
 

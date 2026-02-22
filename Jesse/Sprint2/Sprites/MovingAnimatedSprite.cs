@@ -123,7 +123,17 @@ namespace Sprint.Sprites
             SpriteEffects effect = movingRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
             Vector2 drawPos = new Vector2(location.X - frameWidth / 2, location.Y - frameHeight / 2);
-            spriteBatch.Draw(texture, drawPos, sourceRectangle, Color.White, 0f, Vector2.Zero, 2f, effect, 0f);
+            spriteBatch.Draw(
+                texture,                // texture
+                drawPos,                // position
+                sourceRectangle,        // sourceRectangle
+                Color.White,            // color
+                0.0f,                   // rotation
+                Vector2.Zero,           // origin
+                3.0f,                   // scale
+                effect,                 // effects
+                0.0f                    // layerDepth
+            );
         }
     }
 }

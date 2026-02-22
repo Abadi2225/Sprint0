@@ -1,27 +1,25 @@
+using Sprint.Enemies;
 using Sprint.Interfaces;
 
 namespace Sprint.Commands
 {
     public class CycleEnemyCommand : ICommand
     {
-        private readonly Game1 game;
+        private EnemyManager enemyManager;
         private readonly bool forward;
 
-        public CycleEnemyCommand(Game1 game, bool forward)
+        public CycleEnemyCommand(EnemyManager enemyManager, bool forward)
         {
-            this.game = game;
+            this.enemyManager = enemyManager;
             this.forward = forward;
         }
 
-        public void Execute(int id)
+        public void Execute()
         {
-            var enemyManager = game.GetEnemyManager();
             if (forward)
                 enemyManager?.CycleNext();
             else
                 enemyManager?.CyclePrevious();
         }
-
-        public void Unexecute() { }
     }
 }

@@ -34,7 +34,17 @@ namespace Sprint.Sprites
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
             Vector2 drawPos = new Vector2(location.X - sourceRect.Width / 2, location.Y - sourceRect.Height / 2);
-            spriteBatch.Draw(texture, drawPos, sourceRect, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(
+                texture,                // texture
+                drawPos,                // position
+                sourceRect,             // sourceRectangle
+                Color.White,            // color
+                0.0f,                   // rotation
+                Vector2.Zero,           // origin
+                3.0f,                   // scale
+                SpriteEffects.None,     // effects
+                0.0f                    // layerDepth
+            );
         }
     }
 }
