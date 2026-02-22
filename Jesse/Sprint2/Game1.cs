@@ -31,8 +31,6 @@ public class Game1 : Game
 
     private GameState currState;
 
-    private UIManager uiManager;
-    private TitleScreen titleScreen;
     private Link link;
 
     private EnemyManager enemyManager;
@@ -41,12 +39,15 @@ public class Game1 : Game
     private ItemManager items = new ItemManager();
     private MapManager mapManager;
 
+    private IGameState currentState;
+
     public Game1()
     {
         graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
         currState = GameState.Test;
+        currentState = new StartScreenState();
 
         // Set the window size to be 3 times the original NES resolution (256x224)
         int scaleFactor = 3;
@@ -61,8 +62,6 @@ public class Game1 : Game
         keyboard = new KeyboardController(this);
         mouse = new MouseController(this, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
-        uiManager = new UIManager();
-
         base.Initialize();
     }
 
@@ -70,12 +69,13 @@ public class Game1 : Game
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
 
+        currentState.LoadContent(Content);
+
+        /*
         credits = Content.Load<Texture2D>("images/credits");
         linkSheet = Content.Load<Texture2D>("images/Link");
         enemiesSheet = Content.Load<Texture2D>("images/enemiesSheet");
         BossesSheet = Content.Load<Texture2D>("images/BossesSpriteSheet");
-
-        titleSheet = Content.Load<Texture2D>("images/Title Screen & Story of Treasures");
 
         Vector2 center = new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2);
         enemyManager = new EnemyManager();
@@ -93,10 +93,6 @@ public class Game1 : Game
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Trap, center + new Vector2(100, 0)));
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Dodongo, center + new Vector2(-100, 0)));
 
-        // Just shows that it exists
-        titleScreen = new TitleScreen(titleSheet);
-        uiManager.AddElement(titleScreen);
-
         SetState(currState);
 
         link = new Link(linkSheet, center);
@@ -112,27 +108,28 @@ public class Game1 : Game
                     Content
                     ));
         mapManager = new MapManager(Content, new Vector2(100, 50));
+
+        */
     }
 
     protected override void Update(GameTime gameTime)
     {
+        currentState.Update(gameTime);
         keyboard.Update();
         mouse.Update();
 
+        /*
         enemyManager?.Update(gameTime);
 
-        uiManager.Update(gameTime);
-
-        base.Update(gameTime);
         link.Update(gameTime);
         items.Update(gameTime);
+        */
+
+        base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
-        float creditsScale = 0.3f;
-        float creditsX = (Window.ClientBounds.Width - credits.Width * creditsScale) / 2;
-        float creditsY = Window.ClientBounds.Height - credits.Height * creditsScale - 10;
 
         // Changed to remove the brouder from the sprites, might result in pixelation when scalling.
         spriteBatch.Begin(
@@ -141,6 +138,13 @@ public class Game1 : Game
             SamplerState.PointClamp,  // No interpolation
             null, null
         );
+
+        currentState.Draw(spriteBatch);
+
+        /*
+        float creditsScale = 0.3f;
+        float creditsX = (Window.ClientBounds.Width - credits.Width * creditsScale) / 2;
+        float creditsY = Window.ClientBounds.Height - credits.Height * creditsScale - 10;
 
         spriteBatch.Draw(credits,
         new Vector2(creditsX, creditsY),
@@ -152,9 +156,6 @@ public class Game1 : Game
         SpriteEffects.None,
         0f);
 
-
-        uiManager.Draw(spriteBatch);
-
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         link.Draw(spriteBatch);
@@ -165,9 +166,18 @@ public class Game1 : Game
 
         mapManager.DrawMap(spriteBatch);
 
-        spriteBatch.End();
+        
 
+        */
+
+        spriteBatch.End();
         base.Draw(gameTime);
+    }
+
+    public void changeState(IGameState newState)
+    {
+        currentState = newState;
+        currentState.LoadContent(Content);
     }
 
 
