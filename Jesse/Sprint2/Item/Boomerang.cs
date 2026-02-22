@@ -19,6 +19,14 @@ internal class Boomerang : AbstractItem
                 vel,
                 0.2f
                 );
+
+        UseAction = (player) =>
+        {
+            if (sprite is BoomerangSprite bsprite)
+            {
+                bsprite.Throw();
+            }
+        };
     }
 
     public override void Draw(SpriteBatch sb, Vector2 pos)

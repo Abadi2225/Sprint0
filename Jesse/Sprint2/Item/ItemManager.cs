@@ -43,6 +43,11 @@ public class ItemManager
         }
     }
 
+    internal AbstractItem GetActiveItem()
+    {
+        return Items[ActiveItem];
+    }
+
     public void CycleNext()
     {
         if (ActiveItem < Items.Count - 1)

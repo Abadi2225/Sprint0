@@ -10,8 +10,8 @@ namespace Sprint.Item;
 
 internal class BoomerangSprite : ISprite
 {
+    public Vector2 Pos;
     private Texture2D texture;
-    private Vector2 pos;
     private Vector2 velocity;
     private float scale;
     private int animationFrame = 1;
@@ -19,22 +19,28 @@ internal class BoomerangSprite : ISprite
     private float distanceTraveled = 0f;
     private float maxDistance = 200f;
     private bool returning = false;
+    private bool thrown = false;
 
     public Vector2 Position { get; set; }
 
     public BoomerangSprite(Texture2D texture, Vector2 initialPos, Vector2 velocity, float scale)
     {
         this.texture = texture;
-        this.pos = initialPos;
+        Pos = initialPos;
         this.velocity = velocity;
         this.scale = scale;
+    }
+
+    public void Throw()
+    {
+        thrown = true;
     }
 
     public void Draw(SpriteBatch sb, Vector2 location)
     {
         sb.Draw(
                 texture,
-                pos,
+                Pos,
                 null,
                 Color.White,
                 rotation: animationFrame * 22.5f * (float)Math.PI / 180f,
@@ -47,6 +53,11 @@ internal class BoomerangSprite : ISprite
 
     public int Update(GameTime time)
     {
+        if (!thrown)
+        {
+            return 0;
+        }
+
         if (animationFrame < lastAnimationFrame)
         {
             animationFrame++;
@@ -55,13 +66,17 @@ internal class BoomerangSprite : ISprite
         {
             animationFrame = 1;
         }
-        pos += velocity;
+        Pos += velocity;
         distanceTraveled += Vector2.Distance(new Vector2(0f, 0f), velocity);
         if (distanceTraveled > maxDistance)
         {
+            if (returning)
+            {
+                thrown = false;
+            }
             velocity.X = -velocity.X;
             velocity.Y = -velocity.Y;
-            returning = true;
+            returning = !returning;
             distanceTraveled = 0;
         }
         return 0;
