@@ -30,11 +30,11 @@ class GameplayState : IGameState
 
     public void Update(GameTime gameTime)
     {
-        
+        link.Update(gameTime);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        
+        link.Draw(spriteBatch);
     }
 }

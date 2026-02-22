@@ -45,7 +45,8 @@ public class Game1 : Game
             ScaleFactor = 3
         };
 
-        currentState = new StartScreenState(services);
+        //currentState = new StartScreenState(services);
+        currentState = new GameplayState(services);
 
         // Set the window size to be 3 times the original NES resolution (256x224)
         graphics.PreferredBackBufferWidth = services.GameWidth;
@@ -110,7 +111,6 @@ public class Game1 : Game
         /*
         enemyManager?.Update(gameTime);
 
-        link.Update(gameTime);
         items.Update(gameTime);
         */
 
@@ -128,6 +128,8 @@ public class Game1 : Game
             null, null
         );
 
+        GraphicsDevice.Clear(Color.CornflowerBlue);
+
         currentState.Draw(spriteBatch);
 
         /*
@@ -144,10 +146,6 @@ public class Game1 : Game
         creditsScale,
         SpriteEffects.None,
         0f);
-
-        GraphicsDevice.Clear(Color.CornflowerBlue);
-
-        link.Draw(spriteBatch);
 
         enemyManager?.Draw(spriteBatch);
 
