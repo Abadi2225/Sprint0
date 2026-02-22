@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Enemies.Concrete;
 using Sprint.Interfaces;
+using Sprint.Sprites;
 
 namespace Sprint.Enemies
 {
@@ -19,55 +20,45 @@ namespace Sprint.Enemies
         Aquamentus,
         Dodongo
     }
-    
-    public class EnemyFactory(Texture2D enemySpriteSheet, Texture2D bossSpriteSheet)
+
+    public class EnemyFactory(Texture2D enemySpriteSheet, Texture2D bossSpriteSheet, Texture2D linkSheet, Texture2D dustSheet)
     {
         private readonly Texture2D enemySpriteSheet = enemySpriteSheet;
         private readonly Texture2D bossSpriteSheet = bossSpriteSheet;
+        private readonly Texture2D linkSheet = linkSheet;
+        private readonly Texture2D dustSheet = dustSheet;
 
-        public void LoadAllTextures(ContentManager content)
-        {
-            
-        }
+        public void LoadAllTextures(ContentManager content) { }
 
         // Can change vector2 position to something else (e.g. x/y pos) in the future
         public IEnemy CreateEnemy(EnemyType type, Vector2 position)
         {
-            switch (type)
+            IEnemy enemy = type switch
             {
-                 case EnemyType.Keese:
-                     return new Keese(enemySpriteSheet, position);
-                    
-                case EnemyType.Stalfos:
-                    return new Stalfos(enemySpriteSheet, position);
-                    
-                case EnemyType.Gel:
-                    return new Gel(enemySpriteSheet, position);
-                    
-                 case EnemyType.Goriya:
-                     return new Goriya(enemySpriteSheet, position);
-                    
-                case EnemyType.Zol:
-                    return new Zol(enemySpriteSheet, position);
-                    
-                case EnemyType.WallMaster:
-                    return new WallMaster(enemySpriteSheet, position);
-                    
-                case EnemyType.Trap:
-                    return new Trap(enemySpriteSheet, position);
-                    
-                case EnemyType.Rope:
-                    return new Rope(enemySpriteSheet, position);
-                    
-                 case EnemyType.Aquamentus:
-                     return new Aquamentus(bossSpriteSheet, position);
-                    
-                // case EnemyType.Dodongo:
-                //     return new Dodongo(enemySpriteSheet, position);
+                EnemyType.Keese      => new Keese(enemySpriteSheet, position),
+                EnemyType.Stalfos    => new Stalfos(enemySpriteSheet, position),
+                EnemyType.Gel        => new Gel(enemySpriteSheet, position),
+                EnemyType.Goriya     => new Goriya(enemySpriteSheet, position),
+                EnemyType.Zol        => new Zol(enemySpriteSheet, position),
+                EnemyType.WallMaster => new WallMaster(enemySpriteSheet, position),
+                EnemyType.Trap       => new Trap(enemySpriteSheet, position),
+                EnemyType.Rope       => new Rope(enemySpriteSheet, position),
+                EnemyType.Aquamentus => new Aquamentus(bossSpriteSheet, position),
+                EnemyType.Dodongo    => new Dodongo(bossSpriteSheet, position),
+                _                    => new Goriya(enemySpriteSheet, position),
+            };
 
-                default:
-                    return new Goriya(enemySpriteSheet, position);
-            }
-        }   
+            bool skipSpawnCloud = type is EnemyType.Aquamentus or EnemyType.Dodongo or EnemyType.WallMaster or EnemyType.Trap or EnemyType.Gel;
+            return WrapWithEffects(enemy, position, skipSpawnCloud);
+        }
+
+        private EnemyEffectWrapper WrapWithEffects(IEnemy enemy, Vector2 position, bool skipSpawnCloud = false)
+        {
+            // Cloud: 3 frames from Link.png (skipped for bosses and WallMaster)
+            var spawnSprite = skipSpawnCloud ? null : new AnimatedSprite(linkSheet, position, [138, 155, 172], 185, 15, 15, 0.5f);
+            // Dust: 4 frames from dustSheet
+            var deathSprite = new AnimatedSprite(dustSheet, position, [0, 16, 32, 48], 0, 14, 15, 0.3f);
+            return new EnemyEffectWrapper(enemy, spawnSprite, deathSprite);
+        }
     }
 }

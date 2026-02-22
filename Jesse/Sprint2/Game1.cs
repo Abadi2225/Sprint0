@@ -23,6 +23,7 @@ public class Game1 : Game
     private Texture2D titleSheet;
     private Texture2D enemiesSheet;
     private Texture2D BossesSheet;
+    private Texture2D dustSheet;
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
 
@@ -67,12 +68,13 @@ public class Game1 : Game
         linkSheet = Content.Load<Texture2D>("images/Link");
         enemiesSheet = Content.Load<Texture2D>("images/enemiesSheet");
         BossesSheet = Content.Load<Texture2D>("images/BossesSpriteSheet");
+        dustSheet = Content.Load<Texture2D>("images/dustSheet");
 
         titleSheet = Content.Load<Texture2D>("images/Title Screen & Story of Treasures");
 
         Vector2 center = new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2);
         enemyManager = new EnemyManager();
-        enemyFactory = new EnemyFactory(enemiesSheet, BossesSheet);
+        enemyFactory = new EnemyFactory(enemiesSheet, BossesSheet, linkSheet, dustSheet);
 
         // Can make this generated in the enemyFactory if we want to create more enemies
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Gel, center + new Vector2(100, 0)));

@@ -24,10 +24,10 @@ public class MapManager
         Ladder
     }
 
-    private Vector2 pos = new Vector2(100, 50);
-    private ContentManager contentManager;
+    private Vector2 pos = new(100, 50);
+    private readonly ContentManager contentManager;
 
-    internal AbstractBlock[] Map;
+    internal Block[] Map;
 
     // todo delete this
     private BlockType currentBlock = BlockType.Blank;
@@ -37,9 +37,7 @@ public class MapManager
         this.contentManager = contentManager;
         this.pos = pos;
 
-        this.Map = new AbstractBlock[] {
-            createBlock(currentBlock, pos)
-        };
+        this.Map = [CreateBlock(currentBlock, pos)];
     }
 
     public void DrawMap(SpriteBatch sb)
@@ -50,11 +48,11 @@ public class MapManager
         }
     }
 
-    private AbstractBlock createBlock(BlockType type, Vector2 pos, int width = 32)
+    private Block CreateBlock(BlockType type, Vector2 pos, int width = 32)
     {
-        Rectangle textureMask = new Rectangle(
-                        ((int)type % 4) * (16 + 1),
-                        ((int)type / 4) * (16 + 1),
+        Rectangle textureMask = new(
+                        (int)type % 4 * (16 + 1),
+                        (int)type / 4 * (16 + 1),
                         16,
                         16
                         );
@@ -64,10 +62,10 @@ public class MapManager
     // todo remove these
     public void CycleNext()
     {
-        if ((int)currentBlock < 10)
+        if ((int)currentBlock < 9)
         {
             currentBlock = (BlockType)((int)currentBlock + 1);
-            this.Map[0] = createBlock(currentBlock, pos);
+            this.Map[0] = CreateBlock(currentBlock, pos);
         }
     }
 
@@ -76,7 +74,7 @@ public class MapManager
         if ((int)currentBlock > 0)
         {
             currentBlock = (BlockType)((int)currentBlock - 1);
-            this.Map[0] = createBlock(currentBlock, pos);
+            this.Map[0] = CreateBlock(currentBlock, pos);
         }
     }
 }
