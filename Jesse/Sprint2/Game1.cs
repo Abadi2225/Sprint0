@@ -49,6 +49,7 @@ public class Game1 : Game, IGameActions
 
         //currentState = new StartScreenState(services);
         currentState = new StartScreenState(services);
+        currentState.Enter();
 
         // Set the window size to be 3 times the original NES resolution (256x224)
         graphics.PreferredBackBufferWidth = services.GameWidth;
@@ -98,7 +99,6 @@ public class Game1 : Game, IGameActions
                     new Vector2(5, 0),
                     Content
                     ));
-        mapManager = new MapManager(Content, new Vector2(100, 50));
 
         */
     }
@@ -152,11 +152,6 @@ public class Game1 : Game, IGameActions
         enemyManager?.Draw(spriteBatch);
 
         items.DrawActiveItem(spriteBatch);
-
-        mapManager.DrawMap(spriteBatch);
-
-        
-
         */
 
         spriteBatch.End();
@@ -167,6 +162,7 @@ public class Game1 : Game, IGameActions
     {
         currentState = newState;
         currentState.LoadContent();
+        currentState.Enter();
     }
 
     /*
@@ -184,11 +180,6 @@ public class Game1 : Game, IGameActions
     {
         return items;
     }
-    internal MapManager GetMapManager()
-    {
-        return mapManager;
-    }
-
     */
 
     public void Quit()

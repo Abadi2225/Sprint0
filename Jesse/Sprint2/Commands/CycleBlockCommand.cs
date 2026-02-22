@@ -1,21 +1,21 @@
+using Sprint.Block;
 using Sprint.Interfaces;
 
 namespace Sprint.Commands
 {
     public class CycleBlockCommand : ICommand
     {
-        private readonly Game1 game;
+        private MapManager mapManager;
         private readonly bool forward;
 
-        public CycleBlockCommand(Game1 game, bool forward)
+        public CycleBlockCommand(MapManager mapManager, bool forward)
         {
-            this.game = game;
+            this.mapManager = mapManager;
             this.forward = forward;
         }
 
         public void Execute()
         {
-            /*var mapManager = game.GetMapManager();
             if (forward)
             {
                 mapManager.CycleNext();
@@ -23,7 +23,7 @@ namespace Sprint.Commands
             else
             {
                 mapManager.CyclePrevious();
-            }*/
+            }
         }
     }
 }

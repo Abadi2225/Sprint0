@@ -21,15 +21,18 @@ class StartScreenState : IGameState
     {
         this.services = services;
 
+        // UIManager should be initialized before loading content, since LoadContent adds elements to it
+        uiManager = new UIManager();
+    }
+
+    public void Enter()
+    {
         // Set up key bindings
         pressedKeys = new Dictionary<Keys, ICommand>
         {
             {Keys.Q, new QuitCommand(services.GameActions)},
             {Keys.Enter, new SetStateCommand(services.GameActions, new GameplayState(services))}
         };
-
-        // UIManager should be initialized before loading content, since LoadContent adds elements to it
-        uiManager = new UIManager();
     }
 
     public void LoadContent()

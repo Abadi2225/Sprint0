@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Xna.Framework.Content;
+using Sprint.Block;
 using Sprint.Controllers;
 using Sprint.Interfaces;
 
