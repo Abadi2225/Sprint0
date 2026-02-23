@@ -47,6 +47,20 @@ internal class ItemFactory
                 );
     }
 
+    public static TimeBomb CreateTimeBomb(double explodeDelayMillis, Vector2 pos, float scale, float rotation = 0)
+    {
+        Rectangle mask = new Rectangle(136, 0, 8, 14);
+        return new TimeBomb(
+                explodeDelayMillis,
+                "TimeBomb",
+                contentManager,
+                pos,
+                mask,
+                rotation,
+                scale
+                );
+    }
+
     public static StillItem CreateStillItem(StillType type, Vector2 pos, float rotation, float scale = 1)
     {
         Rectangle mask = new Rectangle(0, 0, 0, 0);

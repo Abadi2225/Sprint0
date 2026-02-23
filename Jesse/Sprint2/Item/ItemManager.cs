@@ -45,11 +45,11 @@ public class ItemManager
             float maxDistance = 500;
             float arrowRotation = facing switch
             {
-                Directions.Up    => 0f,
-                Directions.Down  => MathF.PI,
+                Directions.Up => 0f,
+                Directions.Down => MathF.PI,
                 Directions.Right => MathF.PI / 2f,
-                Directions.Left  => -MathF.PI / 2f,
-                _                => 0f
+                Directions.Left => -MathF.PI / 2f,
+                _ => 0f
             };
             SpawnItem(ItemFactory.CreateArrow(
                         pos,
@@ -59,14 +59,15 @@ public class ItemManager
                         maxDistance
                         ).StartMoving());
         }
-        if (used.Name == "Bomb")
+        else if (used.Name == "Bomb" || used.Name == "TimeBomb")
         {
             float reach = 30;
-            SpawnItem(ItemFactory.CreateStillItem(
-                        ItemFactory.StillType.Bomb,
+            double explodeDelayMillis = 3000;
+            SpawnItem(ItemFactory.CreateTimeBomb(
+                        explodeDelayMillis,
                         Vector2.Add(pos, DirectionsUtils.CreateVector(facing, reach)),
-                        rotation: 0f,
-                        scale: 2f
+                        scale: 2f,
+                        rotation: 0f
                         ));
         }
     }
