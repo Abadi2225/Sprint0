@@ -9,48 +9,68 @@ namespace Sprint.Item;
 
 public class ItemManager
 {
-    internal List<AbstractItem> Items { get; }
+    private List<AbstractItem> Inventory { get; }
     public int ActiveItem { get; set; }
+    private List<AbstractItem> SpawnedItems = new List<AbstractItem>();
 
     public ItemManager()
     {
-        Items = new List<AbstractItem>();
+        Inventory = new List<AbstractItem>();
     }
 
-    internal void CreateItem(AbstractItem item)
+    public void UseActiveItem(ILink link)
     {
-        Items.Add(item);
+        // todo implement use logic
     }
 
-    public void DrawAllItems(SpriteBatch sb)
+    internal void Add(AbstractItem item)
     {
-        foreach (AbstractItem item in Items)
+        Inventory.Add(item);
+    }
+
+    internal void SpawnItem(AbstractItem item)
+    {
+        SpawnedItems.Add(item);
+    }
+
+    public void Draw(SpriteBatch sb)
+    {
+        Inventory[ActiveItem].Draw(sb, Vector2.Zero);
+        foreach (AbstractItem item in SpawnedItems)
         {
             item.Draw(sb, Vector2.Zero);
         }
     }
 
-    public void DrawActiveItem(SpriteBatch sb)
-    {
-        Items[ActiveItem].Draw(sb, Vector2.Zero);
-    }
-
     public void Update(GameTime time)
     {
-        foreach (AbstractItem item in Items)
+        foreach (AbstractItem item in Inventory)
         {
             item.Update(time);
+        }
+        foreach (AbstractItem item in SpawnedItems)
+        {
+            item.Update(time);
+        }
+        // for testing
+        if (GetActiveItem() is Boomerang b)
+        {
+            b.StartMoving();
+        }
+        if (GetActiveItem() is Arrow a)
+        {
+            a.StartMoving();
         }
     }
 
     internal AbstractItem GetActiveItem()
     {
-        return Items[ActiveItem];
+        return Inventory[ActiveItem];
     }
 
     public void CycleNext()
     {
-        if (ActiveItem < Items.Count - 1)
+        if (ActiveItem < Inventory.Count - 1)
         {
             ActiveItem++;
         }

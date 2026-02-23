@@ -5,6 +5,7 @@ using Sprint.Interfaces;
 using Sprint.Character;
 using Sprint.Sprites;
 using Sprint.Commands;
+using System;
 using System.Collections.Generic;
 using Sprint.Block;
 using Microsoft.Xna.Framework.Input;
@@ -24,6 +25,7 @@ class GameplayState : IGameState
     private Dictionary<Keys, ICommand> pressedKeys;
     private MapManager mapManager;
     private ItemManager items = new ItemManager();
+    private ItemFactory itemFactory;
     private EnemyManager enemyManager;
     private EnemyFactory enemyFactory;
 
@@ -56,24 +58,6 @@ class GameplayState : IGameState
 
         mapManager = new MapManager(services.Content, new Vector2(100, 50));
 
-        // item test
-        items.CreateItem
-        (
-            new Compass
-            (
-                new Vector2(50, 50),
-                services.Content
-            )
-        );
-        items.CreateItem
-        (
-            new Boomerang(
-                new Vector2(70, 50),
-                new Vector2(5, 0),
-                services.Content
-            )
-        );
-
         enemiesSheet = services.Content.Load<Texture2D>("images/enemiesSheet");
         BossesSheet = services.Content.Load<Texture2D>("images/BossesSpriteSheet");
         dustSheet = services.Content.Load<Texture2D>("images/dustSheet");
@@ -94,6 +78,31 @@ class GameplayState : IGameState
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Trap, center + new Vector2(100, 0)));
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Dodongo, center + new Vector2(-100, 0)));
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.OldMan, center + new Vector2(100, 0)));
+
+        // item test
+        itemFactory = new ItemFactory(services.Content);
+        items.Add(itemFactory.CreateBoomerang(
+                    new Vector2(50, 50),
+                    new Vector2(5, 0),
+                    maxDistance: 400f
+                    ));
+        items.Add(itemFactory.CreateArrow(
+                    new Vector2(50, 50),
+                    new Vector2(5, 0),
+                    rotation: (float)Math.PI / 2f,
+                    scale: 3,
+                    maxDistance: 600f
+                    ));
+        foreach (ItemFactory.StillType type in Enum.GetValues<ItemFactory.StillType>())
+        {
+            items.Add(itemFactory.CreateStillItem(
+                        type,
+                        new Vector2(50, 50),
+                        0,
+                        2
+                        ));
+        }
+        mapManager = new MapManager(services.Content, new Vector2(100, 50));
     }
 
     public void Update(GameTime gameTime)
@@ -107,9 +116,9 @@ class GameplayState : IGameState
         else if (services.KeyInput.IsKeyDown(Keys.A) || services.KeyInput.IsKeyDown(Keys.Left)) link.SetMove(Directions.Left);
         else if (services.KeyInput.IsKeyDown(Keys.D) || services.KeyInput.IsKeyDown(Keys.Right)) link.SetMove(Directions.Right);
         else link.StopMove();
-		if (services.KeyInput.IsKeyDown(Keys.Z) || services.KeyInput.IsKeyDown(Keys.N)) link.StartAttack();
-		if (services.KeyInput.IsKeyDown(Keys.E)) link.StartDamaged();
-		foreach (var binding in pressedKeys)
+        if (services.KeyInput.IsKeyDown(Keys.Z) || services.KeyInput.IsKeyDown(Keys.N)) link.StartAttack();
+        if (services.KeyInput.IsKeyDown(Keys.E)) link.StartDamaged();
+        foreach (var binding in pressedKeys)
         {
             if (services.KeyInput.IsKeyPressed(binding.Key))
             {
@@ -118,13 +127,14 @@ class GameplayState : IGameState
         }
 
 
-	}
+    }
 
     public void Draw(SpriteBatch spriteBatch)
     {
         link.Draw(spriteBatch);
         mapManager.DrawMap(spriteBatch);
-        items.DrawActiveItem(spriteBatch);
         enemyManager?.Draw(spriteBatch);
+        items.Draw(spriteBatch);
+        mapManager.DrawMap(spriteBatch);
     }
 }

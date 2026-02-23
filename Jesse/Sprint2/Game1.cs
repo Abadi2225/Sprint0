@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using Sprint.Interfaces;
 using Sprint.Controllers;
@@ -17,7 +18,7 @@ namespace Sprint;
 
 public class Game1 : Game, IGameActions
 {
-    
+
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
 
@@ -66,7 +67,7 @@ public class Game1 : Game, IGameActions
     protected override void Update(GameTime gameTime)
     {
         services.KeyInput.Update();
-        
+
         currentState.Update(gameTime);
         mouse.Update();
 
@@ -109,7 +110,7 @@ public class Game1 : Game, IGameActions
         return enemyManager;
     }
 
-    public ItemManager GetItemManager()
+    internal ItemManager GetItemManager()
     {
         return items;
     }
