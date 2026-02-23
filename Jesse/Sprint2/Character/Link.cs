@@ -1,9 +1,12 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint.Block;
 using Sprint.Factories;
 using Sprint.Interfaces;
+using Sprint.Item;
+using System.Collections.Generic;
 
 namespace Sprint.Character
 {
@@ -40,11 +43,8 @@ namespace Sprint.Character
 		private bool isAttacking = false;
 		private bool isDamaged = false;
 		private bool isVisible = false;
-		private bool blinkVisible = true;
-		private KeyboardState prevKeys;
 		private Vector2 move = Vector2.Zero;
 		private Vector2 position;
-
 
 		private Directions direction = Directions.Down;
 		public Directions Facing => direction;
@@ -90,10 +90,7 @@ namespace Sprint.Character
 			{
 				damagedTimer += gameTime.ElapsedGameTime.TotalSeconds;
 
-				if((int)(damagedTimer / BlinkInterval) % 2 == 0)
-				{
-					isVisible = true;
-				}
+				if((int)(damagedTimer / BlinkInterval) % 2 == 0) isVisible = true;
 				else
 				{
 					isVisible = false;
@@ -106,7 +103,6 @@ namespace Sprint.Character
 				}
 			}
 			position += move * speed * dt;
-
 			sprite.Update(gameTime);
 
 			return 0;
@@ -221,6 +217,8 @@ namespace Sprint.Character
 
 			SetIdleSprite();
 		}
+
+		
 
 		public Vector2 Position
 		{

@@ -43,7 +43,11 @@ class GameplayState : IGameState
             {Keys.U, new CycleItemCommand(items, false)},
             {Keys.Y, new CycleBlockCommand(mapManager, true)},
             {Keys.T, new CycleBlockCommand(mapManager, false)},
-        };
+			{Keys.D1, new UseItemCommand(items, link, 0) },
+            {Keys.D2, new UseItemCommand(items, link, 1) },
+            //{Keys.D3, new UseItemCommand(items, link, 2) },
+            //{Keys.D4, new UseItemCommand(items, link, 3) },
+		};
     }
 
     public void LoadContent()
@@ -65,14 +69,22 @@ class GameplayState : IGameState
                 services.Content
             )
         );
-        items.CreateItem
+		items.CreateItem
+		(
+		    new Boomerang(
+		        new Vector2(70, 50),
+		        new Vector2(5, 0),
+		        services.Content
+		    )
+		);
+		items.CreateItem
         (
-            new Boomerang(
-                new Vector2(70, 50),
-                new Vector2(5, 0),
-                services.Content
-            )
-        );
+			new Boomerang(
+				link.Position,
+				new Vector2(5, 0),
+				services.Content
+			)
+		);
 
         enemiesSheet = services.Content.Load<Texture2D>("images/enemiesSheet");
         BossesSheet = services.Content.Load<Texture2D>("images/BossesSpriteSheet");
@@ -117,7 +129,6 @@ class GameplayState : IGameState
             }
         }
 
-
 	}
 
     public void Draw(SpriteBatch spriteBatch)
@@ -126,5 +137,6 @@ class GameplayState : IGameState
         mapManager.DrawMap(spriteBatch);
         items.DrawActiveItem(spriteBatch);
         enemyManager?.Draw(spriteBatch);
-    }
+		items.DrawProjectiles(spriteBatch);
+	}
 }

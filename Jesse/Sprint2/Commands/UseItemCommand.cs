@@ -1,4 +1,5 @@
-﻿using Sprint.Interfaces;
+﻿using Microsoft.Xna.Framework.Content;
+using Sprint.Interfaces;
 using Sprint.Item;
 using System;
 using System.Collections.Generic;
@@ -8,20 +9,26 @@ using System.Threading.Tasks;
 
 namespace Sprint.Commands
 {
-	internal class UseItemCommand : ICommand
+	public class UseItemCommand : ICommand
 	{
-		private ItemManager itemManager;
-		private ILink link;
+		private readonly ItemManager items;
+		private readonly ILink link;
+		private readonly int itemIndex;
 
-		public UseItemCommand(ItemManager itemManager, ILink link)
+		public UseItemCommand(ItemManager items, ILink link, int itemIndex)
 		{
-			this.itemManager = itemManager;
+			this.items = items;
 			this.link = link;
+			this.itemIndex = itemIndex;
 		}
 
 		public void Execute()
 		{
-			itemManager.GetActiveItem().Use(link);
+			if (items == null || link == null) return;
+
+			var item = items.GetItem(itemIndex);
+			item?.Use(link);
 		}
 	}
 }
+
