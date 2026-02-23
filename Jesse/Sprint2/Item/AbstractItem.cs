@@ -9,7 +9,6 @@ namespace Sprint.Item;
 internal abstract class AbstractItem : ISprite
 {
     protected Texture2D texture;
-
     public Vector2 DrawPos { get; set; }
     public string Name { get; }
     public string DisplayName { get; }
