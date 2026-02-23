@@ -60,11 +60,6 @@ namespace Sprint.Factories
 
 		public static ISprite AttackDown(Texture2D texture, System.Action onFinished)
 		{
-			/*
-			 * TODO: stil need to replace these rectangle coords with the
-			 * correct coords for Link attack frames. Right now, these are
-			 * default values.
-			 */ 
 			Rectangle[] frames =
             [
                 new Rectangle(1, 47, 15, 15),
