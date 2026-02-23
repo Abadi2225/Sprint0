@@ -12,16 +12,18 @@ namespace Sprint.Commands
     {
         private ItemManager itemManager;
         private ILink link;
+        private int slot;
 
-        public UseItemCommand(ItemManager itemManager, ILink link)
+        public UseItemCommand(ItemManager itemManager, ILink link, int slot)
         {
             this.itemManager = itemManager;
             this.link = link;
+            this.slot = slot;
         }
 
         public void Execute()
         {
-            itemManager.UseActiveItem(link);
+            itemManager.UseItem(link, slot);
         }
     }
 }

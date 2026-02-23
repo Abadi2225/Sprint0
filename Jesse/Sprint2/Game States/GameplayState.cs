@@ -45,7 +45,9 @@ class GameplayState : IGameState
             {Keys.U, new CycleItemCommand(items, false)},
             {Keys.Y, new CycleBlockCommand(mapManager, true)},
             {Keys.T, new CycleBlockCommand(mapManager, false)},
-            {Keys.Space, new UseItemCommand(items, link)},
+            {Keys.D1, new UseItemCommand(items, link, 0)},
+            {Keys.D2, new UseItemCommand(items, link, 1)},
+            {Keys.D3, new UseItemCommand(items, link, 2)},
         };
     }
 

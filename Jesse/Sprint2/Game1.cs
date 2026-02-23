@@ -18,7 +18,6 @@ namespace Sprint;
 
 public class Game1 : Game, IGameActions
 {
-
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
 

@@ -21,11 +21,16 @@ public class ItemManager
         factory = new ItemFactory(cm);
     }
 
-    public void UseActiveItem(ILink link)
+    public void UseItem(ILink link, int slot)
     {
+        if (slot < 0 || slot >= Inventory.Count)
+        {
+            return;
+        }
         Vector2 pos = link.Position;
         Directions facing = link.Facing;
-        if (GetActiveItem() is Boomerang)
+        AbstractItem used = Inventory[slot];
+        if (used is Boomerang)
         {
             float velocity = 5;
             float maxDistance = 500;
@@ -35,7 +40,7 @@ public class ItemManager
                         maxDistance
                         ).StartMoving());
         }
-        if (GetActiveItem().Name == "Bow")
+        else if (used.Name == "Bow")
         {
             float velocity = 5;
             float maxDistance = 500;
@@ -47,7 +52,7 @@ public class ItemManager
                         maxDistance
                         ).StartMoving());
         }
-        if (GetActiveItem().Name == "Bomb")
+        if (used.Name == "Bomb")
         {
             float reach = 30;
             SpawnItem(factory.CreateStillItem(
