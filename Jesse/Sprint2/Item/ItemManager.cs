@@ -91,15 +91,6 @@ public class ItemManager
         {
             item.Update(time);
         }
-        // for testing
-        if (GetActiveItem() is Boomerang b)
-        {
-            b.StartMoving();
-        }
-        if (GetActiveItem() is Arrow a)
-        {
-            a.StartMoving();
-        }
     }
 
     internal AbstractItem GetActiveItem()

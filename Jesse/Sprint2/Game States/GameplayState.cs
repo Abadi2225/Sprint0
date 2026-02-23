@@ -88,6 +88,17 @@ class GameplayState : IGameState
                     new Vector2(5, 0),
                     maxDistance: 400f
                     ));
+        items.Add(ItemFactory.CreateStillItem(
+                    ItemFactory.StillType.Bow,
+                    new Vector2(50, 50),
+                    rotation: 0f
+                    ));
+        items.Add(ItemFactory.CreateStillItem(
+                    ItemFactory.StillType.Bomb,
+                    new Vector2(50, 50),
+                    rotation: 0f,
+                    scale: 2f
+                    ));
         items.Add(ItemFactory.CreateArrow(
                     new Vector2(50, 50),
                     new Vector2(5, 0),
