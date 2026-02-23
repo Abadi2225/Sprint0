@@ -17,6 +17,8 @@ internal abstract class AbstractItem : ISprite
 
     public Vector2 Position { get; set; } // unused
 
+    public virtual bool IsFinished => false;
+
     private AbstractItem(string name)
     {
         Name = name;

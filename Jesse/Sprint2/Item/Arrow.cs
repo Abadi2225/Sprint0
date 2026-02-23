@@ -31,4 +31,6 @@ internal class Arrow : AbstractItem
         }
         return this;
     }
+
+    public override bool IsFinished => sprite is ProjectileSprite p && p.ReachedMaxDistance;
 }

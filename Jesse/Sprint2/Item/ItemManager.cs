@@ -25,6 +25,7 @@ public class ItemManager
         {
             return;
         }
+        link.StartAttack();
         Vector2 pos = link.Position;
         Directions facing = link.Facing;
         AbstractItem used = Inventory[slot];
@@ -42,10 +43,18 @@ public class ItemManager
         {
             float velocity = 5;
             float maxDistance = 500;
+            float arrowRotation = facing switch
+            {
+                Directions.Up    => 0f,
+                Directions.Down  => MathF.PI,
+                Directions.Right => MathF.PI / 2f,
+                Directions.Left  => -MathF.PI / 2f,
+                _                => 0f
+            };
             SpawnItem(ItemFactory.CreateArrow(
                         pos,
                         DirectionsUtils.CreateVector(facing, velocity),
-                        rotation: 0f,
+                        rotation: arrowRotation,
                         scale: 2f,
                         maxDistance
                         ).StartMoving());
@@ -91,6 +100,7 @@ public class ItemManager
         {
             item.Update(time);
         }
+        SpawnedItems.RemoveAll(item => item.IsFinished);
     }
 
     internal AbstractItem GetActiveItem()

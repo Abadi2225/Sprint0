@@ -30,5 +30,7 @@ internal class Boomerang : AbstractItem
         }
         return this;
     }
+    public override bool IsFinished => sprite is BoomerangSprite b && !b.IsActive;
+
     public ISprite GetSprite() => sprite;
 }

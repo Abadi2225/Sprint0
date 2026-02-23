@@ -16,5 +16,7 @@ namespace Sprint.Interfaces
 			get;
 		}
 
+		void StartAttack();
+
 	}
 }

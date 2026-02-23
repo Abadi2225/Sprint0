@@ -83,28 +83,20 @@ class GameplayState : IGameState
 
         // item test
         items = new ItemManager();
-        items.Add(ItemFactory.CreateBoomerang(
+        items.Add(ItemFactory.CreateBoomerang(          // slot 0 - D1
                     new Vector2(50, 50),
                     new Vector2(5, 0),
                     maxDistance: 400f
                     ));
-        items.Add(ItemFactory.CreateStillItem(
+        items.Add(ItemFactory.CreateStillItem(          // slot 1 - D2
                     ItemFactory.StillType.Bow,
                     new Vector2(50, 50),
-                    rotation: 0f
+                    0, 2
                     ));
-        items.Add(ItemFactory.CreateStillItem(
+        items.Add(ItemFactory.CreateStillItem(          // slot 2 - D3
                     ItemFactory.StillType.Bomb,
                     new Vector2(50, 50),
-                    rotation: 0f,
-                    scale: 2f
-                    ));
-        items.Add(ItemFactory.CreateArrow(
-                    new Vector2(50, 50),
-                    new Vector2(5, 0),
-                    rotation: (float)Math.PI / 2f,
-                    scale: 3,
-                    maxDistance: 600f
+                    0, 2
                     ));
         foreach (ItemFactory.StillType type in Enum.GetValues<ItemFactory.StillType>())
         {
