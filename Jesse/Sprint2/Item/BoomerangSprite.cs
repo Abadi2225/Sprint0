@@ -23,11 +23,12 @@ internal class BoomerangSprite : ISprite
 
     public Vector2 Position { get; set; }
 
-    public BoomerangSprite(Texture2D texture, Vector2 initialPos, Vector2 velocity, float scale)
+    public BoomerangSprite(Texture2D texture, Vector2 initialPos, Vector2 velocity, float maxDistance, float scale)
     {
         this.texture = texture;
         Pos = initialPos;
         this.velocity = velocity;
+        this.maxDistance = maxDistance;
         this.scale = scale;
     }
 

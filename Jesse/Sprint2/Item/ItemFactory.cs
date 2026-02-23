@@ -13,19 +13,19 @@ internal class ItemFactory
         Bomb,
 
     }
-    public enum StillItemType
+    public enum StillType
     {
         Heart,
-        Fairy,
         HeartContainer,
+        Fairy,
         Clock,
-        Compass,
         Rupee,
         BluePotion,
         Map,
         Bow,
         BlueCandle,
         Key,
+        Compass,
         Triforce
     }
     ContentManager contentManager;
@@ -34,13 +34,54 @@ internal class ItemFactory
         this.contentManager = contentManager;
     }
 
-    public StillItem CreateStillItem(StillItemType type, Vector2 pos, float rotation, float scale = 1)
+    public Boomerang CreateBoomerang(Vector2 pos, Vector2 vel, float maxDistance)
     {
-        Rectangle mask;
+        return new Boomerang(pos, vel, maxDistance, contentManager);
+    }
+
+    public StillItem CreateStillItem(StillType type, Vector2 pos, float rotation, float scale = 1)
+    {
+        Rectangle mask = new Rectangle(0, 0, 0, 0);
         switch (type)
         {
+            case StillType.Heart:
+                mask = new Rectangle(0, 0, 7, 8);
+                break;
+            case StillType.HeartContainer:
+                mask = new Rectangle(25, 1, 13, 13);
+                break;
+            case StillType.Fairy:
+                mask = new Rectangle(40, 0, 7, 16);
+                break;
+            case StillType.Clock:
+                mask = new Rectangle(58, 0, 11, 16);
+                break;
+            case StillType.Rupee:
+                mask = new Rectangle(72, 0, 8, 16);
+                break;
+            case StillType.BluePotion:
+                mask = new Rectangle(80, 16, 8, 16);
+                break;
+            case StillType.Map:
+                mask = new Rectangle(87, 0, 9, 16);
+                break;
+            case StillType.Bow:
+                mask = new Rectangle(144, 0, 8, 16);
+                break;
+            case StillType.BlueCandle:
+                mask = new Rectangle(160, 16, 8, 16);
+                break;
+            case StillType.Key:
+                mask = new Rectangle(240, 0, 8, 16);
+                break;
+            case StillType.Compass:
+                mask = new Rectangle(258, 1, 11, 12);
+                break;
+            case StillType.Triforce:
+                mask = new Rectangle(275, 3, 10, 10);
+                break;
         }
         // todo remove
-        return null;
+        return new StillItem(type.ToString(), contentManager, pos, mask, rotation, scale);
     }
 }

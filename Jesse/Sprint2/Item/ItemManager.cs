@@ -17,7 +17,7 @@ public class ItemManager
         Items = new List<AbstractItem>();
     }
 
-    internal void CreateItem(AbstractItem item)
+    internal void Add(AbstractItem item)
     {
         Items.Add(item);
     }
@@ -41,6 +41,7 @@ public class ItemManager
         {
             item.Update(time);
         }
+        GetActiveItem().Use(null);
     }
 
     internal AbstractItem GetActiveItem()

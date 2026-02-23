@@ -15,8 +15,8 @@ internal abstract class AbstractItem : ISprite
 
     public ISprite sprite;
 
-    public delegate void SetUseAction(ISprite entity);
-    public SetUseAction UseAction;
+    public delegate void UseActionDelegate(ISprite entity);
+    public UseActionDelegate UseAction;
 
     public Vector2 Position { get; set; } // unused
 
@@ -37,13 +37,21 @@ internal abstract class AbstractItem : ISprite
         UseAction = null;
     }
 
+    public AbstractItem SetUseAction(UseActionDelegate useAction)
+    {
+        UseAction = useAction;
+        return this;
+    }
+
     public virtual void Use(ISprite entity)
     {
         UseAction?.Invoke(entity);
     }
 
     public virtual void Draw(SpriteBatch sb, Vector2 pos)
-    { }
+    {
+        sprite.Draw(sb, Vector2.Zero);
+    }
 
     public virtual int Update(GameTime time)
     {

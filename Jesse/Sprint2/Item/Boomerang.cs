@@ -11,12 +11,13 @@ internal class Boomerang : AbstractItem
 {
     private static string ResourceName = "items/boomerang";
 
-    public Boomerang(Vector2 pos, Vector2 vel, ContentManager contentManager) : base("boomerang", contentManager, ResourceName, pos)
+    public Boomerang(Vector2 pos, Vector2 vel, float maxDistance, ContentManager contentManager) : base("boomerang", contentManager, ResourceName, pos)
     {
         sprite = new BoomerangSprite(
                 texture,
                 DrawPos,
                 vel,
+                maxDistance,
                 0.2f
                 );
 

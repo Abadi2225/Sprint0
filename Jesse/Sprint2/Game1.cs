@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using Sprint.Interfaces;
 using Sprint.Controllers;
@@ -39,6 +40,7 @@ public class Game1 : Game
     private EnemyFactory enemyFactory;
 
     private ItemManager items = new ItemManager();
+    private ItemFactory itemFactory;
     private MapManager mapManager;
 
     public Game1()
@@ -95,15 +97,21 @@ public class Game1 : Game
         link = new Link(linkSheet, center);
 
         // item test
-        items.CreateItem(new Compass(
-                    new Vector2(50, 50),
-                    Content
-                    ));
-        items.CreateItem(new Boomerang(
+        itemFactory = new ItemFactory(Content);
+        items.Add(itemFactory.CreateBoomerang(
                     new Vector2(70, 50),
                     new Vector2(5, 0),
-                    Content
+                    maxDistance: 400f
                     ));
+        foreach (ItemFactory.StillType type in Enum.GetValues<ItemFactory.StillType>())
+        {
+            items.Add(itemFactory.CreateStillItem(
+                        type,
+                        new Vector2(50, 50),
+                        0,
+                        2
+                        ));
+        }
         mapManager = new MapManager(Content, new Vector2(100, 50));
     }
 
