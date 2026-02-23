@@ -99,9 +99,16 @@ public class Game1 : Game
         // item test
         itemFactory = new ItemFactory(Content);
         items.Add(itemFactory.CreateBoomerang(
-                    new Vector2(70, 50),
+                    new Vector2(50, 50),
                     new Vector2(5, 0),
                     maxDistance: 400f
+                    ));
+        items.Add(itemFactory.CreateArrow(
+                    new Vector2(50, 50),
+                    new Vector2(5, 0),
+                    rotation: (float)Math.PI / 2f,
+                    scale: 3,
+                    maxDistance: 600f
                     ));
         foreach (ItemFactory.StillType type in Enum.GetValues<ItemFactory.StillType>())
         {
@@ -162,7 +169,7 @@ public class Game1 : Game
 
         enemyManager?.Draw(spriteBatch);
 
-        items.DrawActiveItem(spriteBatch);
+        items.Draw(spriteBatch);
 
         mapManager.DrawMap(spriteBatch);
 
@@ -204,7 +211,7 @@ public class Game1 : Game
         return enemyManager;
     }
 
-    public ItemManager GetItemManager()
+    internal ItemManager GetItemManager()
     {
         return items;
     }

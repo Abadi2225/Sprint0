@@ -6,13 +6,6 @@ namespace Sprint.Item;
 
 internal class ItemFactory
 {
-    public enum AnimatedItemType
-    {
-        Boomerang,
-        Arrow,
-        Bomb,
-
-    }
     public enum StillType
     {
         Heart,
@@ -22,6 +15,7 @@ internal class ItemFactory
         Rupee,
         BluePotion,
         Map,
+        Bomb,
         Bow,
         BlueCandle,
         Key,
@@ -37,6 +31,20 @@ internal class ItemFactory
     public Boomerang CreateBoomerang(Vector2 pos, Vector2 vel, float maxDistance)
     {
         return new Boomerang(pos, vel, maxDistance, contentManager);
+    }
+
+    public Arrow CreateArrow(Vector2 pos, Vector2 vel, float rotation, float scale = 1f, float maxDistance = 600)
+    {
+        return new Arrow(
+                texMask: new Rectangle(154, 0, 5, 16),
+                pos,
+                vel,
+                maxDistance,
+                rotation,
+                origin: new Vector2(2.5f, 8f),
+                scale,
+                contentManager
+                );
     }
 
     public StillItem CreateStillItem(StillType type, Vector2 pos, float rotation, float scale = 1)
@@ -64,6 +72,9 @@ internal class ItemFactory
                 break;
             case StillType.Map:
                 mask = new Rectangle(87, 0, 9, 16);
+                break;
+            case StillType.Bomb:
+                mask = new Rectangle(136, 0, 8, 14);
                 break;
             case StillType.Bow:
                 mask = new Rectangle(144, 0, 8, 16);
