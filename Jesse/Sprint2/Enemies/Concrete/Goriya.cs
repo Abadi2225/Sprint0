@@ -30,7 +30,6 @@ namespace Sprint.Enemies.Concrete
         private bool spriteHorizontalFlip;
         const float FLIP_INTERVAL = 0.075f; //Time between flips for up/down walk
         private readonly Random random;
-        private ItemFactory itemFactory;
         private Boomerang activeBoomerang;
         private ContentManager contentManager;
 
@@ -49,7 +48,6 @@ namespace Sprint.Enemies.Concrete
         {
             this.texture = texture;
             this.contentManager = content;
-            itemFactory = new ItemFactory(content);
             random = new Random();
             int sheetY = 11;
             int spriteWidth = 15;
@@ -176,7 +174,7 @@ namespace Sprint.Enemies.Concrete
                 _ => new Vector2(-3, 0) // Default left
             };
 
-            Boomerang boomerang = itemFactory.CreateBoomerang(Position, throwVelocity, 400f).StartMoving();
+            Boomerang boomerang = ItemFactory.CreateBoomerang(Position, throwVelocity, 400f).StartMoving();
             activeBoomerang = boomerang;
 
             // Trigger the throw

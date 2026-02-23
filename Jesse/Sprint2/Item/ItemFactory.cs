@@ -22,18 +22,13 @@ internal class ItemFactory
         Compass,
         Triforce
     }
-    ContentManager contentManager;
-    public ItemFactory(ContentManager contentManager)
-    {
-        this.contentManager = contentManager;
-    }
-
-    public Boomerang CreateBoomerang(Vector2 pos, Vector2 vel, float maxDistance)
+    private static ContentManager contentManager = Game1.Instance.Content;
+    public static Boomerang CreateBoomerang(Vector2 pos, Vector2 vel, float maxDistance)
     {
         return new Boomerang(pos, vel, maxDistance, contentManager);
     }
 
-    public Arrow CreateArrow(Vector2 pos, Vector2 vel, float rotation, float scale = 1f, float maxDistance = 600)
+    public static Arrow CreateArrow(Vector2 pos, Vector2 vel, float rotation, float scale = 1f, float maxDistance = 600)
     {
         return new Arrow(
                 texMask: new Rectangle(154, 0, 5, 16),
@@ -47,7 +42,7 @@ internal class ItemFactory
                 );
     }
 
-    public StillItem CreateStillItem(StillType type, Vector2 pos, float rotation, float scale = 1)
+    public static StillItem CreateStillItem(StillType type, Vector2 pos, float rotation, float scale = 1)
     {
         Rectangle mask = new Rectangle(0, 0, 0, 0);
         switch (type)

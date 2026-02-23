@@ -10,15 +10,13 @@ namespace Sprint.Item;
 
 public class ItemManager
 {
-    private ItemFactory factory;
     private List<AbstractItem> Inventory { get; }
     public int ActiveItem { get; set; }
     private List<AbstractItem> SpawnedItems = new List<AbstractItem>();
 
-    public ItemManager(ContentManager cm)
+    public ItemManager()
     {
         Inventory = new List<AbstractItem>();
-        factory = new ItemFactory(cm);
     }
 
     public void UseItem(ILink link, int slot)
@@ -34,7 +32,7 @@ public class ItemManager
         {
             float velocity = 5;
             float maxDistance = 500;
-            SpawnItem(factory.CreateBoomerang(
+            SpawnItem(ItemFactory.CreateBoomerang(
                         pos,
                         DirectionsUtils.CreateVector(facing, velocity),
                         maxDistance
@@ -44,7 +42,7 @@ public class ItemManager
         {
             float velocity = 5;
             float maxDistance = 500;
-            SpawnItem(factory.CreateArrow(
+            SpawnItem(ItemFactory.CreateArrow(
                         pos,
                         DirectionsUtils.CreateVector(facing, velocity),
                         rotation: 0f,
@@ -55,7 +53,7 @@ public class ItemManager
         if (used.Name == "Bomb")
         {
             float reach = 30;
-            SpawnItem(factory.CreateStillItem(
+            SpawnItem(ItemFactory.CreateStillItem(
                         ItemFactory.StillType.Bomb,
                         Vector2.Add(pos, DirectionsUtils.CreateVector(facing, reach)),
                         rotation: 0f,

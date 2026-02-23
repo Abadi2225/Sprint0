@@ -25,7 +25,6 @@ class GameplayState : IGameState
     private Dictionary<Keys, ICommand> pressedKeys;
     private MapManager mapManager;
     private ItemManager items;
-    private ItemFactory itemFactory;
     private EnemyManager enemyManager;
     private EnemyFactory enemyFactory;
 
@@ -83,14 +82,13 @@ class GameplayState : IGameState
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.OldMan, center + new Vector2(100, 0)));
 
         // item test
-        itemFactory = new ItemFactory(services.Content);
-        items = new ItemManager(services.Content);
-        items.Add(itemFactory.CreateBoomerang(
+        items = new ItemManager();
+        items.Add(ItemFactory.CreateBoomerang(
                     new Vector2(50, 50),
                     new Vector2(5, 0),
                     maxDistance: 400f
                     ));
-        items.Add(itemFactory.CreateArrow(
+        items.Add(ItemFactory.CreateArrow(
                     new Vector2(50, 50),
                     new Vector2(5, 0),
                     rotation: (float)Math.PI / 2f,
@@ -99,7 +97,7 @@ class GameplayState : IGameState
                     ));
         foreach (ItemFactory.StillType type in Enum.GetValues<ItemFactory.StillType>())
         {
-            items.Add(itemFactory.CreateStillItem(
+            items.Add(ItemFactory.CreateStillItem(
                         type,
                         new Vector2(50, 50),
                         0,

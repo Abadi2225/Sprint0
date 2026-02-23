@@ -18,6 +18,8 @@ namespace Sprint;
 
 public class Game1 : Game, IGameActions
 {
+    public static Game1 Instance { get; private set; }
+
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
 
@@ -28,6 +30,8 @@ public class Game1 : Game, IGameActions
 
     public Game1()
     {
+        Instance = this;
+
         graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
