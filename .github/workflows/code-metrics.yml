@@ -23,9 +23,8 @@ jobs:
         uses: dotnet/samples/github-actions/DotNet.GitHubAction@main
         id: metrics
         with:
-          # REQUIRED: Path to your solution file from the repo root
-          workspace: './Jesse/Sprint2/Sprint.sln' 
           owner: ${{ github.repository_owner }}
-          repository: ${{ github.event.repository.name }}
+          name: ${{ github.event.repository.name }} # Changed from 'repository' to 'name'
           branch: ${{ github.ref_name }}
-          key: ${{ secrets.GITHUB_TOKEN }}
+          dir: './' # The root where the .md file will be saved
+          workspace: './Jesse/Sprint2/Sprint.sln'
