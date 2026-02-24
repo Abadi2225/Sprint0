@@ -1,0 +1,22 @@
+name: .NET Code Metrics
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: # Allows you to run it manually
+
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Allows the action to create the report file
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: .NET Code Metrics
+        uses: dotnet/code-analysis@v1
+        id: metrics
+        with:
+          owner: ${{ github.repository_owner }}
+          repository: ${{ github.event.repository.name }}
+          branch: ${{ github.ref_name }}
+          key: ${{ secrets.GITHUB_TOKEN }}
