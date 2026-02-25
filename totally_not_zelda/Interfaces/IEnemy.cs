@@ -1,15 +1,14 @@
-namespace Sprint.Interfaces
-{
-    public interface IEnemy : IPositionedSprite
-        {
-            int Health { get; set; }
-            int MaxHealth { get; }
-            int Damage { get; }
+namespace Sprint.Interfaces;
 
-            bool IsAlive { get; }
+public interface IEnemy : IPositionedSprite
+    {
+        int Health { get; set; }
+        int MaxHealth { get; }
+        int Damage { get; }
 
-            void TakeDamage(int damageAmount);
-            void Die();
-            void Reset();
-        }
-} 
+        bool IsAlive { get; }
+
+        void TakeDamage(int damageAmount);
+        void Die();
+        void Reset();
+    }

@@ -11,7 +11,7 @@ namespace Sprint;
 public sealed class GameServices
 {
     public ContentManager Content { get; init; }
-    public KeyboardController KeyInput { get; init; }
+    public IController KeyInput { get; init; }
 
     public IGameActions GameActions { get; init; }
 
