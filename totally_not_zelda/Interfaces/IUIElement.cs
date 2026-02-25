@@ -7,6 +7,6 @@ namespace Sprint.Interfaces
     {
         public void Draw(SpriteBatch spriteBatch);
 
-        public int Update(GameTime gameTime);
+        public void Update(GameTime gameTime);
     }
 }
