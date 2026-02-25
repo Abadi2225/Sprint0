@@ -1,14 +1,14 @@
-using System.ComponentModel.DataAnnotations;
 using Microsoft.Xna.Framework.Content;
-using Sprint.Block;
 using Sprint.Controllers;
 using Sprint.Interfaces;
 
+namespace Sprint;
+
 /// <summary>
-/// A class to hold services that are commonly used across the game, such as the ContentManager. 
+/// A class to hold services that are commonly used across the game, such as the ContentManager.
 /// This allows us to avoid passing these services as parameters to every class that needs them.
 /// </summary>
-public class GameServices
+public sealed class GameServices
 {
     public ContentManager Content { get; init; }
     public KeyboardController KeyInput { get; init; }

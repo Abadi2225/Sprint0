@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
 using Sprint.Interfaces;
 using Sprint.Controllers;
 using Sprint.Sprites;
@@ -11,8 +9,6 @@ using Sprint.Enemies;
 using Sprint.Enemies.Concrete;
 using Sprint.Item;
 using Sprint.Block;
-using System.Runtime.InteropServices.Marshalling;
-using System.ComponentModel;
 
 namespace Sprint;
 
@@ -44,7 +40,6 @@ public class Game1 : Game, IGameActions
             ScaleFactor = 3
         };
 
-        //currentState = new StartScreenState(services);
         currentState = new StartScreenState(services);
         currentState.Enter();
 
@@ -79,15 +74,14 @@ public class Game1 : Game, IGameActions
 
     protected override void Draw(GameTime gameTime)
     {
-        // Changed to remove the brouder from the sprites, might result in pixelation when scalling.
+        GraphicsDevice.Clear(Color.CornflowerBlue);
+        
         spriteBatch.Begin(
             SpriteSortMode.Deferred,
             BlendState.AlphaBlend,
-            SamplerState.PointClamp,  // No interpolation
+            SamplerState.PointClamp,
             null, null
         );
-
-        GraphicsDevice.Clear(Color.CornflowerBlue);
 
         currentState.Draw(spriteBatch);
 
@@ -97,30 +91,14 @@ public class Game1 : Game, IGameActions
 
     public void ChangeState(IGameState newState)
     {
+        currentState.Exit();
         currentState = newState;
         currentState.LoadContent();
         currentState.Enter();
     }
 
-    /*
-    public GameState GetCurrentState()
+    public static void Quit()
     {
-        return currState;
-    }
-
-    public EnemyManager GetEnemyManager()
-    {
-        return enemyManager;
-    }
-
-    internal ItemManager GetItemManager()
-    {
-        return items;
-    }
-    */
-
-    public void Quit()
-    {
-        Exit();
+        Instance.Exit();
     }
 }

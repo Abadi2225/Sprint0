@@ -93,7 +93,7 @@ Game flow is managed through `IGameState` implementations (`StartScreenState`, `
 
 ```
 CODE_METRICS            # Shows the code matrics for all the project
-Jesse/Sprint2/
+totally_not_zelda/
 ├── Character/          # Link player character with movement/attack states
 ├── Commands/           # Command actions
 ├── Block/              # Tile management

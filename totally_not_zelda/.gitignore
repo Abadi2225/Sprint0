@@ -2,3 +2,6 @@ obj
 bin
 Content/obj
 Content/bin
+.vs
+.DS_Store
+.mgstats

@@ -19,7 +19,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x' # Update to your project's version if needed
+          dotnet-version: '9.0.x'
 
       - name: Run Metrics Analysis
         uses: dotnet/samples/github-actions/DotNet.GitHubAction@main
@@ -31,7 +31,7 @@ jobs:
           branch: ${{ github.ref_name }}
           dir: './' # Saves the .md file to the root of the repo
           # REPLACE with your actual folder and .sln name (case-sensitive)
-          workspace: './Jesse/Sprint2/Sprint.sln'
+          workspace: './totally_not_zelda/Sprint.sln'
 
       - name: Commit and Push Metrics File
         run: |
