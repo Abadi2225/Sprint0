@@ -4,7 +4,7 @@ using Sprint.Interfaces;
 
 namespace Sprint.Sprites
 {
-    public class MovingSprite : ISprite
+    public class MovingSprite : IPositionedSprite
     {
         public Texture2D texture;
         public Vector2 pos;
@@ -70,7 +70,7 @@ namespace Sprint.Sprites
             );
         }
 
-        public int Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -101,7 +101,6 @@ namespace Sprint.Sprites
             }
             
             UpdateRect();
-            return curFrame;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)

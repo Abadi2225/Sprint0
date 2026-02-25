@@ -11,18 +11,18 @@ namespace Sprint.Enemies.Concrete
     {
         private const int HEALTH = 1;
         private const int DAMAGE = 1;
-         private const float MOVE_SPEED = 40f;
+        private const float MOVE_SPEED = 40f;
         private const float REST_TIME_MIN = 0.5f;
         private const float REST_TIME_MAX = 2.0f;
         private const float MOVE_TIME_MIN = 1.0f;
         private const float MOVE_TIME_MAX = 3.0f;
-        private Random random;
+        private readonly Random random;
         private Vector2 moveDirection;
         private float actionTimer;
         private float actionDuration;
         private bool isResting;
-        private ISprite flyingSprite;
-        private ISprite restingSprite;
+        private readonly IPositionedSprite flyingSprite;
+        private readonly IPositionedSprite restingSprite;
         
         // Rests against walls first before taking flight
         // Moves erratically in random directions, stopping sometimes to rest
@@ -30,8 +30,8 @@ namespace Sprint.Enemies.Concrete
         // Never drop any items
         public Keese(Texture2D texture, Vector2 position) : base(texture, position, HEALTH, DAMAGE)
         {
-            int[] flyingXPositions = new int[] { 183, 200 };
-            int[] restingXPositions = new int[] {200};
+            int[] flyingXPositions = [183, 200];
+            int[] restingXPositions = [200];
             int sheetY = 11;
             int spriteWidth = 15;
             int spriteHeight = 15;
@@ -51,10 +51,9 @@ namespace Sprint.Enemies.Concrete
             sprite = restingSprite;
         }
         
-        public override int Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            if (!isAlive)
-                return base.Update(gameTime);
+            if (!isAlive) return;
             
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             actionTimer += dt;
@@ -94,9 +93,8 @@ namespace Sprint.Enemies.Concrete
             
             if (sprite != null)
             {
-                return sprite.Update(gameTime);
+                sprite.Update(gameTime);
             }
-            return 0;
         }
         
         private void ChooseRandomDirection()

@@ -17,8 +17,6 @@ namespace Sprint.Character
         private readonly double totalAttackSeconds;
         private double totalTimer;
 
-        public Vector2 Position { get; set; } // unused; required by ISprite
-
         // onFinished is called once the attack completes (Link will swap back to Idle)
         private readonly System.Action onFinished;
         private bool finished;
@@ -59,9 +57,10 @@ namespace Sprint.Character
 			totalTimer = 0;
 			finished = false;
 		}
-        public int Update(GameTime gameTime)
+
+        public void Update(GameTime gameTime)
         {
-            if (finished) return currentFrame;
+            if (finished) return;
 
             double dt = gameTime.ElapsedGameTime.TotalSeconds;
             timer += dt;
@@ -79,8 +78,6 @@ namespace Sprint.Character
                 finished = true;
                 onFinished?.Invoke();
             }
-
-            return currentFrame;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)

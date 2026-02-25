@@ -15,8 +15,6 @@ internal abstract class AbstractItem : ISprite
 
     public ISprite sprite;
 
-    public Vector2 Position { get; set; } // unused
-
     public virtual bool IsFinished => false;
 
     private AbstractItem(string name)
@@ -36,9 +34,8 @@ internal abstract class AbstractItem : ISprite
         sprite?.Draw(sb, Vector2.Zero);
     }
 
-    public virtual int Update(GameTime time)
+    public virtual void Update(GameTime time)
     {
         sprite?.Update(time);
-        return 0;
     }
 }

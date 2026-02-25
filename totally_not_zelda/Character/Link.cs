@@ -72,7 +72,7 @@ namespace Sprint.Character
             sprite = IdleDown;
         }
 
-        public int Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -108,8 +108,6 @@ namespace Sprint.Character
             position += move * speed * dt;
 
             sprite.Update(gameTime);
-
-            return 0;
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -18,7 +18,7 @@ namespace Sprint.Enemies.Concrete
         private float directionChangeTimer;
         private const float DIRECTION_SWAP_MIN = 0.5f;
         private const float DIRECTION_SWAP_MAX = 2.0f;
-        private Random random = new Random();
+        private readonly Random random = new();
         private float moveDirectionTimer;
         private bool moveLeft;
 
@@ -44,10 +44,9 @@ namespace Sprint.Enemies.Concrete
             projectileFactory = new EnemyProjectileFactory(texture);
         }
 
-        public override int Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            if (!isAlive)
-                return base.Update(gameTime);
+            if (!isAlive) return;
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             moveDirectionTimer += deltaTime;
@@ -79,7 +78,7 @@ namespace Sprint.Enemies.Concrete
             foreach (var fireball in activeFireballs)
                 fireball.Update(gameTime);
 
-            return sprite.Update(gameTime);
+            sprite.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 location)
@@ -91,12 +90,12 @@ namespace Sprint.Enemies.Concrete
 
         private void SpawnFireballs()
         {
-            Vector2[] directions = new[]
-            {
+            Vector2[] directions =
+            [
                 new Vector2(-1f,  0f),    // straight left
                 new Vector2(-1f, -0.5f),  // up-left
                 new Vector2(-1f,  0.5f),  // down-left
-            };
+            ];
 
             foreach (var dir in directions)
                 activeFireballs.Add(projectileFactory.CreateFireball(Position, dir));

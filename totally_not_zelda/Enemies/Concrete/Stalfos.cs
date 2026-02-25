@@ -51,10 +51,9 @@ namespace Sprint.Enemies.Concrete
 
         }
         
-        public override int Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            if (!isAlive)
-                return base.Update(gameTime);
+            if (!isAlive) return;
             
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             
@@ -75,7 +74,7 @@ namespace Sprint.Enemies.Concrete
             // Update position
             Position += velocity * deltaTime;
             
-            return base.Update(gameTime);
+            base.Update(gameTime);
         }
 
 

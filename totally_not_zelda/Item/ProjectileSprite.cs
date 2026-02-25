@@ -6,7 +6,7 @@ using Sprint.Interfaces;
 
 namespace Sprint.Item;
 
-internal class ProjectileSprite : ISprite
+internal class ProjectileSprite : IPositionedSprite
 {
     public Vector2 Position { get; set; }
     private Texture2D texture;
@@ -39,9 +39,9 @@ internal class ProjectileSprite : ISprite
         isMoving = true;
     }
 
-    public int Update(GameTime time)
+    public void Update(GameTime time)
     {
-        if (!isMoving) return 0;
+        if (!isMoving) return;
 
         Position += velocity;
         distanceTraveled += Vector2.Distance(new Vector2(0f, 0f), velocity);
@@ -50,7 +50,6 @@ internal class ProjectileSprite : ISprite
             ReachedMaxDistance = true;
             isMoving = false;
         }
-        return 0;
     }
 
     public void Draw(SpriteBatch sb, Vector2 unused)

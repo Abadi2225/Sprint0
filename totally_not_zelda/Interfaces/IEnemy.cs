@@ -1,6 +1,6 @@
 namespace Sprint.Interfaces
 {
-    public interface IEnemy : ISprite
+    public interface IEnemy : IPositionedSprite
         {
             int Health { get; set; }
             int MaxHealth { get; }

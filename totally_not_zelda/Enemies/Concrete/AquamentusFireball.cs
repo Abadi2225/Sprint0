@@ -5,9 +5,9 @@ using Sprint.Sprites;
 
 namespace Sprint.Enemies.Concrete
 {
-    public class AquamentusFireball : ISprite
+    public class AquamentusFireball : IPositionedSprite
     {
-        private ISprite sprite;
+        private IPositionedSprite sprite;
         private Vector2 position;
         private Vector2 velocity;
         private float lifetime;
@@ -43,14 +43,14 @@ namespace Sprint.Enemies.Concrete
             velocity = direction * SPEED;
         }
 
-        public int Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-            if (!IsActive) return 0;
+            if (!IsActive) return;
 
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             lifetime += dt;
             Position += velocity * dt;
-            return sprite.Update(gameTime);
+            sprite.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)

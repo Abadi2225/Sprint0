@@ -9,14 +9,12 @@ using Sprint.Character;
 
 namespace Sprint.Interfaces
 {
-	public interface ILink : ISprite
+	public interface ILink : IPositionedSprite
 	{
-
 		Directions Facing{
 			get;
 		}
 
 		void StartAttack();
-
 	}
 }

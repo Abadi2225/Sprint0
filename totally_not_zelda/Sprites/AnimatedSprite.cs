@@ -5,7 +5,7 @@ using Sprint.Interfaces;
 
 namespace Sprint.Sprites
 {
-    public class AnimatedSprite : ISprite
+    public class AnimatedSprite : IPositionedSprite
     {
         private Texture2D texture;
         private Vector2 pos;
@@ -59,7 +59,7 @@ namespace Sprint.Sprites
             );
         }
         
-        public int Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -67,9 +67,7 @@ namespace Sprint.Sprites
             {
                 curFrame = (curFrame + 1) % frameCount;
                 elapsedTime = 0f;
-            }
-            
-            return curFrame;
+            }      
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)

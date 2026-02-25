@@ -24,8 +24,7 @@ internal abstract class AbstractBlock : ISprite
         Sprite?.Draw(sb, location);
     }
 
-    public virtual int Update(GameTime time)
+    public virtual void Update(GameTime time)
     {
-        return 0;
     }
 }

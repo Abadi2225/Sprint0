@@ -31,7 +31,7 @@ namespace Sprint.Character
 			timer = 0;
 		}
 
-		public int Update(GameTime gameTime)
+		public void Update(GameTime gameTime)
 		{
 			timer += gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -40,8 +40,6 @@ namespace Sprint.Character
 				currentFrame = (currentFrame + 1) % frames.Length;
 				timer = 0;
 			}
-
-			return 0;
 		}
 
 		public void Draw(SpriteBatch spriteBatch, Vector2 location)

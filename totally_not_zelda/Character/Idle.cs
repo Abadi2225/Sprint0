@@ -15,8 +15,6 @@ namespace Sprint.Character
         private Rectangle sourceRect;
         private SpriteEffects effect;
 
-        public Vector2 Position { get; set; }  // unused; added to resolve merge conflict
-
         public Idle(Texture2D texture, Rectangle sourceRect, SpriteEffects effect)
         {
             this.texture = texture;
@@ -24,9 +22,8 @@ namespace Sprint.Character
             this.effect = effect;
         }
 
-        public int Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-            return 0;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)

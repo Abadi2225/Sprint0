@@ -48,7 +48,7 @@ namespace Sprint.Enemies.Concrete
             chargeTarget = position;
         }
 
-        public override int Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {            
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             
@@ -66,8 +66,6 @@ namespace Sprint.Enemies.Concrete
                     UpdateRetracting(deltaTime);
                     break;
             }
-
-            return 0;
         }
 
         private void UpdateIdle(float deltaTime)

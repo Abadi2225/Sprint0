@@ -23,10 +23,9 @@ internal class TimeBomb : AbstractItem
                 );
     }
 
-    public override int Update(GameTime time)
+    public override void Update(GameTime time)
     {
         millisUntilExplode -= time.ElapsedGameTime.TotalMilliseconds;
-        return 0;
     }
 
     public override bool IsFinished => millisUntilExplode <= 0;

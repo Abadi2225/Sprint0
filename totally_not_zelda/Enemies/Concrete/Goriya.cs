@@ -31,7 +31,7 @@ namespace Sprint.Enemies.Concrete
         const float FLIP_INTERVAL = 0.075f; //Time between flips for up/down walk
         private readonly Random random;
         private Boomerang activeBoomerang;
-        private ContentManager contentManager;
+        private readonly ContentManager contentManager;
 
         // Sprite positions for each direction
         private readonly int[] upFrames = [239];
@@ -66,10 +66,9 @@ namespace Sprint.Enemies.Concrete
                                         spriteWidth, spriteHeight, frameTime, true);
         }
 
-        public override int Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            if (!isAlive)
-                return base.Update(gameTime);
+            if (!isAlive) return;
 
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -96,7 +95,7 @@ namespace Sprint.Enemies.Concrete
             }
 
             activeBoomerang?.Update(gameTime);
-            return sprite.Update(gameTime);
+            sprite.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 location)

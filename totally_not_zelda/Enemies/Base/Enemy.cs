@@ -6,7 +6,7 @@ namespace Sprint.Enemies.Base
 {
     public abstract class Enemy : IEnemy
     {
-        protected ISprite sprite;
+        protected IPositionedSprite sprite;
         protected Vector2 position;
         protected Texture2D texture;
 
@@ -87,29 +87,23 @@ namespace Sprint.Enemies.Base
             dyingTimer = 0f;
         }
 
-        public virtual int Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             if (!isAlive)
             {
                 dyingTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (dyingTimer >= DYING_DURATION)
                 {
-                    return 0;
+                    return;
                 }
             }
 
-            if (sprite != null)
-            {
-                return sprite.Update(gameTime);
-            }
-
-            return 0;
+            sprite?.Update(gameTime);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            if (!isAlive)
-                return;
+            if (!isAlive) return;
 
             sprite?.Draw(spriteBatch, location);
         }

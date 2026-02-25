@@ -44,10 +44,9 @@ namespace Sprint.Enemies.Concrete
             ChooseRandomCardinalDirection();
         }
 
-        public override int Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            if (!isAlive)
-                return base.Update(gameTime);
+            if (!isAlive) return;
             
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             
@@ -82,7 +81,7 @@ namespace Sprint.Enemies.Concrete
 
             UpdateSpriteFlip();
             
-            return sprite.Update(gameTime);
+            sprite.Update(gameTime);
         }
         
         private void ChooseRandomCardinalDirection()

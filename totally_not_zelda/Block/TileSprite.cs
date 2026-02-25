@@ -35,8 +35,7 @@ internal class TileSprite : ISprite
                );
     }
 
-    public int Update(GameTime time)
+    public void Update(GameTime time)
     {
-        return 0;
     }
 }

@@ -29,11 +29,11 @@ namespace Sprint.Enemies.Concrete
         private readonly Random random;
         
         // side sprites are 32px wide, up/down are 16px wide
-        private readonly int[] upFrames = [34];      
+        private readonly int[] upFrames = [35];      
         private readonly int[] downFrames = [1];   
-        private readonly int[] sideFrames = [68, 101];  
+        private readonly int[] sideFrames = [69, 102];  
         private readonly int[] bombedUpFrame = [35];
-        private readonly int[] bombedDownFrame = [17];
+        private readonly int[] bombedDownFrame = [18];
         private readonly int[] bombedSideFrame = [135];
 
         
@@ -54,10 +54,9 @@ namespace Sprint.Enemies.Concrete
             sprite = new DirectionalAnimatedSprite(texture, position, downFrames, 58, 16, 16, 0.2f, false);
         }
         
-        public override int Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            if (!isAlive)
-                return base.Update(gameTime);
+            if (!isAlive) return;
             
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             
@@ -72,7 +71,7 @@ namespace Sprint.Enemies.Concrete
                     break;
             }
             
-            return sprite.Update(gameTime);
+            sprite.Update(gameTime);
         }
         
         private void UpdateWalking(float deltaTime)
@@ -106,7 +105,8 @@ namespace Sprint.Enemies.Concrete
                 }
             }
         }
-         private void UpdateBombEaten(float deltaTime)
+
+        private void UpdateBombEaten(float deltaTime)
         {
             bombStunTimer -= deltaTime;
             
@@ -116,10 +116,10 @@ namespace Sprint.Enemies.Concrete
                 UpdateSprite();
             }
         }
+
         public void EatBomb()
         {
-            if (!isAlive || currentState == DodongoState.BombEaten)
-                return;
+            if (!isAlive || currentState == DodongoState.BombEaten) return;
                 
             TakeDamage(1);
             currentState = DodongoState.BombEaten;
@@ -147,66 +147,67 @@ namespace Sprint.Enemies.Concrete
             UpdateSprite();
         }
         
-       private void UpdateSprite()
-{
-    var dirSprite = sprite as DirectionalAnimatedSprite;
-    int sheetY = 58;
-    float frameTime = 0.2f;
-    
-    switch (currentState)
-    {
-        case DodongoState.BombEaten:
-            UpdateBombedSprite(dirSprite, sheetY, frameTime);
-            break;
+        private void UpdateSprite()
+        {
+            var dirSprite = sprite as DirectionalAnimatedSprite;
+            int sheetY = 58;
+            float frameTime = 0.2f;
             
-        case DodongoState.Walking:
-            UpdateWalkingSprite(dirSprite, sheetY, frameTime);
-            break;
-    }
-}
-private void UpdateBombedSprite(DirectionalAnimatedSprite dirSprite, int sheetY, float frameTime)
-{
-    switch (currentDirection)
-    {
-        case Direction.Up:
-            sprite = new DirectionalAnimatedSprite(texture, Position, bombedUpFrame, sheetY, 16, 16, frameTime, false);
-            break;
-            
-        case Direction.Down:
-            sprite = new DirectionalAnimatedSprite(texture, Position, bombedDownFrame, sheetY, 16, 16, frameTime, false);
-            break;
-            
-        case Direction.Left:
-            sprite = new DirectionalAnimatedSprite(texture, Position, bombedSideFrame, sheetY, 32, 16, frameTime, true);
-            break;
-            
-        case Direction.Right:
-            sprite = new DirectionalAnimatedSprite(texture, Position, bombedSideFrame, sheetY, 32, 16, frameTime, false);
-            break;
-    }
-}
+            switch (currentState)
+            {
+                case DodongoState.BombEaten:
+                    UpdateBombedSprite(dirSprite, sheetY, frameTime);
+                    break;
+                    
+                case DodongoState.Walking:
+                    UpdateWalkingSprite(dirSprite, sheetY, frameTime);
+                    break;
+            }
+        }
 
-private void UpdateWalkingSprite(DirectionalAnimatedSprite dirSprite, int sheetY, float frameTime)
-{
-    switch (currentDirection)
-    {
-        case Direction.Up:
-            sprite = new DirectionalAnimatedSprite(texture, Position, upFrames, sheetY, 16, 16, frameTime, spriteHorizontalFlip);
-            break;
-            
-        case Direction.Down:
-            sprite = new DirectionalAnimatedSprite(texture, Position, downFrames, sheetY, 16, 16, frameTime, spriteHorizontalFlip);
-            break;
-            
-        case Direction.Left:
-            sprite = new DirectionalAnimatedSprite(texture, Position, sideFrames, sheetY, 32, 16, frameTime, true);
-            break;
-            
-        case Direction.Right:
-            sprite = new DirectionalAnimatedSprite(texture, Position, sideFrames, sheetY, 32, 16, frameTime, false);
-            break;
-    }
-}
+        private void UpdateBombedSprite(DirectionalAnimatedSprite dirSprite, int sheetY, float frameTime)
+        {
+            switch (currentDirection)
+            {
+                case Direction.Up:
+                    sprite = new DirectionalAnimatedSprite(texture, Position, bombedUpFrame, sheetY, 16, 16, frameTime, false);
+                    break;
+                    
+                case Direction.Down:
+                    sprite = new DirectionalAnimatedSprite(texture, Position, bombedDownFrame, sheetY, 16, 16, frameTime, false);
+                    break;
+                    
+                case Direction.Left:
+                    sprite = new DirectionalAnimatedSprite(texture, Position, bombedSideFrame, sheetY, 32, 16, frameTime, true);
+                    break;
+                    
+                case Direction.Right:
+                    sprite = new DirectionalAnimatedSprite(texture, Position, bombedSideFrame, sheetY, 32, 16, frameTime, false);
+                    break;
+            }
+        }
+
+        private void UpdateWalkingSprite(DirectionalAnimatedSprite dirSprite, int sheetY, float frameTime)
+        {
+            switch (currentDirection)
+            {
+                case Direction.Up:
+                    sprite = new DirectionalAnimatedSprite(texture, Position, upFrames, sheetY, 16, 16, frameTime, spriteHorizontalFlip);
+                    break;
+                    
+                case Direction.Down:
+                    sprite = new DirectionalAnimatedSprite(texture, Position, downFrames, sheetY, 16, 16, frameTime, spriteHorizontalFlip);
+                    break;
+                    
+                case Direction.Left:
+                    sprite = new DirectionalAnimatedSprite(texture, Position, sideFrames, sheetY, 32, 16, frameTime, true);
+                    break;
+                    
+                case Direction.Right:
+                    sprite = new DirectionalAnimatedSprite(texture, Position, sideFrames, sheetY, 32, 16, frameTime, false);
+                    break;
+            }
+        }
         
         public override void Reset()
         {

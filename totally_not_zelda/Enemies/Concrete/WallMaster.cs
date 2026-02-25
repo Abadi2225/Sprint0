@@ -45,10 +45,9 @@ namespace Sprint.Enemies.Concrete
             ChooseCreepDirection();
         }
         
-        public override int Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            if (!isAlive)
-                return base.Update(gameTime);
+            if (!isAlive) return;
             
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             stateTimer += deltaTime;
@@ -68,7 +67,7 @@ namespace Sprint.Enemies.Concrete
                     break;
             }
             
-            return sprite.Update(gameTime);
+            sprite.Update(gameTime);
         }
 
         private void UpdateHidden()

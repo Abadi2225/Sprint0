@@ -6,7 +6,7 @@ using Sprint.Interfaces;
 
 namespace Sprint.Item;
 
-internal class StillItemSprite : ISprite
+internal class StillItemSprite : IPositionedSprite
 {
     public Vector2 Position { get; set; }
     private Texture2D texture;
@@ -37,8 +37,7 @@ internal class StillItemSprite : ISprite
                 0f
                );
     }
-    public int Update(GameTime time)
+    public void Update(GameTime time)
     {
-        return 0;
     }
 }

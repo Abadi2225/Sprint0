@@ -57,7 +57,7 @@ internal class EnemyEffectWrapper : IEnemy
         dyingTimer = 0f;
     }
 
-    public int Update(GameTime gameTime)
+    public void Update(GameTime gameTime)
     {
         float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -66,19 +66,19 @@ internal class EnemyEffectWrapper : IEnemy
         {
             spawnTimer += dt;
             spawnSprite?.Update(gameTime);
-            return 0;
+            return;
         }
-
-        int result = enemy.Update(gameTime);
 
         // Death phase: play dust animation
         if (IsDyingAnimation)
         {
             dyingTimer += dt;
             deathSprite?.Update(gameTime);
+            return;
         }
 
-        return result;
+        // Normal phase: update the actual enemy
+        enemy.Update(gameTime);
     }
 
     public void Draw(SpriteBatch spriteBatch, Vector2 location)

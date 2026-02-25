@@ -6,7 +6,7 @@ using Sprint.Interfaces;
 
 namespace Sprint.Sprites
 {
-    public class MovingAnimatedSprite : ISprite
+    public class MovingAnimatedSprite : IPositionedSprite
     {
         public Texture2D texture;
         public Vector2 pos;
@@ -77,7 +77,7 @@ namespace Sprint.Sprites
             );
         }
 
-        public int Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -102,13 +102,12 @@ namespace Sprint.Sprites
                 pos.X -= speed * deltaTime;
                 if (pos.X <= minX)
                 {
-                    pos.Y = minX;
+                    pos.X = minX;
                     movingRight = true;
                 }
             }
             
             UpdateRect();
-            return curFrame;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)

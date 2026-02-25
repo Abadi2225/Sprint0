@@ -22,8 +22,6 @@ internal class BoomerangSprite : ISprite
     private bool thrown = false;
     public bool IsActive => thrown;
 
-    public Vector2 Position { get; set; }
-
     public BoomerangSprite(Texture2D texture, Vector2 initialPos, Vector2 velocity, float maxDistance, float scale)
     {
         this.texture = texture;
@@ -53,11 +51,11 @@ internal class BoomerangSprite : ISprite
                );
     }
 
-    public int Update(GameTime time)
+    public void Update(GameTime time)
     {
         if (!thrown)
         {
-            return 0;
+            return;
         }
 
         if (animationFrame < lastAnimationFrame)
@@ -81,6 +79,5 @@ internal class BoomerangSprite : ISprite
             returning = !returning;
             distanceTraveled = 0;
         }
-        return 0;
     }
 }
