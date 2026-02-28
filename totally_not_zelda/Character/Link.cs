@@ -3,218 +3,176 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint.Factories;
 using Sprint.Interfaces;
 
-namespace Sprint.Character
+namespace Sprint.Character;
+
+public class Link : ILink
 {
-    public class Link : ILink
+    private const float SPEED = 80f;
+    private const int BODY_SIZE = 32;
+    private const double DAMAGED_DURATION = 0.5;
+    private const double BLINK_INTERVAL = 0.10;
+
+    private readonly ISprite IdleUp;
+    private readonly ISprite IdleDown;
+    private readonly ISprite IdleLeft;
+    private readonly ISprite IdleRight;
+
+    private readonly ISprite WalkUp;
+    private readonly ISprite WalkDown;
+    private readonly ISprite WalkLeft;
+    private readonly ISprite WalkRight;
+
+    private readonly Attacking AttackUp;
+    private readonly Attacking AttackDown;
+    private readonly Attacking AttackLeft;
+    private readonly Attacking AttackRight;
+
+    private ISprite sprite;
+    private Vector2 position;
+    private Vector2 move = Vector2.Zero;
+    private Directions direction = Directions.Down;
+    private double damagedTimer;
+    private bool isAttacking = false;
+    private bool isDamaged = false;
+    private bool isVisible = false;
+
+    public Directions Facing => direction;
+
+    public Rectangle Rect { get; private set; }
+
+    public Vector2 Position
     {
-        private const double DamagedDuration = 0.5;
-        private const double BlinkInterval = 0.10;
-
-        private ISprite IdleUp;
-        private ISprite IdleDown;
-        private ISprite IdleLeft;
-        private ISprite IdleRight;
-
-        private ISprite sprite;
-
-        private ISprite WalkUp;
-        private ISprite WalkDown;
-        private ISprite WalkLeft;
-        private ISprite WalkRight;
-
-        private ISprite AttackUp;
-        private ISprite AttackDown;
-        private ISprite AttackLeft;
-        private ISprite AttackRight;
-
-        private double damagedTimer;
-        private float speed = 80f;
-
-        private bool isAttacking = false;
-        private bool isDamaged = false;
-        private bool isVisible = false;
-        private Vector2 move = Vector2.Zero;
-        private Vector2 position;
-
-
-        private Directions direction = Directions.Down;
-        public Directions Facing => direction;
-
-        public Link(Texture2D texture, Vector2 position)
+        get => position;
+        set
         {
-            this.position = position;
-
-            IdleDown = LinkSprites.IdleDown(texture);
-            IdleUp = LinkSprites.IdleUp(texture);
-            IdleLeft = LinkSprites.IdleLeft(texture);
-            IdleRight = LinkSprites.IdleRight(texture);
-
-            WalkDown = LinkSprites.WalkingDown(texture);
-            WalkUp = LinkSprites.WalkingUp(texture);
-            WalkLeft = LinkSprites.WalkingLeft(texture);
-            WalkRight = LinkSprites.WalkingRight(texture);
-
-            AttackDown = LinkSprites.AttackDown(texture, FinishAttack);
-            AttackUp = LinkSprites.AttackUp(texture, FinishAttack);
-            AttackLeft = LinkSprites.AttackLeft(texture, FinishAttack);
-            AttackRight = LinkSprites.AttackRight(texture, FinishAttack);
-
-            sprite = IdleDown;
+            position = value;
+            Rect = new Rectangle((int)value.X, (int)value.Y, BODY_SIZE, BODY_SIZE);
         }
+    }
 
-        public void Update(GameTime gameTime)
+    public Link(Texture2D texture, Vector2 position)
+    {
+        IdleDown  = LinkSprites.IdleDown(texture);
+        IdleUp    = LinkSprites.IdleUp(texture);
+        IdleLeft  = LinkSprites.IdleLeft(texture);
+        IdleRight = LinkSprites.IdleRight(texture);
+
+        WalkDown  = LinkSprites.WalkingDown(texture);
+        WalkUp    = LinkSprites.WalkingUp(texture);
+        WalkLeft  = LinkSprites.WalkingLeft(texture);
+        WalkRight = LinkSprites.WalkingRight(texture);
+
+        AttackDown  = LinkSprites.AttackDown(texture, FinishAttack);
+        AttackUp    = LinkSprites.AttackUp(texture, FinishAttack);
+        AttackLeft  = LinkSprites.AttackLeft(texture, FinishAttack);
+        AttackRight = LinkSprites.AttackRight(texture, FinishAttack);
+
+        sprite = IdleDown;
+        Position = position;
+    }
+
+    public void Update(GameTime gameTime)
+    {
+        float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+        if (!isAttacking && !isDamaged && move == Vector2.Zero)
         {
-            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            if (!isAttacking && !isDamaged && move == Vector2.Zero)
-            {
-                SetIdleSprite();
-            }
-
-            /*
-			I implemented the damaged state inside the Link class because it only modifies the existing
-			behavior without introducing new rectangles.It can be refactored into a separate class if 
-			needed in the future.
-			*/
-            if (isDamaged)
-            {
-                damagedTimer += gameTime.ElapsedGameTime.TotalSeconds;
-
-                if ((int)(damagedTimer / BlinkInterval) % 2 == 0)
-                {
-                    isVisible = true;
-                }
-                else
-                {
-                    isVisible = false;
-                }
-
-                if (damagedTimer >= DamagedDuration)
-                {
-                    isDamaged = false;
-                    isVisible = true;
-                }
-            }
-            position += move * speed * dt;
-
-            sprite.Update(gameTime);
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            if (isDamaged && !isVisible)
-            {
-                return;
-            }
-            sprite.Draw(spriteBatch, position);
-        }
-
-        public void SetMove(Directions dir)
-        {
-            if (isAttacking) return;
-            move = Vector2.Zero;
-            direction = dir;
-
-            switch (dir)
-            {
-                case Directions.Up:
-                    sprite = WalkUp;
-                    move.Y = -1;
-                    break;
-
-                case Directions.Down:
-                    sprite = WalkDown;
-                    move.Y = 1;
-                    break;
-
-                case Directions.Left:
-                    sprite = WalkLeft;
-                    move.X = -1;
-                    break;
-
-                case Directions.Right:
-                    sprite = WalkRight;
-                    move.X = 1;
-                    break;
-
-            }
-        }
-
-        private void FinishAttack()
-        {
-            isAttacking = false;
             SetIdleSprite();
         }
 
-        private void SetIdleSprite()
+        /*
+        I implemented the damaged state inside the Link class because it only modifies the existing
+        behavior without introducing new rectangles. It can be refactored into a separate class if
+        needed in the future.
+        */
+        if (isDamaged)
         {
-            sprite = direction switch
+            damagedTimer += gameTime.ElapsedGameTime.TotalSeconds;
+
+            isVisible = (int)(damagedTimer / BLINK_INTERVAL) % 2 == 0;
+
+            if (damagedTimer >= DAMAGED_DURATION)
             {
-                Directions.Up => IdleUp,
-                Directions.Down => IdleDown,
-                Directions.Left => IdleLeft,
-                Directions.Right => IdleRight,
-                _ => IdleDown,
-            };
-        }
-
-        public void StopMove()
-        {
-            move = Vector2.Zero;
-        }
-
-        public void StartAttack()
-        {
-            if (isAttacking)
-            {
-                return;
-            }
-
-            isAttacking = true;
-
-            move = Vector2.Zero;
-
-            switch (direction)
-            {
-                case Directions.Up:
-                    ((Attacking)AttackUp).Reset();
-                    sprite = AttackUp;
-                    break;
-
-                case Directions.Down:
-                    ((Attacking)AttackDown).Reset();
-                    sprite = AttackDown;
-                    break;
-
-                case Directions.Left:
-                    ((Attacking)AttackLeft).Reset();
-                    sprite = AttackLeft;
-                    break;
-
-                case Directions.Right:
-                    ((Attacking)AttackRight).Reset();
-                    sprite = AttackRight;
-                    break;
-
+                isDamaged = false;
+                isVisible = true;
             }
         }
-        public void StartDamaged()
+
+        Position += move * SPEED * dt;
+
+        sprite.Update(gameTime);
+    }
+
+    public void Draw(SpriteBatch spriteBatch)
+    {
+        if (isDamaged && !isVisible)
+            return;
+
+        sprite.Draw(spriteBatch, position);
+    }
+
+    public void SetMove(Directions dir)
+    {
+        if (isAttacking) return;
+
+        move = Vector2.Zero;
+        direction = dir;
+
+        switch (dir)
         {
-            isDamaged = true;
-            damagedTimer = 0;
-            isVisible = true;
-
-            move = Vector2.Zero;
-            isAttacking = false;
-
-            SetIdleSprite();
+            case Directions.Up:    sprite = WalkUp;    move.Y = -1; break;
+            case Directions.Down:  sprite = WalkDown;  move.Y =  1; break;
+            case Directions.Left:  sprite = WalkLeft;  move.X = -1; break;
+            case Directions.Right: sprite = WalkRight; move.X =  1; break;
         }
+    }
 
-        public Vector2 Position
+    public void StopMove()
+    {
+        move = Vector2.Zero;
+    }
+
+    public void StartAttack()
+    {
+        if (isAttacking) return;
+
+        isAttacking = true;
+        move = Vector2.Zero;
+
+        switch (direction)
         {
-            get => position;
-            set => position = value;
+            case Directions.Up:    AttackUp.Reset();    sprite = AttackUp;    break;
+            case Directions.Down:  AttackDown.Reset();  sprite = AttackDown;  break;
+            case Directions.Left:  AttackLeft.Reset();  sprite = AttackLeft;  break;
+            case Directions.Right: AttackRight.Reset(); sprite = AttackRight; break;
         }
+    }
 
+    public void StartDamaged()
+    {
+        isDamaged = true;
+        damagedTimer = 0;
+        isVisible = true;
+        move = Vector2.Zero;
+        isAttacking = false;
+        SetIdleSprite();
+    }
+
+    private void FinishAttack()
+    {
+        isAttacking = false;
+        SetIdleSprite();
+    }
+
+    private void SetIdleSprite()
+    {
+        sprite = direction switch
+        {
+            Directions.Up    => IdleUp,
+            Directions.Down  => IdleDown,
+            Directions.Left  => IdleLeft,
+            Directions.Right => IdleRight,
+            _                => IdleDown,
+        };
     }
 }

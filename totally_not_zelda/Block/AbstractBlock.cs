@@ -30,7 +30,7 @@ internal abstract class AbstractBlock : IBlock
         this.texture = texture;
         this.size = size;
         Walkable = walkable;
-        Position = pos; // also initialises Rect
+        Position = pos;
     }
 
     public virtual void Draw(SpriteBatch sb, Vector2 location)

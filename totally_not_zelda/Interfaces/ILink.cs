@@ -5,7 +5,8 @@ namespace Sprint.Interfaces;
 
 public interface ILink
 {
-	Vector2 Position { get; }
-	Directions Facing { get; }
-	void StartAttack();
+    Vector2 Position { get; set; }
+    Rectangle Rect { get; }
+    Directions Facing { get; }
+    void StartAttack();
 }
