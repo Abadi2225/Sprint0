@@ -1,20 +1,30 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
 
 namespace Sprint.Block;
 
-internal abstract class AbstractBlock : ISprite
+internal abstract class AbstractBlock : IPositionedSprite
 {
     protected readonly Texture2D texture;
-    public ISprite Sprite { get; protected init; }
-    public Vector2 Position { get; set; }
+    public IPositionedSprite Sprite { get; protected init; }
     public bool Walkable { get; init; }
 
-    protected AbstractBlock(ContentManager content, string resourceName, Vector2 pos, bool walkable)
+    private Vector2 position;
+    public Vector2 Position
     {
-        texture = content.Load<Texture2D>(resourceName);
+        get => position;
+        set
+        {
+            position = value;
+            if (Sprite != null)
+                Sprite.Position = value;
+        }
+    }
+
+    protected AbstractBlock(Texture2D texture, Vector2 pos, bool walkable)
+    {
+        this.texture = texture;
         Position = pos;
         Walkable = walkable;
     }

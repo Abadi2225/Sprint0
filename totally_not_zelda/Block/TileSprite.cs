@@ -5,7 +5,7 @@ using Sprint.Interfaces;
 
 namespace Sprint.Block;
 
-internal class TileSprite : ISprite
+internal class TileSprite : IPositionedSprite
 {
     public Vector2 Position { get; set; }
     private readonly Texture2D texture;

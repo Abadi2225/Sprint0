@@ -5,7 +5,7 @@ namespace Sprint.Commands
 {
     public class CycleBlockCommand : ICommand
     {
-        private MapManager mapManager;
+        private readonly MapManager mapManager;
         private readonly bool forward;
 
         public CycleBlockCommand(MapManager mapManager, bool forward)

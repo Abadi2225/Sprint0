@@ -20,6 +20,7 @@ class GameplayState : IGameState
     private Texture2D BossesSheet;
     private Texture2D dustSheet;
     private Texture2D NPCSheet;
+    private Texture2D tileSheet;
 
     private Link link;
     private GameServices services;
@@ -57,17 +58,17 @@ class GameplayState : IGameState
     public void LoadContent()
     {
         linkSheet = services.Content.Load<Texture2D>("images/Link");
+        enemiesSheet = services.Content.Load<Texture2D>("images/enemiesSheet");
+        BossesSheet = services.Content.Load<Texture2D>("images/BossesSpriteSheet");
+        dustSheet = services.Content.Load<Texture2D>("images/dustSheet");
+        NPCSheet = services.Content.Load<Texture2D>("images/NPC");
+        tileSheet = services.Content.Load<Texture2D>("blocks/tiles");
 
         Vector2 center = new Vector2(services.GameWidth / 2, services.GameHeight / 2);
 
         link = new Link(linkSheet, center);
 
-        mapManager = new MapManager(services.Content, new Vector2(100, 50));
-
-        enemiesSheet = services.Content.Load<Texture2D>("images/enemiesSheet");
-        BossesSheet = services.Content.Load<Texture2D>("images/BossesSpriteSheet");
-        dustSheet = services.Content.Load<Texture2D>("images/dustSheet");
-        NPCSheet = services.Content.Load<Texture2D>("images/NPC");
+        mapManager = new MapManager(tileSheet, new Vector2(100, 50));
 
         enemyManager = new EnemyManager();
         enemyFactory = new EnemyFactory(enemiesSheet, BossesSheet, linkSheet, dustSheet, services.Content, NPCSheet);
@@ -111,7 +112,6 @@ class GameplayState : IGameState
                         2
                         ));
         }
-        mapManager = new MapManager(services.Content, new Vector2(100, 50));
     }
 
     public void Update(GameTime gameTime)
