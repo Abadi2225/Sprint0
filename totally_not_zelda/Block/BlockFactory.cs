@@ -15,7 +15,6 @@ public class BlockFactory
     private readonly Vector2 pos;
     private Block[] map;
     public IReadOnlyList<IBlock> Map => map;
-    private GameServices services;
     private enum BlockType
     {
         Blank,
@@ -30,11 +29,10 @@ public class BlockFactory
         Ladder
     }
 
-    public BlockFactory(Texture2D tileSheet, Vector2 pos, GameServices services)
+    public BlockFactory(Texture2D tileSheet, Vector2 pos)
     {
         this.tileSheet = tileSheet;
         this.pos = pos;
-        this.services = services;
     }
 
     public void DrawMap(SpriteBatch sb)
@@ -45,7 +43,7 @@ public class BlockFactory
         }
     }
 
-    private Block CreateBlock(BlockType type, Vector2 pos, int width = Block.DEFAULT_TILE_WIDTH)
+    private Block CreateBlock(BlockType type, Vector2 pos)
     {
         Rectangle textureMask = new(
                         (int)type % SHEET_COLUMNS * (TILE_SIZE + TILE_SPACING),
@@ -53,7 +51,7 @@ public class BlockFactory
                         TILE_SIZE,
                         TILE_SIZE
                         );
-        return new Block(tileSheet, pos, textureMask, width);
+        return new Block(tileSheet, pos, textureMask);
     }
 
     public void Build(LevelData data)
@@ -68,7 +66,7 @@ public class BlockFactory
             int x = i % data.width;
             int y = i / data.width;
 
-            Block block = CreateBlock((BlockType)(id-1), new Vector2(x * TILE_SIZE * services.ScaleFactor, y * TILE_SIZE * services.ScaleFactor));
+            Block block = CreateBlock((BlockType)(id-1), new Vector2(x * TILE_SIZE * GameServices.ScaleFactor, y * TILE_SIZE * GameServices.ScaleFactor));
             map[i] = block;
         }
     }

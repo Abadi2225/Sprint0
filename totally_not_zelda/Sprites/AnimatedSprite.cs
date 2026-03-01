@@ -83,15 +83,15 @@ namespace Sprint.Sprites
 
             //white is the default no color mask
             spriteBatch.Draw(
-                texture,                // texture
-                location,                // position
-                sourceRectangle,        // sourceRectangle
-                Color.White,            // color
-                0.0f,                   // rotation
-                Vector2.Zero,           // origin
-                3.0f,                   // scale
-                SpriteEffects.None,     // effects
-                0.0f                    // layerDepth
+                texture,                    // texture
+                location,                   // position
+                sourceRectangle,            // sourceRectangle
+                Color.White,                // color
+                0.0f,                       // rotation
+                origin,                     // origin
+                GameServices.ScaleFactor,   // scale
+                SpriteEffects.None,         // effects
+                0.0f                        // layerDepth
             );
         }
     }

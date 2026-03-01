@@ -11,7 +11,7 @@ internal abstract class AbstractBlock : IBlock
     public bool Walkable { get; init; }
     public Rectangle Rect { get; private set; }
 
-    private readonly int size;
+    private int size;
     private Vector2 position;
     public Vector2 Position
     {

@@ -5,9 +5,14 @@ namespace Sprint.Block;
 
 internal class Block : AbstractBlock
 {
-    internal const int DEFAULT_TILE_WIDTH = 16*3;
+    internal int tileWidth = (int)(16 * GameServices.ScaleFactor);
 
-    public Block(Texture2D texture, Vector2 pos, Rectangle textureMask, int width = DEFAULT_TILE_WIDTH)
+    public Block(Texture2D texture, Vector2 pos, Rectangle textureMask)
+     : this(texture, pos, textureMask, (int)(16 * GameServices.ScaleFactor))
+    {
+    }
+
+    public Block(Texture2D texture, Vector2 pos, Rectangle textureMask, int width)
      : base(texture, pos, width, walkable: false)
     {
         Sprite = new TileSprite(

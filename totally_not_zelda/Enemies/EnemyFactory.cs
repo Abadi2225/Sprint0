@@ -31,14 +31,14 @@ namespace Sprint.Enemies
         private readonly Texture2D NPCSheet;
         private readonly ContentManager contentManager;
 
-        public EnemyFactory(Texture2D enemySpriteSheet, Texture2D bossSpriteSheet, Texture2D linkSheet, Texture2D dustSheet, ContentManager contentManager, Texture2D NPCSheet)
+        public EnemyFactory(Texture2D enemySpriteSheet, Texture2D bossSpriteSheet, Texture2D linkSheet, Texture2D dustSheet, Texture2D NPCSheet)
     {
         this.enemySpriteSheet = enemySpriteSheet;
         this.bossSpriteSheet = bossSpriteSheet;
         this.linkSheet = linkSheet;
         this.dustSheet = dustSheet;
         this.NPCSheet = NPCSheet;
-        this.contentManager = contentManager;
+        this.contentManager = GameServices.Content;
     }
         
 

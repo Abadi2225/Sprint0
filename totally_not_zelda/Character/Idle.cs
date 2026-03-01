@@ -21,6 +21,6 @@ internal class Idle : ISprite
 
     public void Draw(SpriteBatch spriteBatch, Vector2 location)
     {
-        spriteBatch.Draw(texture, location, sourceRect, Color.White, 0f, Vector2.Zero, 2f, effect, 0f);
+        spriteBatch.Draw(texture, location, sourceRect, Color.White, 0f, Vector2.Zero, GameServices.ScaleFactor, effect, 0f);
     }
 }

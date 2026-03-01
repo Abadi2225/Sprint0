@@ -98,7 +98,7 @@ namespace Sprint.Enemies.Concrete
                 Color.White, 
                 0f,
                 Vector2.Zero, 
-                2f, 
+                GameServices.ScaleFactor, 
                 effects, 
                 0f
             );

@@ -34,15 +34,15 @@ namespace Sprint.Sprites
         {
             Vector2 drawPos = new Vector2(location.X - sourceRect.Width / 2, location.Y - sourceRect.Height / 2);
             spriteBatch.Draw(
-                texture,                // texture
-                drawPos,                // position
-                sourceRect,             // sourceRectangle
-                Color.White,            // color
-                0.0f,                   // rotation
-                Vector2.Zero,           // origin
-                3.0f,                   // scale
-                SpriteEffects.None,     // effects
-                0.0f                    // layerDepth
+                texture,                    // texture
+                drawPos,                    // position
+                sourceRect,                 // sourceRectangle
+                Color.White,                // color
+                0.0f,                       // rotation
+                Vector2.Zero,               // origin
+                GameServices.ScaleFactor,   // scale
+                SpriteEffects.None,         // effects
+                0.0f                        // layerDepth
             );
         }
     }

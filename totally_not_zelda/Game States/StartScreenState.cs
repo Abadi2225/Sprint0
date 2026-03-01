@@ -14,13 +14,11 @@ class StartScreenState : IGameState
     private UIManager uiManager;
     private Texture2D titleSheet;
     private TitleScreen titleScreen;
-    private GameServices services;
 
     private Dictionary<Keys, ICommand> pressedKeys;
 
-    public StartScreenState(GameServices services)
+    public StartScreenState()
     {
-        this.services = services;
 
         // UIManager should be initialized before loading content, since LoadContent adds elements to it
         uiManager = new UIManager();
@@ -33,14 +31,14 @@ class StartScreenState : IGameState
         // Set up key bindings
         pressedKeys = new Dictionary<Keys, ICommand>
         {
-            {Keys.Q, new QuitCommand(services.GameActions)},
-            {Keys.Enter, new SetStateCommand(services.GameActions, new GameplayState(services))}
+            {Keys.Q, new QuitCommand()},
+            {Keys.Enter, new SetStateCommand(new GameplayState())}
         };
     }
 
     public void LoadContent()
     {
-        titleSheet = services.Content.Load<Texture2D>("images/Title Screen & Story of Treasures");
+        titleSheet = GameServices.Content.Load<Texture2D>("images/Title Screen & Story of Treasures");
 
         // Just shows that it exists
         titleScreen = new TitleScreen(titleSheet);
@@ -54,7 +52,7 @@ class StartScreenState : IGameState
         
         foreach (var binding in pressedKeys)
         {
-            if (services.KeyInput.IsKeyPressed(binding.Key))
+            if (GameServices.KeyInput.IsKeyPressed(binding.Key))
             {
                 binding.Value.Execute();
             }

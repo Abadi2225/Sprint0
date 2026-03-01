@@ -92,6 +92,6 @@ internal class Attacking : ISprite
         else if (anchorBottom)
             drawPos.Y -= (frame.Height - baseSize) * 2f;        // anchor bottom edge (up attack)
 
-        spriteBatch.Draw(texture, drawPos, frame, Color.White, 0f, Vector2.Zero, 2f, effect, 0f);
+        spriteBatch.Draw(texture, drawPos, frame, Color.White, 0f, Vector2.Zero, GameServices.ScaleFactor, effect, 0f);
     }
 }

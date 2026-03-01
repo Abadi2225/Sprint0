@@ -120,10 +120,10 @@ public class Link : ILink
 
         switch (dir)
         {
-            case Directions.Up:    sprite = WalkUp;    move.Y = -1; break;
-            case Directions.Down:  sprite = WalkDown;  move.Y =  1; break;
-            case Directions.Left:  sprite = WalkLeft;  move.X = -1; break;
-            case Directions.Right: sprite = WalkRight; move.X =  1; break;
+            case Directions.Up:    sprite = WalkUp;    move.Y = -1 * GameServices.ScaleFactor; break;
+            case Directions.Down:  sprite = WalkDown;  move.Y =  1 * GameServices.ScaleFactor; break;
+            case Directions.Left:  sprite = WalkLeft;  move.X = -1 * GameServices.ScaleFactor; break;
+            case Directions.Right: sprite = WalkRight; move.X =  1 * GameServices.ScaleFactor; break;
         }
     }
 

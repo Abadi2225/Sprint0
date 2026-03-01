@@ -22,7 +22,6 @@ public class Game1 : Game, IGameActions
     // private IController mouse;
 
     private IGameState currentState;
-    private GameServices services;
 
     public Game1()
     {
@@ -32,25 +31,21 @@ public class Game1 : Game, IGameActions
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
 
-        services = new GameServices
-        {
-            Content = Content,
-            KeyInput = new KeyboardController(this),
-            GameActions = this,
-            ScaleFactor = 3
-        };
-
-        currentState = new StartScreenState(services);
+        currentState = new StartScreenState();
         currentState.Enter();
 
         // Set the window size to be 3 times the original NES resolution (256x224)
-        graphics.PreferredBackBufferWidth = services.GameWidth;
-        graphics.PreferredBackBufferHeight = services.GameHeight;
+        graphics.PreferredBackBufferWidth = GameServices.GameWidth;
+        graphics.PreferredBackBufferHeight = GameServices.GameHeight;
     }
 
     protected override void Initialize()
     {
         // mouse = new MouseController(this, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, services);
+        
+        // Initialize GameServices
+        GameServices.GameActions = this;
+        GameServices.Content = Content;
 
         base.Initialize();
     }
@@ -64,7 +59,7 @@ public class Game1 : Game, IGameActions
 
     protected override void Update(GameTime gameTime)
     {
-        services.KeyInput.Update();
+        GameServices.KeyInput.Update();
 
         currentState.Update(gameTime);
         // mouse.Update();

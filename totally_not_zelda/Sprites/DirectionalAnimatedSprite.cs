@@ -94,15 +94,15 @@ namespace Sprint.Sprites
             Vector2 origin = new Vector2(frameWidth / 2, frameHeight / 2);
             
             spriteBatch.Draw(
-                texture,                // texture
-                location,               // position
-                sourceRectangle,        // sourceRectangle
-                Color.White,            // color
-                0.0f,                   // rotation
-                origin,                 // origin
-                3.0f,                   // scale
-                effect,                 // effects
-                0.0f                    // layerDepth
+                texture,                    // texture
+                location,                   // position
+                sourceRectangle,            // sourceRectangle
+                Color.White,                // color
+                0.0f,                       // rotation
+                origin,                     // origin
+                GameServices.ScaleFactor,   // scale
+                effect,                     // effects
+                0.0f                        // layerDepth
             );
         }
     }
