@@ -8,5 +8,5 @@ public class LevelData
     public int width { get; set; }
     public int height { get; set; }
 
-    public List<TiledLayer> layers { get; set; }
+    public List<LayerData> layers { get; set; }
 }

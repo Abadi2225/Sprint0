@@ -1,6 +1,6 @@
 namespace Sprint.Layers;
 
-public class TiledLayer
+public class LayerData
 {
     public string name { get; set; }
     public string type { get; set; }
