@@ -6,15 +6,11 @@ using Sprint.Levels;
 
 namespace Sprint.Block;
 
-public class BlockFactory
+public static class BlockFactory
 {
     private const int SHEET_COLUMNS = 4;
     private const int TILE_SIZE = 16;
     private const int TILE_SPACING = 1;
-    private readonly Texture2D tileSheet;
-    private readonly Vector2 pos;
-    private Block[] map;
-    public IReadOnlyList<IBlock> Map => map;
     private enum BlockType
     {
         Blank,
@@ -29,45 +25,32 @@ public class BlockFactory
         Ladder
     }
 
-    public BlockFactory(Texture2D tileSheet, Vector2 pos)
+    public static Block Create(int tileId, Vector2 pos)
     {
-        this.tileSheet = tileSheet;
-        this.pos = pos;
-    }
-
-    public void DrawMap(SpriteBatch sb)
-    {
-        foreach (Block block in map)
+        return tileId switch
         {
-            block.Draw(sb, block.Position);
-        }
+            0 => CreateBlock(BlockType.Blank, pos),
+            1 => CreateBlock(BlockType.Square, pos),
+            2 => CreateBlock(BlockType.StatueRight, pos),
+            3 => CreateBlock(BlockType.StatueLeft, pos),
+            4 => CreateBlock(BlockType.Black, pos),
+            5 => CreateBlock(BlockType.Sand, pos),
+            6 => CreateBlock(BlockType.Water, pos),
+            7 => CreateBlock(BlockType.Stairs, pos),
+            8 => CreateBlock(BlockType.Bricks, pos),
+            9 => CreateBlock(BlockType.Ladder, pos),
+            _ => null,
+        };
     }
 
-    private Block CreateBlock(BlockType type, Vector2 pos)
+    private static Block CreateBlock(BlockType type, Vector2 pos)
     {
-        Rectangle textureMask = new(
+        Rectangle textureMask = new Rectangle(
                         (int)type % SHEET_COLUMNS * (TILE_SIZE + TILE_SPACING),
                         (int)type / SHEET_COLUMNS * (TILE_SIZE + TILE_SPACING),
                         TILE_SIZE,
                         TILE_SIZE
                         );
-        return new Block(tileSheet, pos, textureMask);
-    }
-
-    public void Build(LevelData data)
-    {
-        map = new Block[data.height * data.width];
-        
-        for (int i = 0; i < data.height * data.width; i++)
-        {
-            int id = data.layers[0].data[i];
-            if (id == 0) continue;
-
-            int x = i % data.width;
-            int y = i / data.width;
-
-            Block block = CreateBlock((BlockType)(id-1), new Vector2(x * TILE_SIZE * GameServices.ScaleFactor, y * TILE_SIZE * GameServices.ScaleFactor));
-            map[i] = block;
-        }
+        return new Block(GameServices.TileSheet, pos, textureMask, true);
     }
 }

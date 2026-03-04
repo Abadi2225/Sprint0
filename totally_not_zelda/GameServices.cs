@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework.Content;
 using Sprint.Interfaces;
-using Sprint.Levels;
 using Sprint.Controllers;
+using Microsoft.Xna.Framework.Graphics;
 
 /// <summary>
 /// A class to hold services that are commonly used across the game, such as the ContentManager.
@@ -17,4 +17,6 @@ public static class GameServices
     public static float ScaleFactor { get; } = 3f;
     public static int GameWidth { get { return (int)(256 * ScaleFactor); } }
     public static int GameHeight { get { return (int)(224 * ScaleFactor); } }
+
+    public static Texture2D TileSheet { get; set; }
 }

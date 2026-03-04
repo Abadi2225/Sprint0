@@ -1,25 +1,34 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint.Sprites;
+using Sprint.Interfaces;
 
 namespace Sprint.Block;
 
-internal class Block : AbstractBlock
+public class Block
 {
     internal int tileWidth = (int)(16 * GameServices.ScaleFactor);
+    private StaticSprite sprite;
+    private bool walkable;
+    private Vector2 position;
 
-    public Block(Texture2D texture, Vector2 pos, Rectangle textureMask)
-     : this(texture, pos, textureMask, (int)(16 * GameServices.ScaleFactor))
+    public Block(Texture2D texture, Vector2 pos, Rectangle sourceRect, bool walkable)
     {
+        sprite = new StaticSprite(texture, pos, sourceRect);
+        this.walkable = walkable;
+        position = pos;
     }
 
-    public Block(Texture2D texture, Vector2 pos, Rectangle textureMask, int width)
-     : base(texture, pos, width, walkable: false)
+    public void Draw(SpriteBatch spriteBatch)
     {
-        Sprite = new TileSprite(
-                texture,
-                textureMask,
-                pos,
-                width
-                );
+        sprite.Draw(spriteBatch, position);
+    }
+
+    public void Update(GameTime time)
+    {
+        if (walkable)
+        {
+            // Maybe add collision?
+        }
     }
 }
