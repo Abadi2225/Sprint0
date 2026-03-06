@@ -30,6 +30,12 @@ internal class EnemyEffectWrapper : IEnemy
         set => enemy.Position = value;
     }
 
+    public Rectangle Rect
+    {
+        get => enemy.Rect;
+        set => enemy.Rect = value;
+    }
+
     public int Health
     {
         get => enemy.Health;

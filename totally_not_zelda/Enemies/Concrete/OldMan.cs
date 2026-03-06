@@ -12,13 +12,10 @@ namespace Sprint.Enemies.Concrete
 
         public OldMan(Texture2D texture, Vector2 position) : base(texture, position, HEALTH, DAMAGE, isInvincible: true)
         {
-            int[] frameXPositions = [1, 18];
-            int sheetY       = 11;
             int spriteWidth  = 15;
             int spriteHeight = 15;
-            float frameTime  = 0.5f;
 
-            sprite = new AnimatedSprite(texture, position, frameXPositions, sheetY, spriteWidth, spriteHeight, frameTime);
+            sprite = new StaticSprite(texture, position, new Rectangle(18, 11, spriteWidth, spriteHeight));
             Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth, spriteHeight);
         }
 
