@@ -20,7 +20,7 @@ public class LevelBuilder
             int y = i / data.width;
 
             
-            Block block = BlockFactory.Create(id-1, new Vector2(x * TILE_SIZE * GameServices.ScaleFactor, y * TILE_SIZE * GameServices.ScaleFactor));
+            Block block = BlockFactory.Create(id-1, new Vector2((x * TILE_SIZE + 35) * GameServices.ScaleFactor, (y * TILE_SIZE + (224-176+35)) * GameServices.ScaleFactor));
             blockManager.Add(block);
         }
 
