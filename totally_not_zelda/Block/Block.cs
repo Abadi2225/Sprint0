@@ -8,9 +8,9 @@ namespace Sprint.Block;
 public class Block
 {
     internal int tileWidth = (int)(16 * GameServices.ScaleFactor);
-    private StaticSprite sprite;
-    private bool walkable;
-    private Vector2 position;
+    private readonly StaticSprite sprite;
+    private readonly bool walkable;
+    private readonly Vector2 position;
 
     public Block(Texture2D texture, Vector2 pos, Rectangle sourceRect, bool walkable)
     {

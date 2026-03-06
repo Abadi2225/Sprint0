@@ -25,7 +25,7 @@ public static class BlockFactory
         Ladder
     }
 
-    public static Block Create(int tileId, Vector2 pos)
+    public static Block? Create(int tileId, Vector2 pos)
     {
         return tileId switch
         {
