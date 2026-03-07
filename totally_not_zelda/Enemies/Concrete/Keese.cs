@@ -33,8 +33,8 @@ namespace Sprint.Enemies.Concrete
             int[] flyingXPositions = [183, 200];
             int[] restingXPositions = [200];
             int sheetY = 11;
-            int spriteWidth = 15;
-            int spriteHeight = 15;
+            int spriteWidth = 16;
+            int spriteHeight = 16;
             float frameTime = 0.2f;
             
             flyingSprite = new AnimatedSprite(texture, position, flyingXPositions, sheetY, 

@@ -24,8 +24,8 @@ namespace Sprint.Enemies.Concrete
         {
             int frameX = 1;
             int frameY = 59;
-            int spriteWidth = 15;
-            int spriteHeight = 15;
+            int spriteWidth = 16;
+            int spriteHeight = 16;
             
             sourceRect = new Rectangle(frameX, frameY, spriteWidth, spriteHeight);
             

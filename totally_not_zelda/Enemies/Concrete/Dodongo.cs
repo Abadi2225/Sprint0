@@ -32,7 +32,7 @@ namespace Sprint.Enemies.Concrete
         private readonly int[] upFrames = [35];      
         private readonly int[] downFrames = [1];   
         private readonly int[] sideFrames = [69, 102];  
-        private readonly int[] bombedUpFrame = [35];
+        private readonly int[] bombedUpFrame = [52];
         private readonly int[] bombedDownFrame = [18];
         private readonly int[] bombedSideFrame = [135];
 

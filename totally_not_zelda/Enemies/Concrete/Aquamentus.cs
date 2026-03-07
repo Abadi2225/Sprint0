@@ -34,8 +34,8 @@ namespace Sprint.Enemies.Concrete
         {
             int[]sheetXPositions = [1, 26, 51, 76];
             int sheetY = 11;
-            int spriteWidth = 23;
-            int spriteHeight = 31;
+            int spriteWidth = 24;
+            int spriteHeight = 32;
             float frameTime = 0.2f;
             moveDirectionTimer = 0f;
             directionChangeTimer = GetRandomFloat(DIRECTION_SWAP_MIN,DIRECTION_SWAP_MAX);

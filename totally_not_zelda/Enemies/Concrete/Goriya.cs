@@ -50,8 +50,8 @@ namespace Sprint.Enemies.Concrete
             this.contentManager = content;
             random = new Random();
             int sheetY = 11;
-            int spriteWidth = 15;
-            int spriteHeight = 15;
+            int spriteWidth = 16;
+            int spriteHeight = 16;
             float frameTime = 0.2f;
 
             currentState = GoriyaState.Walking;

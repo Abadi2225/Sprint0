@@ -33,8 +33,8 @@ namespace Sprint.Enemies.Concrete
 
             int[] fireballXFrames = [101, 110, 119, 128]; 
             int fireballY = 14;                
-            int fireballWidth = 7;             
-            int fireballHeight = 9;            
+            int fireballWidth = 8;             
+            int fireballHeight = 10;            
             float frameTime = 0.3f;            
             sprite = new AnimatedSprite(texture, startPosition, fireballXFrames, fireballY, fireballWidth, fireballHeight, frameTime);
 

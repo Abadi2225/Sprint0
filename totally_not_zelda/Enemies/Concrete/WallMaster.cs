@@ -30,8 +30,8 @@ namespace Sprint.Enemies.Concrete
         {
             int[] frameXPositions = [393, 410];
             int frameY = 11;
-            int spriteWidth = 15;
-            int spriteHeight = 15;
+            int spriteWidth = 16;
+            int spriteHeight = 16;
             float frameTime = 0.2f;
             
             sprite = new AnimatedSprite(texture, position, frameXPositions, frameY, 

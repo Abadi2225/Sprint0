@@ -29,8 +29,8 @@ namespace Sprint.Enemies.Concrete
         public Rope(Texture2D texture, Vector2 position) : base(texture, position, ROPE_HEALTH, ROPE_DAMAGE)
         {
             int frameY = 59;
-            int spriteWidth = 15;
-            int spriteHeight = 15;
+            int spriteWidth = 16;
+            int spriteHeight = 16;
             float frameTime = 0.3f;
             
             sprite = new DirectionalAnimatedSprite(texture, position, frameXPositions, frameY, 
