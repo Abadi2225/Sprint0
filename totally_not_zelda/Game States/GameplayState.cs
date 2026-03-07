@@ -72,6 +72,7 @@ class GameplayState : IGameState
 		enemyFactory = new EnemyFactory(enemiesSheet, BossesSheet, linkSheet, dustSheet, NPCSheet);
 		collisionManager = new CollisionManager();
 		collisionManager.Add(new LinkEnemyCollision(link, enemyManager));
+		collisionManager.Add(new SwordEnemyCollision(link, enemyManager));
 
 		// Can make this generated in the enemyFactory if we want to create more enemies
 		enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Gel, center + new Vector2(100, 0)));

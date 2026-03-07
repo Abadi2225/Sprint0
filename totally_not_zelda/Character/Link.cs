@@ -42,12 +42,34 @@ public class Link : ILink
     private bool isUsingItem = false;
     private bool isDamaged = false;
     private bool isVisible = false;
+    private bool attackHitLanded = false;
 
     public Directions Facing => direction;
     public int Health => health;
     public int MaxHealth => MAX_HEALTH;
 
     public Rectangle Rect { get; private set; }
+
+    public Rectangle SwordRect
+    {
+        get
+        {
+            if (!isAttacking || attackHitLanded) return Rectangle.Empty;
+
+            Attacking currentAttack = direction switch
+            {
+                Directions.Up    => AttackUp,
+                Directions.Down  => AttackDown,
+                Directions.Left  => AttackLeft,
+                Directions.Right => AttackRight,
+                _                => AttackDown,
+            };
+
+            return currentAttack.GetWeaponWorldRect(position);
+        }
+    }
+
+    public void RegisterSwordHit() => attackHitLanded = true;
 
     public Vector2 Position
     {
@@ -168,6 +190,7 @@ public class Link : ILink
         if (isAttacking) return;
 
         isAttacking = true;
+        attackHitLanded = false;
         move = Vector2.Zero;
 
         switch (direction)

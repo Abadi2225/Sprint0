@@ -100,6 +100,21 @@ internal class Attacking : ISprite
         }
     }
 
+    // Returns the world-space hitbox of the sword for the current frame, or Empty if no weapon is shown.
+    internal Rectangle GetWeaponWorldRect(Vector2 position)
+    {
+        Frame frame = frames[currentFrame];
+        if (!frame.HasWeapon) return Rectangle.Empty;
+
+        Vector2 weaponPos = position + frame.WeaponOffset * GameServices.ScaleFactor;
+        return new Rectangle(
+            (int)weaponPos.X,
+            (int)weaponPos.Y,
+            (int)(frame.WeaponRect.Width  * GameServices.ScaleFactor),
+            (int)(frame.WeaponRect.Height * GameServices.ScaleFactor)
+        );
+    }
+
     public void Draw(SpriteBatch spriteBatch, Vector2 location)
     {
         Frame frame = frames[currentFrame];

@@ -10,6 +10,7 @@ public interface ILink
     Directions Facing { get; }
     int Health { get; }
     int MaxHealth { get; }
+    Rectangle SwordRect { get; }
     void StartAttack();
     void StartUseItem();
     void TakeDamage(int amount);
