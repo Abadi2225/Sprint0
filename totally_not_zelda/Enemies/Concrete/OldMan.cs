@@ -16,7 +16,7 @@ namespace Sprint.Enemies.Concrete
             int spriteHeight = 16;
 
             sprite = new StaticSprite(texture, position, new Rectangle(18, 11, spriteWidth, spriteHeight));
-            Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth, spriteHeight);
+            Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
 
         public override void TakeDamage(int damageAmount) { }

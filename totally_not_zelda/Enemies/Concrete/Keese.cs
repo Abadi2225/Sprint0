@@ -32,9 +32,9 @@ namespace Sprint.Enemies.Concrete
         {
             int[] flyingXPositions = [183, 200];
             int[] restingXPositions = [200];
-            int sheetY = 11;
+            int sheetY = 14;
             int spriteWidth = 16;
-            int spriteHeight = 16;
+            int spriteHeight = 10;
             float frameTime = 0.2f;
             
             flyingSprite = new AnimatedSprite(texture, position, flyingXPositions, sheetY, 
@@ -49,7 +49,7 @@ namespace Sprint.Enemies.Concrete
             actionDuration = GetRandomFloat(REST_TIME_MIN, REST_TIME_MAX);
             ChooseRandomDirection();
             sprite = restingSprite;
-            Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth, spriteHeight);
+            Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
         
         public override void Update(GameTime gameTime)

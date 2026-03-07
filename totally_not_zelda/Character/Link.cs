@@ -7,7 +7,7 @@ namespace Sprint.Character;
 public class Link : ILink
 {
     private const float SPEED = 80f;
-    private const int BODY_SIZE = 32;
+    private const int BODY_SIZE = 48;
     private const double DAMAGED_DURATION = 0.5;
     private const double BLINK_INTERVAL = 0.10;
 
