@@ -58,6 +58,6 @@ public static class BlockFactory
             BlockType.Stairs => false,
             _ => true  // Square, Statues, Black, Water, Bricks, Ladder all block movement
         };
-        return new Block(GameServices.TileSheet, pos, textureMask, true);
+        return new Block(GameServices.TileSheet, pos, textureMask, solid);
     }
 }

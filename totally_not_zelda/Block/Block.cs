@@ -12,7 +12,7 @@ public class Block
 	private readonly StaticSprite sprite;
 	public readonly bool walkAble;
 	private readonly Vector2 position;
-	public Rectangle Rect => new Rectangle((int)position.X, (int)position.Y, tileWidth, tileWidth);
+	public Rectangle Rect { get; }	
 	public Block(Texture2D texture, Vector2 pos, Rectangle sourceRect, bool walkable)
 	{
 		sprite = new StaticSprite(texture, pos, sourceRect);
