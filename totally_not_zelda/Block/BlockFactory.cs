@@ -46,11 +46,18 @@ public static class BlockFactory
     private static Block CreateBlock(BlockType type, Vector2 pos)
     {
         Rectangle textureMask = new Rectangle(
-                        (int)type % SHEET_COLUMNS * (TILE_SIZE + TILE_SPACING),
-                        (int)type / SHEET_COLUMNS * (TILE_SIZE + TILE_SPACING),
-                        TILE_SIZE,
-                        TILE_SIZE
-                        );
-        return new Block(GameServices.TileSheet, pos, textureMask, true);
+            (int)type % SHEET_COLUMNS * (TILE_SIZE + TILE_SPACING),
+            (int)type / SHEET_COLUMNS * (TILE_SIZE + TILE_SPACING),
+            TILE_SIZE,
+            TILE_SIZE
+            );
+            bool solid = type switch
+        {
+            BlockType.Blank or 
+            BlockType.Sand or 
+            BlockType.Stairs => false,
+            _ => true  // Square, Statues, Black, Water, Bricks, Ladder all block movement
+        };
+        return new Block(GameServices.TileSheet, pos, textureMask, solid);
     }
 }

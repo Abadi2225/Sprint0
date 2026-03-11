@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Enemies.Base;
@@ -11,51 +10,41 @@ namespace Sprint.Enemies.Concrete
         private const int TRAP_HEALTH = 1;
         private const int TRAP_DAMAGE = 1;
         private const float CHARGE_SPEED = 200f;
-        private const float RETRACT_SPEED = 40f;
-        private const float CHARGE_DISTANCE = 96f;
-        private const float IDLE_TIME_MIN = 2f;
-        private const float IDLE_TIME_MAX = 4f;
+        private const float RETRACT_SPEED = 80f;
         
         private enum TrapState { Idle, Charging, Retracting }
 
-        private readonly Random random;
         private TrapState currentState;
         private Vector2 homePosition;
         private Vector2 chargeDirection;
         private Vector2 chargeTarget;
-        private float idleTimer;
-        private float idleDuration;
-
-        private readonly Rectangle sourceRect;
+        private bool sameRow;
+        private bool sameColumn;
         
         public Trap(Texture2D texture, Vector2 position) : base(texture, position, TRAP_HEALTH, TRAP_DAMAGE, isInvincible: true)
         {
             int frameX = 164;
             int frameY = 59;
-            int spriteWidth = 15;
-            int spriteHeight = 15;
-            
-            sourceRect = new Rectangle(frameX, frameY, spriteWidth, spriteHeight);
-            
-            sprite = new StaticSprite(texture, position, sourceRect);
+            int spriteWidth = 16;
+            int spriteHeight = 16;
+                        
+            sprite = new StaticSprite(texture, position, new Rectangle(frameX, frameY, spriteWidth, spriteHeight));
 
-            random = new Random();
             homePosition = position;
             currentState = TrapState.Idle;
-            idleTimer = 0f;
-            idleDuration = GetRandomFloat(IDLE_TIME_MIN, IDLE_TIME_MAX);
             chargeDirection = Vector2.Zero;
-            chargeTarget = position;
+            Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
 
         public override void Update(GameTime gameTime)
-        {            
+        {       
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
+            sameRow = Rect.Top < GameServices.Link.Rect.Bottom && GameServices.Link.Rect.Top < Rect.Bottom;
+            sameColumn = Rect.Left < GameServices.Link.Rect.Right && GameServices.Link.Rect.Left < Rect.Right;
             switch (currentState)
             {
                 case TrapState.Idle:
-                    UpdateIdle(deltaTime);
+                    UpdateIdle();
                     break;
                 
                 case TrapState.Charging:
@@ -68,12 +57,9 @@ namespace Sprint.Enemies.Concrete
             }
         }
 
-        private void UpdateIdle(float deltaTime)
+        private void UpdateIdle()
         {
-            // TODO: Change from timer trigger to link alining with the trap.
-            idleTimer += deltaTime;
-
-            if (idleTimer >= idleDuration)
+            if (sameColumn || sameRow)
             {
                 StartCharge();
             }
@@ -104,8 +90,6 @@ namespace Sprint.Enemies.Concrete
             {
                 Position = homePosition;
                 currentState = TrapState.Idle;
-                idleTimer = 0f;
-                idleDuration = GetRandomFloat(IDLE_TIME_MIN, IDLE_TIME_MAX);
             }
             else
             {
@@ -116,16 +100,29 @@ namespace Sprint.Enemies.Concrete
 
         private void StartCharge()
         {
-            // TODO: Replace with direction towards link when we have the link reference in the trap.
-            chargeDirection = random.Next(4) switch
+            if (sameRow && !sameColumn)
             {
-                0 => new Vector2(0, -1),   // Up
-                1 => new Vector2(0, 1),    // Down
-                2 => new Vector2(-1, 0),   // Left
-                3 => new Vector2(1, 0),    // Right
-                _ => Vector2.UnitX,
-            };
-            chargeTarget = homePosition + chargeDirection * CHARGE_DISTANCE;
+                if (Rect.X < GameServices.Link.Rect.X)
+                    chargeDirection = Vector2.UnitX;
+                else
+                    chargeDirection = -Vector2.UnitX;
+            }
+            else if (sameColumn && !sameRow)
+            {
+                if (Rect.Y < GameServices.Link.Rect.Y)
+                    chargeDirection = Vector2.UnitY;
+                else
+                    chargeDirection = -Vector2.UnitY;
+            }
+            else return;
+            if (chargeDirection.X != 0)
+            {
+                chargeTarget = new Vector2(GameServices.Link.Rect.X, homePosition.Y);
+            }
+            else if (chargeDirection.Y != 0)
+            {
+                chargeTarget = new Vector2(homePosition.X, GameServices.Link.Rect.Y);
+            }
             currentState = TrapState.Charging;
         }
 
@@ -137,13 +134,6 @@ namespace Sprint.Enemies.Concrete
             base.Reset();
             Position = homePosition;
             currentState = TrapState.Idle;
-            idleTimer = 0f;
-            idleDuration = GetRandomFloat(IDLE_TIME_MIN, IDLE_TIME_MAX);
-        }
-
-        private float GetRandomFloat(float min, float max)
-        {
-            return min + (float)random.NextDouble() * (max - min);
         }
     }
 }

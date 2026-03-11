@@ -1,18 +1,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using Sprint.Block;
+
+namespace Sprint.Block;
 
 public class BlockManager
 {
-    private List<Block> blocks = new();
-
-    public BlockManager()
-    {
-        
-    }
-
-    public void Add(Block block)
+    private readonly List<Block> blocks = [];
+	public List<Block> blocksList => blocks;
+	public void Add(Block block)
     {
         blocks.Add(block);
     }

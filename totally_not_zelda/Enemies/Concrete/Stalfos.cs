@@ -24,8 +24,8 @@ namespace Sprint.Enemies.Concrete
         {
             int frameX = 1;
             int frameY = 59;
-            int spriteWidth = 15;
-            int spriteHeight = 15;
+            int spriteWidth = 16;
+            int spriteHeight = 16;
             
             sourceRect = new Rectangle(frameX, frameY, spriteWidth, spriteHeight);
             
@@ -34,6 +34,7 @@ namespace Sprint.Enemies.Concrete
             directionChangeTimer = DIRECTION_CHANGE_INTERVAL;
             isFlipped = false;
             flipTimer = FLIP_INTERVAL;
+            Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
         
         private Vector2 GetRandomCardinalDirection()
@@ -86,12 +87,17 @@ namespace Sprint.Enemies.Concrete
             
             SpriteEffects effects = isFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            Vector2 drawPosition = new Vector2(
-                location.X - sourceRect.Width / 2,
-                location.Y - sourceRect.Height / 2
-            );
+            //Vector2 drawPosition = new Vector2(
+            //    location.X - sourceRect.Width / 2,
+            //    location.Y - sourceRect.Height / 2
+            //);
 
-            spriteBatch.Draw(
+			Vector2 drawPosition = new Vector2(
+				location.X,
+				location.Y
+			);
+
+			spriteBatch.Draw(
                 texture, 
                 drawPosition, 
                 sourceRect, 

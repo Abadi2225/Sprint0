@@ -8,5 +8,10 @@ public interface ILink
     Vector2 Position { get; set; }
     Rectangle Rect { get; }
     Directions Facing { get; }
+    int Health { get; }
+    int MaxHealth { get; }
+    Rectangle SwordRect { get; }
     void StartAttack();
+    void StartUseItem();
+    void TakeDamage(int amount);
 }

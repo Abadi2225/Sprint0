@@ -24,7 +24,7 @@ namespace Sprint.Enemies.Concrete
         private float directionChangeDuration;
         private bool facingLeft;
 
-        readonly int[] frameXPositions = [126, 143];
+        readonly int[] frameXPositions = [127, 144];
 
         public Rope(Texture2D texture, Vector2 position) : base(texture, position, ROPE_HEALTH, ROPE_DAMAGE)
         {
@@ -42,6 +42,7 @@ namespace Sprint.Enemies.Concrete
             directionChangeDuration = GetRandomFloat(DIRECTION_CHANGE_MIN, DIRECTION_CHANGE_MAX);
             directionChangeTimer = directionChangeDuration;
             ChooseRandomCardinalDirection();
+            Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
 
         public override void Update(GameTime gameTime)

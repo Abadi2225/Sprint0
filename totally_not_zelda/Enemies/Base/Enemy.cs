@@ -25,9 +25,8 @@ namespace Sprint.Enemies.Base
             {
                 position = value;
                 if (sprite != null)
-                {
                     sprite.Position = value;
-                }
+                Rect = new Rectangle((int)value.X, (int)value.Y, Rect.Width, Rect.Height);
             }
         }
 
@@ -38,9 +37,7 @@ namespace Sprint.Enemies.Base
         }
 
         public Texture2D Texture => texture;
-        // moved out of interface into this class due to merge conflict
-        // todo fix this
-        public Rectangle Rect = Rectangle.Empty;
+        public Rectangle Rect { get; set; } = Rectangle.Empty;
 
         public int MaxHealth => maxHealth;
         public int Damage => damage;

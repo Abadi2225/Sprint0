@@ -10,6 +10,7 @@ namespace Sprint.Enemies
         private readonly List<IEnemy> enemies;
         private int currentEnemyIndex;
         private IEnemy currentEnemy;
+        public List<IEnemy> enemyList => enemies;
         
         public EnemyManager()
         {

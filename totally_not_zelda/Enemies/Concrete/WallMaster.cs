@@ -10,47 +10,37 @@ namespace Sprint.Enemies.Concrete
     {
         private const int WALLMASTER_HEALTH = 2;
         private const int WALLMASTER_DAMAGE = 1;
-        private const float CREEP_SPEED = 25f;
-        private const float RETREAT_SPEED = 40f;
-        private const float HIDDEN_TIME_MIN = 1.5f;
-        private const float HIDDEN_TIME_MAX = 3f;
-        private const float CREEP_TIME_MIN = 2f;
-        private const float CREEP_TIME_MAX = 4f;
+        private const float CREEP_SPEED = 60f;
+        private const float DETECTION_RANGE = 160f;
+        private const float GRAB_RANGE = 12f;
 
-        private enum WallMasterState { Hidden, Creeping, Retreating }
-        
-        private readonly Random random;
+        private enum WallMasterState { Hidden, Creeping, Grabbing }
+
         private WallMasterState currentState;
-        private Vector2 creepDirection;
         private Vector2 homePosition;
-        private float stateTimer;
-        private float stateDuration;
-        
+        private bool movingVertically;
+
         public WallMaster(Texture2D texture, Vector2 position) : base(texture, position, WALLMASTER_HEALTH, WALLMASTER_DAMAGE)
         {
             int[] frameXPositions = [393, 410];
             int frameY = 11;
-            int spriteWidth = 15;
-            int spriteHeight = 15;
+            int spriteWidth = 16;
+            int spriteHeight = 16;
             float frameTime = 0.2f;
-            
-            sprite = new AnimatedSprite(texture, position, frameXPositions, frameY, 
+
+            sprite = new AnimatedSprite(texture, position, frameXPositions, frameY,
                                         spriteWidth, spriteHeight, frameTime);
-            
-            random = new Random();
+
             homePosition = position;
             currentState = WallMasterState.Hidden;
-            stateTimer = 0f;
-            stateDuration = GetRandomFloat(HIDDEN_TIME_MIN, HIDDEN_TIME_MAX);
-            ChooseCreepDirection();
+            Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
-        
+
         public override void Update(GameTime gameTime)
         {
             if (!isAlive) return;
-            
+
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            stateTimer += deltaTime;
 
             switch (currentState)
             {
@@ -62,54 +52,53 @@ namespace Sprint.Enemies.Concrete
                     UpdateCreeping(deltaTime);
                     break;
 
-                case WallMasterState.Retreating:
-                    UpdateRetreating(deltaTime);
+                case WallMasterState.Grabbing:
+                    UpdateGrabbing();
                     break;
             }
-            
-            sprite.Update(gameTime);
+
+            if (currentState != WallMasterState.Grabbing)
+                sprite.Update(gameTime);
         }
 
         private void UpdateHidden()
         {
-            if (stateTimer >= stateDuration)
+            float dx = GameServices.Link.Position.X - Position.X;
+            float dy = GameServices.Link.Position.Y - Position.Y;
+            if (new Vector2(dx, dy).Length() <= DETECTION_RANGE)
             {
+                movingVertically = Math.Abs(dy) >= Math.Abs(dx);
                 currentState = WallMasterState.Creeping;
-                stateTimer = 0f;
-                stateDuration = GetRandomFloat(CREEP_TIME_MIN, CREEP_TIME_MAX);
-                ChooseCreepDirection();
             }
         }
 
         private void UpdateCreeping(float deltaTime)
         {
-            // TODO instead of a fixed direction, we can change it to track link
-            Position += creepDirection * CREEP_SPEED * deltaTime;
+            float dx = GameServices.Link.Position.X - Position.X;
+            float dy = GameServices.Link.Position.Y - Position.Y;
 
-            if (stateTimer >= stateDuration)
+            if (new Vector2(dx, dy).Length() <= GRAB_RANGE)
             {
-                currentState = WallMasterState.Retreating;
-                stateTimer = 0f;
+                ((AnimatedSprite)sprite).SetFrame(1);
+                currentState = WallMasterState.Grabbing;
+                return;
             }
+
+            if (movingVertically && Math.Abs(dy) < 1f)
+                movingVertically = false;
+            else if (!movingVertically && Math.Abs(dx) < 1f)
+                movingVertically = true;
+
+            Vector2 direction = movingVertically
+                ? new Vector2(0, Math.Sign(dy))
+                : new Vector2(Math.Sign(dx), 0);
+            Position += direction * CREEP_SPEED * deltaTime;
         }
 
-        private void UpdateRetreating(float deltaTime)
+        private void UpdateGrabbing()
         {
-            Vector2 directionToHome = homePosition - Position;
-            float distanceToHome = directionToHome.Length();
-
-            if (distanceToHome < RETREAT_SPEED * deltaTime)
-            {
-                Position = homePosition;
-                currentState = WallMasterState.Hidden;
-                stateTimer = 0f;
-                stateDuration = GetRandomFloat(HIDDEN_TIME_MIN, HIDDEN_TIME_MAX);
-            }
-            else
-            {
-                directionToHome.Normalize();
-                Position += directionToHome * RETREAT_SPEED * deltaTime;
-            }
+            Position = GameServices.Link.Position;
+            // TODO: move Link to the door
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 location)
@@ -120,34 +109,11 @@ namespace Sprint.Enemies.Concrete
             sprite?.Draw(spriteBatch, location);
         }
 
-
         public override void Reset()
         {
             base.Reset();
             Position = homePosition;
             currentState = WallMasterState.Hidden;
-            stateTimer = 0f;
-            stateDuration = GetRandomFloat(HIDDEN_TIME_MIN, HIDDEN_TIME_MAX);
-        }
-
-
-        private void ChooseCreepDirection()
-        {
-            // TODO: Replace with direction towards link
-            creepDirection = random.Next(4) switch
-            {
-                0 => new Vector2(0, -1),   // Up
-                1 => new Vector2(0, 1),    // Down
-                2 => new Vector2(-1, 0),   // Left
-                3 => new Vector2(1, 0),    // Right
-                _ => Vector2.UnitX,
-            };
-
-        }
-        
-        private float GetRandomFloat(float min, float max)
-        {
-            return min + (float)random.NextDouble() * (max - min);
         }
     }
 }

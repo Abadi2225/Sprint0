@@ -32,7 +32,7 @@ namespace Sprint.Enemies.Concrete
         private readonly int[] upFrames = [35];      
         private readonly int[] downFrames = [1];   
         private readonly int[] sideFrames = [69, 102];  
-        private readonly int[] bombedUpFrame = [35];
+        private readonly int[] bombedUpFrame = [52];
         private readonly int[] bombedDownFrame = [18];
         private readonly int[] bombedSideFrame = [135];
 
@@ -52,6 +52,7 @@ namespace Sprint.Enemies.Concrete
             spriteHorizontalFlip = false;
             
             sprite = new DirectionalAnimatedSprite(texture, position, downFrames, 58, 16, 16, 0.2f, false);
+            Rect = new Rectangle((int)position.X, (int)position.Y, 16 * (int)GameServices.ScaleFactor, 16 * (int)GameServices.ScaleFactor);
         }
         
         public override void Update(GameTime gameTime)

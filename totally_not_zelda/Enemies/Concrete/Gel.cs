@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Enemies.Base;
 using Sprint.Sprites;
+using Sprint;
 
 namespace Sprint.Enemies.Concrete
 {
@@ -22,8 +23,8 @@ namespace Sprint.Enemies.Concrete
         {
             int[] frameXPositions = [1, 10];
             int frameY = 15;
-            int spriteWidth = 7;
-            int spriteHeight = 8;
+            int spriteWidth = 8;
+            int spriteHeight = 9;
             float frameTime = 0.2f;
 
             sprite = new AnimatedSprite(texture, position, frameXPositions, frameY,
@@ -32,6 +33,7 @@ namespace Sprint.Enemies.Concrete
             random = new Random();
             turnTimer = TURN_INTERVAL;
             velocity = Vector2.Zero;
+            Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
         
 

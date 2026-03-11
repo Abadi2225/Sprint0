@@ -1,17 +1,15 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint.Interfaces;
+using Microsoft.Xna.Framework.Input;
 using Sprint.Character;
-using Sprint;
-using Sprint.Sprites;
+using Sprint.Collision;
 using Sprint.Commands;
+using Sprint.Interfaces;
+using Sprint.Enemies;
+using Sprint.Item;
 using System;
 using System.Collections.Generic;
-using Sprint.Block;
-using Microsoft.Xna.Framework.Input;
-using Sprint.Item;
-using Sprint.Enemies;
+using Sprint.Collisions;
 using Sprint.Levels;
 using Sprint.UI;
 
@@ -34,6 +32,7 @@ class GameplayState : IGameState
     private LevelLoader levelLoader;
     private Level currentLevel;
     private UIManager uiManager;
+    private CollisionManager collisionManager;
 
     public GameplayState()
     {
@@ -56,7 +55,6 @@ class GameplayState : IGameState
             {Keys.R, new SetStateCommand(new StartScreenState())}
         };
 
-        currentLevel = LevelBuilder.Build(levelLoader.Load("test_room"));
     }
 
     public void LoadContent()
@@ -75,10 +73,19 @@ class GameplayState : IGameState
 
         link = new Link(linkSheet, center);
 
+        GameServices.Link = link;
+
         levelLoader = new LevelLoader();
+        // currentLevel = LevelBuilder.Build(levelLoader.Load("test_room"));
+        currentLevel = LevelBuilder.Build(levelLoader.GetCurrentLevel());
 
         enemyManager = new EnemyManager();
         enemyFactory = new EnemyFactory(enemiesSheet, BossesSheet, linkSheet, dustSheet, NPCSheet);
+        collisionManager = new CollisionManager();
+        collisionManager.Add(new LinkEnemyCollision(link, enemyManager));
+        collisionManager.Add(new SwordEnemyCollision(link, enemyManager));
+        collisionManager.Add(new EnemyBlockCollisionHandler(enemyManager.enemyList, currentLevel.Blocks));
+        
 
         // Can make this generated in the enemyFactory if we want to create more enemies
         enemyManager.AddEnemy(enemyFactory.CreateEnemy(EnemyType.Gel, center + new Vector2(100, 0)));
@@ -133,6 +140,8 @@ class GameplayState : IGameState
         items.Update(gameTime);
         enemyManager?.Update(gameTime);
 
+        collisionManager.HandleAll();
+
         if (GameServices.KeyInput.IsKeyDown(Keys.W) || GameServices.KeyInput.IsKeyDown(Keys.Up)) link.SetMove(Directions.Up);
         else if (GameServices.KeyInput.IsKeyDown(Keys.S) || GameServices.KeyInput.IsKeyDown(Keys.Down)) link.SetMove(Directions.Down);
         else if (GameServices.KeyInput.IsKeyDown(Keys.A) || GameServices.KeyInput.IsKeyDown(Keys.Left)) link.SetMove(Directions.Left);
@@ -148,7 +157,15 @@ class GameplayState : IGameState
             }
         }
 
-
+        MouseState mouse = Mouse.GetState();
+        if (mouse.RightButton == ButtonState.Pressed)
+        {
+            currentLevel = LevelBuilder.Build(levelLoader.CycleNext());
+        }
+        if (mouse.LeftButton == ButtonState.Pressed)
+        {
+            currentLevel = LevelBuilder.Build(levelLoader.CyclePrevious());
+        }
     }
 
     public void Draw(SpriteBatch spriteBatch)

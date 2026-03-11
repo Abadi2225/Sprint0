@@ -25,7 +25,7 @@ public class ItemManager
         {
             return;
         }
-        link.StartAttack();
+        link.StartUseItem();
         Vector2 pos = link.Position;
         Directions facing = link.Facing;
         AbstractItem used = Inventory[slot];

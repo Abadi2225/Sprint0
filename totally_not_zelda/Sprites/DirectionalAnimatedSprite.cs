@@ -62,13 +62,20 @@ namespace Sprint.Sprites
 
         private void UpdateRect()
         {
-            rect = new Rectangle(
-                (int)(pos.X - frameWidth / 2),
-                (int)(pos.Y - frameHeight / 2),
-                frameWidth,
-                frameHeight
-            );
-        }
+			//rect = new Rectangle(
+			//    (int)(pos.X - frameWidth / 2),
+			//    (int)(pos.Y - frameHeight / 2),
+			//    frameWidth,
+			//    frameHeight
+			//);
+
+			rect = new Rectangle(
+			   (int)(pos.X) * (int)GameServices.ScaleFactor,
+			   (int)(pos.Y) * (int)GameServices.ScaleFactor,
+			   frameWidth,
+			   frameHeight
+		   );
+		}
 
         public void Update(GameTime gameTime)
         {
@@ -91,7 +98,7 @@ namespace Sprint.Sprites
             );
 
             SpriteEffects effect = flipHorizontal ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Vector2 origin = new Vector2(frameWidth / 2, frameHeight / 2);
+            //Vector2 origin = new Vector2(frameWidth / 2, frameHeight / 2);
             
             spriteBatch.Draw(
                 texture,                    // texture
@@ -99,7 +106,7 @@ namespace Sprint.Sprites
                 sourceRectangle,            // sourceRectangle
                 Color.White,                // color
                 0.0f,                       // rotation
-                origin,                     // origin
+                Vector2.Zero,                     // origin
                 GameServices.ScaleFactor,   // scale
                 effect,                     // effects
                 0.0f                        // layerDepth
