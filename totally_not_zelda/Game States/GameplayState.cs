@@ -67,6 +67,8 @@ class GameplayState : IGameState
 
         link = new Link(linkSheet, center);
 
+        GameServices.Link = link;
+
         levelLoader = new LevelLoader();
         // currentLevel = LevelBuilder.Build(levelLoader.Load("test_room"));
         currentLevel = LevelBuilder.Build(levelLoader.GetCurrentLevel(), enemyFactory);
