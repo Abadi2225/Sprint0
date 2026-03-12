@@ -10,13 +10,13 @@ namespace Sprint.Item;
 
 public class ItemManager
 {
-    private List<AbstractItem> Inventory { get; }
+    private List<IItem> Inventory { get; }
     public int ActiveItem { get; set; }
     private List<AbstractItem> SpawnedItems = new List<AbstractItem>();
 
     public ItemManager()
     {
-        Inventory = new List<AbstractItem>();
+        Inventory = new List<IItem>();
     }
 
     public void UseItem(ILink link, int slot)
@@ -28,7 +28,7 @@ public class ItemManager
         link.StartUseItem();
         Vector2 pos = link.Position;
         Directions facing = link.Facing;
-        AbstractItem used = Inventory[slot];
+        IItem used = Inventory[slot];
         if (used is Boomerang)
         {
             float velocity = 5;
@@ -72,7 +72,7 @@ public class ItemManager
         }
     }
 
-    internal void Add(AbstractItem item)
+    internal void Add(IItem item)
     {
         Inventory.Add(item);
     }
@@ -84,7 +84,8 @@ public class ItemManager
 
     public void Draw(SpriteBatch sb)
     {
-        Inventory[ActiveItem].Draw(sb, Vector2.Zero);
+        if (Inventory.Count > 0)
+            Inventory[ActiveItem].Draw(sb, Vector2.Zero);
         foreach (AbstractItem item in SpawnedItems)
         {
             item.Draw(sb, Vector2.Zero);
@@ -93,7 +94,7 @@ public class ItemManager
 
     public void Update(GameTime time)
     {
-        foreach (AbstractItem item in Inventory)
+        foreach (IItem item in Inventory)
         {
             item.Update(time);
         }
@@ -104,7 +105,7 @@ public class ItemManager
         SpawnedItems.RemoveAll(item => item.IsFinished);
     }
 
-    internal AbstractItem GetActiveItem()
+    internal IItem GetActiveItem()
     {
         return Inventory[ActiveItem];
     }

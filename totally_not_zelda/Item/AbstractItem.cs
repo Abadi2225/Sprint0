@@ -6,30 +6,38 @@ using Sprint.Interfaces;
 
 namespace Sprint.Item;
 
-internal abstract class AbstractItem : ISprite
+internal abstract class AbstractItem : IItem
 {
     protected Texture2D texture;
-    public Vector2 DrawPos { get; set; }
+    private Vector2 position;
+
+    public Vector2 Position
+    {
+        get => position;
+        set
+        {
+            position = value;
+            Rect = new Rectangle((int)value.X, (int)value.Y, Rect.Width, Rect.Height);
+        }
+    }
+
     public string Name { get; }
-    public string DisplayName { get; }
-
-    public ISprite sprite;
-
+    public Rectangle Rect { get; protected set; } = Rectangle.Empty;
+    public virtual bool IsCollected => false;
     public virtual bool IsFinished => false;
 
-    private AbstractItem(string name)
+    protected ISprite sprite;
+
+    public AbstractItem(string name, ContentManager contentManager, string resourceName, Vector2 position)
     {
         Name = name;
-        DrawPos = new Vector2(0f, 0f);
-    }
-
-    public AbstractItem(string name, ContentManager contentManager, string resourceName, Vector2 drawPos) : this(name)
-    {
         texture = contentManager.Load<Texture2D>(resourceName);
-        DrawPos = drawPos;
+        Position = position;
     }
 
-    public virtual void Draw(SpriteBatch sb, Vector2 pos)
+    public virtual void OnCollect(ILink link) { }
+
+    public virtual void Draw(SpriteBatch sb, Vector2 location)
     {
         sprite?.Draw(sb, Vector2.Zero);
     }

@@ -15,7 +15,7 @@ internal class Boomerang : AbstractItem
     {
         sprite = new BoomerangSprite(
                 texture,
-                DrawPos,
+                Position,
                 vel,
                 maxDistance,
                 0.2f

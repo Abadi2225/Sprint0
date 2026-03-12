@@ -9,14 +9,17 @@ namespace Sprint.Item;
 internal class StillItem : AbstractItem
 {
     private const string ResourceName = "items/sheet";
-    public StillItem(string name, ContentManager contentManager, Vector2 drawPos, Rectangle mask, float rotation, float scale) : base(name, contentManager, ResourceName, drawPos)
+    public StillItem(string name, ContentManager contentManager, Vector2 pos, Rectangle mask, float rotation, float scale) : base(name, contentManager, ResourceName, pos)
     {
         sprite = new StillItemSprite(
-                DrawPos,
+                Position,
                 texture,
                 mask,
                 rotation,
                 scale
                 );
+        Rect = new Rectangle((int)Position.X, (int)Position.Y,
+                (int)(mask.Width * scale * GameServices.ScaleFactor),
+                (int)(mask.Height * scale * GameServices.ScaleFactor));
     }
 }

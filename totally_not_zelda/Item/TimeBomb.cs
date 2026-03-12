@@ -11,11 +11,11 @@ internal class TimeBomb : AbstractItem
     private static string ResourceName = "items/sheet";
     private double millisUntilExplode;
 
-    public TimeBomb(double explodeDelayMillis, string name, ContentManager contentManager, Vector2 drawPos, Rectangle mask, float rotation, float scale) : base(name, contentManager, ResourceName, drawPos)
+    public TimeBomb(double explodeDelayMillis, string name, ContentManager contentManager, Vector2 pos, Rectangle mask, float rotation, float scale) : base(name, contentManager, ResourceName, pos)
     {
         this.millisUntilExplode = explodeDelayMillis;
         sprite = new StillItemSprite(
-                DrawPos,
+                Position,
                 texture,
                 mask,
                 rotation,
