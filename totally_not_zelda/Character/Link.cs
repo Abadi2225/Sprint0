@@ -38,6 +38,7 @@ public class Link : ILink
     private Directions direction = Directions.Down;
     private double damagedTimer;
     private int health;
+    private int rubies;
     private bool isAttacking = false;
     private bool isUsingItem = false;
     private bool isDamaged = false;
@@ -79,6 +80,12 @@ public class Link : ILink
             position = value;
             Rect = new Rectangle((int)value.X, (int)value.Y, BODY_SIZE, BODY_SIZE);
         }
+    }
+
+    public int Rubies
+    {
+        get => rubies;
+        private set => rubies = value;
     }
 
     public Link(Texture2D texture, Vector2 position)
@@ -231,6 +238,18 @@ public class Link : ILink
     {
         isUsingItem = false;
         SetIdleSprite();
+    }
+
+    private void GetHealed(int amount)
+    {
+        health = MathHelper.Clamp(health + amount, 0, MAX_HEALTH);
+        Console.WriteLine($"Link healed by {amount}. Current health: {health}");
+    }
+
+    private void IncreaseRubies(int amount)
+    {
+        Rubies += amount;
+        Console.WriteLine($"Link gained {amount} rubies. Total rubies: {Rubies}");
     }
 
     private void SetIdleSprite()

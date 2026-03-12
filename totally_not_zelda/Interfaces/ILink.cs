@@ -14,4 +14,6 @@ public interface ILink
     void StartAttack();
     void StartUseItem();
     void TakeDamage(int amount);
+    void GetHealed(int amount);
+    void IncreaseRubies(int amount);
 }
