@@ -9,7 +9,9 @@ public class LevelLoader
     // todo remove this
     private List<string> levels = new List<string>{
         "test_room",
-        "room2"
+        "room2",
+        "roomwithwater",
+        "roomwithvoid"
     };
     private int currentLevel = 0;
     public LevelData CycleNext()
