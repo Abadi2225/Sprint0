@@ -71,6 +71,8 @@ class GameplayState : IGameState
         dungeonBackground = GameServices.Content.Load<Texture2D>("images/ZeldaDungeonWalls");
         hudElements = GameServices.Content.Load<Texture2D>("images/ZeldaUIElements");
         GameServices.TileSheet = tileSheet;
+        GameServices.ItemSheet = GameServices.Content.Load<Texture2D>("items/sheet");
+        GameServices.BoomerangSheet = GameServices.Content.Load<Texture2D>("items/boomerang");
 
         Vector2 center = new Vector2(GameServices.GameWidth / 2, GameServices.GameHeight / 2);
 

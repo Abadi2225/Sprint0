@@ -9,12 +9,10 @@ namespace Sprint.Item;
 
 internal class Bow : AbstractItem
 {
-    private const string ResourceName = "items/sheet";
-
-    public Bow(string name, ContentManager contentManager, Vector2 drawPos, Rectangle mask, float rotation, float scale) : base(name, contentManager, ResourceName, drawPos)
+    public Bow(string name, Vector2 pos, Rectangle mask, float rotation, float scale) : base(name, GameServices.ItemSheet, pos)
     {
         sprite = new StillItemSprite(
-                DrawPos,
+                Position,
                 texture,
                 mask,
                 rotation,

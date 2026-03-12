@@ -32,7 +32,7 @@ public class ItemManager
         if (used is Boomerang)
         {
             float velocity = 5;
-            float maxDistance = 500;
+            float maxDistance = 160;
             SpawnItem(ItemFactory.CreateBoomerang(
                         pos,
                         DirectionsUtils.CreateVector(facing, velocity),
@@ -42,7 +42,7 @@ public class ItemManager
         else if (used.Name == "Bow")
         {
             float velocity = 5;
-            float maxDistance = 500;
+            float maxDistance = 160;
             float arrowRotation = facing switch
             {
                 Directions.Up => 0f,

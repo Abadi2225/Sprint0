@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Sprint.Interfaces;
@@ -28,10 +27,10 @@ internal abstract class AbstractItem : IItem
 
     protected ISprite sprite;
 
-    public AbstractItem(string name, ContentManager contentManager, string resourceName, Vector2 position)
+    public AbstractItem(string name, Texture2D texture, Vector2 position)
     {
         Name = name;
-        texture = contentManager.Load<Texture2D>(resourceName);
+        this.texture = texture;
         Position = position;
     }
 

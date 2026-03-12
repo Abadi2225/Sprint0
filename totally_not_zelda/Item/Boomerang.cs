@@ -1,6 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 
 using Sprint.Interfaces;
 using Sprint.Sprites;
@@ -9,17 +7,9 @@ namespace Sprint.Item;
 
 internal class Boomerang : AbstractItem
 {
-    private static string ResourceName = "items/boomerang";
-
-    public Boomerang(Vector2 pos, Vector2 vel, float maxDistance, ContentManager contentManager) : base("Boomerang", contentManager, ResourceName, pos)
+    public Boomerang(Vector2 pos, Vector2 vel, float maxDistance) : base("Boomerang", GameServices.BoomerangSheet, pos)
     {
-        sprite = new BoomerangSprite(
-                texture,
-                Position,
-                vel,
-                maxDistance,
-                0.2f
-                );
+        sprite = new BoomerangSprite(texture, Position, vel, maxDistance, 0.2f);
     }
 
     public Boomerang StartMoving()
@@ -30,6 +20,7 @@ internal class Boomerang : AbstractItem
         }
         return this;
     }
+
     public override bool IsFinished => sprite is BoomerangSprite b && !b.IsActive;
 
     public ISprite GetSprite() => sprite;
