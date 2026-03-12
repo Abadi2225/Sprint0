@@ -1,6 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
+using System;
+using Sprint.Block;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Sprint.Enemies.Base
 {
@@ -17,6 +21,8 @@ namespace Sprint.Enemies.Base
         protected bool isInvincible;
         protected float dyingTimer;
         protected const float DYING_DURATION = 0.5f; // For the death animation
+        protected readonly Random random = new Random();
+        protected virtual bool FlipsOnVertical => false;
 
         public Vector2 Position
         {
@@ -103,6 +109,34 @@ namespace Sprint.Enemies.Base
             if (!isAlive) return;
 
             sprite?.Draw(spriteBatch, location);
+        }
+        protected Vector2 ChooseValidStep(List<Sprint.Block.Block> solidBlocks, float stepSize, int minSteps = 1, int maxSteps = 2, int maxAttempts = 4)
+        {
+            for (int attempt = 0; attempt < maxAttempts; attempt++)
+            {
+                int dir = random.Next(4);
+                int numSteps = random.Next(minSteps, maxSteps + 1);
+                float distance = stepSize * numSteps * GameServices.ScaleFactor;
+
+                Vector2 candidate = dir switch
+                {
+                    0 => Position + new Vector2(0, -distance),
+                    1 => Position + new Vector2(0, distance),
+                    2 => Position + new Vector2(-distance, 0),
+                    3 => Position + new Vector2(distance, 0),
+                    _ => Position
+                };
+
+                Rectangle candidateRect = new Rectangle(
+                    (int)candidate.X, (int)candidate.Y, Rect.Width, Rect.Height);
+
+                bool blocked = solidBlocks.Any(b => !b.walkAble && b.Rect.Intersects(candidateRect));
+
+                if (!blocked)
+                    return candidate;
+            }
+
+            return Position;
         }
     }
 }

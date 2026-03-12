@@ -51,13 +51,14 @@ public static class BlockFactory
             TILE_SIZE,
             TILE_SIZE
             );
+            
             bool solid = type switch
-        {
-            BlockType.Blank or 
-            BlockType.Sand or 
-            BlockType.Stairs => false,
-            _ => true  // Square, Statues, Black, Water, Bricks, Ladder all block movement
-        };
+            {
+                BlockType.Blank or 
+                BlockType.Sand or 
+                BlockType.Stairs => false,
+                _ => true  // Square, Statues, Black, Water, Bricks, Ladder all block movement
+            };
         return new Block(GameServices.TileSheet, pos, textureMask, solid);
     }
 }

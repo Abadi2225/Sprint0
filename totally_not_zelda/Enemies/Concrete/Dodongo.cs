@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Enemies.Base;
 using Sprint.Sprites;
+using System.Collections.Generic;
 
 namespace Sprint.Enemies.Concrete
 {
@@ -26,7 +27,6 @@ namespace Sprint.Enemies.Concrete
         private float flipTimer;
         private float bombStunTimer;
         private bool spriteHorizontalFlip;
-        private readonly Random random;
         
         // side sprites are 32px wide, up/down are 16px wide
         private readonly int[] upFrames = [35];      
@@ -35,14 +35,16 @@ namespace Sprint.Enemies.Concrete
         private readonly int[] bombedUpFrame = [52];
         private readonly int[] bombedDownFrame = [18];
         private readonly int[] bombedSideFrame = [135];
+        private List<Sprint.Block.Block> solidBlocks;
+    protected override bool FlipsOnVertical => true;
 
         
         // Walks randomly in all four directions, eats bombs to take damage
         
-        public Dodongo(Texture2D texture, Vector2 position) : base(texture, position, HEALTH, DAMAGE)
+        public Dodongo(Texture2D texture, Vector2 position, List<Sprint.Block.Block> solidBlocks) : base(texture, position, HEALTH, DAMAGE)
         {
             this.texture = texture;
-            random = new Random();
+            this.solidBlocks = solidBlocks;
             
             currentState = DodongoState.Walking;
             currentDirection = Direction.Down;
@@ -130,22 +132,24 @@ namespace Sprint.Enemies.Concrete
         
         private void ChooseNextStep()
         {
-            int numSteps = random.Next(1, 4);
-            float distance = STEP_SIZE * numSteps;
-            currentDirection = (Direction)random.Next(4);
+            Vector2 candidate = ChooseValidStep(solidBlocks, STEP_SIZE, minSteps: 1, maxSteps: 3);
 
-            targetPosition = currentDirection switch
+            if (candidate != Position)
             {
-                Direction.Up => Position + new Vector2(0, -distance),
-                Direction.Down => Position + new Vector2(0, distance),
-                Direction.Left => Position + new Vector2(-distance, 0),
-                Direction.Right => Position + new Vector2(distance, 0),
-                _ => Position
-            };
-            
-            flipTimer = FLIP_INTERVAL;
-            
-            UpdateSprite();
+                currentDirection = GetDirectionTo(candidate);
+                targetPosition = candidate;
+                flipTimer = FLIP_INTERVAL;
+                UpdateSprite();
+            }
+        }
+
+        private Direction GetDirectionTo(Vector2 target)
+        {
+            Vector2 diff = target - Position;
+            if (MathF.Abs(diff.X) > MathF.Abs(diff.Y))
+                return diff.X < 0 ? Direction.Left : Direction.Right;
+            else
+                return diff.Y < 0 ? Direction.Up : Direction.Down;
         }
         
         private void UpdateSprite()
