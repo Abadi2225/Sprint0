@@ -11,10 +11,10 @@ This file is dynamically maintained by a bot, *please do not* edit this by hand.
 
 The *Sprint.csproj* project file contains:
 
-- 17 namespaces.
-- 91 named types.
-- 4,571 total lines of source code.
-- Approximately 1,296 lines of executable code.
+- 18 namespaces.
+- 93 named types.
+- 4,646 total lines of source code.
+- Approximately 1,321 lines of executable code.
 - The highest cyclomatic complexity is 21 :exploding_head:.
 
 <details>
@@ -1979,6 +1979,55 @@ The `Sprint.Enemies` namespace contains 6 named types.
 
 <details>
 <summary>
+  <strong id="sprint-ui-hud">
+    Sprint.UI.Hud :heavy_check_mark:
+  </strong>
+</summary>
+<br>
+
+The `Sprint.UI.Hud` namespace contains 1 named types.
+
+- 1 named types.
+- 64 total lines of source code.
+- Approximately 21 lines of executable code.
+- The highest cyclomatic complexity is 5 :heavy_check_mark:.
+
+<details>
+<summary>
+  <strong id="heartdisplay">
+    HeartDisplay :heavy_check_mark:
+  </strong>
+</summary>
+<br>
+
+- The `HeartDisplay` contains 10 members.
+- 62 total lines of source code.
+- Approximately 21 lines of executable code.
+- The highest cyclomatic complexity is 5 :heavy_check_mark:.
+
+| Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L19' title='HeartDisplay.HeartDisplay(Vector2 origin, int capacity)'>19</a> | 60 | 2 :heavy_check_mark: | 0 | 6 | 30 / 10 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L14' title='int HeartDisplay.capacity'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L50' title='void HeartDisplay.Draw(int hearts, bool halfHeart, int maxHearts, SpriteBatch sb)'>50</a> | 63 | 5 :heavy_check_mark: | 0 | 5 | 18 / 9 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L15' title='List<StillItem> HeartDisplay.emptyHearts'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L17' title='List<StillItem> HeartDisplay.fullHearts'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L10' title='float HeartDisplay.GAP'>10</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L16' title='List<StillItem> HeartDisplay.halfHearts'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L9' title='float HeartDisplay.HEART_WIDTH'>9</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L13' title='Vector2 HeartDisplay.origin'>13</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L11' title='float HeartDisplay.SCALE'>11</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+
+<a href="#HeartDisplay-class-diagram">:link: to `HeartDisplay` class diagram</a>
+
+<a href="#sprint-ui-hud">:top: back to Sprint.UI.Hud</a>
+
+</details>
+
+</details>
+
+<details>
+<summary>
   <strong id="sprint-interfaces">
     Sprint.Interfaces :heavy_check_mark:
   </strong>
@@ -2261,7 +2310,7 @@ The `Sprint.Item` namespace contains 12 named types.
 
 - 12 named types.
 - 582 total lines of source code.
-- Approximately 132 lines of executable code.
+- Approximately 133 lines of executable code.
 - The highest cyclomatic complexity is 19 :exploding_head:.
 
 <details>
@@ -2420,7 +2469,7 @@ The `Sprint.Item` namespace contains 12 named types.
 
 - The `ItemFactory` contains 5 members.
 - 121 total lines of source code.
-- Approximately 12 lines of executable code.
+- Approximately 13 lines of executable code.
 - The highest cyclomatic complexity is 19 :exploding_head:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
@@ -2428,7 +2477,7 @@ The `Sprint.Item` namespace contains 12 named types.
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L30' title='ContentManager ItemFactory.contentManager'>30</a> | 93 | 0 :heavy_check_mark: | 0 | 3 | 1 / 1 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L36' title='Arrow ItemFactory.CreateArrow(Vector2 pos, Vector2 vel, float rotation, float scale = 1, float maxDistance = null)'>36</a> | 72 | 1 :heavy_check_mark: | 0 | 4 | 13 / 3 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L31' title='Boomerang ItemFactory.CreateBoomerang(Vector2 pos, Vector2 vel, float maxDistance)'>31</a> | 91 | 1 :heavy_check_mark: | 0 | 3 | 4 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L64' title='StillItem ItemFactory.CreateStillItem(StillType type, Vector2 pos, float rotation, float scale = null)'>64</a> | 62 | 19 :exploding_head: | 0 | 6 | 63 / 4 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L64' title='StillItem ItemFactory.CreateStillItem(StillType type, Vector2 pos, float rotation = null, float scale = null)'>64</a> | 59 | 19 :exploding_head: | 0 | 6 | 63 / 5 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L50' title='TimeBomb ItemFactory.CreateTimeBomb(double explodeDelayMillis, Vector2 pos, float scale, float rotation = null)'>50</a> | 74 | 1 :heavy_check_mark: | 0 | 4 | 13 / 3 |
 
 <a href="#ItemFactory-class-diagram">:link: to `ItemFactory` class diagram</a>
@@ -3025,11 +3074,11 @@ The `Sprint.Sprites` namespace contains 6 named types.
 </summary>
 <br>
 
-The `Sprint.UI` namespace contains 4 named types.
+The `Sprint.UI` namespace contains 5 named types.
 
-- 4 named types.
-- 105 total lines of source code.
-- Approximately 15 lines of executable code.
+- 5 named types.
+- 116 total lines of source code.
+- Approximately 18 lines of executable code.
 - The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
 <details>
@@ -3067,20 +3116,45 @@ The `Sprint.UI` namespace contains 4 named types.
 </summary>
 <br>
 
-- The `HUDBar` contains 5 members.
-- 20 total lines of source code.
-- Approximately 3 lines of executable code.
+- The `HUDBar` contains 7 members.
+- 30 total lines of source code.
+- Approximately 6 lines of executable code.
 - The highest cyclomatic complexity is 1 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L13' title='HUDBar.HUDBar(Texture2D backgroundTexture)'>13</a> | 81 | 1 :heavy_check_mark: | 0 | 4 | 5 / 2 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L10' title='StaticSprite HUDBar.background'>10</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L19' title='void HUDBar.Draw(SpriteBatch spriteBatch)'>19</a> | 90 | 1 :heavy_check_mark: | 0 | 5 | 4 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L11' title='Rectangle HUDBar.sourceRect'>11</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L24' title='void HUDBar.Update(GameTime gameTime)'>24</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 3 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L23' title='HUDBar.HUDBar(Texture2D backgroundTexture)'>23</a> | 81 | 1 :heavy_check_mark: | 0 | 4 | 5 / 2 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L18' title='StaticSprite HUDBar.background'>18</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L29' title='void HUDBar.Draw(SpriteBatch spriteBatch)'>29</a> | 81 | 1 :heavy_check_mark: | 0 | 6 | 6 / 2 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L21' title='HeartDisplay HUDBar.hearts'>21</a> | 86 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L19' title='Rectangle HUDBar.sourceRect'>19</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L17' title='State HUDBar.state'>17</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L36' title='void HUDBar.Update(GameTime gameTime)'>36</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 3 / 0 |
 
 <a href="#HUDBar-class-diagram">:link: to `HUDBar` class diagram</a>
+
+<a href="#sprint-ui">:top: back to Sprint.UI</a>
+
+</details>
+
+<details>
+<summary>
+  <strong id="hudbar-state">
+    HUDBar.State :heavy_check_mark:
+  </strong>
+</summary>
+<br>
+
+- The `HUDBar.State` contains 1 members.
+- 4 total lines of source code.
+- Approximately 0 lines of executable code.
+- The highest cyclomatic complexity is 0 :heavy_check_mark:.
+
+| Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L14' title='State.UNFOCUSED'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+
+<a href="#HUDBar.State-class-diagram">:link: to `HUDBar.State` class diagram</a>
 
 <a href="#sprint-ui">:top: back to Sprint.UI</a>
 
@@ -4340,6 +4414,27 @@ class ProjectileType{
 
 ```
 
+<div id="HeartDisplay-class-diagram"></div>
+
+##### `HeartDisplay` class diagram
+
+```mermaid
+classDiagram
+class HeartDisplay{
+    -float HEART_WIDTH$
+    -float GAP$
+    -float SCALE$
+    -Vector2 origin
+    -int capacity
+    -List<StillItem> emptyHearts
+    -List<StillItem> halfHearts
+    -List<StillItem> fullHearts
+    +.ctor(Vector2 origin, int capacity) HeartDisplay
+    +Draw(int hearts, bool halfHeart, int maxHearts, SpriteBatch sb) void
+}
+
+```
+
 <div id="ICollisionHandler-class-diagram"></div>
 
 ##### `ICollisionHandler` class diagram
@@ -4591,7 +4686,7 @@ class ItemFactory{
     +CreateBoomerang(Vector2 pos, Vector2 vel, float maxDistance)$ Boomerang
     +CreateArrow(Vector2 pos, Vector2 vel, float rotation, float scale = 1, float maxDistance = null)$ Arrow
     +CreateTimeBomb(double explodeDelayMillis, Vector2 pos, float scale, float rotation = null)$ TimeBomb
-    +CreateStillItem(StillType type, Vector2 pos, float rotation, float scale = null)$ StillItem
+    +CreateStillItem(StillType type, Vector2 pos, float rotation = null, float scale = null)$ StillItem
 }
 
 ```
@@ -4975,11 +5070,25 @@ class DungeonWalls{
 classDiagram
 IUIElement <|-- HUDBar : implements
 class HUDBar{
+    -State state
     -StaticSprite background
     -Rectangle sourceRect
+    -HeartDisplay hearts
     +.ctor(Texture2D backgroundTexture) HUDBar
     +Draw(SpriteBatch spriteBatch) void
     +Update(GameTime gameTime) void
+}
+
+```
+
+<div id="HUDBar.State-class-diagram"></div>
+
+##### `HUDBar.State` class diagram
+
+```mermaid
+classDiagram
+class State{
+    -UNFOCUSED$
 }
 
 ```
