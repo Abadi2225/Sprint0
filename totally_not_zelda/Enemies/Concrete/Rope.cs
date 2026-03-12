@@ -16,7 +16,6 @@ namespace Sprint.Enemies.Concrete
         private const float DIRECTION_CHANGE_MAX = 3f;
         private const float CHARGE_DURATION = 3f;
 
-        private readonly Random random;
         private Vector2 moveDirection;
         private bool isCharging;
         private float chargeTimer;
@@ -36,7 +35,6 @@ namespace Sprint.Enemies.Concrete
             sprite = new DirectionalAnimatedSprite(texture, position, frameXPositions, frameY, 
                                         spriteWidth, spriteHeight, frameTime, false);
             
-            random = new Random();
             isCharging = false;
             chargeTimer = 0f;
             directionChangeDuration = GetRandomFloat(DIRECTION_CHANGE_MIN, DIRECTION_CHANGE_MAX);

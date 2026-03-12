@@ -14,7 +14,6 @@ namespace Sprint.Enemies.Concrete
         private Vector2 velocity;
         private float directionChangeTimer;
         private const float DIRECTION_CHANGE_INTERVAL = 2.0f;
-        private readonly Random random;
         private Rectangle sourceRect;
         private bool isFlipped;
         private float flipTimer;
@@ -29,7 +28,6 @@ namespace Sprint.Enemies.Concrete
             
             sourceRect = new Rectangle(frameX, frameY, spriteWidth, spriteHeight);
             
-            random = new Random();
             velocity = GetRandomCardinalDirection();
             directionChangeTimer = DIRECTION_CHANGE_INTERVAL;
             isFlipped = false;

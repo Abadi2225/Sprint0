@@ -18,7 +18,6 @@ namespace Sprint.Enemies.Concrete
         private float directionChangeTimer;
         private const float DIRECTION_SWAP_MIN = 0.5f;
         private const float DIRECTION_SWAP_MAX = 2.0f;
-        private readonly Random random = new();
         private float moveDirectionTimer;
         private bool moveLeft;
 
