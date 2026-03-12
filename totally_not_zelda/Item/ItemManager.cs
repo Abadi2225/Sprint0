@@ -12,7 +12,7 @@ public class ItemManager
 {
     private List<IItem> Inventory { get; }
     public int ActiveItem { get; set; }
-    private List<AbstractItem> SpawnedItems = new List<AbstractItem>();
+    private List<AbstractItem> spawnedItems = new List<AbstractItem>();
 
     public ItemManager()
     {
@@ -66,8 +66,7 @@ public class ItemManager
             SpawnItem(ItemFactory.CreateTimeBomb(
                         explodeDelayMillis,
                         Vector2.Add(pos, DirectionsUtils.CreateVector(facing, reach)),
-                        scale: 2f,
-                        rotation: 0f
+                        scale: 2f
                         ));
         }
     }
@@ -79,14 +78,14 @@ public class ItemManager
 
     internal void SpawnItem(AbstractItem item)
     {
-        SpawnedItems.Add(item);
+        spawnedItems.Add(item);
     }
 
     public void Draw(SpriteBatch sb)
     {
         if (Inventory.Count > 0)
             Inventory[ActiveItem].Draw(sb, Vector2.Zero);
-        foreach (AbstractItem item in SpawnedItems)
+        foreach (AbstractItem item in spawnedItems)
         {
             item.Draw(sb, Vector2.Zero);
         }
@@ -98,11 +97,11 @@ public class ItemManager
         {
             item.Update(time);
         }
-        foreach (AbstractItem item in SpawnedItems)
+        foreach (AbstractItem item in spawnedItems)
         {
             item.Update(time);
         }
-        SpawnedItems.RemoveAll(item => item.IsFinished);
+        spawnedItems.RemoveAll(item => item.IsFinished);
     }
 
     internal IItem GetActiveItem()

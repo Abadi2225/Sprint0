@@ -34,7 +34,7 @@ internal class ItemFactory
     public static Arrow CreateArrow(Vector2 pos, Vector2 vel, float rotation, float scale = 1f, float maxDistance = 600)
     {
         return new Arrow(
-                texMask: new Rectangle(154, 0, 5, 16),
+                sourceRect: new Rectangle(154, 0, 5, 16),
                 pos,
                 vel,
                 maxDistance,
@@ -44,15 +44,15 @@ internal class ItemFactory
                 );
     }
 
-    public static TimeBomb CreateTimeBomb(double explodeDelayMillis, Vector2 pos, float scale, float rotation = 0)
+    public static TimeBomb CreateTimeBomb(double explodeDelayMillis, Vector2 pos, float scale)
     {
-        Rectangle mask = new Rectangle(136, 0, 8, 14);
-        return new TimeBomb(explodeDelayMillis, "TimeBomb", pos, mask, rotation, scale);
+        Rectangle sourceRect = new Rectangle(136, 0, 8, 14);
+        return new TimeBomb(explodeDelayMillis, "TimeBomb", pos, sourceRect, scale);
     }
 
-    public static StillItem CreateStillItem(StillType type, Vector2 pos, float rotation, float scale = 1)
+    public static StillItem CreateStillItem(StillType type, Vector2 pos, float scale = 1)
     {
-        Rectangle mask = type switch
+        Rectangle sourceRect = type switch
         {
             StillType.Heart          => new Rectangle(0, 0, 7, 8),
             StillType.BlueHeart      => new Rectangle(0, 8, 7, 8),
@@ -74,6 +74,6 @@ internal class ItemFactory
             StillType.PurpleTriforce => new Rectangle(275, 19, 10, 10),
             _                        => new Rectangle(0, 0, 0, 0),
         };
-        return new StillItem(type.ToString(), GameServices.ItemSheet, pos, mask, rotation, scale);
+        return new StillItem(type.ToString(), GameServices.ItemSheet, pos, sourceRect, scale);
     }
 }

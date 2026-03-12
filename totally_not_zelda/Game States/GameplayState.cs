@@ -107,19 +107,18 @@ class GameplayState : IGameState
         items.Add(ItemFactory.CreateStillItem(          // slot 1 - D2
                     ItemFactory.StillType.Bow,
                     new Vector2(50, 50),
-                    0, 2
+                    2
                     ));
         items.Add(ItemFactory.CreateStillItem(          // slot 2 - D3
                     ItemFactory.StillType.Bomb,
                     new Vector2(50, 50),
-                    0, 2
+                    2
                     ));
         foreach (ItemFactory.StillType type in Enum.GetValues<ItemFactory.StillType>())
         {
             items.Add(ItemFactory.CreateStillItem(
                         type,
                         new Vector2(50, 50),
-                        0,
                         2
                         ));
         }

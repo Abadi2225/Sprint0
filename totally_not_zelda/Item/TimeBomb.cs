@@ -1,15 +1,17 @@
 using Microsoft.Xna.Framework;
 
+using Sprint.Sprites;
+
 namespace Sprint.Item;
 
 internal class TimeBomb : AbstractItem
 {
     private double millisUntilExplode;
 
-    public TimeBomb(double explodeDelayMillis, string name, Vector2 pos, Rectangle mask, float rotation, float scale) : base(name, GameServices.ItemSheet, pos)
+    public TimeBomb(double explodeDelayMillis, string name, Vector2 pos, Rectangle sourceRect, float scale) : base(name, GameServices.ItemSheet, pos)
     {
         millisUntilExplode = explodeDelayMillis;
-        sprite = new StillItemSprite(Position, texture, mask, rotation, scale);
+        sprite = new StaticSprite(texture, Position, sourceRect, scale);
     }
 
     public override void Update(GameTime time)

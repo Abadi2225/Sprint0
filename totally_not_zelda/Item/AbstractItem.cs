@@ -38,7 +38,7 @@ internal abstract class AbstractItem : IItem
 
     public virtual void Draw(SpriteBatch sb, Vector2 location)
     {
-        sprite?.Draw(sb, Vector2.Zero);
+        sprite?.Draw(sb, position);
     }
 
     public virtual void Update(GameTime time)
