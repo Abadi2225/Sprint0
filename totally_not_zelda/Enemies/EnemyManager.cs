@@ -50,12 +50,14 @@ namespace Sprint.Enemies
         
         public void Update(GameTime gameTime)
         {
-            currentEnemy?.Update(gameTime);
+            foreach (var enemy in enemies)
+                enemy.Update(gameTime);
         }
         
         public void Draw(SpriteBatch spriteBatch)
         {
-            currentEnemy?.Draw(spriteBatch, currentEnemy.Position);
+            foreach (var enemy in enemies)
+                enemy.Draw(spriteBatch, enemy.Position);
         }
         
         public void Reset()
