@@ -171,6 +171,40 @@ public class Link : ILink
         }
     }
 
+    // TODO: Add item collision. When Link collides with a "special" item,
+    // call PlayPickupAnimation() before adding the item to inventory.
+    public void PlayPickupAnimation()
+    {
+        if (isUsingItem || isAttacking || isDamaged)
+            return;
+
+        isUsingItem = true;
+        move = Vector2.Zero;
+
+        switch (direction)
+        {
+            case Directions.Up:
+                UseItemUp.Reset();
+                sprite = UseItemUp;
+                break;
+
+            case Directions.Down:
+                UseItemDown.Reset();
+                sprite = UseItemDown;
+                break;
+
+            case Directions.Left:
+                UseItemLeft.Reset();
+                sprite = UseItemLeft;
+                break;
+
+            case Directions.Right:
+                UseItemRight.Reset();
+                sprite = UseItemRight;
+                break;
+        }
+    }
+
     public void SetMove(Directions dir)
     {
         if (isAttacking || isUsingItem) return;
