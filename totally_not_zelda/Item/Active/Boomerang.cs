@@ -12,6 +12,7 @@ public class Boomerang : AbstractItem
     public Boomerang(Vector2 pos, Vector2 vel, float maxDistance) : base("Boomerang", GameServices.BoomerangSheet, pos)
     {
         sprite = new BoomerangSprite(texture, Position, vel, maxDistance, 0.2f);
+        SourceRect = new Rectangle(129, 3, 4, 7);
         Rect = new Rectangle((int)pos.X, (int)pos.Y, HITBOX_SIZE, HITBOX_SIZE);
     }
 

@@ -60,10 +60,15 @@ internal static class LinkFactory
 		return new UseItem(texture, SpriteEffects.None, frames, 0.4, 0.4, onFinished);
 	}
 
-	public static UseItem PickUpItem(Texture2D texture, System.Action onFinished)
+	public static PickUpItem PickUpWeapon(Texture2D texture, System.Action onFinished)
 	{
-		UseItem.Frame[] frames = [new UseItem.Frame(new Rectangle(213, 11, 16, 16)), new UseItem.Frame(new Rectangle(230, 11, 16, 16))];
-		return new UseItem(texture, SpriteEffects.None, frames, 0.4, 1.0, onFinished);
+		PickUpItem.Frame[] frames = [new PickUpItem.Frame(new Rectangle(213, 11, 16, 16))];
+		return new PickUpItem(texture, SpriteEffects.None, frames, 3.0, 3.0, onFinished);
+	}
+	public static PickUpItem PickUpTriforce(Texture2D texture, System.Action onFinished)
+	{
+		PickUpItem.Frame[] frames = [new PickUpItem.Frame(new Rectangle(230, 11, 16, 16))];
+		return new PickUpItem(texture, SpriteEffects.None, frames, 3.0, 3.0, onFinished);
 	}
 
 	public static Attacking AttackDown(Texture2D texture, System.Action onFinished)
