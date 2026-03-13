@@ -27,7 +27,6 @@ class GameplayState : IGameState
     private Link link;
     private Dictionary<Keys, ICommand> pressedKeys;
     private ItemManager items;
-    private EnemyManager enemyManager;
     private EnemyFactory enemyFactory;
     private LevelLoader levelLoader;
     private Level currentLevel;
@@ -49,8 +48,8 @@ class GameplayState : IGameState
         pressedKeys = new Dictionary<Keys, ICommand>
         {
             {Keys.Q, new QuitCommand()},
-            {Keys.O, new CycleEnemyCommand(enemyManager, true)},
-            {Keys.P, new CycleEnemyCommand(enemyManager, false)},
+        //    {Keys.O, new CycleEnemyCommand(enemyManager, true)},
+        //    {Keys.P, new CycleEnemyCommand(enemyManager, false)}, //commented out since cycling enemies is obsolete
             {Keys.I, new CycleItemCommand(items, true)},
             {Keys.U, new CycleItemCommand(items, false)},
             {Keys.D1, new UseItemCommand(items, link, 0)},
@@ -131,7 +130,6 @@ class GameplayState : IGameState
         currentLevel.Update(gameTime);
         link.Update(gameTime);
         items.Update(gameTime);
-        enemyManager?.Update(gameTime);
 
         collisionManager.HandleAll();
 

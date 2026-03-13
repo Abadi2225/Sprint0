@@ -12,8 +12,8 @@ public class LevelBuilder
     {
         BlockManager blockManager = new BlockManager();
         float hudHeight = 48 * GameServices.ScaleFactor;
-        float wallBorderX = 31 * GameServices.ScaleFactor;
-        float wallBorderY = 31 * GameServices.ScaleFactor;
+        float wallBorderX = 34 * GameServices.ScaleFactor;
+        float wallBorderY = 34 * GameServices.ScaleFactor;
 
         for (int i = 0; i < data.height * data.width; i++)
         {
