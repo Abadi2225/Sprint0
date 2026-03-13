@@ -18,10 +18,9 @@ public class Game1 : Game, IGameActions
 
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
+	// private IController mouse;
 
-    // private IController mouse;
-
-    private IGameState currentState;
+	private IGameState currentState;
 
     public Game1()
     {
@@ -55,7 +54,8 @@ public class Game1 : Game, IGameActions
         spriteBatch = new SpriteBatch(GraphicsDevice);
 
         currentState.LoadContent();
-    }
+
+	}
 
     protected override void Update(GameTime gameTime)
     {
@@ -90,6 +90,7 @@ public class Game1 : Game, IGameActions
         currentState = newState;
         currentState.LoadContent();
         currentState.Enter();
+        GameServices.KeyInput.Reset(); // flush key state
     }
 
     public void Quit()

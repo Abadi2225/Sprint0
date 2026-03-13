@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint.Enemies.Concrete;
 using Sprint.Interfaces;
 using System.Collections.Generic;
 
@@ -50,12 +51,35 @@ namespace Sprint.Enemies
         
         public void Update(GameTime gameTime)
         {
-            currentEnemy?.Update(gameTime);
+            foreach (var enemy in enemies)
+                enemy.Update(gameTime);
         }
         
         public void Draw(SpriteBatch spriteBatch)
         {
-            currentEnemy?.Draw(spriteBatch, currentEnemy.Position);
+            foreach (var enemy in enemies)
+            {
+                if (enemy is WallMaster wallMaster && wallMaster.IsEntering) continue;
+                if (enemy is Keese) continue; // drawn separately on top
+                enemy.Draw(spriteBatch, enemy.Position);
+            }
+        }
+
+        public void DrawOnTop(SpriteBatch spriteBatch)
+        {
+            foreach (var enemy in enemies)
+            {
+                if (enemy is Keese keese)
+                    keese.Draw(spriteBatch, keese.Position);
+            }
+        }
+        public void DrawBehindBlocks(SpriteBatch spriteBatch)
+        {
+            foreach (var enemy in enemies)
+            {
+                if (enemy is WallMaster wallMaster && wallMaster.IsEntering)
+                    wallMaster.Draw(spriteBatch, wallMaster.Position);
+            }
         }
         
         public void Reset()

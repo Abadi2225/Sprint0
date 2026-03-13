@@ -51,13 +51,20 @@ public static class BlockFactory
             TILE_SIZE,
             TILE_SIZE
             );
-            bool solid = type switch
+
+            bool walkable = type switch
         {
             BlockType.Blank or 
             BlockType.Sand or 
-            BlockType.Stairs => false,
-            _ => true  // Square, Statues, Black, Water, Bricks, Ladder all block movement
+            BlockType.Stairs => true,
+            _ => false  // Square, Statues, Black, Water, Bricks, Ladder all block movement
         };
-        return new Block(GameServices.TileSheet, pos, textureMask, solid);
+
+
+		bool pushable = type switch
+		{
+			_ => false  // For now, no blocks are pushable by default. This can be updated in the future if needed.
+		};
+		return new Block(GameServices.TileSheet, pos, textureMask, walkable, pushable);
     }
 }

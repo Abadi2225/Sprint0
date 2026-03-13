@@ -1,10 +1,12 @@
 using System;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Sprint.Enemies.Base;
 using Sprint.Sprites;
 using Sprint.Item;
+using System.Collections.Generic;
 
 namespace Sprint.Enemies.Concrete
 {
@@ -19,17 +21,17 @@ namespace Sprint.Enemies.Concrete
         private const float MOVE_SPEED = 100f;  // Speed of actual movement
         private const float THROW_COOLDOWN_MIN = 2.0f;
         private const float THROW_COOLDOWN_MAX = 4.0f;
+        private List<Sprint.Block.Block> solidBlocks;
 
         private enum Direction { Up, Down, Left, Right }
 
         private Direction currentDirection;
         private Vector2 targetPosition;
         private float stepTimer;
-        private float flipTimer;
         private float throwTimer;
         private bool spriteHorizontalFlip;
+        private float flipTimer;
         const float FLIP_INTERVAL = 0.075f; //Time between flips for up/down walk
-        private readonly Random random;
         private Boomerang activeBoomerang;
         public Boomerang ActiveBoomerang => activeBoomerang;
         private readonly ContentManager contentManager;
@@ -39,17 +41,18 @@ namespace Sprint.Enemies.Concrete
         private readonly int[] downFrames = [222];
         private readonly int[] sideFrames = [256, 273];
         private readonly int[] throwFrame = [273];
+        protected override bool FlipsOnVertical => true;
 
 
         // Attacks with boomerangs
         // Drops a heart, one rupee, four bombs, or a clock
         // Moves slowly in random directions, one step at a time
 
-        public Goriya(Texture2D texture, Vector2 position, ContentManager content) : base(texture, position, HEALTH, DAMAGE)
+        public Goriya(Texture2D texture, Vector2 position, ContentManager content, List<Sprint.Block.Block> solidBlocks) : base(texture, position, HEALTH, DAMAGE)
         {
             this.texture = texture;
             this.contentManager = content;
-            random = new Random();
+            this.solidBlocks = solidBlocks;
             int sheetY = 11;
             int spriteWidth = 16;
             int spriteHeight = 16;
@@ -118,7 +121,7 @@ namespace Sprint.Enemies.Concrete
                 direction.Normalize();
                 Position += direction * MOVE_SPEED * deltaTime;
 
-                if (currentDirection == Direction.Up || currentDirection == Direction.Down)
+                if (FlipsOnVertical && (currentDirection == Direction.Up || currentDirection == Direction.Down))
                 {
                     flipTimer -= deltaTime;
                     if (flipTimer <= 0)
@@ -196,25 +199,24 @@ namespace Sprint.Enemies.Concrete
 
         private void ChooseNextStep()
         {
-            // Pick random direction and distance
-            int numSteps = random.Next(1, 3);
-            float distance = STEP_SIZE * numSteps;
-            currentDirection = (Direction)random.Next(4);
-
-            // Calculate new target position
-            targetPosition = currentDirection switch
+            Vector2 candidate = ChooseValidStep(solidBlocks, STEP_SIZE);
+            
+            if (candidate != Position)
             {
-                Direction.Up => Position + new Vector2(0, -distance),
-                Direction.Down => Position + new Vector2(0, distance),
-                Direction.Left => Position + new Vector2(-distance, 0),
-                Direction.Right => Position + new Vector2(distance, 0),
-                _ => Position
-            };
+                currentDirection = GetDirectionTo(candidate);
+                targetPosition = candidate;
+                flipTimer = FLIP_INTERVAL;
+                UpdateSprite();
+            }
+        }
 
-            flipTimer = FLIP_INTERVAL;
-
-            // Update sprite based on direction
-            UpdateSprite();
+        private Direction GetDirectionTo(Vector2 target)
+        {
+            Vector2 diff = target - Position;
+            if (MathF.Abs(diff.X) > MathF.Abs(diff.Y))
+                return diff.X < 0 ? Direction.Left : Direction.Right;
+            else
+                return diff.Y < 0 ? Direction.Up : Direction.Down;
         }
 
         private void UpdateSprite()

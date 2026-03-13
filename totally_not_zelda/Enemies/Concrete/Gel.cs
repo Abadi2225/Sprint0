@@ -17,7 +17,6 @@ namespace Sprint.Enemies.Concrete
         private const float TURN_SPEED = 30f;
         private const float TURN_INTERVAL = 1f;
         private const float MOVE_SPEED = 0.7f;
-        private readonly Random random;
 
         public Gel(Texture2D texture, Vector2 position) : base(texture, position, HEALTH, DAMAGE)
         {
@@ -30,7 +29,6 @@ namespace Sprint.Enemies.Concrete
             sprite = new AnimatedSprite(texture, position, frameXPositions, frameY,
                                         spriteWidth, spriteHeight, frameTime);
 
-            random = new Random();
             turnTimer = TURN_INTERVAL;
             velocity = Vector2.Zero;
             Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);

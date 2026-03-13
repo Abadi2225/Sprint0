@@ -17,7 +17,6 @@ namespace Sprint.Enemies.Concrete
         private Vector2 velocity;
         private float bounceTimer;
         private bool isOnGround;
-        private readonly Random random;
         
         public Zol(Texture2D texture, Vector2 position) : base(texture, position, ZOL_HEALTH, ZOL_DAMAGE)
         {
@@ -30,7 +29,6 @@ namespace Sprint.Enemies.Concrete
             sprite = new AnimatedSprite(texture, position, frameXPositions, frameY, 
                                         spriteWidth, spriteHeight, frameTime);
             
-            random = new Random();
             isOnGround = true;
             bounceTimer = BOUNCE_INTERVAL;
             velocity = Vector2.Zero;

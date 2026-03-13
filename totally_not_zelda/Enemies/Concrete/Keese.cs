@@ -16,7 +16,6 @@ namespace Sprint.Enemies.Concrete
         private const float REST_TIME_MAX = 2.0f;
         private const float MOVE_TIME_MIN = 1.0f;
         private const float MOVE_TIME_MAX = 3.0f;
-        private readonly Random random;
         private Vector2 moveDirection;
         private float actionTimer;
         private float actionDuration;
@@ -42,8 +41,7 @@ namespace Sprint.Enemies.Concrete
         
             restingSprite = new AnimatedSprite(texture, position, restingXPositions, sheetY, 
                                         spriteWidth, spriteHeight, frameTime);
-
-            random = new Random();
+                                        
             isResting = true;
             actionTimer = 0f;
             actionDuration = GetRandomFloat(REST_TIME_MIN, REST_TIME_MAX);

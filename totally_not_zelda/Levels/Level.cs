@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Block;
 using Sprint.Enemies.Base;
+using Sprint.Enemies.Concrete;
 using Sprint.Enemies;
 using Sprint.Item;
 using System.Collections.Generic;
@@ -29,8 +30,13 @@ public class Level
     public void Draw(SpriteBatch spriteBatch)
     {
         Blocks.Draw(spriteBatch);
+        Enemies.DrawBehindBlocks(spriteBatch);
         Enemies.Draw(spriteBatch);
         foreach (AbstractItem item in WorldItems)
             item.Draw(spriteBatch, item.Position);
+    }
+    public void DrawOnTop(SpriteBatch spriteBatch)
+    {
+        Enemies.DrawOnTop(spriteBatch);
     }
 }
