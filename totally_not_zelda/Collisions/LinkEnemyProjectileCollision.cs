@@ -23,7 +23,8 @@ internal class LinkEnemyProjectileCollision : ICollisionHandler
     {
         foreach (var enemy in enemyManager.enemyList)
         {
-            if (enemy is Aquamentus aquamentus)
+            IEnemy inner = enemy is EnemyEffectWrapper ew ? ew.InnerEnemy : enemy;
+            if (inner is Aquamentus aquamentus)
             {
                 foreach (var fireball in aquamentus.ActiveFireballs)
                 {
@@ -32,7 +33,7 @@ internal class LinkEnemyProjectileCollision : ICollisionHandler
                         link.TakeDamage(PROJECTILE_DAMAGE);
                 }
             }
-            else if (enemy is Goriya goriya)
+            else if (inner is Goriya goriya)
             {
                 Boomerang boomerang = goriya.ActiveBoomerang;
                 if (boomerang != null && boomerang.Rect.Intersects(link.Rect))
