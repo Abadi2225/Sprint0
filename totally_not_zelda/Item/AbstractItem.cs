@@ -22,6 +22,7 @@ public abstract class AbstractItem : IItem
 
     public string Name { get; }
     public Rectangle Rect { get; protected set; } = Rectangle.Empty;
+    public Rectangle SourceRect { get; protected set; }
     public virtual bool IsCollected => false;
     public virtual bool IsFinished => false;
 

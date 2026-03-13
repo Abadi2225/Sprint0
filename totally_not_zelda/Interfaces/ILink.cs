@@ -13,7 +13,8 @@ public interface ILink
     Rectangle SwordRect { get; }
     void StartAttack();
     void StartUseItem();
-    void PlayPickupAnimation();
+    void StartPickUpWeapon(Rectangle itemRect);
+    void StartPickUpTriforce();
     void TakeDamage(int amount);
     void GetHealed(int amount);
     void IncreaseRubies(int amount);

@@ -50,13 +50,16 @@ internal class LinkItemCollision : ICollisionHandler
         // All other items go into the inventory
         inventory.Add(item);
 
-        // Special items also trigger the pickup animation
-        if (item is Boomerang
-            || item.Name == "Bow"
-            || item.Name == "GoldTriforce"
-            || item.Name == "PurpleTriforce")
+        // Weapon items trigger the weapon pickup animation
+        if (item is Boomerang || item.Name == "Bow")
         {
-            link.PlayPickupAnimation();
+            link.StartPickUpWeapon(item.SourceRect);
+        }
+
+        // Triforce items trigger the triforce pickup animation
+        if (item.Name == "GoldTriforce" || item.Name == "PurpleTriforce")
+        {
+            link.StartPickUpTriforce();
         }
     }
 }
