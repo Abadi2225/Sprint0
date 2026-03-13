@@ -2,8 +2,6 @@
 using Sprint.Interfaces;
 using Sprint.Block;
 using System.Collections.Generic;
-using Sprint.Enemies.Concrete;
-using Sprint.Enemies;
 
 namespace Sprint.Collisions
 {
@@ -23,15 +21,6 @@ namespace Sprint.Collisions
             foreach (var enemy in enemies)
             {
                 if (!enemy.IsAlive) continue;
-
-                // Unwrap to get the actual enemy type
-                var actualEnemy = enemy is EnemyEffectWrapper wrapper 
-                    ? wrapper.InnerEnemy 
-                    : enemy;
-                    
-                if (actualEnemy is Keese) continue;
-                if (enemy is EnemyEffectWrapper w && w.IsSpawningPublic) continue;
-
                 foreach (var block in blockManager.blocksList)
                 {
                     if (block.walkAble) continue;

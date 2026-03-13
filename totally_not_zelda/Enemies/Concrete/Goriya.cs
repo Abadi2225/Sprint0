@@ -28,11 +28,12 @@ namespace Sprint.Enemies.Concrete
         private Direction currentDirection;
         private Vector2 targetPosition;
         private float stepTimer;
-        private float flipTimer;
         private float throwTimer;
         private bool spriteHorizontalFlip;
+        private float flipTimer;
         const float FLIP_INTERVAL = 0.075f; //Time between flips for up/down walk
         private Boomerang activeBoomerang;
+        public Boomerang ActiveBoomerang => activeBoomerang;
         private readonly ContentManager contentManager;
 
         // Sprite positions for each direction

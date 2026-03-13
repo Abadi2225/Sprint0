@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
@@ -8,7 +9,7 @@ public class Link : ILink
 {
     private const float SPEED = 80f;
     private const int BODY_SIZE = 48;
-    private const double DAMAGED_DURATION = 0.5;
+    private const double DAMAGED_DURATION = 3;
     private const double BLINK_INTERVAL = 0.10;
     private const int MAX_HEALTH = 6;
 
@@ -31,6 +32,7 @@ public class Link : ILink
     private readonly UseItem UseItemDown;
     private readonly UseItem UseItemLeft;
     private readonly UseItem UseItemRight;
+    private readonly UseItem PickUpItem;
 
     private ISprite sprite;
     private Vector2 position;
@@ -38,6 +40,7 @@ public class Link : ILink
     private Directions direction = Directions.Down;
     private double damagedTimer;
     private int health;
+    private int rubies;
     private bool isAttacking = false;
     private bool isUsingItem = false;
     private bool isDamaged = false;
@@ -81,6 +84,12 @@ public class Link : ILink
         }
     }
 
+    public int Rubies
+    {
+        get => rubies;
+        private set => rubies = value;
+    }
+
     public Link(Texture2D texture, Vector2 position)
     {
         IdleDown  = LinkFactory.IdleDown(texture);
@@ -102,6 +111,8 @@ public class Link : ILink
         UseItemUp    = LinkFactory.UseItemUp(texture, FinishUseItem);
         UseItemLeft  = LinkFactory.UseItemLeft(texture, FinishUseItem);
         UseItemRight = LinkFactory.UseItemRight(texture, FinishUseItem);
+
+        PickUpItem = LinkFactory.PickUpItem(texture, FinishUseItem);
 
         sprite = IdleDown;
         Position = position;
@@ -162,6 +173,18 @@ public class Link : ILink
             case Directions.Left:  UseItemLeft.Reset();  sprite = UseItemLeft;  break;
             case Directions.Right: UseItemRight.Reset(); sprite = UseItemRight; break;
         }
+    }
+
+    public void PlayPickupAnimation()
+    {
+        if (isUsingItem || isAttacking || isDamaged)
+            return;
+
+        isUsingItem = true;
+        move = Vector2.Zero;
+
+        PickUpItem.Reset();
+        sprite = PickUpItem;
     }
 
     public void SetMove(Directions dir)
@@ -231,6 +254,18 @@ public class Link : ILink
     {
         isUsingItem = false;
         SetIdleSprite();
+    }
+
+    public void GetHealed(int amount)
+    {
+        health = MathHelper.Clamp(health + amount, 0, MAX_HEALTH);
+        Console.WriteLine($"Link healed by {amount}. Current health: {health}");
+    }
+
+    public void IncreaseRubies(int amount)
+    {
+        Rubies += amount;
+        Console.WriteLine($"Link picked up {amount} rubies. Current rubies: {Rubies}");
     }
 
     private void SetIdleSprite()

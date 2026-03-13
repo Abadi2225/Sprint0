@@ -1,16 +1,16 @@
 using System;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Sprint.Interfaces;
 
-namespace Sprint.Item;
+namespace Sprint.Sprites;
 
 internal class BoomerangSprite : ISprite
 {
-    public Vector2 Pos;
+    private Vector2 pos;
+    public Vector2 Position => pos;
     private Texture2D texture;
     private Vector2 velocity;
     private float scale;
@@ -25,7 +25,7 @@ internal class BoomerangSprite : ISprite
     public BoomerangSprite(Texture2D texture, Vector2 initialPos, Vector2 velocity, float maxDistance, float scale)
     {
         this.texture = texture;
-        Pos = initialPos;
+        pos = initialPos;
         this.velocity = velocity;
         this.maxDistance = maxDistance;
         this.scale = scale;
@@ -40,7 +40,7 @@ internal class BoomerangSprite : ISprite
     {
         sb.Draw(
                 texture,
-                Pos,
+                pos,
                 null,
                 Color.White,
                 rotation: animationFrame * 22.5f * (float)Math.PI / 180f,
@@ -66,7 +66,7 @@ internal class BoomerangSprite : ISprite
         {
             animationFrame = 1;
         }
-        Pos += velocity;
+        pos += velocity;
         distanceTraveled += Vector2.Distance(new Vector2(0f, 0f), velocity);
         if (distanceTraveled > maxDistance)
         {

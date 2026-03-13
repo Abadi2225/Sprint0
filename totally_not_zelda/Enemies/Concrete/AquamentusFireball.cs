@@ -14,7 +14,12 @@ namespace Sprint.Enemies.Concrete
         private const float MAX_LIFETIME = 3f;
         private const float SPEED = 120f;
 
+        private const int SOURCE_WIDTH = 8;
+        private const int SOURCE_HEIGHT = 10;
+
         public bool IsActive => lifetime < MAX_LIFETIME;
+
+        public Rectangle Rect { get; private set; }
 
         public Vector2 Position
         {
@@ -23,6 +28,9 @@ namespace Sprint.Enemies.Concrete
             {
                 position = value;
                 sprite.Position = value;
+                Rect = new Rectangle((int)value.X, (int)value.Y,
+                    SOURCE_WIDTH * (int)GameServices.ScaleFactor,
+                    SOURCE_HEIGHT * (int)GameServices.ScaleFactor);
             }
         }
 

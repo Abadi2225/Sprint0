@@ -7,7 +7,6 @@ using Sprint.Commands;
 using Sprint.Interfaces;
 using Sprint.Enemies;
 using Sprint.Item;
-using System;
 using System.Collections.Generic;
 using Sprint.Collisions;
 using Sprint.Levels;
@@ -27,6 +26,8 @@ class GameplayState : IGameState
     private Link link;
     private Dictionary<Keys, ICommand> pressedKeys;
     private ItemManager items;
+    private Inventory inventory;
+    private EnemyManager enemyManager;
     private EnemyFactory enemyFactory;
     private LevelLoader levelLoader;
     private Level currentLevel;
@@ -50,11 +51,11 @@ class GameplayState : IGameState
             {Keys.Q, new QuitCommand()},
         //    {Keys.O, new CycleEnemyCommand(enemyManager, true)},
         //    {Keys.P, new CycleEnemyCommand(enemyManager, false)}, //commented out since cycling enemies is obsolete
-            {Keys.I, new CycleItemCommand(items, true)},
-            {Keys.U, new CycleItemCommand(items, false)},
-            {Keys.D1, new UseItemCommand(items, link, 0)},
-            {Keys.D2, new UseItemCommand(items, link, 1)},
-            {Keys.D3, new UseItemCommand(items, link, 2)},
+            {Keys.I, new CycleItemCommand(inventory, true)},
+            {Keys.U, new CycleItemCommand(inventory, false)},
+            {Keys.D1, new UseItemCommand(items, inventory, link, 0)},
+            {Keys.D2, new UseItemCommand(items, inventory, link, 1)},
+            {Keys.D3, new UseItemCommand(items, inventory, link, 2)},
             {Keys.R, new SetStateCommand(new StartScreenState())}
         };
 
@@ -71,6 +72,8 @@ class GameplayState : IGameState
         dungeonBackground = GameServices.Content.Load<Texture2D>("images/ZeldaDungeonWalls");
         hudElements = GameServices.Content.Load<Texture2D>("images/ZeldaUIElements");
         GameServices.TileSheet = tileSheet;
+        GameServices.ItemSheet = GameServices.Content.Load<Texture2D>("items/sheet");
+        GameServices.BoomerangSheet = GameServices.Content.Load<Texture2D>("items/boomerang");
 
         Vector2 center = new Vector2(GameServices.GameWidth / 2, GameServices.GameHeight / 2);
 
@@ -83,39 +86,31 @@ class GameplayState : IGameState
         levelLoader = new LevelLoader();
         currentLevel = LevelBuilder.Build(levelLoader.GetCurrentLevel(), enemyFactory);
 
+        items = new ItemManager();
+        inventory = new Inventory();
+        enemyManager = new EnemyManager();
+        enemyFactory = new EnemyFactory(enemiesSheet, BossesSheet, linkSheet, dustSheet, NPCSheet);
         collisionManager = new CollisionManager();
 		collisionManager.Add(new LinkEnemyCollision(link, currentLevel.Enemies));
         collisionManager.Add(new SwordEnemyCollision(link, currentLevel.Enemies));
         collisionManager.Add(new EnemyBlockCollisionHandler(currentLevel.Enemies.enemyList, currentLevel.Blocks));
         collisionManager.Add(new LinkBlockCollisionHandler(link, currentLevel.Blocks));
 
+        collisionManager.Add(new LinkItemCollision(link, inventory, currentLevel.WorldItems));
+        collisionManager.Add(new ActiveItemEnemyCollision(items, currentLevel.Enemies));
+        collisionManager.Add(new LinkEnemyProjectileCollision(link, currentLevel.Enemies));
 
-		// item test
-		items = new ItemManager();
-        items.Add(ItemFactory.CreateBoomerang(          // slot 0 - D1
-                    new Vector2(50, 50),
-                    new Vector2(5, 0),
-                    maxDistance: 400f
-                    ));
-        items.Add(ItemFactory.CreateStillItem(          // slot 1 - D2
-                    ItemFactory.StillType.Bow,
-                    new Vector2(50, 50),
-                    0, 2
-                    ));
-        items.Add(ItemFactory.CreateStillItem(          // slot 2 - D3
-                    ItemFactory.StillType.Bomb,
-                    new Vector2(50, 50),
-                    0, 2
-                    ));
-        foreach (ItemFactory.StillType type in Enum.GetValues<ItemFactory.StillType>())
-        {
-            items.Add(ItemFactory.CreateStillItem(
-                        type,
-                        new Vector2(50, 50),
-                        0,
-                        2
-                        ));
-        }
+        // inventory items — D1=Boomerang, D2=Bow, D3=Bomb
+        inventory.Add(ItemFactory.CreateBoomerang(Vector2.Zero, Vector2.Zero, maxDistance: 160f));
+        inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow,  Vector2.Zero, 2));
+        inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bomb, Vector2.Zero, 2));
+
+        // world item test — walk over these to pick them up
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Heart,      new Vector2(200, 200), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.GoldRupee,  new Vector2(260, 200), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Key,        new Vector2(320, 200), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow,        new Vector2(380, 200), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateBoomerang(new Vector2(440, 200), Vector2.Zero, maxDistance: 0));
 
         uiManager = new UIManager();
         uiManager.AddElement(new DungeonWalls(dungeonBackground));
@@ -132,6 +127,7 @@ class GameplayState : IGameState
         uiManager.Update(gameTime);
         currentLevel.Update(gameTime);
         link.Update(gameTime);
+        inventory.Update(gameTime);
         items.Update(gameTime);
 
         collisionManager.HandleAll();
@@ -160,6 +156,8 @@ class GameplayState : IGameState
 			collisionManager.Add(new LinkEnemyCollision(link, currentLevel.Enemies));
             collisionManager.Add(new SwordEnemyCollision(link, currentLevel.Enemies));
             collisionManager.Add(new EnemyBlockCollisionHandler(currentLevel.Enemies.enemyList, currentLevel.Blocks));
+            collisionManager.Add(new ActiveItemEnemyCollision(items, currentLevel.Enemies));
+            collisionManager.Add(new LinkEnemyProjectileCollision(link, currentLevel.Enemies));
 			collisionManager.Add(new LinkBlockCollisionHandler(link, currentLevel.Blocks));
 			collisionManager.Add(new LinkWallCollisionHandler(link, dungeonWalls));
 			collisionManager.Add(new EnemyWallCollisionHandler(currentLevel.Enemies.enemyList, dungeonWalls));
@@ -174,6 +172,8 @@ class GameplayState : IGameState
 			collisionManager.Add(new LinkEnemyCollision(link, currentLevel.Enemies));
             collisionManager.Add(new SwordEnemyCollision(link, currentLevel.Enemies));
             collisionManager.Add(new EnemyBlockCollisionHandler(currentLevel.Enemies.enemyList, currentLevel.Blocks));
+            collisionManager.Add(new ActiveItemEnemyCollision(items, currentLevel.Enemies));
+            collisionManager.Add(new LinkEnemyProjectileCollision(link, currentLevel.Enemies));
 			collisionManager.Add(new LinkBlockCollisionHandler(link, currentLevel.Blocks));
 			collisionManager.Add(new LinkWallCollisionHandler(link, dungeonWalls));
 			collisionManager.Add(new EnemyWallCollisionHandler(currentLevel.Enemies.enemyList, dungeonWalls));
@@ -194,6 +194,7 @@ class GameplayState : IGameState
         currentLevel.Draw(spriteBatch);    // blocks, then WallMaster entering
         dungeonWalls.Draw(spriteBatch);    // wall over entering WallMaster
         link.Draw(spriteBatch);
+        inventory.Draw(spriteBatch);
         items.Draw(spriteBatch);
         currentLevel.DrawOnTop(spriteBatch); // Keese on top
         uiManager.Draw(spriteBatch);       // rest of UI (minus DungeonWalls)

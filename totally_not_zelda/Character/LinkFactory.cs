@@ -60,6 +60,12 @@ internal static class LinkFactory
 		return new UseItem(texture, SpriteEffects.None, frames, 0.4, 0.4, onFinished);
 	}
 
+	public static UseItem PickUpItem(Texture2D texture, System.Action onFinished)
+	{
+		UseItem.Frame[] frames = [new UseItem.Frame(new Rectangle(213, 11, 16, 16)), new UseItem.Frame(new Rectangle(230, 11, 16, 16))];
+		return new UseItem(texture, SpriteEffects.None, frames, 0.4, 1.0, onFinished);
+	}
+
 	public static Attacking AttackDown(Texture2D texture, System.Action onFinished)
 	{
 		Attacking.Frame[] frames =
