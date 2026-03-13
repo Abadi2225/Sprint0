@@ -105,12 +105,27 @@ class GameplayState : IGameState
         inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow,  Vector2.Zero, 2));
         inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bomb, Vector2.Zero, 2));
 
-        // world item test — walk over these to pick them up
-        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Heart,      new Vector2(200, 200), 2));
-        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.GoldRupee,  new Vector2(260, 200), 2));
-        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Key,        new Vector2(320, 200), 2));
-        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow,        new Vector2(380, 200), 2));
-        currentLevel.WorldItems.Add(ItemFactory.CreateBoomerang(new Vector2(440, 200), Vector2.Zero, maxDistance: 0));
+        // Hardcoded world items for testing pickup and collision should be replaced by level-specific placements in the future
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Heart,          new Vector2(126, 270), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.BlueHeart,      new Vector2(222, 270), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.HalfHeart,      new Vector2(366, 270), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.ZeroHeart,      new Vector2(558, 270), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.HeartContainer, new Vector2(654, 270), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Fairy,          new Vector2(222, 318), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Clock,          new Vector2(366, 318), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.GoldRupee,      new Vector2(510, 318), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.PurpleRupee,    new Vector2(654, 318), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.BluePotion,     new Vector2(126, 366), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Map,            new Vector2(270, 366), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Key,            new Vector2(414, 366), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Compass,        new Vector2(558, 366), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow,            new Vector2(222, 414), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.BlueCandle,     new Vector2(366, 414), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.GoldTriforce,   new Vector2(510, 414), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.PurpleTriforce, new Vector2(654, 414), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateBoomerang(new Vector2(126, 462), Vector2.Zero, maxDistance: 0));
+        currentLevel.WorldItems.Add(ItemFactory.CreateArrow(new Vector2(270, 462), Vector2.Zero, rotation: 0f, scale: 2f, maxDistance: 0));
+        currentLevel.WorldItems.Add(ItemFactory.CreateTimeBomb(explodeDelayMillis: 0, new Vector2(414, 462), scale: 2f));
 
         uiManager = new UIManager();
         uiManager.AddElement(new DungeonWalls(dungeonBackground));
