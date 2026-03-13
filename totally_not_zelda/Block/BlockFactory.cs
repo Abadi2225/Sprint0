@@ -63,6 +63,7 @@ public static class BlockFactory
 
 		bool pushable = type switch
 		{
+			BlockType.StatueRight => true,  // Bricks can be pushed
 			_ => false  // For now, no blocks are pushable by default. This can be updated in the future if needed.
 		};
 		return new Block(GameServices.TileSheet, pos, textureMask, walkable, pushable);

@@ -14,6 +14,7 @@ public class Block
 	private Vector2 position;
 	public readonly bool pushAble;
 	public Rectangle Rect { get; }	
+
 	public Block(Texture2D texture, Vector2 pos, Rectangle sourceRect, bool walkable, bool pushable)
 	{
 		sprite = new StaticSprite(texture, pos, sourceRect);
