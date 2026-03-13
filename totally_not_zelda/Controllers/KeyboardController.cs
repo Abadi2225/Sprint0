@@ -40,5 +40,10 @@ namespace Sprint.Controllers
         {
             return current.IsKeyUp(key);
         }
+        public void Reset()
+        {
+            current = Keyboard.GetState();
+            previous = current;
+        }
     }
 }

@@ -30,10 +30,7 @@ public class Block
 
 	public void Update(GameTime time)
 	{
-		if (walkAble)
-		{
-			// Maybe add collision?
-		}
+
 	}
 
 	public Vector2 Position{

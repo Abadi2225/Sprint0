@@ -90,6 +90,7 @@ public class Game1 : Game, IGameActions
         currentState = newState;
         currentState.LoadContent();
         currentState.Enter();
+        GameServices.KeyInput.Reset(); // flush key state
     }
 
     public void Quit()

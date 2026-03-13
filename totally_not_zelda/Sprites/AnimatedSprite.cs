@@ -10,14 +10,14 @@ namespace Sprint.Sprites
         private Texture2D texture;
         private Vector2 pos;
         private Rectangle rect;
-        private int frameCount;
+        private readonly int frameCount;
         private int curFrame;
-        private int[] sheetXPositions;
-        private float frameTime;
+        private readonly int[] sheetXPositions;
+        private readonly float frameTime;
         private float elapsedTime;
-        private int frameWidth;
-        private int frameHeight;
-        private int sheetY;
+        private readonly int frameWidth;
+        private readonly int frameHeight;
+        private readonly int sheetY;
 
         public Vector2 Position 
         { 
@@ -51,12 +51,6 @@ namespace Sprint.Sprites
 
         private void UpdateRect()
         {
-            //rect = new Rectangle(
-            //    (int)(pos.X - frameWidth / 2),
-            //    (int)(pos.Y - frameHeight / 2),
-            //    frameWidth,
-            //    frameHeight
-            //);
 			rect = new Rectangle(
 				(int)(pos.X),
 				(int)(pos.Y),
@@ -90,7 +84,6 @@ namespace Sprint.Sprites
                 frameHeight
             );
 
-            //Vector2 origin = new Vector2(frameWidth / 2, frameHeight / 2);
 
             //white is the default no color mask
             spriteBatch.Draw(

@@ -12,9 +12,11 @@ internal class EnemyEffectWrapper : IEnemy
 
     private float spawnTimer;
     private float dyingTimer;
+    public IEnemy InnerEnemy => enemy;
 
     private const float SPAWN_DURATION = 1.5f;
     private const float DYING_DURATION = 0.5f;
+    public bool IsSpawningPublic => IsSpawning;
 
     public EnemyEffectWrapper(IEnemy enemy, ISprite spawnSprite, ISprite deathSprite)
     {
