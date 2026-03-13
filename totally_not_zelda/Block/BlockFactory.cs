@@ -56,8 +56,8 @@ public static class BlockFactory
         {
             BlockType.Blank or 
             BlockType.Sand or 
-            BlockType.Stairs => true,
-            _ => false  // Square, Statues, Black, Water, Bricks, Ladder all block movement
+            BlockType.Stairs => false,
+            _ => true  // Square, Statues, Black, Water, Bricks, Ladder all block movement
         };
         return new Block(GameServices.TileSheet, pos, textureMask, walkable);
     }
