@@ -146,7 +146,7 @@ public class Link : ILink
             return;
 
         sprite.Draw(spriteBatch, position);
-    }
+	}
 
     public void StartUseItem()
     {

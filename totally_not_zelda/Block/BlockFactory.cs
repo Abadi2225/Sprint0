@@ -59,6 +59,12 @@ public static class BlockFactory
             BlockType.Stairs => true,
             _ => false  // Square, Statues, Black, Water, Bricks, Ladder all block movement
         };
-        return new Block(GameServices.TileSheet, pos, textureMask, walkable);
+
+
+		bool pushable = type switch
+		{
+			_ => false  // For now, no blocks are pushable by default. This can be updated in the future if needed.
+		};
+		return new Block(GameServices.TileSheet, pos, textureMask, walkable, pushable);
     }
 }
