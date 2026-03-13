@@ -36,6 +36,7 @@ class GameplayState : IGameState
     // todo delete this
     private bool lmbReleased = true;
     private bool rmbReleased = true;
+    private DungeonWalls dungeonWalls;
 
     public GameplayState()
     {
@@ -78,22 +79,17 @@ class GameplayState : IGameState
 
         GameServices.Link = link;
 
+        enemyFactory = new EnemyFactory(enemiesSheet, BossesSheet, linkSheet, dustSheet, NPCSheet);
+
         levelLoader = new LevelLoader();
-        // currentLevel = LevelBuilder.Build(levelLoader.Load("test_room"));
         currentLevel = LevelBuilder.Build(levelLoader.GetCurrentLevel(), enemyFactory);
 
-        enemyManager = new EnemyManager();
-        enemyFactory = new EnemyFactory(enemiesSheet, BossesSheet, linkSheet, dustSheet, NPCSheet);
         collisionManager = new CollisionManager();
-        collisionManager.Add(new LinkEnemyCollision(link, enemyManager));
-        collisionManager.Add(new SwordEnemyCollision(link, enemyManager));
-        collisionManager.Add(new EnemyBlockCollisionHandler(enemyManager.enemyList, currentLevel.Blocks));
+        collisionManager.Add(new LinkEnemyCollision(link, currentLevel.Enemies));
+        collisionManager.Add(new SwordEnemyCollision(link, currentLevel.Enemies));
+        collisionManager.Add(new EnemyBlockCollisionHandler(currentLevel.Enemies.enemyList, currentLevel.Blocks));
         collisionManager.Add(new LinkBlockCollisionHandler(link, currentLevel.Blocks));
 
-        currentLevel = LevelBuilder.Build(levelLoader.GetCurrentLevel(), enemyFactory);
-        collisionManager.Add(new EnemyBlockCollisionHandler(
-            currentLevel.Enemies.enemyList,
-            currentLevel.Blocks));
 
         // item test
         items = new ItemManager();
@@ -125,6 +121,8 @@ class GameplayState : IGameState
         uiManager = new UIManager();
         uiManager.AddElement(new DungeonWalls(dungeonBackground));
         uiManager.AddElement(new HUDBar(hudElements));
+        dungeonWalls = uiManager.GetElement<DungeonWalls>();
+        uiManager.RemoveElement(dungeonWalls); // drawn manually
     }
 
     public void Update(GameTime gameTime)
@@ -186,9 +184,11 @@ class GameplayState : IGameState
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        uiManager.Draw(spriteBatch);
-        currentLevel.Draw(spriteBatch);
+        currentLevel.Draw(spriteBatch);    // blocks, then WallMaster entering
+        dungeonWalls.Draw(spriteBatch);    // wall over entering WallMaster
         link.Draw(spriteBatch);
         items.Draw(spriteBatch);
+        currentLevel.DrawOnTop(spriteBatch); // Keese on top
+        uiManager.Draw(spriteBatch);       // rest of UI (minus DungeonWalls)
     }
 }

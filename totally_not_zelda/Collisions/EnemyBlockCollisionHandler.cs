@@ -2,6 +2,7 @@
 using Sprint.Interfaces;
 using Sprint.Block;
 using System.Collections.Generic;
+using Sprint.Enemies.Concrete;
 
 namespace Sprint.Collisions
 {
@@ -21,6 +22,7 @@ namespace Sprint.Collisions
             foreach (var enemy in enemies)
             {
                 if (!enemy.IsAlive) continue;
+                if (!(enemy is Keese)) continue;
                 foreach (var block in blockManager.blocksList)
                 {
                     if (!block.walkAble) continue;

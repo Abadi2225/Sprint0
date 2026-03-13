@@ -13,6 +13,10 @@ class UIManager
     {
         elements = new List<IUIElement>();
     }
+    public T GetElement<T>() where T : class, IUIElement
+    {
+        return elements.Find(e => e is T) as T;
+    }
 
     public void Update(GameTime gameTime)
     {

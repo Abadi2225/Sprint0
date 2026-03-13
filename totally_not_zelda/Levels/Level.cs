@@ -2,8 +2,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Block;
 using Sprint.Enemies.Base;
+using Sprint.Enemies.Concrete;
 using Sprint.Enemies;
-
+using Sprint.Interfaces;
 public class Level
 {
     public BlockManager Blocks { get; private set; }
@@ -24,6 +25,11 @@ public class Level
     public void Draw(SpriteBatch spriteBatch)
     {
         Blocks.Draw(spriteBatch);
+        Enemies.DrawBehindBlocks(spriteBatch);
         Enemies.Draw(spriteBatch);
+    }
+    public void DrawOnTop(SpriteBatch spriteBatch)
+    {
+        Enemies.DrawOnTop(spriteBatch);
     }
 }
