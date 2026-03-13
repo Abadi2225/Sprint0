@@ -1,3 +1,4 @@
+using System;
 using Sprint.Character;
 using Sprint.Enemies;
 using Sprint.Interfaces;
@@ -16,12 +17,15 @@ internal class LinkEnemyCollision : ICollisionHandler
     }
 
     public void Handle()
-    {   //Check collision between Link and each enemy.
+    {
         foreach (var enemy in enemyManager.enemyList)
         {
             if (!enemy.IsAlive) return;
             if (link.Rect.Intersects(enemy.Rect))
+            {
                 link.TakeDamage(enemy.Damage);
+                Console.WriteLine($"Link collided with {enemy} and took {enemy.Damage} damage. Current health: {link.Health}");
+            }
         }
     }
 }

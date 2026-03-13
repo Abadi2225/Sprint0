@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
@@ -8,7 +9,7 @@ public class Link : ILink
 {
     private const float SPEED = 80f;
     private const int BODY_SIZE = 48;
-    private const double DAMAGED_DURATION = 0.5;
+    private const double DAMAGED_DURATION = 3;
     private const double BLINK_INTERVAL = 0.10;
     private const int MAX_HEALTH = 6;
 
@@ -274,16 +275,16 @@ public class Link : ILink
         SetIdleSprite();
     }
 
-    private void GetHealed(int amount)
+    public void GetHealed(int amount)
     {
         health = MathHelper.Clamp(health + amount, 0, MAX_HEALTH);
         Console.WriteLine($"Link healed by {amount}. Current health: {health}");
     }
 
-    private void IncreaseRubies(int amount)
+    public void IncreaseRubies(int amount)
     {
         Rubies += amount;
-        Console.WriteLine($"Link gained {amount} rubies. Total rubies: {Rubies}");
+        Console.WriteLine($"Link picked up {amount} rubies. Current rubies: {Rubies}");
     }
 
     private void SetIdleSprite()

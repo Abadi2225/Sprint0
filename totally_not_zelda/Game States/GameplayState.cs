@@ -7,7 +7,6 @@ using Sprint.Commands;
 using Sprint.Interfaces;
 using Sprint.Enemies;
 using Sprint.Item;
-using System;
 using System.Collections.Generic;
 using Sprint.Collisions;
 using Sprint.Levels;
@@ -84,6 +83,7 @@ class GameplayState : IGameState
         // currentLevel = LevelBuilder.Build(levelLoader.Load("test_room"));
         currentLevel = LevelBuilder.Build(levelLoader.GetCurrentLevel(), enemyFactory);
 
+        items = new ItemManager();
         enemyManager = new EnemyManager();
         enemyFactory = new EnemyFactory(enemiesSheet, BossesSheet, linkSheet, dustSheet, NPCSheet);
         collisionManager = new CollisionManager();
@@ -91,37 +91,23 @@ class GameplayState : IGameState
         collisionManager.Add(new SwordEnemyCollision(link, enemyManager));
         collisionManager.Add(new EnemyBlockCollisionHandler(enemyManager.enemyList, currentLevel.Blocks));
 
-
         currentLevel = LevelBuilder.Build(levelLoader.GetCurrentLevel(), enemyFactory);
         collisionManager.Add(new EnemyBlockCollisionHandler(
             currentLevel.Enemies.enemyList,
             currentLevel.Blocks));
+        collisionManager.Add(new LinkItemCollision(link, items, currentLevel.WorldItems));
 
-        // item test
-        items = new ItemManager();
-        items.Add(ItemFactory.CreateBoomerang(          // slot 0 - D1
-                    new Vector2(50, 50),
-                    new Vector2(5, 0),
-                    maxDistance: 400f
-                    ));
-        items.Add(ItemFactory.CreateStillItem(          // slot 1 - D2
-                    ItemFactory.StillType.Bow,
-                    new Vector2(50, 50),
-                    2
-                    ));
-        items.Add(ItemFactory.CreateStillItem(          // slot 2 - D3
-                    ItemFactory.StillType.Bomb,
-                    new Vector2(50, 50),
-                    2
-                    ));
-        foreach (ItemFactory.StillType type in Enum.GetValues<ItemFactory.StillType>())
-        {
-            items.Add(ItemFactory.CreateStillItem(
-                        type,
-                        new Vector2(50, 50),
-                        2
-                        ));
-        }
+        // inventory items — D1=Boomerang, D2=Bow, D3=Bomb
+        items.Add(ItemFactory.CreateBoomerang(Vector2.Zero, Vector2.Zero, maxDistance: 160f));
+        items.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow,  Vector2.Zero, 2));
+        items.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bomb, Vector2.Zero, 2));
+
+        // world item test — walk over these to pick them up
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Heart,      new Vector2(200, 200), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.GoldRupee,  new Vector2(260, 200), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Key,        new Vector2(320, 200), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow,        new Vector2(380, 200), 2));
+        currentLevel.WorldItems.Add(ItemFactory.CreateBoomerang(new Vector2(440, 200), Vector2.Zero, maxDistance: 0));
 
         uiManager = new UIManager();
         uiManager.AddElement(new DungeonWalls(dungeonBackground));

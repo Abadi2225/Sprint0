@@ -36,13 +36,27 @@ internal class LinkItemCollision : ICollisionHandler
 
     private void HandlePickup(AbstractItem item)
     {
+        switch (item.Name)
+        {
+            case "GoldRupee":   link.IncreaseRubies(1); return;
+            case "PurpleRupee": link.IncreaseRubies(5); return;
+
+            case "Heart":
+            case "BlueHeart":
+            case "HalfHeart":   link.GetHealed(1); return;
+            case "Fairy":       link.GetHealed(link.MaxHealth); return;
+        }
+
+        // All other items go into the inventory
         itemManager.Add(item);
 
-        // Only "special" items trigger pickup animation
-        if (item is Boomerang || item is Bow)
+        // Special items also trigger the pickup animation
+        if (item is Boomerang
+            || item.Name == "Bow"
+            || item.Name == "GoldTriforce"
+            || item.Name == "PurpleTriforce")
         {
             link.PlayPickupAnimation();
         }
-        // TODO: expand when more special items are added
     }
 }
