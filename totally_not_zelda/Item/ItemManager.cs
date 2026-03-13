@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
@@ -10,6 +11,10 @@ namespace Sprint.Item;
 public class ItemManager
 {
     private List<AbstractItem> spawnedItems = new();
+    private List<AbstractItem> justFinishedItems = new();
+
+    internal IReadOnlyList<AbstractItem> SpawnedItems => spawnedItems;
+    internal IReadOnlyList<AbstractItem> JustFinished => justFinishedItems;
 
     public void UseItem(ILink link, Inventory inventory, int slot)
     {
@@ -68,6 +73,7 @@ public class ItemManager
     {
         foreach (AbstractItem item in spawnedItems)
             item.Update(time);
+        justFinishedItems = spawnedItems.Where(item => item.IsFinished).ToList();
         spawnedItems.RemoveAll(item => item.IsFinished);
     }
 

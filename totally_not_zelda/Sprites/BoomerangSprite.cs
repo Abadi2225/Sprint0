@@ -10,6 +10,7 @@ namespace Sprint.Sprites;
 internal class BoomerangSprite : ISprite
 {
     private Vector2 pos;
+    public Vector2 Position => pos;
     private Texture2D texture;
     private Vector2 velocity;
     private float scale;

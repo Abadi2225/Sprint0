@@ -98,6 +98,7 @@ class GameplayState : IGameState
             currentLevel.Enemies.enemyList,
             currentLevel.Blocks));
         collisionManager.Add(new LinkItemCollision(link, inventory, currentLevel.WorldItems));
+        collisionManager.Add(new ActiveItemEnemyCollision(items, currentLevel.Enemies));
 
         // inventory items — D1=Boomerang, D2=Bow, D3=Bomb
         inventory.Add(ItemFactory.CreateBoomerang(Vector2.Zero, Vector2.Zero, maxDistance: 160f));
@@ -151,6 +152,7 @@ class GameplayState : IGameState
             collisionManager.Add(new LinkEnemyCollision(link, currentLevel.Enemies));
             collisionManager.Add(new SwordEnemyCollision(link, currentLevel.Enemies));
             collisionManager.Add(new EnemyBlockCollisionHandler(currentLevel.Enemies.enemyList, currentLevel.Blocks));
+            collisionManager.Add(new ActiveItemEnemyCollision(items, currentLevel.Enemies));
         }
         if (mouse.LeftButton == ButtonState.Pressed && lmbReleased)
         {
@@ -160,6 +162,7 @@ class GameplayState : IGameState
             collisionManager.Add(new LinkEnemyCollision(link, currentLevel.Enemies));
             collisionManager.Add(new SwordEnemyCollision(link, currentLevel.Enemies));
             collisionManager.Add(new EnemyBlockCollisionHandler(currentLevel.Enemies.enemyList, currentLevel.Blocks));
+            collisionManager.Add(new ActiveItemEnemyCollision(items, currentLevel.Enemies));
         }
         if (mouse.RightButton == ButtonState.Released)
         {
