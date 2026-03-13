@@ -53,8 +53,6 @@ public class ProjectileSprite : IPositionedSprite
 
     public void Draw(SpriteBatch sb, Vector2 unused)
     {
-        if (!isMoving) return;
-
         sb.Draw(
                 texture,
                 Position,

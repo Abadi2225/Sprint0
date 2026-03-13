@@ -80,7 +80,7 @@ public class Link : ILink
         set
         {
             position = value;
-            Rect = new Rectangle((int)value.X, (int)value.Y, BODY_SIZE, BODY_SIZE);
+            Rect = new Rectangle((int)value.X, (int)value.Y + BODY_SIZE / 2, BODY_SIZE, BODY_SIZE / 2);
         }
     }
 
