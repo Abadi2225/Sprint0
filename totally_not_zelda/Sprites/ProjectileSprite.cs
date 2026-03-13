@@ -1,16 +1,15 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using Sprint.Interfaces;
 
-namespace Sprint.Item;
+namespace Sprint.Sprites;
 
-internal class ProjectileSprite : IPositionedSprite
+public class ProjectileSprite : IPositionedSprite
 {
     public Vector2 Position { get; set; }
     private Texture2D texture;
-    private Rectangle texMask;
+    private Rectangle sourceRect;
     private Vector2 velocity;
     private float maxDistance;
     private float rotation = 0;
@@ -22,10 +21,10 @@ internal class ProjectileSprite : IPositionedSprite
 
     public bool ReachedMaxDistance = false;
 
-    public ProjectileSprite(Texture2D texture, Rectangle texMask, Vector2 pos, Vector2 vel, float maxDistance, float rotation, Vector2 origin, float scale)
+    public ProjectileSprite(Texture2D texture, Rectangle sourceRect, Vector2 pos, Vector2 vel, float maxDistance, float rotation, Vector2 origin, float scale)
     {
         this.texture = texture;
-        this.texMask = texMask;
+        this.sourceRect = sourceRect;
         Position = pos;
         this.velocity = vel;
         this.maxDistance = maxDistance;
@@ -44,7 +43,7 @@ internal class ProjectileSprite : IPositionedSprite
         if (!isMoving) return;
 
         Position += velocity;
-        distanceTraveled += Vector2.Distance(new Vector2(0f, 0f), velocity);
+        distanceTraveled += Vector2.Distance(Vector2.Zero, velocity);
         if (distanceTraveled > maxDistance)
         {
             ReachedMaxDistance = true;
@@ -59,7 +58,7 @@ internal class ProjectileSprite : IPositionedSprite
         sb.Draw(
                 texture,
                 Position,
-                texMask,
+                sourceRect,
                 Color.White,
                 rotation,
                 origin,

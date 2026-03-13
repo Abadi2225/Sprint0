@@ -5,21 +5,21 @@ namespace Sprint.Commands
 {
     public class CycleItemCommand : ICommand
     {
-        private readonly ItemManager itemManager;
+        private readonly Inventory inventory;
         private readonly bool forward;
 
-        public CycleItemCommand(ItemManager itemManager, bool forward)
+        public CycleItemCommand(Inventory inventory, bool forward)
         {
-            this.itemManager = itemManager;
+            this.inventory = inventory;
             this.forward = forward;
         }
 
         public void Execute()
         {
             if (forward)
-                itemManager?.CycleNext();
+                inventory?.CycleNext();
             else
-                itemManager?.CyclePrevious();
+                inventory?.CyclePrevious();
         }
     }
 }

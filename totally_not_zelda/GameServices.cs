@@ -19,6 +19,8 @@ public static class GameServices
     public static int GameHeight { get { return (int)(224 * ScaleFactor); } }
 
     public static Texture2D TileSheet { get; set; }
+    public static Texture2D ItemSheet { get; set; }
+    public static Texture2D BoomerangSheet { get; set; }
 
     public static ILink Link { get; set; }
 }

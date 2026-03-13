@@ -52,6 +52,7 @@ internal class EnemyEffectWrapper : IEnemy
 
     public void TakeDamage(int amount) => enemy.TakeDamage(amount);
     public void Die() => enemy.Die();
+    public override string ToString() => enemy.ToString();
 
     private void ResetSpawnTimer()
     {

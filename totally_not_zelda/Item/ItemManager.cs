@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
 using Sprint.Character;
@@ -10,29 +10,25 @@ namespace Sprint.Item;
 
 public class ItemManager
 {
-    private List<AbstractItem> Inventory { get; }
-    public int ActiveItem { get; set; }
-    private List<AbstractItem> SpawnedItems = new List<AbstractItem>();
+    private List<AbstractItem> spawnedItems = new();
+    private List<AbstractItem> justFinishedItems = new();
 
-    public ItemManager()
-    {
-        Inventory = new List<AbstractItem>();
-    }
+    internal IReadOnlyList<AbstractItem> SpawnedItems => spawnedItems;
+    internal IReadOnlyList<AbstractItem> JustFinished => justFinishedItems;
 
-    public void UseItem(ILink link, int slot)
+    public void UseItem(ILink link, Inventory inventory, int slot)
     {
-        if (slot < 0 || slot >= Inventory.Count)
-        {
-            return;
-        }
+        if (slot < 0 || slot >= inventory.Count) return;
+
         link.StartUseItem();
         Vector2 pos = link.Position;
         Directions facing = link.Facing;
-        AbstractItem used = Inventory[slot];
+        IItem used = inventory.Get(slot);
+
         if (used is Boomerang)
         {
             float velocity = 5;
-            float maxDistance = 500;
+            float maxDistance = 160;
             SpawnItem(ItemFactory.CreateBoomerang(
                         pos,
                         DirectionsUtils.CreateVector(facing, velocity),
@@ -42,14 +38,14 @@ public class ItemManager
         else if (used.Name == "Bow")
         {
             float velocity = 5;
-            float maxDistance = 500;
+            float maxDistance = 160;
             float arrowRotation = facing switch
             {
-                Directions.Up => 0f,
-                Directions.Down => MathF.PI,
+                Directions.Up    => 0f,
+                Directions.Down  => MathF.PI,
                 Directions.Right => MathF.PI / 2f,
-                Directions.Left => -MathF.PI / 2f,
-                _ => 0f
+                Directions.Left  => -MathF.PI / 2f,
+                _                => 0f
             };
             SpawnItem(ItemFactory.CreateArrow(
                         pos,
@@ -66,61 +62,24 @@ public class ItemManager
             SpawnItem(ItemFactory.CreateTimeBomb(
                         explodeDelayMillis,
                         Vector2.Add(pos, DirectionsUtils.CreateVector(facing, reach)),
-                        scale: 2f,
-                        rotation: 0f
+                        scale: 2f
                         ));
         }
     }
 
-    internal void Add(AbstractItem item)
-    {
-        Inventory.Add(item);
-    }
+    internal void SpawnItem(AbstractItem item) => spawnedItems.Add(item);
 
-    internal void SpawnItem(AbstractItem item)
+    public void Update(GameTime time)
     {
-        SpawnedItems.Add(item);
+        foreach (AbstractItem item in spawnedItems)
+            item.Update(time);
+        justFinishedItems = spawnedItems.Where(item => item.IsFinished).ToList();
+        spawnedItems.RemoveAll(item => item.IsFinished);
     }
 
     public void Draw(SpriteBatch sb)
     {
-        Inventory[ActiveItem].Draw(sb, Vector2.Zero);
-        foreach (AbstractItem item in SpawnedItems)
-        {
+        foreach (AbstractItem item in spawnedItems)
             item.Draw(sb, Vector2.Zero);
-        }
-    }
-
-    public void Update(GameTime time)
-    {
-        foreach (AbstractItem item in Inventory)
-        {
-            item.Update(time);
-        }
-        foreach (AbstractItem item in SpawnedItems)
-        {
-            item.Update(time);
-        }
-        SpawnedItems.RemoveAll(item => item.IsFinished);
-    }
-
-    internal AbstractItem GetActiveItem()
-    {
-        return Inventory[ActiveItem];
-    }
-
-    public void CycleNext()
-    {
-        if (ActiveItem < Inventory.Count - 1)
-        {
-            ActiveItem++;
-        }
-    }
-    public void CyclePrevious()
-    {
-        if (ActiveItem > 0)
-        {
-            ActiveItem--;
-        }
     }
 }

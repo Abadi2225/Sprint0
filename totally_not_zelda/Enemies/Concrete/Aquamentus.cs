@@ -23,6 +23,7 @@ namespace Sprint.Enemies.Concrete
 
         private EnemyProjectileFactory projectileFactory;
         private List<AquamentusFireball> activeFireballs = new();
+        public IReadOnlyList<AquamentusFireball> ActiveFireballs => activeFireballs;
         private float fireballTimer = 0f;
         private const float FIREBALL_INTERVAL = 3f;
 

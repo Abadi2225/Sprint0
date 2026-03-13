@@ -1,29 +1,26 @@
 ﻿using Sprint.Interfaces;
 using Sprint.Item;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sprint.Commands
 {
     internal class UseItemCommand : ICommand
     {
-        private ItemManager itemManager;
-        private ILink link;
-        private int slot;
+        private readonly ItemManager itemManager;
+        private readonly Inventory inventory;
+        private readonly ILink link;
+        private readonly int slot;
 
-        public UseItemCommand(ItemManager itemManager, ILink link, int slot)
+        public UseItemCommand(ItemManager itemManager, Inventory inventory, ILink link, int slot)
         {
             this.itemManager = itemManager;
+            this.inventory = inventory;
             this.link = link;
             this.slot = slot;
         }
 
         public void Execute()
         {
-            itemManager.UseItem(link, slot);
+            itemManager.UseItem(link, inventory, slot);
         }
     }
 }
