@@ -13,8 +13,6 @@ class HUDBar : IUIElement
     {
         UNFOCUSED,
     }
-
-    private State state = State.UNFOCUSED;
     private StaticSprite background;
     private Rectangle sourceRect;
 
