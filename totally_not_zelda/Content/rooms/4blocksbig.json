@@ -46,5 +46,5 @@
  "type":"map",
  "version":"1.10",
  "width":12,
- "doors": { "west": "4blockssmall" }
+ "doors": { "north": "4blockssmallupper", "west": "4blockssmalllower" }
 }

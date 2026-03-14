@@ -46,5 +46,5 @@
  "type":"map",
  "version":"1.10",
  "width":12,
- "doors": { "east": "pacman", "south": "waffle" }
+ "doors": { "south": "waffle", "east": "pacman" }
 }

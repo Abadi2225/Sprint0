@@ -35,5 +35,5 @@
  "type":"map",
  "version":"1.10",
  "width":12,
-  "doors": { "west": "template", "east": "12blocks", "north": "6blocks" }
+  "doors": {  "north": "6blockslower", "east": "12blocks", "west": "template" }
 }

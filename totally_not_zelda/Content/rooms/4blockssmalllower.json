@@ -46,5 +46,5 @@
  "type":"map",
  "version":"1.10",
  "width":12,
- "doors": { "east": "4blocksbig", "south": "6blocks", "north": "dice5" }
+ "doors": { "north": "dice5", "south": "6blockslower", "east": "4blocksbig", "west": "6blocksupper" }
 }
