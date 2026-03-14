@@ -13,7 +13,7 @@ The *Sprint.csproj* project file contains:
 
 - 18 namespaces.
 - 103 named types.
-- 5,557 total lines of source code.
+- 5,559 total lines of source code.
 - Approximately 1,696 lines of executable code.
 - The highest cyclomatic complexity is 20 :exploding_head:.
 
@@ -28,7 +28,7 @@ The *Sprint.csproj* project file contains:
 The `<global namespace>` namespace contains 7 named types.
 
 - 7 named types.
-- 416 total lines of source code.
+- 418 total lines of source code.
 - Approximately 184 lines of executable code.
 - The highest cyclomatic complexity is 20 :exploding_head:.
 
@@ -196,18 +196,18 @@ The `<global namespace>` namespace contains 7 named types.
 <br>
 
 - The `LevelLoader` contains 6 members.
-- 53 total lines of source code.
+- 55 total lines of source code.
 - Approximately 13 lines of executable code.
 - The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelLoader.cs#L26' title='int LevelLoader.currentLevel'>26</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelLoader.cs#L27' title='LevelData LevelLoader.CycleNext()'>27</a> | 78 | 2 :heavy_check_mark: | 0 | 3 | 8 / 3 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelLoader.cs#L35' title='LevelData LevelLoader.CyclePrevious()'>35</a> | 80 | 2 :heavy_check_mark: | 0 | 3 | 8 / 3 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelLoader.cs#L43' title='LevelData LevelLoader.GetCurrentLevel()'>43</a> | 95 | 1 :heavy_check_mark: | 0 | 3 | 4 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelLoader.cs#L10' title='List<string> LevelLoader.levels'>10</a> | 81 | 0 :heavy_check_mark: | 0 | 2 | 15 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelLoader.cs#L48' title='LevelData LevelLoader.Load(string levelName)'>48</a> | 77 | 1 :heavy_check_mark: | 0 | 2 | 11 / 4 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelLoader.cs#L28' title='int LevelLoader.currentLevel'>28</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelLoader.cs#L29' title='LevelData LevelLoader.CycleNext()'>29</a> | 78 | 2 :heavy_check_mark: | 0 | 3 | 8 / 3 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelLoader.cs#L37' title='LevelData LevelLoader.CyclePrevious()'>37</a> | 80 | 2 :heavy_check_mark: | 0 | 3 | 8 / 3 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelLoader.cs#L45' title='LevelData LevelLoader.GetCurrentLevel()'>45</a> | 95 | 1 :heavy_check_mark: | 0 | 3 | 4 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelLoader.cs#L10' title='List<string> LevelLoader.levels'>10</a> | 81 | 0 :heavy_check_mark: | 0 | 2 | 17 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelLoader.cs#L50' title='LevelData LevelLoader.Load(string levelName)'>50</a> | 77 | 1 :heavy_check_mark: | 0 | 2 | 11 / 4 |
 
 <a href="#LevelLoader-class-diagram">:link: to `LevelLoader` class diagram</a>
 
