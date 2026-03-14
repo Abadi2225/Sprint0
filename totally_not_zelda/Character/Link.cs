@@ -8,9 +8,12 @@ namespace Sprint.Character;
 public class Link : ILink
 {
     private const float SPEED = 80f;
-    private const int BODY_SIZE = 48;
+    private const float PUSHING_SPEED = 40f;
+    private const float PUSHING_DURATION = 0.5f;
+	private const int BODY_SIZE = 48;
     private const int HAND_X = 2;
     private const int HAND_Y = 1;
+
     private const double DAMAGED_DURATION = 3;
     private const double BLINK_INTERVAL = 0.10;
     private const int MAX_HEALTH = 6;
@@ -43,20 +46,23 @@ public class Link : ILink
     private Vector2 move = Vector2.Zero;
     private Directions direction = Directions.Down;
     private double damagedTimer;
-    private int health;
+	private double pushingTimer = 0;
+	private int health;
     private int rubies;
     private bool isAttacking = false;
     private bool isUsingItem = false;
     private bool isDamaged = false;
     private bool isVisible = false;
-    private bool attackHitLanded = false;
+    public bool isPushing = false;
+	private bool attackHitLanded = false;
     private Rectangle? pickUpItemRect = null;
 
     public Directions Facing => direction;
     public int Health => health;
     public int MaxHealth => MAX_HEALTH;
+	public bool IsPushing => isPushing;
 
-    public Rectangle Rect { get; private set; }
+	public Rectangle Rect { get; private set; }
 
     public Rectangle SwordRect
     {
@@ -152,7 +158,19 @@ public class Link : ILink
             }
         }
 
-        Position += move * SPEED * dt;
+        if(isPushing) 
+        {
+            pushingTimer += gameTime.ElapsedGameTime.TotalSeconds;
+
+			if (pushingTimer >= PUSHING_DURATION)
+			{
+				isPushing = false;
+			}
+
+		}
+
+		float currentSpeed = isPushing ? PUSHING_SPEED : SPEED;
+		Position += move * currentSpeed * dt;
 
         sprite.Update(gameTime);
     }
@@ -273,7 +291,16 @@ public class Link : ILink
         }
     }
 
-    public void TakeDamage(int amount)
+	public void StartPush()
+	{
+		if (isAttacking || isUsingItem || isDamaged) return;
+
+		isPushing = true;
+		pushingTimer = 0;
+	}
+
+
+	public void TakeDamage(int amount)
     {
         if (isDamaged) return;
 

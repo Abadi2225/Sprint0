@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Sprint.Block;
 using Sprint.Character;
 using Sprint.Interfaces;
@@ -8,12 +7,18 @@ namespace Sprint.Collisions
 {
 	internal class LinkBlockPushHandler : ICollisionHandler
 	{
-		private readonly ILink link;
+		private readonly Link link;
 		private readonly BlockManager blockManager;
-		private static readonly Rectangle PushableStatueSource = new Rectangle(34, 0, 16, 16);
+
 		private static readonly Rectangle FloorSource = new Rectangle(0, 0, 16, 16);
 
-		public LinkBlockPushHandler(ILink link, BlockManager blockManager)
+		private Block.Block movingBlock = null;
+		private Vector2 movingOriginalPos;
+		private Vector2 movingTargetPos;
+
+		private const float PUSH_STEP = 4f;
+
+		public LinkBlockPushHandler(Link link, BlockManager blockManager)
 		{
 			this.link = link;
 			this.blockManager = blockManager;
@@ -21,78 +26,115 @@ namespace Sprint.Collisions
 
 		public void Handle()
 		{
+			if (movingBlock != null)
+			{
+				UpdateMovingBlock();
+				return;
+			}
+
+			if (link.IsPushing) return;
+
 			foreach (var block in blockManager.blocksList)
 			{
 				if (block.walkAble) continue;
 				if (!block.pushAble) continue;
-				if (link.Rect.Intersects(block.Rect))
-				{
-					ResolvePush(link, block);
-					break;
-				}
+				if (!link.Rect.Intersects(block.Rect)) continue;
+
+				ResolvePush(link, block);
+				break;
 			}
 		}
 
-		private void ResolvePush(ILink link, Block.Block block)
+		private void ResolvePush(Link link, Block.Block block)
 		{
 			Vector2 originalPos = block.Position;
 			Vector2 targetPos = originalPos;
 			Block.Block targetBlock = null;
 
-			if (link.Facing == Directions.Right)
+			Rectangle overlap = Rectangle.Intersect(link.Rect, block.Rect);
+			if (overlap.Width == 0 || overlap.Height == 0) return;
+
+			if (overlap.Width < overlap.Height)
 			{
-				if (link.Rect.Center.X >= block.Rect.Center.X) return;
-				targetPos = new Vector2(originalPos.X + block.tileWidth, originalPos.Y);
+				if (link.Rect.Center.X < block.Rect.Center.X)
+				{
+					targetPos = new Vector2(originalPos.X + block.tileWidth, originalPos.Y);
+				}
+				else
+				{
+					targetPos = new Vector2(originalPos.X - block.tileWidth, originalPos.Y);
+				}
 			}
-			else if (link.Facing == Directions.Left)
+			else
 			{
-				if (link.Rect.Center.X <= block.Rect.Center.X) return;
-				targetPos = new Vector2(originalPos.X - block.tileWidth, originalPos.Y);
-			}
-			else if (link.Facing == Directions.Down)
-			{
-				if (link.Rect.Center.Y >= block.Rect.Center.Y) return;
-				targetPos = new Vector2(originalPos.X, originalPos.Y + block.tileWidth);
-			}
-			else if (link.Facing == Directions.Up)
-			{
-				if (link.Rect.Center.Y <= block.Rect.Center.Y) return;
-				targetPos = new Vector2(originalPos.X, originalPos.Y - block.tileWidth);
+				if (link.Rect.Center.Y < block.Rect.Center.Y)
+				{
+					targetPos = new Vector2(originalPos.X, originalPos.Y + block.tileWidth);
+				}
+				else
+				{
+					targetPos = new Vector2(originalPos.X, originalPos.Y - block.tileWidth);
+				}
 			}
 
 			foreach (var blk in blockManager.blocksList)
 			{
+				if (blk == block) continue;
 				if (blk.Position == targetPos)
 				{
 					targetBlock = blk;
 					break;
 				}
 			}
+
 			if (targetBlock == null) return;
 			if (!targetBlock.walkAble) return;
-			
-			Block.Block newPushBlock =
-				new Block.Block(
-					GameServices.TileSheet,
-					targetPos,
-					PushableStatueSource,
-					false,
-					true
-				);
+
+			link.StartPush();
+			link.StopMove();
+
+			blockManager.blocksList.Remove(targetBlock);
+
+			movingBlock = block;
+			movingOriginalPos = originalPos;
+			movingTargetPos = targetPos;
+		}
+
+		private void UpdateMovingBlock()
+		{
+			if (movingBlock == null) return;
+
+			Vector2 toTarget = movingTargetPos - movingBlock.Position;
+			float remainingDistance = toTarget.Length();
+
+			if (remainingDistance <= PUSH_STEP)
+			{
+				FinishPush();
+				return;
+			}
+
+			Vector2 stepDirection = Vector2.Normalize(toTarget);
+			movingBlock.Position += stepDirection * PUSH_STEP;
+		}
+
+		private void FinishPush()
+		{
+			movingBlock.Position = movingTargetPos;
 
 			Block.Block newFloorBlock =
 				new Block.Block(
 					GameServices.TileSheet,
-					originalPos,
+					movingOriginalPos,
 					FloorSource,
 					true,
 					false
 				);
 
-			blockManager.blocksList.Remove(block);
-			blockManager.blocksList.Remove(targetBlock);
 			blockManager.blocksList.Add(newFloorBlock);
-			blockManager.blocksList.Add(newPushBlock);
+
+			movingBlock = null;
+			movingOriginalPos = Vector2.Zero;
+			movingTargetPos = Vector2.Zero;
 		}
 	}
 }
