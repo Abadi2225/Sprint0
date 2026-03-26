@@ -47,8 +47,12 @@ class HeartDisplay
         }
     }
 
-    public void Draw(int hearts, bool halfHeart, int maxHearts, SpriteBatch sb)
+    public void Draw(int health, int maxHealth, SpriteBatch sb)
     {
+        bool halfHeart = (health % 2) == 1;
+        int hearts = health / 2;
+        int maxHearts = maxHealth / 2;
+
         Vector2 dummy = Vector2.Zero;
         for (int i = 1; i <= maxHearts; i++)
         {

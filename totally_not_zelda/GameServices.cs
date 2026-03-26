@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework.Content;
 using Sprint.Interfaces;
 using Sprint.Controllers;
+using Sprint.Character;
 using Microsoft.Xna.Framework.Graphics;
 
 /// <summary>
@@ -22,5 +23,5 @@ public static class GameServices
     public static Texture2D ItemSheet { get; set; }
     public static Texture2D BoomerangSheet { get; set; }
 
-    public static ILink Link { get; set; }
+    public static Link Link { get; set; }
 }

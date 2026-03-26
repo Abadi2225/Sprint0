@@ -12,9 +12,9 @@ This file is dynamically maintained by a bot, *please do not* edit this by hand.
 The *Sprint.csproj* project file contains:
 
 - 18 namespaces.
-- 103 named types.
-- 5,610 total lines of source code.
-- Approximately 1,716 lines of executable code.
+- 104 named types.
+- 5,681 total lines of source code.
+- Approximately 1,743 lines of executable code.
 - The highest cyclomatic complexity is 20 :exploding_head:.
 
 <details>
@@ -90,7 +90,7 @@ The `<global namespace>` namespace contains 7 named types.
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Game States/GameplayState.cs#L26' title='Link GameplayState.link'>26</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Game States/GameplayState.cs#L17' title='Texture2D GameplayState.linkSheet'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Game States/GameplayState.cs#L38' title='bool GameplayState.lmbReleased'>38</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Game States/GameplayState.cs#L65' title='void GameplayState.LoadContent()'>65</a> | 39 | 1 :heavy_check_mark: | 0 | 28 | 66 / 51 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Game States/GameplayState.cs#L65' title='void GameplayState.LoadContent()'>65</a> | 39 | 1 :heavy_check_mark: | 0 | 27 | 66 / 51 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Game States/GameplayState.cs#L21' title='Texture2D GameplayState.NPCSheet'>21</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Game States/GameplayState.cs#L27' title='Dictionary<Keys, ICommand> GameplayState.pressedKeys'>27</a> | 100 | 0 :heavy_check_mark: | 0 | 3 | 1 / 0 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Game States/GameplayState.cs#L132' title='void GameplayState.RebuildCollisionManager()'>132</a> | 58 | 1 :heavy_check_mark: | 0 | 23 | 14 / 11 |
@@ -120,16 +120,16 @@ The `<global namespace>` namespace contains 7 named types.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L23' title='Texture2D GameServices.BoomerangSheet'>23</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L12' title='ContentManager GameServices.Content'>12</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L15' title='IGameActions GameServices.GameActions'>15</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L19' title='int GameServices.GameHeight'>19</a> | 93 | 1 :heavy_check_mark: | 0 | 1 | 1 / 1 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L18' title='int GameServices.GameWidth'>18</a> | 93 | 1 :heavy_check_mark: | 0 | 1 | 1 / 1 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L22' title='Texture2D GameServices.ItemSheet'>22</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L13' title='IController GameServices.KeyInput'>13</a> | 100 | 1 :heavy_check_mark: | 0 | 2 | 1 / 1 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L25' title='ILink GameServices.Link'>25</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L17' title='float GameServices.ScaleFactor'>17</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L21' title='Texture2D GameServices.TileSheet'>21</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L24' title='Texture2D GameServices.BoomerangSheet'>24</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L13' title='ContentManager GameServices.Content'>13</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L16' title='IGameActions GameServices.GameActions'>16</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L20' title='int GameServices.GameHeight'>20</a> | 93 | 1 :heavy_check_mark: | 0 | 1 | 1 / 1 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L19' title='int GameServices.GameWidth'>19</a> | 93 | 1 :heavy_check_mark: | 0 | 1 | 1 / 1 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L23' title='Texture2D GameServices.ItemSheet'>23</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L14' title='IController GameServices.KeyInput'>14</a> | 100 | 1 :heavy_check_mark: | 0 | 2 | 1 / 1 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L26' title='Link GameServices.Link'>26</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L18' title='float GameServices.ScaleFactor'>18</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameServices.cs#L22' title='Texture2D GameServices.TileSheet'>22</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 
 <a href="#GameServices-class-diagram">:link: to `GameServices` class diagram</a>
 
@@ -2297,11 +2297,11 @@ The `Sprint.Enemies` namespace contains 6 named types.
 </summary>
 <br>
 
-The `Sprint.UI.Hud` namespace contains 1 named types.
+The `Sprint.UI.Hud` namespace contains 2 named types.
 
-- 1 named types.
-- 64 total lines of source code.
-- Approximately 21 lines of executable code.
+- 2 named types.
+- 115 total lines of source code.
+- Approximately 39 lines of executable code.
 - The highest cyclomatic complexity is 5 :heavy_check_mark:.
 
 <details>
@@ -2313,15 +2313,15 @@ The `Sprint.UI.Hud` namespace contains 1 named types.
 <br>
 
 - The `HeartDisplay` contains 10 members.
-- 62 total lines of source code.
-- Approximately 21 lines of executable code.
+- 66 total lines of source code.
+- Approximately 24 lines of executable code.
 - The highest cyclomatic complexity is 5 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L19' title='HeartDisplay.HeartDisplay(Vector2 origin, int capacity)'>19</a> | 60 | 2 :heavy_check_mark: | 0 | 6 | 30 / 10 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L14' title='int HeartDisplay.capacity'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L50' title='void HeartDisplay.Draw(int hearts, bool halfHeart, int maxHearts, SpriteBatch sb)'>50</a> | 63 | 5 :heavy_check_mark: | 0 | 5 | 18 / 9 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L50' title='void HeartDisplay.Draw(int health, int maxHealth, SpriteBatch sb)'>50</a> | 59 | 5 :heavy_check_mark: | 0 | 5 | 22 / 12 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L15' title='List<StillItem> HeartDisplay.emptyHearts'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L17' title='List<StillItem> HeartDisplay.fullHearts'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L10' title='float HeartDisplay.GAP'>10</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
@@ -2331,6 +2331,38 @@ The `Sprint.UI.Hud` namespace contains 1 named types.
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/HeartDisplay.cs#L11' title='float HeartDisplay.SCALE'>11</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 
 <a href="#HeartDisplay-class-diagram">:link: to `HeartDisplay` class diagram</a>
+
+<a href="#sprint-ui-hud">:top: back to Sprint.UI.Hud</a>
+
+</details>
+
+<details>
+<summary>
+  <strong id="twodigitdisplay">
+    TwoDigitDisplay :heavy_check_mark:
+  </strong>
+</summary>
+<br>
+
+- The `TwoDigitDisplay` contains 10 members.
+- 45 total lines of source code.
+- Approximately 15 lines of executable code.
+- The highest cyclomatic complexity is 3 :heavy_check_mark:.
+
+| Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/TwoDigitDisplay.cs#L17' title='TwoDigitDisplay.TwoDigitDisplay(Vector2 symbolPos, Vector2 tensPos, Vector2 onesPos, Texture2D spriteSheet)'>17</a> | 68 | 1 :heavy_check_mark: | 0 | 4 | 10 / 6 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/TwoDigitDisplay.cs#L28' title='void TwoDigitDisplay.Draw(SpriteBatch sb)'>28</a> | 80 | 1 :heavy_check_mark: | 0 | 2 | 6 / 3 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/TwoDigitDisplay.cs#L15' title='NumberDisplay TwoDigitDisplay.ones'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/TwoDigitDisplay.cs#L11' title='Vector2 TwoDigitDisplay.onesPos'>11</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/TwoDigitDisplay.cs#L35' title='void TwoDigitDisplay.SetNumber(int newNumber)'>35</a> | 67 | 3 :heavy_check_mark: | 0 | 4 | 13 / 6 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/TwoDigitDisplay.cs#L8' title='Texture2D TwoDigitDisplay.spriteSheet'>8</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/TwoDigitDisplay.cs#L13' title='NumberDisplay TwoDigitDisplay.symbol'>13</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/TwoDigitDisplay.cs#L14' title='NumberDisplay TwoDigitDisplay.tens'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/TwoDigitDisplay.cs#L10' title='Vector2 TwoDigitDisplay.tensPos'>10</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/TwoDigitDisplay.cs#L49' title='void TwoDigitDisplay.Update(GameTime time)'>49</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+
+<a href="#TwoDigitDisplay-class-diagram">:link: to `TwoDigitDisplay` class diagram</a>
 
 <a href="#sprint-ui-hud">:top: back to Sprint.UI.Hud</a>
 
@@ -3394,7 +3426,7 @@ The `Sprint.Sprites` namespace contains 8 named types.
 <details>
 <summary>
   <strong id="sprint-ui">
-    Sprint.UI :x:
+    Sprint.UI :heavy_check_mark:
   </strong>
 </summary>
 <br>
@@ -3402,9 +3434,9 @@ The `Sprint.Sprites` namespace contains 8 named types.
 The `Sprint.UI` namespace contains 6 named types.
 
 - 6 named types.
-- 235 total lines of source code.
-- Approximately 49 lines of executable code.
-- The highest cyclomatic complexity is 13 :x:.
+- 255 total lines of source code.
+- Approximately 58 lines of executable code.
+- The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
 <details>
 <summary>
@@ -3466,20 +3498,23 @@ The `Sprint.UI` namespace contains 6 named types.
 </summary>
 <br>
 
-- The `HUDBar` contains 7 members.
-- 32 total lines of source code.
-- Approximately 7 lines of executable code.
+- The `HUDBar` contains 10 members.
+- 61 total lines of source code.
+- Approximately 14 lines of executable code.
 - The highest cyclomatic complexity is 1 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L23' title='HUDBar.HUDBar(Texture2D backgroundTexture)'>23</a> | 75 | 1 :heavy_check_mark: | 0 | 7 | 6 / 3 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L16' title='StaticSprite HUDBar.background'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L30' title='void HUDBar.Draw(SpriteBatch spriteBatch)'>30</a> | 76 | 1 :heavy_check_mark: | 0 | 7 | 7 / 3 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L19' title='HeartDisplay HUDBar.hearts'>19</a> | 86 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L21' title='NumberDisplay HUDBar.rupeeCount'>21</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L17' title='Rectangle HUDBar.sourceRect'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L38' title='void HUDBar.Update(GameTime gameTime)'>38</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 3 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L26' title='HUDBar.HUDBar(Texture2D backgroundTexture)'>26</a> | 64 | 1 :heavy_check_mark: | 0 | 7 | 26 / 6 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L17' title='StaticSprite HUDBar.background'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L24' title='TwoDigitDisplay HUDBar.bombs'>24</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L53' title='void HUDBar.Draw(SpriteBatch spriteBatch)'>53</a> | 70 | 1 :heavy_check_mark: | 0 | 9 | 9 / 5 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L20' title='HeartDisplay HUDBar.hearts'>20</a> | 86 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L23' title='TwoDigitDisplay HUDBar.keys'>23</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L22' title='TwoDigitDisplay HUDBar.rupees'>22</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L18' title='Rectangle HUDBar.sourceRect'>18</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L16' title='Texture2D HUDBar.texture'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L63' title='void HUDBar.Update(GameTime gameTime)'>63</a> | 83 | 1 :heavy_check_mark: | 0 | 4 | 7 / 2 |
 
 <a href="#HUDBar-class-diagram">:link: to `HUDBar` class diagram</a>
 
@@ -3490,25 +3525,27 @@ The `Sprint.UI` namespace contains 6 named types.
 <details>
 <summary>
   <strong id="numberdisplay">
-    NumberDisplay :x:
+    NumberDisplay :heavy_check_mark:
   </strong>
 </summary>
 <br>
 
-- The `NumberDisplay` contains 7 members.
-- 39 total lines of source code.
-- Approximately 6 lines of executable code.
-- The highest cyclomatic complexity is 13 :x:.
+- The `NumberDisplay` contains 9 members.
+- 30 total lines of source code.
+- Approximately 8 lines of executable code.
+- The highest cyclomatic complexity is 1 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L19' title='NumberDisplay.NumberDisplay(Texture2D backgroundTexture, Vector2 pos, int id)'>19</a> | 66 | 13 :x: | 0 | 4 | 21 / 4 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L13' title='StaticSprite NumberDisplay.background'>13</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L17' title='int NumberDisplay.baseX'>17</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L41' title='void NumberDisplay.Draw(SpriteBatch spriteBatch)'>41</a> | 88 | 1 :heavy_check_mark: | 0 | 5 | 4 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L15' title='Vector2 NumberDisplay.pos'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L14' title='Rectangle NumberDisplay.sourceRect'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L46' title='void NumberDisplay.Update(GameTime gameTime)'>46</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 3 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L22' title='NumberDisplay.NumberDisplay(Texture2D backgroundTexture, Vector2 pos, int num)'>22</a> | 70 | 1 :heavy_check_mark: | 0 | 5 | 9 / 5 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L16' title='StaticSprite NumberDisplay.background'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L13' title='int NumberDisplay.BASE_X'>13</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L32' title='void NumberDisplay.Draw(SpriteBatch spriteBatch)'>32</a> | 88 | 1 :heavy_check_mark: | 0 | 5 | 4 / 1 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L19' title='int NumberDisplay.Num'>19</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L18' title='Vector2 NumberDisplay.pos'>18</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L17' title='Rectangle NumberDisplay.sourceRect'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L37' title='void NumberDisplay.Update(GameTime gameTime)'>37</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 3 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/Hud/NumberDisplay.cs#L14' title='int NumberDisplay.Y'>14</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 
 <a href="#NumberDisplay-class-diagram">:link: to `NumberDisplay` class diagram</a>
 
@@ -3669,7 +3706,7 @@ class GameServices{
     +Texture2D TileSheet$
     +Texture2D ItemSheet$
     +Texture2D BoomerangSheet$
-    +ILink Link$
+    +Link Link$
 }
 
 ```
@@ -5031,7 +5068,29 @@ class HeartDisplay{
     -List<StillItem> halfHearts
     -List<StillItem> fullHearts
     +.ctor(Vector2 origin, int capacity) HeartDisplay
-    +Draw(int hearts, bool halfHeart, int maxHearts, SpriteBatch sb) void
+    +Draw(int health, int maxHealth, SpriteBatch sb) void
+}
+
+```
+
+<div id="TwoDigitDisplay-class-diagram"></div>
+
+##### `TwoDigitDisplay` class diagram
+
+```mermaid
+classDiagram
+IUIElement <|-- TwoDigitDisplay : implements
+class TwoDigitDisplay{
+    -Texture2D spriteSheet
+    -Vector2 tensPos
+    -Vector2 onesPos
+    -NumberDisplay symbol
+    -NumberDisplay tens
+    -NumberDisplay ones
+    +.ctor(Vector2 symbolPos, Vector2 tensPos, Vector2 onesPos, Texture2D spriteSheet) TwoDigitDisplay
+    +Draw(SpriteBatch sb) void
+    +SetNumber(int newNumber) void
+    +Update(GameTime time) void
 }
 
 ```
@@ -5709,10 +5768,13 @@ class DungeonWalls{
 classDiagram
 IUIElement <|-- HUDBar : implements
 class HUDBar{
+    -Texture2D texture
     -StaticSprite background
     -Rectangle sourceRect
     -HeartDisplay hearts
-    -NumberDisplay rupeeCount
+    -TwoDigitDisplay rupees
+    -TwoDigitDisplay keys
+    -TwoDigitDisplay bombs
     +.ctor(Texture2D backgroundTexture) HUDBar
     +Draw(SpriteBatch spriteBatch) void
     +Update(GameTime gameTime) void
@@ -5728,11 +5790,13 @@ class HUDBar{
 classDiagram
 IUIElement <|-- NumberDisplay : implements
 class NumberDisplay{
+    -int BASE_X
+    -int Y
     -StaticSprite background
     -Rectangle sourceRect
     -Vector2 pos
-    -int baseX
-    +.ctor(Texture2D backgroundTexture, Vector2 pos, int id) NumberDisplay
+    +int Num
+    +.ctor(Texture2D backgroundTexture, Vector2 pos, int num) NumberDisplay
     +Draw(SpriteBatch spriteBatch) void
     +Update(GameTime gameTime) void
 }
