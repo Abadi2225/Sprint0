@@ -1,14 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Sprint.Interfaces;
-using Sprint.Controllers;
-using Sprint.Sprites;
-using Sprint.UI;
-using Sprint.Enemies;
-using Sprint.Enemies.Concrete;
-using Sprint.Item;
-using Sprint.Block;
 
 namespace Sprint;
 
@@ -30,7 +22,7 @@ public class Game1 : Game, IGameActions
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
 
-        currentState = new StartScreenState();
+        currentState = new MenuState();
         currentState.Enter();
 
         // Set the window size to be 3 times the original NES resolution (256x224)
