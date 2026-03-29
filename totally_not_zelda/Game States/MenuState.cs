@@ -19,15 +19,17 @@ class MenuState : IGameState
 
     public MenuState()
     {
-        inputHandler = new MenuInputHandler();
-        
+
         // UIManager should be initialized before loading content, since LoadContent adds elements to it
         uiManager = new UIManager();
     }
 
     public void Exit() { }
 
-    public void Enter() { }
+    public void Enter()
+    {
+        inputHandler = new MenuInputHandler();
+    }
 
     public void LoadContent()
     {

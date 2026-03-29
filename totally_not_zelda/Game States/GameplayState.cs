@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using Sprint.Collisions;
 using Sprint.Levels;
 using Sprint.UI;
+using Sprint.InputHandling;
 
 class GameplayState : IGameState
 {
@@ -37,6 +38,7 @@ class GameplayState : IGameState
     private bool lmbReleased = true;
     private bool rmbReleased = true;
     private DungeonWalls dungeonWalls;
+    private GameplayInputHandler inputHandler;
 
     public GameplayState()
     {
@@ -46,19 +48,7 @@ class GameplayState : IGameState
 
     public void Enter()
     {
-        pressedKeys = new Dictionary<Keys, ICommand>
-        {
-            {Keys.Q, new QuitCommand()},
-            // {Keys.O, new CycleEnemyCommand(enemyManager, true)},
-            // {Keys.P, new CycleEnemyCommand(enemyManager, false)}, //commented out since cycling enemies is obsolete
-            // {Keys.I, new CycleItemCommand(inventory, true)},
-            // {Keys.U, new CycleItemCommand(inventory, false)},
-            {Keys.D1, new UseItemCommand(items, inventory, link, 0)},
-            {Keys.D2, new UseItemCommand(items, inventory, link, 1)},
-            {Keys.D3, new UseItemCommand(items, inventory, link, 2)},
-            {Keys.R, new SetStateCommand(new MenuState())}
-        };
-
+        inputHandler = new GameplayInputHandler(link, inventory, items);
     }
 
     public void LoadContent()
@@ -187,23 +177,8 @@ class GameplayState : IGameState
         link.Update(gameTime);
         inventory.Update(gameTime);
         items.Update(gameTime);
-
         collisionManager.HandleAll();
-
-        if (GameServices.KeyInput.IsKeyDown(Keys.W) || GameServices.KeyInput.IsKeyDown(Keys.Up)) link.SetMove(Directions.Up);
-        else if (GameServices.KeyInput.IsKeyDown(Keys.S) || GameServices.KeyInput.IsKeyDown(Keys.Down)) link.SetMove(Directions.Down);
-        else if (GameServices.KeyInput.IsKeyDown(Keys.A) || GameServices.KeyInput.IsKeyDown(Keys.Left)) link.SetMove(Directions.Left);
-        else if (GameServices.KeyInput.IsKeyDown(Keys.D) || GameServices.KeyInput.IsKeyDown(Keys.Right)) link.SetMove(Directions.Right);
-        else link.StopMove();
-        if (GameServices.KeyInput.IsKeyDown(Keys.Z) || GameServices.KeyInput.IsKeyDown(Keys.N)) link.StartAttack();
-        if (GameServices.KeyInput.IsKeyDown(Keys.E)) link.StartDamaged();
-        foreach (var binding in pressedKeys)
-        {
-            if (GameServices.KeyInput.IsKeyPressed(binding.Key))
-            {
-                binding.Value.Execute();
-            }
-        }
+        inputHandler.HandleInput();
 
         MouseState mouse = Mouse.GetState();
         if (mouse.RightButton == ButtonState.Pressed && rmbReleased)
