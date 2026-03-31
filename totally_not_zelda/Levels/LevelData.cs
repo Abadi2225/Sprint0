@@ -12,4 +12,7 @@ public class LevelData
 
     // Door connections: key = "north"/"south"/"east"/"west", value = room name
     public Dictionary<string, string> doors { get; set; }
+
+    // Optional door types: key = direction, value = "open" (default), "key", "enemy", or "bomb"
+    public Dictionary<string, string> doorTypes { get; set; }
 }

@@ -45,6 +45,7 @@ internal class LinkItemCollision : ICollisionHandler
             case "BlueHeart":
             case "HalfHeart":   link.GetHealed(1); return;
             case "Fairy":       link.GetHealed(link.MaxHealth); return;
+            case "Key":         link.AddKey(); return;
         }
 
         // All other items go into the inventory

@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Sprint.Block;
 using Sprint.Interfaces;
 using Sprint.UI;
 using System;
@@ -9,58 +10,123 @@ namespace Sprint.Collisions
 	{
 		private readonly ILink link;
 		private readonly DungeonWalls dungeonWalls;
+        private readonly DoorManager doorManager;
 		private readonly Action<string> onDoorExit;
+        // Set when Link has entered a door opening but hasn't gone deep enough to transition yet.
+        private string pendingExit;
 
-		public LinkWallCollisionHandler(ILink link, DungeonWalls dungeonWalls, Action<string> onDoorExit = null)
+		public LinkWallCollisionHandler(ILink link, DungeonWalls dungeonWalls, DoorManager doorManager, Action<string> onDoorExit = null)
 		{
 			this.link = link;
 			this.dungeonWalls = dungeonWalls;
+			this.doorManager = doorManager;
 			this.onDoorExit = onDoorExit;
 		}
 
 		public void Handle()
 		{
-			ResolveCollision(link, dungeonWalls, onDoorExit);
-		}
+			int spriteSize = link.Rect.Width;
+			int exitDepth  = dungeonWalls.DoorExitDepth;
 
-		private static void ResolveCollision(ILink link, DungeonWalls dungeonWalls, Action<string> onDoorExit)
-		{
-			int spriteSize = link.Rect.Width; // 48 — full sprite width (unchanged by lower-half rect)
-			int centerX = (int)link.Position.X + spriteSize / 2;
-			int centerY = (int)link.Position.Y + spriteSize / 2;
+            bool inTopDoorX  = link.Position.X >= dungeonWalls.TopDoorLeft  && link.Position.X + spriteSize <= dungeonWalls.TopDoorRight;
+            bool inSideDoorY = link.Position.Y >= dungeonWalls.SideDoorTop   && link.Position.Y + spriteSize <= dungeonWalls.SideDoorBottom;
 
-			bool inTopDoorX  = centerX >= dungeonWalls.TopDoorLeft  && centerX <= dungeonWalls.TopDoorRight;
-			bool inSideDoorY = centerY >= dungeonWalls.SideDoorTop   && centerY <= dungeonWalls.SideDoorBottom;
+            // If Link is mid-transition, check if he backed out first.
+            if (pendingExit != null)
+            {
+                bool backedOut = pendingExit switch
+                {
+                    "west"  => link.Position.X >= dungeonWalls.InnerBounds.Left,
+                    "east"  => link.Position.X <= dungeonWalls.InnerBounds.Right - spriteSize,
+                    "north" => link.Position.Y >= dungeonWalls.InnerBounds.Top,
+                    "south" => link.Position.Y <= dungeonWalls.InnerBounds.Bottom - spriteSize,
+                    _       => true
+                };
+                if (backedOut)
+                {
+                    pendingExit = null;
+                }
+                else
+                {
+                    // This is so link won't appear on top of the wall
+                    switch (pendingExit)
+                    {
+                        case "west":
+                        case "east":
+                            if (link.Position.Y < dungeonWalls.SideDoorTop)
+                                link.Position = new Vector2(link.Position.X, dungeonWalls.SideDoorTop);
+                            else if (link.Position.Y + spriteSize > dungeonWalls.SideDoorEntryBottom)
+                                link.Position = new Vector2(link.Position.X, dungeonWalls.SideDoorEntryBottom - spriteSize);
+                            break;
+                        case "north":
+                        case "south":
+                            if (link.Position.X < dungeonWalls.TopDoorLeft)
+                                link.Position = new Vector2(dungeonWalls.TopDoorLeft, link.Position.Y);
+                            else if (link.Position.X + spriteSize > dungeonWalls.TopDoorRight)
+                                link.Position = new Vector2(dungeonWalls.TopDoorRight - spriteSize, link.Position.Y);
+                            break;
+                    }
 
-			bool doorExited = false;
+                    bool deepEnough = pendingExit switch
+                    {
+                        "west"  => link.Position.X < dungeonWalls.InnerBounds.Left - exitDepth,
+                        "east"  => link.Position.X > dungeonWalls.InnerBounds.Right - spriteSize + exitDepth,
+                        "north" => link.Position.Y < dungeonWalls.InnerBounds.Top - exitDepth,
+                        "south" => link.Position.Y > dungeonWalls.InnerBounds.Bottom - spriteSize + exitDepth,
+                        _       => false
+                    };
+                    if (deepEnough)
+                    {
+                        string dir = pendingExit;
+                        pendingExit = null;
+                        onDoorExit?.Invoke(dir);
+                    }
+                    return; // Still in door opening, skip wall collision.
+                }
+            }
+            
+            bool doorExited = false;
 
-			if (link.Position.X < dungeonWalls.InnerBounds.Left)
-			{
-				if (inSideDoorY && onDoorExit != null) 
-				{ 
-					onDoorExit("west"); 
-					doorExited = true; 
-				}
-				else { link.Position += new Vector2(dungeonWalls.InnerBounds.Left - (int)link.Position.X, 0); }
-			}
+            if (link.Position.X < dungeonWalls.InnerBounds.Left)
+            {
+                if (inSideDoorY && TryEnterDoor("west"))
+                    doorExited = true;
+                else
+                    link.Position += new Vector2(dungeonWalls.InnerBounds.Left - (int)link.Position.X, 0);
+            }
 
-			if (!doorExited && link.Position.X > dungeonWalls.InnerBounds.Right - spriteSize)
-			{
-				if (inSideDoorY && onDoorExit != null) { onDoorExit("east"); doorExited = true; }
-				else { link.Position += new Vector2(dungeonWalls.InnerBounds.Right - spriteSize - (int)link.Position.X, 0); }
-			}
+            if (!doorExited && link.Position.X > dungeonWalls.InnerBounds.Right - spriteSize)
+            {
+                if (inSideDoorY && TryEnterDoor("east"))
+                    doorExited = true;
+                else
+                    link.Position += new Vector2(dungeonWalls.InnerBounds.Right - spriteSize - (int)link.Position.X, 0);
+            }
 
-			if (!doorExited && link.Position.Y < dungeonWalls.InnerBounds.Top)
-			{
-				if (inTopDoorX && onDoorExit != null) { onDoorExit("north"); doorExited = true; }
-				else { link.Position += new Vector2(0, dungeonWalls.InnerBounds.Top - (int)link.Position.Y); }
-			}
+            if (!doorExited && link.Position.Y < dungeonWalls.InnerBounds.Top)
+            {
+                if (inTopDoorX && TryEnterDoor("north"))
+                    doorExited = true;
+                else
+                    link.Position += new Vector2(0, dungeonWalls.InnerBounds.Top - (int)link.Position.Y);
+            }
 
-			if (!doorExited && link.Position.Y > dungeonWalls.InnerBounds.Bottom - spriteSize)
-			{
-				if (inTopDoorX && onDoorExit != null) { onDoorExit("south"); doorExited = true; }
-				else { link.Position += new Vector2(0, dungeonWalls.InnerBounds.Bottom - spriteSize - (int)link.Position.Y); }
-			}
-		}
-	}
+            if (!doorExited && link.Position.Y > dungeonWalls.InnerBounds.Bottom - spriteSize)
+            {
+                if (inTopDoorX && TryEnterDoor("south"))
+                    doorExited = true;
+                else
+                    link.Position += new Vector2(0, dungeonWalls.InnerBounds.Bottom - spriteSize - (int)link.Position.Y);
+            }
+        }
+
+        // Checks if the door is passable (consuming a key if needed) and starts the walkthrough.
+        // Returns true if Link may enter the door opening; the transition triggers once deep enough.
+        private bool TryEnterDoor(string direction)
+        {
+            if (doorManager == null || !doorManager.TryExit(direction, link)) return false;
+            pendingExit = direction;
+            return true;
+        }
+    }
 }

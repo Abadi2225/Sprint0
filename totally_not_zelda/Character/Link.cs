@@ -49,6 +49,7 @@ public class Link : ILink
 	private double pushingTimer = 0;
 	private int health;
     private int rubies;
+    private int keys;
     private bool isAttacking = false;
     private bool isUsingItem = false;
     private bool isDamaged = false;
@@ -99,6 +100,15 @@ public class Link : ILink
     {
         get => rubies;
         private set => rubies = value;
+    }
+
+    public int Keys => keys;
+    public void AddKey() => keys++;
+    public bool UseKey()
+    { 
+        if (keys <= 0) return false; 
+        keys--; 
+        return true; 
     }
 
     public Link(Texture2D texture, Vector2 position)

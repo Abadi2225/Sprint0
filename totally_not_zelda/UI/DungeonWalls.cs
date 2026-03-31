@@ -81,10 +81,14 @@ public class DungeonWalls : IUIElement
 	);
 
     // Door opening ranges in screen coordinates
-    public int TopDoorLeft    => (int)(TOP_DOOR_LEFT * scale);
-    public int TopDoorRight   => (int)(TOP_DOOR_RIGHT * scale);
-    public int SideDoorTop    => (int)(LEFT_DOOR_TOP * scale) + (int)hudHeight;
+    public int TopDoorLeft => (int)(TOP_DOOR_LEFT * scale);
+    public int TopDoorRight => (int)(TOP_DOOR_RIGHT * scale);
+    public int SideDoorTop => (int)(LEFT_DOOR_TOP * scale) + (int)hudHeight;
     public int SideDoorBottom => (int)(LEFT_DOOR_BOTTOM * scale) + (int)hudHeight;
+    public int SideDoorEntryBottom => SideDoorBottom - (int)(8 * scale);
+
+    // How far (in screen pixels) Link must walk into a wall opening before the room transitions.
+    public int DoorExitDepth  => (int)(15 * scale);
 
 	private void DrawSection(SpriteBatch spriteBatch, int srcX, int srcY, int srcW, int srcH)
     {

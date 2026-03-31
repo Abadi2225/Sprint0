@@ -15,6 +15,9 @@ public interface ILink
     void StartUseItem();
     void StartPickUpWeapon(Rectangle itemRect);
     void StartPickUpTriforce();
+    int Keys { get; }
+    void AddKey();
+    bool UseKey();
     void TakeDamage(int amount);
     void GetHealed(int amount);
     void IncreaseRubies(int amount);
