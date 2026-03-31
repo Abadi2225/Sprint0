@@ -61,11 +61,33 @@ public static class BlockFactory
         };
 
 
-		bool pushable = type switch
-		{
-			BlockType.StatueRight => true,  // StatueRight can be pushed
-			_ => false  // For now, no blocks are pushable by default. This can be updated in the future if needed.
-		};
-		return new Block(GameServices.TileSheet, pos, textureMask, walkable, pushable);
+		return new Block(GameServices.TileSheet, pos, textureMask, walkable, false);
     }
+
+	public static Block CreatePushable(int tileId, Vector2 pos)
+	{
+		BlockType type = tileId switch
+		{
+			0 => BlockType.Blank,
+			1 => BlockType.Square,
+			2 => BlockType.StatueRight,
+			3 => BlockType.StatueLeft,
+			4 => BlockType.Black,
+			5 => BlockType.Sand,
+			6 => BlockType.Water,
+			7 => BlockType.Stairs,
+			8 => BlockType.Bricks,
+			9 => BlockType.Ladder,
+			_ => BlockType.Blank,
+		};
+
+		Rectangle textureMask = new Rectangle(
+			(int)type % SHEET_COLUMNS * (TILE_SIZE + TILE_SPACING),
+			(int)type / SHEET_COLUMNS * (TILE_SIZE + TILE_SPACING),
+			TILE_SIZE,
+			TILE_SIZE
+		);
+
+		return new Block(GameServices.TileSheet, pos, textureMask, false, true);
+	}
 }

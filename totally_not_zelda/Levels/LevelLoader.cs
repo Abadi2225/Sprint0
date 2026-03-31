@@ -21,7 +21,7 @@ public class LevelLoader
         "wave",
         "dumbbell",
         "blockedstairs",
-        "boss",
+		"boss",
         "pacman"
     };
     private int currentLevel = 0;
