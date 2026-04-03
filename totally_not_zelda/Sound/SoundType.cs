@@ -1,0 +1,28 @@
+namespace Sprint.Sound;
+
+internal enum SoundType
+{
+    ARROW_BOOMERANG,
+    BOMB_EXPLODE,
+    BOMB_PLACE,
+    BOSS_HURT,
+    BOSS_SCREAM1,
+    BOSS_SCREAM2,
+    BOSS_SCREAM3,
+    CANDLE,
+    DOOR_UNLOCK,
+    ENEMY_DEATH,
+    ENEMY_HURT,
+    PICKUP_VALUABLE,
+    LINK_HEALED,
+    PICKUP_ITEM,
+    PICKUP_RUPEE,
+    KEY_APPEAR,
+    LINK_DEATH,
+    LINK_HURT,
+    LOW_HEALTH,
+    SECRET_UNLOCKED,
+    SWORD_COMBINED,
+    SWORD_SHOOT,
+    SWORD_SWING
+}

@@ -18,13 +18,22 @@ public class LevelBuilder
         float wallBorderX = 32;
         float wallBorderY = 32; 
 
-        for (int i = 0; i < data.height * data.width; i++)
+        var backgroundLayer = data.layers.FirstOrDefault(l => l.name == "BackgroundTiles");
+        if (backgroundLayer != null)
         {
-            int id = data.layers[0].data[i];
-            if (id == 0) continue;
+            for (int i = 0; i < backgroundLayer.data.Length; i++)
+            {
+                int id = backgroundLayer.data[i];
+                if (id == 0) continue;
 
-            int x = i % data.width;
-            int y = i / data.width;
+                int x = i % data.width;
+                int y = i / data.width;
+
+                Block block = BlockFactory.Create(
+                    id - 1,
+                    new Vector2(
+                        x * TILE_SIZE * GameServices.ScaleFactor + wallBorderX,
+                        y * TILE_SIZE * GameServices.ScaleFactor + wallBorderY + hudHeight));
 
             Block block = BlockFactory.Create(id-1, new Vector2(
                 (int)((x * TILE_SIZE + wallBorderX) * GameServices.ScaleFactor),
@@ -32,7 +41,27 @@ public class LevelBuilder
             blockManager.Add(block);
         }
 
-        EnemyManager enemyManager = new EnemyManager();
+		var pushableLayer = data.layers.FirstOrDefault(layer => layer.name == "PushableBlocks");
+		if (pushableLayer != null)
+		{
+			for (int i = 0; i < pushableLayer.data.Length; i++)
+			{
+				int id = pushableLayer.data[i];
+				if (id == 0) continue;
+
+				int x = i % data.width;
+				int y = i / data.width;
+
+				Vector2 pos = new Vector2(
+					x * TILE_SIZE * GameServices.ScaleFactor + wallBorderX,
+					y * TILE_SIZE * GameServices.ScaleFactor + wallBorderY + hudHeight);
+
+				Block block = BlockFactory.CreatePushable(id - 1, pos);
+				blockManager.Add(block);
+			}
+		}
+
+		EnemyManager enemyManager = new EnemyManager();
         var solidBlocks = blockManager.blocksList.Where(b => !b.walkAble).ToList();
 
         var enemyLayer = data.layers.FirstOrDefault(l => l.name == "Enemies");

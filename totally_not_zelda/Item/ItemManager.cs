@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
 using Sprint.Character;
+using Sprint.Sound;
 
 namespace Sprint.Item;
 
@@ -34,6 +35,7 @@ public class ItemManager
                         DirectionsUtils.CreateVector(facing, velocity),
                         maxDistance
                         ).StartMoving());
+            SoundPlayer.Play(SoundType.ARROW_BOOMERANG);
         }
         else if (used.Name == "Bow")
         {
@@ -41,11 +43,11 @@ public class ItemManager
             float maxDistance = 160;
             float arrowRotation = facing switch
             {
-                Directions.Up    => 0f,
-                Directions.Down  => MathF.PI,
+                Directions.Up => 0f,
+                Directions.Down => MathF.PI,
                 Directions.Right => MathF.PI / 2f,
-                Directions.Left  => -MathF.PI / 2f,
-                _                => 0f
+                Directions.Left => -MathF.PI / 2f,
+                _ => 0f
             };
             SpawnItem(ItemFactory.CreateArrow(
                         pos,
@@ -54,16 +56,18 @@ public class ItemManager
                         scale: 2f,
                         maxDistance
                         ).StartMoving());
+            SoundPlayer.Play(SoundType.ARROW_BOOMERANG);
         }
         else if (used.Name == "Bomb" || used.Name == "TimeBomb")
         {
-            float reach = 30;
+            float reach = 30f;
             double explodeDelayMillis = 3000;
             SpawnItem(ItemFactory.CreateTimeBomb(
                         explodeDelayMillis,
                         Vector2.Add(pos, DirectionsUtils.CreateVector(facing, reach)),
                         scale: 2f
                         ));
+            SoundPlayer.Play(SoundType.BOMB_PLACE);
         }
     }
 

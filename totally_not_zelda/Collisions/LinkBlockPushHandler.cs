@@ -10,10 +10,7 @@ namespace Sprint.Collisions
 		private readonly Link link;
 		private readonly BlockManager blockManager;
 
-		private static readonly Rectangle FloorSource = new Rectangle(0, 0, 16, 16);
-
 		private Block.Block movingBlock = null;
-		private Vector2 movingOriginalPos;
 		private Vector2 movingTargetPos;
 
 		private const float PUSH_STEP = 4f;
@@ -49,7 +46,6 @@ namespace Sprint.Collisions
 		{
 			Vector2 originalPos = block.Position;
 			Vector2 targetPos = originalPos;
-			Block.Block targetBlock = null;
 
 			Rectangle overlap = Rectangle.Intersect(link.Rect, block.Rect);
 			if (overlap.Width == 0 || overlap.Height == 0) return;
@@ -77,26 +73,24 @@ namespace Sprint.Collisions
 				}
 			}
 
+			bool blocked = false;
+
 			foreach (var blk in blockManager.blocksList)
 			{
 				if (blk == block) continue;
-				if (blk.Position == targetPos)
+				if (blk.Position == targetPos && !blk.walkAble)
 				{
-					targetBlock = blk;
+					blocked = true;
 					break;
 				}
 			}
 
-			if (targetBlock == null) return;
-			if (!targetBlock.walkAble) return;
+			if (blocked) return;
 
 			link.StartPush();
 			link.StopMove();
 
-			blockManager.blocksList.Remove(targetBlock);
-
 			movingBlock = block;
-			movingOriginalPos = originalPos;
 			movingTargetPos = targetPos;
 		}
 
@@ -120,20 +114,7 @@ namespace Sprint.Collisions
 		private void FinishPush()
 		{
 			movingBlock.Position = movingTargetPos;
-
-			Block.Block newFloorBlock =
-				new Block.Block(
-					GameServices.TileSheet,
-					movingOriginalPos,
-					FloorSource,
-					true,
-					false
-				);
-
-			blockManager.blocksList.Add(newFloorBlock);
-
 			movingBlock = null;
-			movingOriginalPos = Vector2.Zero;
 			movingTargetPos = Vector2.Zero;
 		}
 	}
