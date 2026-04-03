@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 namespace Sprint.UI;
 
-public class DungeonWalls : IUIElement
+public class JesseDungeonWalls : IUIElement
 {
     private Texture2D texture;
     private float scale;
@@ -35,7 +35,7 @@ public class DungeonWalls : IUIElement
     private const int SHEET_HEIGHT = 176;
     private readonly float hudHeight = 48 * GameServices.ScaleFactor;
 
-    public DungeonWalls(Texture2D texture)
+    public JesseDungeonWalls(Texture2D texture)
     {
         this.texture = texture;
         this.scale = GameServices.ScaleFactor;

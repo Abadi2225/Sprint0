@@ -45,14 +45,17 @@ public static class BlockFactory
 
     private static Block CreateBlock(BlockType type, Vector2 pos)
     {
-        Rectangle textureMask = new Rectangle(
-            (int)type % SHEET_COLUMNS * (TILE_SIZE + TILE_SPACING),
-            (int)type / SHEET_COLUMNS * (TILE_SIZE + TILE_SPACING),
-            TILE_SIZE,
-            TILE_SIZE
-            );
+        int tileX = (int)type % SHEET_COLUMNS;
+        int tileY = (int)type / SHEET_COLUMNS;
 
-            bool walkable = type switch
+        Rectangle textureMask = new Rectangle(
+            tileX * (TILE_SIZE + TILE_SPACING), // X position on the tile sheet
+            tileY * (TILE_SIZE + TILE_SPACING), // Y position on the tile sheet
+            TILE_SIZE,                          // Width of the tile
+            TILE_SIZE                           // Height of the tile
+        );
+
+        bool walkable = type switch
         {
             BlockType.Blank or 
             BlockType.Sand or 

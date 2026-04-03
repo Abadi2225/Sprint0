@@ -5,20 +5,20 @@ using Microsoft.Xna.Framework;
 
 namespace Sprint.UI;
 
-class TitleScreen : IUIElement
+class OuterDungeonWalls : IUIElement
 {
     private StaticSprite background;
     private Rectangle sourceRect;
-
-    public TitleScreen(Texture2D backgroundTexture)
+    
+    public OuterDungeonWalls(Texture2D backgroundTexture)
     {
-        sourceRect = new Rectangle(1, 11, 256, 224);
-        background = new StaticSprite(backgroundTexture, Vector2.Zero, sourceRect);
+        sourceRect = new Rectangle(0, 0, 256, 176);
+        background = new StaticSprite(backgroundTexture, new Vector2(0, 0), sourceRect);
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        background.Draw(spriteBatch, Vector2.Zero);
+        background.Draw(spriteBatch, new Vector2(0, 48 * GameServices.ScaleFactor));
     }
 
     public void Update(GameTime gameTime)

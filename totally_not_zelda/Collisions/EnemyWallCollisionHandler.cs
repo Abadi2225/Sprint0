@@ -12,9 +12,9 @@ namespace Sprint.Collisions
 	{
 
 		private readonly List<IEnemy> enemies;
-		private readonly DungeonWalls dungeonWalls;
+		private readonly JesseDungeonWalls dungeonWalls;
 
-		public EnemyWallCollisionHandler(List<IEnemy> enemies, DungeonWalls dungeonWalls)
+		public EnemyWallCollisionHandler(List<IEnemy> enemies, JesseDungeonWalls dungeonWalls)
 		{
 			this.enemies = enemies;
 			this.dungeonWalls = dungeonWalls;
@@ -28,7 +28,7 @@ namespace Sprint.Collisions
 				ResolveCollision(enemy, dungeonWalls);
 			}
 		}
-		private static void ResolveCollision(IEnemy enemy, DungeonWalls dungeonWalls)
+		private static void ResolveCollision(IEnemy enemy, JesseDungeonWalls dungeonWalls)
 		{
 
 			if (enemy.Position.X < dungeonWalls.InnerBounds.Left)

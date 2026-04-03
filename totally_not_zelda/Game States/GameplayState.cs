@@ -20,11 +20,11 @@ class GameplayState : IGameState
     private Texture2D BossesSheet;
     private Texture2D dustSheet;
     private Texture2D NPCSheet;
-    private Texture2D dungeonBackground;
+    private Texture2D outerWallsTexture;
+    private Texture2D innerWallsTexture;
     private Texture2D hudElements;
 
     private Link link;
-    private Dictionary<Keys, ICommand> pressedKeys;
     private ItemManager items;
     private Inventory inventory;
     private EnemyManager enemyManager;
@@ -37,8 +37,9 @@ class GameplayState : IGameState
     // todo delete this
     private bool lmbReleased = true;
     private bool rmbReleased = true;
-    private DungeonWalls dungeonWalls;
+    private InnerDungeonWalls innerWalls;
     private GameplayInputHandler inputHandler;
+    private JesseDungeonWalls dungeonWalls;
 
     public GameplayState()
     {
@@ -58,7 +59,8 @@ class GameplayState : IGameState
         BossesSheet = GameServices.Content.Load<Texture2D>("images/BossesSpriteSheet");
         dustSheet = GameServices.Content.Load<Texture2D>("images/dustSheet");
         NPCSheet = GameServices.Content.Load<Texture2D>("images/NPC");
-        dungeonBackground = GameServices.Content.Load<Texture2D>("images/ZeldaDungeonWalls");
+        outerWallsTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/ZeldaDungeonOuterWalls");
+        innerWallsTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/ZeldaDungeonInnerWalls");
         hudElements = GameServices.Content.Load<Texture2D>("images/ZeldaUIElements");
         GameServices.TileSheet = GameServices.Content.Load<Texture2D>("blocks/tiles");;
         GameServices.ItemSheet = GameServices.Content.Load<Texture2D>("items/sheet");
@@ -76,10 +78,13 @@ class GameplayState : IGameState
         currentLevelData = levelLoader.GetCurrentLevel();
 
         uiManager = new UIManager();
-        uiManager.AddElement(new DungeonWalls(dungeonBackground));
         uiManager.AddElement(new HUDBar(hudElements));
-        dungeonWalls = uiManager.GetElement<DungeonWalls>();
-        uiManager.RemoveElement(dungeonWalls); // drawn manually
+        uiManager.AddElement(new OuterDungeonWalls(outerWallsTexture));
+        innerWalls = new InnerDungeonWalls(innerWallsTexture);
+        
+        // Remove in future.
+        // Currnt dependency of collision handling.
+        dungeonWalls = new JesseDungeonWalls(innerWallsTexture);
         
         currentLevel = LevelBuilder.Build(levelLoader.GetCurrentLevel(), enemyFactory, dungeonWalls.InnerBounds);
 
@@ -207,8 +212,8 @@ class GameplayState : IGameState
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        currentLevel.Draw(spriteBatch);    // blocks, then WallMaster entering
-        dungeonWalls.Draw(spriteBatch);    // wall over entering WallMaster
+        currentLevel.Draw(spriteBatch);    
+        innerWalls.Draw(spriteBatch);       // blocks, then WallMaster entering
         link.Draw(spriteBatch);
         inventory.Draw(spriteBatch);
         items.Draw(spriteBatch);

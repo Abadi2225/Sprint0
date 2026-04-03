@@ -40,16 +40,14 @@ namespace Sprint.Sprites
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            float drawScale = customScale ?? GameServices.ScaleFactor;
-            Vector2 drawPos = new Vector2(location.X - sourceRect.Width / 2, location.Y - sourceRect.Height / 2);
             spriteBatch.Draw(
                 texture,                    // texture
-                drawPos,                    // position
+                location,                    // position
                 sourceRect,                 // sourceRectangle
                 Color.White,                // color
                 0.0f,                       // rotation
                 Vector2.Zero,               // origin
-                drawScale,                  // scale
+                GameServices.ScaleFactor,                  // scale
                 SpriteEffects.None,         // effects
                 0.0f                        // layerDepth
             );

@@ -52,7 +52,7 @@ class HUDBar : IUIElement
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        background.Draw(spriteBatch, new Vector2(sourceRect.Width / 2, sourceRect.Height / 2));
+        background.Draw(spriteBatch, Vector2.Zero);
         // todo use Link's hearts
         hearts.Draw(GameServices.Link.Health, GameServices.Link.MaxHealth, spriteBatch);
         rupees.Draw(spriteBatch);

@@ -26,6 +26,8 @@ public class Game1 : Game, IGameActions
         currentState.Enter();
 
         // Set the window size to be 3 times the original NES resolution (256x224)
+        System.Console.WriteLine($"Game width: {GameServices.GameWidth}, Game height: {GameServices.GameHeight}");
+
         graphics.PreferredBackBufferWidth = GameServices.GameWidth;
         graphics.PreferredBackBufferHeight = GameServices.GameHeight;
     }

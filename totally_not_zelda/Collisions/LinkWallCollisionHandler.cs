@@ -8,10 +8,10 @@ namespace Sprint.Collisions
 	public class LinkWallCollisionHandler : ICollisionHandler
 	{
 		private readonly ILink link;
-		private readonly DungeonWalls dungeonWalls;
+		private readonly JesseDungeonWalls dungeonWalls;
 		private readonly Action<string> onDoorExit;
 
-		public LinkWallCollisionHandler(ILink link, DungeonWalls dungeonWalls, Action<string> onDoorExit = null)
+		public LinkWallCollisionHandler(ILink link, JesseDungeonWalls dungeonWalls, Action<string> onDoorExit = null)
 		{
 			this.link = link;
 			this.dungeonWalls = dungeonWalls;
@@ -23,7 +23,7 @@ namespace Sprint.Collisions
 			ResolveCollision(link, dungeonWalls, onDoorExit);
 		}
 
-		private static void ResolveCollision(ILink link, DungeonWalls dungeonWalls, Action<string> onDoorExit)
+		private static void ResolveCollision(ILink link, JesseDungeonWalls dungeonWalls, Action<string> onDoorExit)
 		{
 			int spriteSize = link.Rect.Width; // 48 — full sprite width (unchanged by lower-half rect)
 			int centerX = (int)link.Position.X + spriteSize / 2;
