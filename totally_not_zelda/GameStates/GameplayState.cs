@@ -34,7 +34,10 @@ class GameplayState : IGameState
     private LevelLoader levelLoader;
     private Level currentLevel;
     private LevelData currentLevelData;
+
     private UIManager uiManager;
+    private HUDBar hud;
+
     private CollisionManager collisionManager;
     private DoorManager doorManager;
     private DoorTransitionHandler doorTransitionHandler;
@@ -53,7 +56,7 @@ class GameplayState : IGameState
 
     public void Enter()
     {
-        inputHandler = new GameplayInputHandler(link, inventory, items);
+        inputHandler = new GameplayInputHandler(this, link, inventory, items, hud);
     }
 
     public void LoadContent()
@@ -80,7 +83,8 @@ class GameplayState : IGameState
         enemyFactory = new EnemyFactory(enemiesSheet, bossesSheet, linkSheet, dustSheet, NPCSheet);
 
         uiManager = new UIManager();
-        uiManager.AddElement(new HUDBar(0, 0, hudElements));
+        hud = new HUDBar(0, 0, hudElements);
+        uiManager.AddElement(hud);
         dungeonWalls = new OuterDungeonWalls(outerWallsTexture);
         uiManager.AddElement(dungeonWalls);
         innerWalls = new InnerDungeonWalls(innerWallsTexture);
@@ -195,7 +199,6 @@ class GameplayState : IGameState
         innerWalls.Draw(spriteBatch);       // blocks, then WallMaster entering
         doorManager.Draw(spriteBatch);     // locked door visuals over openings
         link.Draw(spriteBatch);
-        inventory.Draw(spriteBatch);
         items.Draw(spriteBatch);
         currentLevel.DrawOnTop(spriteBatch); // Keese on top
         uiManager.Draw(spriteBatch);       // rest of UI (minus DungeonWalls)

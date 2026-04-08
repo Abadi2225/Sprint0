@@ -4,22 +4,28 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using Sprint.Item;
 using Sprint.Character;
+using Sprint.GameStates;
+using Sprint.UI;
 
 namespace Sprint.InputHandling;
 
-public class GameplayInputHandler : IInputHandler
+internal class GameplayInputHandler : IInputHandler
 {
+    private GameplayState state;
     private Link link;
     private Inventory inventory;
     private ItemManager items;
-    
+    private HUDBar hud;
+
     private Dictionary<Keys, ICommand> commands;
 
-    public GameplayInputHandler(Link link, Inventory inventory, ItemManager items)
+    public GameplayInputHandler(GameplayState thisState, Link link, Inventory inventory, ItemManager items, HUDBar hud)
     {
+        this.state = thisState;
         this.link = link;
         this.inventory = inventory;
         this.items = items;
+        this.hud = hud;
 
         commands = new Dictionary<Keys, ICommand>
         {
@@ -41,7 +47,17 @@ public class GameplayInputHandler : IInputHandler
         else if (GameServices.KeyInput.IsKeyDown(Keys.Left)) link.SetMove(Directions.Left);
         else if (GameServices.KeyInput.IsKeyDown(Keys.Right)) link.SetMove(Directions.Right);
         else link.StopMove();
-        
+
+        if (GameServices.KeyInput.IsKeyPressed(Keys.I))
+        {
+            GameServices.GameActions.ChangeState(new InventoryScreen(
+                        inventory,
+                        inventory.ActiveSlot,
+                        hud,
+                        state
+                        ));
+        }
+
         foreach (var command in commands)
         {
             if (GameServices.KeyInput.IsKeyPressed(command.Key))

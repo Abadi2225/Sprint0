@@ -16,6 +16,10 @@ public abstract class AbstractItem : IItem
         set
         {
             position = value;
+            if (sprite != null)
+            {
+                sprite.Position = value;
+            }
             Rect = new Rectangle((int)value.X, (int)value.Y, Rect.Width, Rect.Height);
         }
     }
@@ -26,7 +30,7 @@ public abstract class AbstractItem : IItem
     public virtual bool IsCollected => false;
     public virtual bool IsFinished => false;
 
-    protected ISprite sprite;
+    protected IPositionedSprite sprite;
 
     public AbstractItem(string name, Texture2D texture, Vector2 position)
     {

@@ -17,7 +17,7 @@ class HUDBar : IUIElement
     private StaticSprite background;
     private Rectangle sourceRect;
 
-    public int X { get; }
+    public int X { get; set; }
     public int Y { get; set; }
 
     private HeartDisplay hearts;
