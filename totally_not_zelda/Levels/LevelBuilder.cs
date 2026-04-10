@@ -94,8 +94,7 @@ public class LevelBuilder
                 if (hasCarriedItem)
                 {
                     data.carriedItems.TryGetValue(i.ToString(), out carriedItemName);
-                    var carriedDrop = ItemFactory.CreateStillItem(
-                        Enum.Parse<ItemFactory.StillType>(carriedItemName), Vector2.Zero, scale: GameServices.ScaleFactor);
+                    var carriedDrop = CreatePickupItem(carriedItemName, Vector2.Zero);
                     carriedItems.Add(new CarriedItem(carriedDrop, enemy, item => worldItems.Add(item)));
                 }
             }
@@ -106,10 +105,15 @@ public class LevelBuilder
         if (data.roomClearDrop != null)
         {
             Vector2 center = new Vector2(innerBounds.Center.X, innerBounds.Center.Y);
-            roomClearDropItem = ItemFactory.CreateStillItem(
-                Enum.Parse<ItemFactory.StillType>(data.roomClearDrop), center, scale: GameServices.ScaleFactor);
+            roomClearDropItem = CreatePickupItem(data.roomClearDrop, center);
         }
 
         return new Level(blockManager, enemyManager, worldItems, carriedItems, roomClearDropItem);
     }
+
+    private static AbstractItem CreatePickupItem(string name, Vector2 pos) => name switch
+    {
+        "Boomerang" => ItemFactory.CreateBoomerang(pos, Vector2.Zero, maxDistance: 0),
+        _ => ItemFactory.CreateStillItem(Enum.Parse<ItemFactory.StillType>(name), pos, scale: GameServices.ScaleFactor),
+    };
 }

@@ -53,7 +53,7 @@ public class ItemManager
                         pos,
                         DirectionsUtils.CreateVector(facing, velocity),
                         rotation: arrowRotation,
-                        scale: 2f,
+                        scale: GameServices.ScaleFactor,
                         maxDistance
                         ).StartMoving());
             SoundPlayer.Play(SoundType.ARROW_BOOMERANG);
@@ -65,7 +65,7 @@ public class ItemManager
             SpawnItem(ItemFactory.CreateTimeBomb(
                         explodeDelayMillis,
                         Vector2.Add(pos, DirectionsUtils.CreateVector(facing, reach)),
-                        scale: 2f
+                        scale: GameServices.ScaleFactor
                         ));
             SoundPlayer.Play(SoundType.BOMB_PLACE);
         }

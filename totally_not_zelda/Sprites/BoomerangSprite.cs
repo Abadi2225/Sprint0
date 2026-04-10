@@ -20,6 +20,7 @@ internal class BoomerangSprite : IPositionedSprite
     private bool returning = false;
     private bool thrown = false;
     public bool IsActive => thrown;
+    public bool WasThrown { get; private set; }
 
     public BoomerangSprite(Texture2D texture, Vector2 initialPos, Vector2 velocity, float maxDistance, float scale)
     {
@@ -33,6 +34,7 @@ internal class BoomerangSprite : IPositionedSprite
     public void Throw()
     {
         thrown = true;
+        WasThrown = true;
     }
 
     public void Draw(SpriteBatch sb, Vector2 location)
@@ -44,7 +46,7 @@ internal class BoomerangSprite : IPositionedSprite
                 Color.White,
                 rotation: animationFrame * 22.5f * (float)Math.PI / 180f,
                 origin: new Vector2(36, 64),
-                scale: new Vector2(0.2f, 0.2f),
+                scale: new Vector2(0.3f, 0.3f),
                 SpriteEffects.None,
                 0f
                );

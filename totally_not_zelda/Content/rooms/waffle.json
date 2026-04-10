@@ -47,5 +47,6 @@
  "version":"1.10",
  "width":12,
  "doors": { "north": "boss", "west": "4blockssmallupper" },
- "doorTypes": { "north": "key", "west": "open" }
+ "doorTypes": { "north": "key", "west": "open" },
+ "roomClearDrop": "Key"
 }

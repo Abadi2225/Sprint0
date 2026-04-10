@@ -32,7 +32,7 @@ public class Boomerang : AbstractItem
             Position = b.Position;
     }
 
-    public override bool IsFinished => sprite is BoomerangSprite b && !b.IsActive;
+    public override bool IsFinished => sprite is BoomerangSprite b && b.WasThrown && !b.IsActive;
 
     public ISprite GetSprite() => sprite;
 }
