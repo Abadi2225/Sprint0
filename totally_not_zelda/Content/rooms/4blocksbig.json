@@ -47,5 +47,6 @@
  "version":"1.10",
  "width":12,
  "doors": { "north": "4blockssmallupper", "west": "4blockssmalllower" },
- "doorTypes": { "north": "bomb", "west": "open" }
+ "doorTypes": { "north": "bomb", "west": "open" },
+ "roomItem": { "item": "Compass", "tile": 46 }
 }
