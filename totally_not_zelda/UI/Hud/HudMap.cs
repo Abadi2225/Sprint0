@@ -69,7 +69,7 @@ internal class HudMap
                 );
         linkDot = new StaticSprite(
                 spriteSheet,
-                getDotPosition(getRow(linkPos), getCol(linkPos)),
+                getDotPosition(linkPos),
                 linkDotMask
                 );
         triforceDot = new StaticSprite(
@@ -79,6 +79,31 @@ internal class HudMap
                 );
         MapGraph.Node graph = MapGraph.buildGraph(startingRoomName);
         fillMap(graph, getRow(this.startingRoomPos), getCol(this.startingRoomPos));
+    }
+
+    public void UpdateLinkMapPos(string direction)
+    {
+        int newPos = linkPos;
+        switch (direction)
+        {
+            case "north":
+                newPos -= COLS;
+                break;
+            case "south":
+                newPos += COLS;
+                break;
+            case "west":
+                newPos -= 1;
+                break;
+            case "east":
+                newPos += 1;
+                break;
+        }
+        if (newPos >= 0 && newPos < ROWS * COLS)
+        {
+            linkPos = newPos;
+            linkDot.Position = getDotPosition(linkPos);
+        }
     }
 
     public void Draw(SpriteBatch sb)
@@ -143,6 +168,12 @@ internal class HudMap
                 );
     }
 
+    private Vector2 getDotPosition(int pos)
+    {
+        return getDotPosition(
+                getRow(pos), getCol(pos)
+                );
+    }
     private Vector2 getDotPosition(int row, int col)
     {
         return new Vector2(

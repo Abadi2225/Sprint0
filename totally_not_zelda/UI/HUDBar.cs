@@ -24,7 +24,7 @@ class HUDBar : IUIElement
     private TwoDigitDisplay rupees;
     private TwoDigitDisplay keys;
     private TwoDigitDisplay bombs;
-    private HudMap map;
+    public HudMap Map { get; }
 
     public HUDBar(int x, int y, Texture2D backgroundTexture)
     {
@@ -57,7 +57,7 @@ class HUDBar : IUIElement
         );
         hearts = new HeartDisplay(new Vector2(X + 505, Y + 100), 10);
 
-        map = new HudMap(
+        Map = new HudMap(
                 (int)(X + 16 * GameServices.ScaleFactor),
                 Y,
                 "template",
@@ -78,7 +78,7 @@ class HUDBar : IUIElement
         rupees.Draw(spriteBatch);
         keys.Draw(spriteBatch);
         bombs.Draw(spriteBatch);
-        map.Draw(spriteBatch);
+        Map.Draw(spriteBatch);
     }
 
     public void Update(GameTime gameTime)

@@ -109,7 +109,7 @@ class GameplayState : IGameState
         doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
         doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
         doorTransitionHandler = new DoorTransitionHandler(doorManager, link, dungeonWalls, levelLoader, enemyFactory,
-            (data, level) => { currentLevelData = data; currentLevel = level; }, RebuildCollisionManager);
+            (data, level) => { currentLevelData = data; currentLevel = level; }, RebuildCollisionManager, hud.Map.UpdateLinkMapPos);
 
         currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
 
