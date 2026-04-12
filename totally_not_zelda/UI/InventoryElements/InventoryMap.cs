@@ -10,7 +10,7 @@ namespace Sprint.UI.InventoryElements;
 internal class InventoryMap
 {
     private static readonly Vector2 NODE_OFFSET = new Vector2(128, 8);
-    private static readonly Vector2 DOT_OFFSET = new Vector2(4, 4);
+    private static readonly Vector2 DOT_OFFSET = new Vector2(2, 2);
     private static readonly int ROWS = 8;
     private static readonly int COLS = 8;
     private static readonly int NODE_WIDTH = 8;
@@ -184,7 +184,7 @@ internal class InventoryMap
     }
     private Vector2 getDotPosition(int row, int col)
     {
-        return getPosition(row, col) + DOT_OFFSET;
+        return getPosition(row, col) + DOT_OFFSET * GameServices.ScaleFactor;
     }
 
     private int getRow(int pos)

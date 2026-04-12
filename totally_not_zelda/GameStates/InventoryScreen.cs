@@ -48,6 +48,8 @@ internal class InventoryScreen : IGameState
         {
             hud.X = hudOriginalX;
             hud.Y = hudOriginalY;
+            inventory.ActiveSlot = this.activeSlot;
+            hud.ActiveItem = inventory.Get(inventory.ActiveSlot);
             Game1.Instance.ForceState(restoreState);
             return;
         }
@@ -103,7 +105,6 @@ internal class InventoryScreen : IGameState
 
     public void Exit()
     {
-        inventory.ActiveSlot = this.activeSlot;
     }
 
     public void Enter() { }

@@ -94,8 +94,6 @@ class GameplayState : IGameState
         enemyFactory = new EnemyFactory(enemiesSheet, bossesSheet, linkSheet, dustSheet, NPCSheet);
 
         uiManager = new UIManager();
-        hud = new HUDBar(0, 0, hudElements);
-        uiManager.AddElement(hud);
         dungeonWalls = new OuterDungeonWalls(outerWallsTexture);
         uiManager.AddElement(dungeonWalls);
         innerWalls = new InnerDungeonWalls(innerWallsTexture);
@@ -111,13 +109,6 @@ class GameplayState : IGameState
 
         invMap = new InventoryMap(levelLoader.GetCurrentLevel(), 58, true);
 
-        doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
-        doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
-        doorTransitionHandler = new DoorTransitionHandler(doorManager, link, dungeonWalls, levelLoader, enemyFactory,
-            (data, level) => { currentLevelData = data; currentLevel = level; }, RebuildCollisionManager, hud.Map.UpdateLinkMapPos, invMap.UpdateInventoryMap);
-
-        currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
-
         items = new ItemManager();
         inventory = new Inventory();
 
@@ -126,7 +117,15 @@ class GameplayState : IGameState
         inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow, Vector2.Zero, GameServices.ScaleFactor));
         inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bomb, Vector2.Zero, GameServices.ScaleFactor));
 
+        hud = new HUDBar(0, 0, inventory.Get(inventory.ActiveSlot), hudElements);
+        uiManager.AddElement(hud);
 
+        doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
+        doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
+        doorTransitionHandler = new DoorTransitionHandler(doorManager, link, dungeonWalls, levelLoader, enemyFactory,
+            (data, level) => { currentLevelData = data; currentLevel = level; }, RebuildCollisionManager, hud.Map.UpdateLinkMapPos, invMap.UpdateInventoryMap);
+
+        currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
         RebuildCollisionManager();
     }
 
