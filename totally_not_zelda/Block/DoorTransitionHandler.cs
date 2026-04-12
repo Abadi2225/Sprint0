@@ -18,10 +18,11 @@ public class DoorTransitionHandler
     private readonly Action<LevelData, Level> onRoomChanged;
     private readonly Action onRebuildCollision;
     private readonly Action<string> updateLinkMapPos;
+    private readonly Action<LevelData, string> updateInventoryMap;
 
     public DoorTransitionHandler(DoorManager doorManager, ILink link, OuterDungeonWalls dungeonWalls,
         LevelLoader levelLoader, EnemyFactory enemyFactory,
-        Action<LevelData, Level> onRoomChanged, Action onRebuildCollision, Action<string> updateLinkMapPos)
+        Action<LevelData, Level> onRoomChanged, Action onRebuildCollision, Action<string> updateLinkMapPos, Action<LevelData, string> updateInventoryMap)
     {
         this.doorManager = doorManager;
         this.link = link;
@@ -31,6 +32,7 @@ public class DoorTransitionHandler
         this.onRoomChanged = onRoomChanged;
         this.onRebuildCollision = onRebuildCollision;
         this.updateLinkMapPos = updateLinkMapPos;
+        this.updateInventoryMap = updateInventoryMap;
     }
 
     public void Handle(string exitDirection)
@@ -71,5 +73,6 @@ public class DoorTransitionHandler
         onRoomChanged(newData, newLevel);
         onRebuildCollision();
         updateLinkMapPos(exitDirection);
+        updateInventoryMap(newData, exitDirection);
     }
 }

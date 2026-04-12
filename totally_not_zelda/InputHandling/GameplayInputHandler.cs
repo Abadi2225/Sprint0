@@ -6,6 +6,7 @@ using Sprint.Item;
 using Sprint.Character;
 using Sprint.GameStates;
 using Sprint.UI;
+using Sprint.UI.InventoryElements;
 
 namespace Sprint.InputHandling;
 
@@ -16,16 +17,18 @@ internal class GameplayInputHandler : IInputHandler
     private Inventory inventory;
     private ItemManager items;
     private HUDBar hud;
+    private InventoryMap invMap;
 
     private Dictionary<Keys, ICommand> commands;
 
-    public GameplayInputHandler(GameplayState thisState, Link link, Inventory inventory, ItemManager items, HUDBar hud)
+    public GameplayInputHandler(GameplayState thisState, Link link, Inventory inventory, ItemManager items, HUDBar hud, InventoryMap invMap)
     {
         this.state = thisState;
         this.link = link;
         this.inventory = inventory;
         this.items = items;
         this.hud = hud;
+        this.invMap = invMap;
 
         commands = new Dictionary<Keys, ICommand>
         {
@@ -54,6 +57,7 @@ internal class GameplayInputHandler : IInputHandler
                         inventory,
                         inventory.ActiveSlot,
                         hud,
+                        invMap,
                         state
                         ));
         }

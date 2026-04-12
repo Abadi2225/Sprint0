@@ -12,7 +12,7 @@ internal class HudMap
     private static readonly int MAP_Y_OFFSET = 4;
     private static readonly int NODE_WIDTH = 8;
     private static readonly int NODE_HEIGHT = 4;
-    private static readonly int DOT_X_OFFSET = 3;
+    private static readonly int DOT_X_OFFSET = 2;
     private static readonly int ROWS = HEIGHT / NODE_HEIGHT;
     private static readonly int COLS = WIDTH / NODE_WIDTH;
     private static readonly Texture2D spriteSheet = GameServices.Content.Load<Texture2D>("images/ZeldaUIElements");

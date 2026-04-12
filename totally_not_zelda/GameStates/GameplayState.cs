@@ -13,6 +13,7 @@ using Sprint.Collisions;
 using Sprint.Levels;
 using Sprint.UI;
 using Sprint.InputHandling;
+using Sprint.UI.InventoryElements;
 
 class GameplayState : IGameState
 {
@@ -29,6 +30,7 @@ class GameplayState : IGameState
     private Link link;
     private ItemManager items;
     private Inventory inventory;
+    private InventoryMap invMap;
     private EnemyManager enemyManager;
     private EnemyFactory enemyFactory;
     private LevelLoader levelLoader;
@@ -56,7 +58,7 @@ class GameplayState : IGameState
 
     public void Enter()
     {
-        inputHandler = new GameplayInputHandler(this, link, inventory, items, hud);
+        inputHandler = new GameplayInputHandler(this, link, inventory, items, hud, invMap);
     }
 
     public void LoadContent()
@@ -103,13 +105,16 @@ class GameplayState : IGameState
             dungeonWalls.BottomDoorTop - 16 * GameServices.ScaleFactor
         );
 
+
         levelLoader = new LevelLoader();
         currentLevelData = levelLoader.GetCurrentLevel();
+
+        invMap = new InventoryMap(levelLoader.GetCurrentLevel(), 58, true);
 
         doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
         doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
         doorTransitionHandler = new DoorTransitionHandler(doorManager, link, dungeonWalls, levelLoader, enemyFactory,
-            (data, level) => { currentLevelData = data; currentLevel = level; }, RebuildCollisionManager, hud.Map.UpdateLinkMapPos);
+            (data, level) => { currentLevelData = data; currentLevel = level; }, RebuildCollisionManager, hud.Map.UpdateLinkMapPos, invMap.UpdateInventoryMap);
 
         currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
 
