@@ -51,5 +51,8 @@ public class OuterDungeonWalls : IUIElement
     public int SideDoorTop => (int)(LEFT_DOOR_TOP * scale) + (int)hudHeight;
     public int SideDoorBottom => (int)(LEFT_DOOR_BOTTOM * scale) + (int)hudHeight;
     public int SideDoorEntryBottom => SideDoorBottom - (int)(8 * scale);
+    public int BottomDoorLeft => (int)(TOP_DOOR_LEFT * scale);
+    public int BottomDoorRight => (int)(TOP_DOOR_RIGHT * scale);
+    public int BottomDoorTop => (int)(CENTER_BOTTOM * scale) + (int)hudHeight;
     public int DoorExitDepth => (int)(15 * scale);
 }

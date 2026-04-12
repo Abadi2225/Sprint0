@@ -61,7 +61,7 @@ namespace Sprint.Enemies
         EnemyType.Zol        => new Zol(enemySpriteSheet, position, solidBlocks, innerBounds),
         EnemyType.Aquamentus => new Aquamentus(bossSpriteSheet, position, solidBlocks, innerBounds),
         EnemyType.Keese      => new Keese(enemySpriteSheet, position),
-        EnemyType.WallMaster => new WallMaster(enemySpriteSheet, position),
+        EnemyType.WallMaster => new WallMaster(enemySpriteSheet, position, solidBlocks, innerBounds),
         EnemyType.Trap       => new Trap(enemySpriteSheet, position),
         EnemyType.OldMan     => new OldMan(NPCSheet, position),
 		EnemyType.FlameLeft  => new FlameLeft(NPCSheet, position),

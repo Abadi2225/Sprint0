@@ -70,6 +70,15 @@ class GameplayState : IGameState
         GameServices.BoomerangSheet = GameServices.Content.Load<Texture2D>("items/boomerang");
         doorSheet = GameServices.Content.Load<Texture2D>("blocks/Doors");
         GameServices.TileSheet = GameServices.Content.Load<Texture2D>("blocks/tiles");
+        GameServices.OnLinkGrabbed = () =>
+        {
+            levelLoader.ResetToFirst();
+            currentLevelData = levelLoader.GetCurrentLevel();
+            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
+            currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
+            RebuildCollisionManager();
+            link.Position = GameServices.DungeonEntrancePosition;
+        };
 
         Vector2 center = new Vector2(GameServices.GameWidth / 2, GameServices.GameHeight / 2);
 
@@ -84,6 +93,11 @@ class GameplayState : IGameState
         dungeonWalls = new OuterDungeonWalls(outerWallsTexture);
         uiManager.AddElement(dungeonWalls);
         innerWalls = new InnerDungeonWalls(innerWallsTexture);
+
+        GameServices.DungeonEntrancePosition = new Vector2(
+            (dungeonWalls.BottomDoorLeft + dungeonWalls.BottomDoorRight) / 2,
+            dungeonWalls.BottomDoorTop - 16 * GameServices.ScaleFactor
+        );
 
         levelLoader = new LevelLoader();
         currentLevelData = levelLoader.GetCurrentLevel();

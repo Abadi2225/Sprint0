@@ -21,4 +21,5 @@ public interface ILink
     void TakeDamage(int amount);
     void GetHealed(int amount);
     void IncreaseRubies(int amount);
+    public bool IsGrabbed { get; set; }
 }

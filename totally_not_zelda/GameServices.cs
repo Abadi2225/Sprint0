@@ -3,6 +3,8 @@ using Sprint.Interfaces;
 using Sprint.Controllers;
 using Sprint.Character;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using Microsoft.Xna.Framework;
 
 /// <summary>
 /// A class to hold services that are commonly used across the game, such as the ContentManager.
@@ -18,10 +20,12 @@ public static class GameServices
     public static float ScaleFactor { get; } = 3f;
     public static int GameWidth { get { return (int)(256 * ScaleFactor); } }
     public static int GameHeight { get { return (int)(224 * ScaleFactor); } }
+    public static Vector2 DungeonEntrancePosition { get; set; }
 
     public static Texture2D TileSheet { get; set; }
     public static Texture2D ItemSheet { get; set; }
     public static Texture2D BoomerangSheet { get; set; }
 
     public static Link Link { get; set; }
+    public static Action OnLinkGrabbed { get; set; }
 }

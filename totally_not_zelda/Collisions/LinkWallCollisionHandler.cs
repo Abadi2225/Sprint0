@@ -25,6 +25,8 @@ namespace Sprint.Collisions
 
 		public void Handle()
 		{
+
+            if (link.IsGrabbed) return;
 			int spriteSize = link.Rect.Width;
 			int exitDepth  = dungeonWalls.DoorExitDepth;
 

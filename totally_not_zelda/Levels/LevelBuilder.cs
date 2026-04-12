@@ -4,19 +4,19 @@ using Sprint.Levels;
 using Microsoft.Xna.Framework;
 using Sprint.Enemies;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System;
 
 public class LevelBuilder
 {
     private const int TILE_SIZE = 16;
+
     public static Level Build(LevelData data, EnemyFactory enemyFactory, Rectangle innerBounds)
     {
         BlockManager blockManager = new BlockManager();
-        float hudHeight = 48;
-        float wallBorderX = 32;
-        float wallBorderY = 32; 
+        float scale = GameServices.ScaleFactor;
+        float hudHeight = 48 * scale;
+        float blockBorderX = 32 * scale;
+        float blockBorderY = 32 * scale + hudHeight;
 
         var backgroundLayer = data.layers.FirstOrDefault(l => l.name == "BackgroundTiles");
         if (backgroundLayer != null)
@@ -30,36 +30,36 @@ public class LevelBuilder
                 int y = i / data.width;
 
                 Block block = BlockFactory.Create(
-                    id - 1, 
+                    id - 1,
                     new Vector2(
-                        (x * TILE_SIZE + wallBorderX) * GameServices.ScaleFactor,
-                        (y * TILE_SIZE+ wallBorderY + hudHeight) * GameServices.ScaleFactor));
-                
+                        x * TILE_SIZE * scale + blockBorderX,
+                        y * TILE_SIZE * scale + blockBorderY));
+
                 blockManager.Add(block);
-            }            
+            }
         }
 
-		var pushableLayer = data.layers.FirstOrDefault(layer => layer.name == "PushableBlocks");
-		if (pushableLayer != null)
-		{
-			for (int i = 0; i < pushableLayer.data.Length; i++)
-			{
-				int id = pushableLayer.data[i];
-				if (id == 0) continue;
+        var pushableLayer = data.layers.FirstOrDefault(layer => layer.name == "PushableBlocks");
+        if (pushableLayer != null)
+        {
+            for (int i = 0; i < pushableLayer.data.Length; i++)
+            {
+                int id = pushableLayer.data[i];
+                if (id == 0) continue;
 
-				int x = i % data.width;
-				int y = i / data.width;
+                int x = i % data.width;
+                int y = i / data.width;
 
-				Vector2 pos = new Vector2(
-					(x * TILE_SIZE + wallBorderX) * GameServices.ScaleFactor,
-					(y * TILE_SIZE + wallBorderY + hudHeight) * GameServices.ScaleFactor);
+                Vector2 pos = new Vector2(
+                    x * TILE_SIZE * scale + blockBorderX,
+                    y * TILE_SIZE * scale + blockBorderY);
 
-				Block block = BlockFactory.CreatePushable(id - 1, pos);
-				blockManager.Add(block);
-			}
-		}
+                Block block = BlockFactory.CreatePushable(id - 1, pos);
+                blockManager.Add(block);
+            }
+        }
 
-		EnemyManager enemyManager = new EnemyManager();
+        EnemyManager enemyManager = new EnemyManager();
         var solidBlocks = blockManager.blocksList.Where(b => !b.walkAble).ToList();
 
         var enemyLayer = data.layers.FirstOrDefault(l => l.name == "Enemies");
@@ -72,10 +72,12 @@ public class LevelBuilder
 
                 int x = i % data.width;
                 int y = i / data.width;
-                Vector2 pos = new Vector2(
-                    x * TILE_SIZE * GameServices.ScaleFactor + wallBorderX,
-                    y * TILE_SIZE * GameServices.ScaleFactor + wallBorderY + hudHeight);
 
+                Vector2 pos = new Vector2(
+                    x * TILE_SIZE * scale + innerBounds.Left,
+                    y * TILE_SIZE * scale + innerBounds.Top);
+
+                System.Console.WriteLine($"Enemy id:{id} tile:({x},{y}) scaled pos:{pos}");
                 enemyManager.AddEnemy(enemyFactory.CreateEnemy((EnemyType)(id - 1), pos, solidBlocks, innerBounds));
             }
         }

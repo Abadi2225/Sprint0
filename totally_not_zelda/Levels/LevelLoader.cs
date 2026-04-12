@@ -42,6 +42,10 @@ public class LevelLoader
         }
         return Load(levels[currentLevel]);
     }
+    public void ResetToFirst()
+    {
+        currentLevel = 0;
+    }
     public LevelData GetCurrentLevel()
     {
         return Load(levels[currentLevel]);

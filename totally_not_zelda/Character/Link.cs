@@ -62,6 +62,7 @@ public class Link : ILink
     public int Health => health;
     public int MaxHealth => MAX_HEALTH;
 	public bool IsPushing => isPushing;
+    public bool IsGrabbed { get; set; } = false;
 
 	public Rectangle Rect { get; private set; }
 
@@ -143,6 +144,11 @@ public class Link : ILink
 
     public void Update(GameTime gameTime)
     {
+        if (IsGrabbed)
+        {
+            sprite.Update(gameTime); // Update sprite animation even while grabbed
+            return; // WallMaster controls position while grabbed
+        }
         float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         if (!isAttacking && !isUsingItem && !isDamaged && move == Vector2.Zero)

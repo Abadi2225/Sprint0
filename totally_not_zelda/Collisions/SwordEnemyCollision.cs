@@ -20,17 +20,17 @@ internal class SwordEnemyCollision : ICollisionHandler
 
     public void Handle()
     {
-        if (link.SwordRect == Rectangle.Empty)
-            return;
+        if (link.SwordRect == Rectangle.Empty) return;
 
         foreach (var enemy in enemyManager.enemyList)
-    {
-        if (!enemy.IsAlive) continue;
-        if (link.SwordRect.Intersects(enemy.Rect))
         {
-            enemy.TakeDamage(SWORD_DAMAGE);
-            link.RegisterSwordHit();
+            if (!enemy.IsAlive) continue;
+            if (!enemy.HasCollision) continue;
+            if (link.SwordRect.Intersects(enemy.Rect))
+            {
+                enemy.TakeDamage(SWORD_DAMAGE);
+                link.RegisterSwordHit();
+            }
         }
-    }
     }
 }
