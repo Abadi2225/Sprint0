@@ -82,7 +82,6 @@ namespace Sprint.Enemies
         {
             IEnemy enemy = type switch
             {
-<<<<<<< HEAD
         EnemyType.Goriya     => new Goriya(enemySpriteSheet, position, contentManager, solidBlocks, innerBounds),
         EnemyType.Dodongo    => new Dodongo(bossSpriteSheet, position, solidBlocks, innerBounds),
         EnemyType.Stalfos    => new Stalfos(enemySpriteSheet, position, solidBlocks, innerBounds),
@@ -97,21 +96,6 @@ namespace Sprint.Enemies
 		EnemyType.FlameLeft  => new FlameLeft(NPCSheet, position),
 		EnemyType.FlameRight => new FlameRight(NPCSheet, position),
 				_            => new Goriya(enemySpriteSheet, position, contentManager, solidBlocks, innerBounds),
-=======
-                EnemyType.Goriya => new Goriya(enemySpriteSheet, position, contentManager, solidBlocks, innerBounds),
-                EnemyType.Dodongo => new Dodongo(bossSpriteSheet, position, solidBlocks, innerBounds),
-                EnemyType.Stalfos => new Stalfos(enemySpriteSheet, position, solidBlocks, innerBounds),
-                EnemyType.Rope => new Rope(enemySpriteSheet, position, solidBlocks, innerBounds),
-                EnemyType.Gel => new Gel(enemySpriteSheet, position, solidBlocks, innerBounds),
-                EnemyType.Zol => new Zol(enemySpriteSheet, position, solidBlocks, innerBounds),
-                EnemyType.Aquamentus => new Aquamentus(bossSpriteSheet, position, solidBlocks, innerBounds),
-                EnemyType.Keese => new Keese(enemySpriteSheet, position),
-                EnemyType.WallMaster => new WallMaster(enemySpriteSheet, position),
-                EnemyType.Trap => new Trap(enemySpriteSheet, position),
-                EnemyType.OldMan => new OldMan(NPCSheet, position),
-                EnemyType.FlameLeft => new FlameLeft(NPCSheet, position),
-                EnemyType.FlameRight => new FlameRight(NPCSheet, position),
->>>>>>> 3d74c973256ef53ae3d30cfe62aecda0bb83f8be
             };
 
             if (type == EnemyType.OldMan)

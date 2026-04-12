@@ -61,11 +61,8 @@ public class LevelBuilder
             }
         }
 
-<<<<<<< HEAD
-=======
         List<AbstractItem> worldItems = new();
         List<CarriedItem> carriedItems = new();
->>>>>>> 3d74c973256ef53ae3d30cfe62aecda0bb83f8be
         EnemyManager enemyManager = new EnemyManager();
         var solidBlocks = blockManager.blocksList.Where(b => !b.walkAble).ToList();
 
@@ -79,20 +76,13 @@ public class LevelBuilder
 
                 int x = i % data.width;
                 int y = i / data.width;
-<<<<<<< HEAD
 
                 Vector2 pos = new Vector2(
                     x * TILE_SIZE * scale + innerBounds.Left,
                     y * TILE_SIZE * scale + innerBounds.Top);
 
                 System.Console.WriteLine($"Enemy id:{id} tile:({x},{y}) scaled pos:{pos}");
-                enemyManager.AddEnemy(enemyFactory.CreateEnemy((EnemyType)(id - 1), pos, solidBlocks, innerBounds));
-=======
-                Vector2 pos = new Vector2(
-                    (x * TILE_SIZE + wallBorderX) * GameServices.ScaleFactor,
-                    (y * TILE_SIZE + wallBorderY + hudHeight) * GameServices.ScaleFactor);
 
-                // Check if this tile has a carried item assigned in the room JSON
                 bool hasCarriedItem = data.carriedItems != null &&
                     data.carriedItems.TryGetValue(i.ToString(), out string carriedItemName);
 
@@ -109,11 +99,9 @@ public class LevelBuilder
                     var carriedDrop = CreatePickupItem(carriedItemName, Vector2.Zero);
                     carriedItems.Add(new CarriedItem(carriedDrop, enemy, item => worldItems.Add(item)));
                 }
->>>>>>> 3d74c973256ef53ae3d30cfe62aecda0bb83f8be
             }
         }
 
-        // Room clear drop: spawns at the room center when all enemies are dead
         AbstractItem roomClearDropItem = null;
         if (data.roomClearDrop != null)
         {
@@ -126,16 +114,13 @@ public class LevelBuilder
             int x = data.roomItem.tile % data.width;
             int y = data.roomItem.tile / data.width;
             Vector2 pos = new Vector2(
-                (x * TILE_SIZE + wallBorderX) * GameServices.ScaleFactor,
-                (y * TILE_SIZE + wallBorderY + hudHeight) * GameServices.ScaleFactor);
+                x * TILE_SIZE * scale + innerBounds.Left,
+                y * TILE_SIZE * scale + innerBounds.Top);
             worldItems.Add(CreatePickupItem(data.roomItem.item, pos));
         }
 
         return new Level(blockManager, enemyManager, worldItems, carriedItems, roomClearDropItem);
     }
-<<<<<<< HEAD
-}
-=======
 
     private static AbstractItem CreatePickupItem(string name, Vector2 pos) => name switch
     {
@@ -143,4 +128,3 @@ public class LevelBuilder
         _ => ItemFactory.CreateStillItem(Enum.Parse<ItemFactory.StillType>(name), pos, scale: GameServices.ScaleFactor),
     };
 }
->>>>>>> 3d74c973256ef53ae3d30cfe62aecda0bb83f8be
