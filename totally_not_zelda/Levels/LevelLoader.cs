@@ -25,6 +25,12 @@ public class LevelLoader
         "pacman",
         "NPC"
     };
+    // location of room on an 8x8 grid, used for tracking link's location on the maps
+    public static Dictionary<string, int> LocOnGrid = new Dictionary<string, int>{
+        {"template", 58}
+        // ...
+    };
+
     private int currentLevel = 0;
     public LevelData CycleNext()
     {
@@ -49,6 +55,16 @@ public class LevelLoader
     public LevelData GetCurrentLevel()
     {
         return Load(levels[currentLevel]);
+    }
+
+    public string GetCurrentLevelName()
+    {
+        return levels[currentLevel];
+    }
+
+    public int GetCurrentLevelGridLoc()
+    {
+        return LocOnGrid[GetCurrentLevelName()];
     }
 
     public static LevelData Load(string levelName)

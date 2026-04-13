@@ -151,6 +151,16 @@ internal class InventoryMap
 
     }
 
+    public void SetLinkPos(int newPos)
+    {
+        if (newPos >= 0 && newPos < ROWS * COLS)
+        {
+            linkPos = newPos;
+            linkDot.Position = getDotPosition(linkPos);
+        }
+    }
+
+
     private void drawMap(SpriteBatch sb)
     {
         for (int r = 0; r < ROWS; r++)

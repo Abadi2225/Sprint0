@@ -83,6 +83,9 @@ class GameplayState : IGameState
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
             RebuildCollisionManager();
             link.Position = GameServices.DungeonEntrancePosition;
+
+            GameServices.hudMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
+            GameServices.inventoryMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
         };
 
         Vector2 center = new Vector2(GameServices.GameWidth / 2, GameServices.GameHeight / 2);
@@ -107,7 +110,8 @@ class GameplayState : IGameState
         levelLoader = new LevelLoader();
         currentLevelData = levelLoader.GetCurrentLevel();
 
-        invMap = new InventoryMap(levelLoader.GetCurrentLevel(), 58, true);
+        invMap = new InventoryMap(levelLoader.GetCurrentLevel(), levelLoader.GetCurrentLevelGridLoc(), true);
+        GameServices.inventoryMap = invMap;
 
         items = new ItemManager();
         inventory = new Inventory();
@@ -118,6 +122,7 @@ class GameplayState : IGameState
         inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bomb, Vector2.Zero, GameServices.ScaleFactor));
 
         hud = new HUDBar(0, 0, inventory, hudElements);
+        GameServices.hudMap = hud.Map;
         uiManager.AddElement(hud);
 
         doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);

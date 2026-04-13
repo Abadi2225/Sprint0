@@ -5,6 +5,8 @@ using Sprint.Character;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Microsoft.Xna.Framework;
+using Sprint.UI.Hud;
+using Sprint.UI.InventoryElements;
 
 /// <summary>
 /// A class to hold services that are commonly used across the game, such as the ContentManager.
@@ -28,4 +30,6 @@ public static class GameServices
 
     public static Link Link { get; set; }
     public static Action OnLinkGrabbed { get; set; }
+    internal static InventoryMap inventoryMap { get; set; }
+    internal static HudMap hudMap { get; set; }
 }

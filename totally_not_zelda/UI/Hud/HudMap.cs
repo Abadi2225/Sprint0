@@ -106,6 +106,15 @@ internal class HudMap
         }
     }
 
+    public void SetLinkPos(int newPos)
+    {
+        if (newPos >= 0 && newPos < ROWS * COLS)
+        {
+            linkPos = newPos;
+            linkDot.Position = getDotPosition(linkPos);
+        }
+    }
+
     public void Draw(SpriteBatch sb)
     {
         frame.Draw(sb, frame.Position);
