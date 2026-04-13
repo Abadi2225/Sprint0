@@ -11,17 +11,21 @@ class HUDBar : IUIElement
 {
     private static readonly Vector2 CROP = new Vector2(0, 8);
     private static readonly Vector2 B_ITEM_OFFSET = new Vector2(128, 24) - CROP;
+    private static readonly Vector2 A_ITEM_OFFSET = new Vector2(152, 24) - CROP;
     private static readonly Vector2 HEART_DISPLAY_OFFSET = new Vector2(176, 40) - CROP;
+
+    private static readonly Rectangle backgroundMask = new Rectangle((int)(258 + CROP.X), (int)(11 + CROP.Y), 256, 48);
+    private static readonly Rectangle swordMask = new Rectangle(555, 137, 8, 16);
 
     private Texture2D texture;
     private StaticSprite background;
-    private Rectangle sourceRect = new Rectangle((int)(258 + CROP.X), (int)(11 + CROP.Y), 256, 48);
 
     public int X { get; set; }
     public int Y { get; set; }
 
     private Inventory inventory;
     private StaticSprite activeItem;
+    private StaticSprite swordItem;
     private HeartDisplay hearts;
     private TwoDigitDisplay rupees;
     private TwoDigitDisplay keys;
@@ -36,9 +40,15 @@ class HUDBar : IUIElement
         this.inventory = inventory;
         UpdateActiveItem();
 
-        background = new StaticSprite(texture, new Vector2(X, Y), sourceRect);
+        background = new StaticSprite(texture, new Vector2(X, Y), backgroundMask);
 
         Vector2 origin = new Vector2(X, Y);
+        this.swordItem = new StaticSprite(
+                backgroundTexture,
+                origin + (A_ITEM_OFFSET) * GameServices.ScaleFactor,
+                swordMask
+                );
+
         rupees = new TwoDigitDisplay(
             origin + (new Vector2(96, 16) - CROP) * GameServices.ScaleFactor,
             origin + (new Vector2(96 + 8, 16) - CROP) * GameServices.ScaleFactor,
@@ -79,17 +89,18 @@ class HUDBar : IUIElement
                 );
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch sb)
     {
-        background.Draw(spriteBatch, background.Position);
+        background.Draw(sb, background.Position);
 
-        activeItem.Draw(spriteBatch, activeItem.Position);
+        activeItem.Draw(sb, activeItem.Position);
+        swordItem.Draw(sb, swordItem.Position);
 
-        hearts.Draw(GameServices.Link.Health, GameServices.Link.MaxHealth, spriteBatch);
-        rupees.Draw(spriteBatch);
-        keys.Draw(spriteBatch);
-        bombs.Draw(spriteBatch);
-        Map.Draw(spriteBatch);
+        hearts.Draw(GameServices.Link.Health, GameServices.Link.MaxHealth, sb);
+        rupees.Draw(sb);
+        keys.Draw(sb);
+        bombs.Draw(sb);
+        Map.Draw(sb);
     }
 
     public void Update(GameTime gameTime)
