@@ -10,6 +10,7 @@ namespace Sprint.UI;
 class HUDBar : IUIElement
 {
     private readonly Vector2 B_ITEM_OFFSET = new Vector2(128, 16);
+    private readonly Vector2 HEART_DISPLAY_OFFSET = new Vector2(176, 40) - new Vector2(8, 8);
 
     private Texture2D texture;
     private StaticSprite background;
@@ -57,7 +58,7 @@ class HUDBar : IUIElement
             new Vector2(X + 112 * GameServices.ScaleFactor, Y + 32 * GameServices.ScaleFactor),
             texture
         );
-        hearts = new HeartDisplay(new Vector2(X + 505, Y + 100), 10);
+        hearts = new HeartDisplay(new Vector2(X, Y) + HEART_DISPLAY_OFFSET * GameServices.ScaleFactor, 10);
 
         Map = new HudMap(
                 (int)(X + 16 * GameServices.ScaleFactor),
