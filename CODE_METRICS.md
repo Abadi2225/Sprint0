@@ -14,7 +14,7 @@ The *Sprint.csproj* project file contains:
 - 23 namespaces.
 - 133 named types.
 - 8,131 total lines of source code.
-- Approximately 2,494 lines of executable code.
+- Approximately 2,495 lines of executable code.
 - The highest cyclomatic complexity is 31 :exploding_head:.
 
 <details>
@@ -4537,7 +4537,7 @@ The `Sprint.UI` namespace contains 8 named types.
 
 - 8 named types.
 - 387 total lines of source code.
-- Approximately 110 lines of executable code.
+- Approximately 111 lines of executable code.
 - The highest cyclomatic complexity is 5 :heavy_check_mark:.
 
 <details>
@@ -4586,7 +4586,7 @@ The `Sprint.UI` namespace contains 8 named types.
 
 - The `HUDBar` contains 19 members.
 - 101 total lines of source code.
-- Approximately 29 lines of executable code.
+- Approximately 30 lines of executable code.
 - The highest cyclomatic complexity is 5 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
@@ -4606,7 +4606,7 @@ The `Sprint.UI` namespace contains 8 named types.
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L26' title='TwoDigitDisplay HUDBar.rupees'>26</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L18' title='Rectangle HUDBar.sourceRect'>18</a> | 83 | 0 :heavy_check_mark: | 0 | 3 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L16' title='Texture2D HUDBar.texture'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L95' title='void HUDBar.Update(GameTime gameTime)'>95</a> | 67 | 5 :heavy_check_mark: | 0 | 7 | 15 / 6 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L95' title='void HUDBar.Update(GameTime gameTime)'>95</a> | 65 | 5 :heavy_check_mark: | 0 | 7 | 15 / 7 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L74' title='void HUDBar.UpdateActiveItem()'>74</a> | 86 | 1 :heavy_check_mark: | 0 | 6 | 7 / 1 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L20' title='int HUDBar.X'>20</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L21' title='int HUDBar.Y'>21</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
