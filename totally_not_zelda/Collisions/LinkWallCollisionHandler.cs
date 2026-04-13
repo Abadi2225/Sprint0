@@ -1,5 +1,5 @@
 using Microsoft.Xna.Framework;
-using Sprint.Block;
+using Sprint.Doors;
 using Sprint.Interfaces;
 using Sprint.UI;
 using System;

@@ -5,7 +5,7 @@ using Sprint.Levels;
 using Sprint.UI;
 using System;
 
-namespace Sprint.Block;
+namespace Sprint.Doors;
 
 public class DoorTransitionHandler
 {
@@ -54,7 +54,7 @@ public class DoorTransitionHandler
         }
 
         LevelData newData = LevelLoader.Load(targetRoom);
-        doorManager.Reset(newData.doors, newData.doorTypes);
+        doorManager.Reset(newData.doors, newData.doorTypes, targetRoom);
         Level newLevel = LevelBuilder.Build(newData, enemyFactory, dungeonWalls.InnerBounds);
 
         // Place Link just inside the inner bounds at the opposite door.

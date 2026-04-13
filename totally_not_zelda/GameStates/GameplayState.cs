@@ -8,7 +8,7 @@ using Sprint.Interfaces;
 using Sprint.Enemies;
 using Sprint.Item;
 using System.Collections.Generic;
-using Sprint.Block;
+using Sprint.Doors;
 using Sprint.Collisions;
 using Sprint.Levels;
 using Sprint.UI;
@@ -80,7 +80,8 @@ class GameplayState : IGameState
         {
             levelLoader.ResetToFirst();
             currentLevelData = levelLoader.GetCurrentLevel();
-            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
+            DoorStateRegistry.Reset();
+            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, levelLoader.GetCurrentLevelName());
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
             RebuildCollisionManager();
             link.Position = GameServices.DungeonEntrancePosition;
@@ -127,7 +128,7 @@ class GameplayState : IGameState
         uiManager.AddElement(hud);
 
         doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
-        doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
+        doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, levelLoader.GetCurrentLevelName());
         doorTransitionHandler = new DoorTransitionHandler(doorManager, link, dungeonWalls, levelLoader, enemyFactory,
             (data, level) => { currentLevelData = data; currentLevel = level; }, RebuildCollisionManager, hud.Map.UpdateLinkMapPos, invMap.UpdateInventoryMap);
 
@@ -173,7 +174,7 @@ class GameplayState : IGameState
         {
             rmbReleased = false;
             currentLevelData = levelLoader.CycleNext();
-            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
+            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, levelLoader.GetCurrentLevelName());
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
             RebuildCollisionManager();
         }
@@ -181,7 +182,7 @@ class GameplayState : IGameState
         {
             lmbReleased = false;
             currentLevelData = levelLoader.CyclePrevious();
-            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
+            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, levelLoader.GetCurrentLevelName());
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
             RebuildCollisionManager();
         }
