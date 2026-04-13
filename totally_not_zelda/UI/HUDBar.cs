@@ -9,12 +9,13 @@ namespace Sprint.UI;
 
 class HUDBar : IUIElement
 {
-    private readonly Vector2 B_ITEM_OFFSET = new Vector2(128, 16);
-    private readonly Vector2 HEART_DISPLAY_OFFSET = new Vector2(176, 40) - new Vector2(8, 8);
+    private static readonly Vector2 CROP = new Vector2(0, 8);
+    private static readonly Vector2 B_ITEM_OFFSET = new Vector2(128, 24) - CROP;
+    private static readonly Vector2 HEART_DISPLAY_OFFSET = new Vector2(176, 40) - CROP;
 
     private Texture2D texture;
     private StaticSprite background;
-    private Rectangle sourceRect;
+    private Rectangle sourceRect = new Rectangle((int)(258 + CROP.X), (int)(11 + CROP.Y), 256, 48);
 
     public int X { get; set; }
     public int Y { get; set; }
@@ -35,28 +36,25 @@ class HUDBar : IUIElement
         this.inventory = inventory;
         UpdateActiveItem();
 
-        sourceRect = new Rectangle(258, 19, 256, 48);
         background = new StaticSprite(texture, new Vector2(X, Y), sourceRect);
 
+        Vector2 origin = new Vector2(X, Y);
         rupees = new TwoDigitDisplay(
-            new Vector2(X + 96 * GameServices.ScaleFactor, Y + 8 * GameServices.ScaleFactor),
-            new Vector2(X + 104 * GameServices.ScaleFactor, Y + 8 * GameServices.ScaleFactor),
-            new Vector2(X + 112 * GameServices.ScaleFactor, Y + 8 * GameServices.ScaleFactor),
-            texture
+            origin + (new Vector2(96, 16) - CROP) * GameServices.ScaleFactor,
+            origin + (new Vector2(96 + 8, 16) - CROP) * GameServices.ScaleFactor,
+            origin + (new Vector2(96 + 16, 16) - CROP) * GameServices.ScaleFactor
         );
 
         keys = new TwoDigitDisplay(
             new Vector2(X + 96 * GameServices.ScaleFactor, Y + 24 * GameServices.ScaleFactor),
             new Vector2(X + 104 * GameServices.ScaleFactor, Y + 24 * GameServices.ScaleFactor),
-            new Vector2(X + 112 * GameServices.ScaleFactor, Y + 24 * GameServices.ScaleFactor),
-            texture
+            new Vector2(X + 112 * GameServices.ScaleFactor, Y + 24 * GameServices.ScaleFactor)
         );
 
         bombs = new TwoDigitDisplay(
             new Vector2(X + 96 * GameServices.ScaleFactor, Y + 32 * GameServices.ScaleFactor),
             new Vector2(X + 104 * GameServices.ScaleFactor, Y + 32 * GameServices.ScaleFactor),
-            new Vector2(X + 112 * GameServices.ScaleFactor, Y + 32 * GameServices.ScaleFactor),
-            texture
+            new Vector2(X + 112 * GameServices.ScaleFactor, Y + 32 * GameServices.ScaleFactor)
         );
         hearts = new HeartDisplay(new Vector2(X, Y) + HEART_DISPLAY_OFFSET * GameServices.ScaleFactor, 10);
 

@@ -66,15 +66,15 @@ class HeartDisplay
         {
             if (i <= hearts)
             {
-                fullHearts[i].Draw(sb, fullHearts[i].Position);
+                fullHearts[i - 1].Draw(sb, fullHearts[i - 1].Position);
                 continue;
             }
             if (halfHeart && i == hearts + 1)
             {
-                halfHearts[i].Draw(sb, halfHearts[i].Position);
+                halfHearts[i - 1].Draw(sb, halfHearts[i - 1].Position);
                 continue;
             }
-            emptyHearts[i].Draw(sb, emptyHearts[i].Position);
+            emptyHearts[i - 1].Draw(sb, emptyHearts[i - 1].Position);
         }
     }
 }
