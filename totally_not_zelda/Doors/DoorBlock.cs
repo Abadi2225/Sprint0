@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace Sprint.Block;
+namespace Sprint.Doors;
 
 public class DoorBlock
 {

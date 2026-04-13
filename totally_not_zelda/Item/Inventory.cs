@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using System;
-using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
 using System.Collections.Generic;
 using Sprint.UI.InventoryElements;
@@ -10,6 +9,9 @@ namespace Sprint.Item;
 public class Inventory
 {
     private readonly List<IItem> items = new();
+    public bool HasCompass { get; private set; }
+    public bool HasMap { get; private set; }
+
     public int ActiveSlot { get; set; }
     public int Count => items.Count;
 
@@ -17,8 +19,19 @@ public class Inventory
     {
         if (items.Count < InventoryBar.COLS * InventoryBar.ROWS)
         {
-            Console.WriteLine("added " + item.Name + " to inventory");
-            items.Add(item);
+            if (item.Name == "Compass")
+            {
+                HasCompass = true;
+            }
+            else if (item.Name == "Map")
+            {
+                HasMap = true;
+            }
+            else
+            {
+                Console.WriteLine("added " + item.Name + " to inventory");
+                items.Add(item);
+            }
         }
         else
         {

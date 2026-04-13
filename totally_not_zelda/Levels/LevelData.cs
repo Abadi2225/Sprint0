@@ -36,4 +36,7 @@ public class LevelData
 
     // Custom background: null = use default dungeon walls
     public string background { get; set; }
+    
+    // Position of this room on the map grid
+    public int gridPos { get; set; }
 }

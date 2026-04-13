@@ -47,5 +47,6 @@
  "version":"1.10",
  "width":12,
  "doors": { "south": "waffle", "east": "pacman" },
- "doorTypes": { "south": "key", "east": "enemy" }
+ "doorTypes": { "south": "key", "east": "enemy" },
+ "gridPos": 29
 }

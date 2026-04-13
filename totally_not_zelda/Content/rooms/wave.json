@@ -48,5 +48,6 @@
  "width":12,
  "doors": { "south": "dice5", "north": "dumbbell" },
  "doorTypes": { "south": "open", "north": "key" },
- "roomClearDrop": "Key"
+ "roomClearDrop": "Key",
+ "gridPos": 27
 }

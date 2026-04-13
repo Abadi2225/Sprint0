@@ -8,11 +8,12 @@ using Sprint.Interfaces;
 using Sprint.Enemies;
 using Sprint.Item;
 using System.Collections.Generic;
-using Sprint.Block;
+using Sprint.Doors;
 using Sprint.Collisions;
 using Sprint.Levels;
 using Sprint.UI;
 using Sprint.InputHandling;
+using Sprint.UI.InventoryElements;
 
 class GameplayState : IGameState
 {
@@ -30,6 +31,7 @@ class GameplayState : IGameState
     private Link link;
     private ItemManager items;
     private Inventory inventory;
+    private InventoryMap invMap;
     private EnemyManager enemyManager;
     private EnemyFactory enemyFactory;
     private LevelLoader levelLoader;
@@ -55,34 +57,38 @@ class GameplayState : IGameState
 
     public void Enter()
     {
-        inputHandler = new GameplayInputHandler(this, link, inventory, items, hud);
+        inputHandler = new GameplayInputHandler(this, link, inventory, items, hud, invMap);
     }
 
     public void LoadContent()
     {
-        linkSheet        = GameServices.Content.Load<Texture2D>("images/Link");
-        enemiesSheet     = GameServices.Content.Load<Texture2D>("images/enemiesSheet");
-        bossesSheet      = GameServices.Content.Load<Texture2D>("images/BossesSpriteSheet");
-        dustSheet        = GameServices.Content.Load<Texture2D>("images/dustSheet");
-        NPCSheet         = GameServices.Content.Load<Texture2D>("images/NPC");
+        linkSheet         = GameServices.Content.Load<Texture2D>("images/Link");
+        enemiesSheet      = GameServices.Content.Load<Texture2D>("images/enemiesSheet");
+        bossesSheet       = GameServices.Content.Load<Texture2D>("images/BossesSpriteSheet");
+        dustSheet         = GameServices.Content.Load<Texture2D>("images/dustSheet");
+        NPCSheet          = GameServices.Content.Load<Texture2D>("images/NPC");
         outerWallsTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/ZeldaDungeonOuterWalls");
         innerWallsTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/ZeldaDungeonInnerWalls");
         staircaseTexture  = GameServices.Content.Load<Texture2D>("dungeonWalls/Underground");
-        hudElements      = GameServices.Content.Load<Texture2D>("images/ZeldaUIElements");
-        GameServices.ItemSheet     = GameServices.Content.Load<Texture2D>("items/sheet");
+        hudElements       = GameServices.Content.Load<Texture2D>("images/ZeldaUIElements");
+        GameServices.ItemSheet      = GameServices.Content.Load<Texture2D>("items/sheet");
+        GameServices.LinkSheet      = linkSheet;
         GameServices.BoomerangSheet = GameServices.Content.Load<Texture2D>("items/boomerang");
-        doorSheet        = GameServices.Content.Load<Texture2D>("blocks/Doors");
-        GameServices.TileSheet     = GameServices.Content.Load<Texture2D>("blocks/tiles");
+        doorSheet          = GameServices.Content.Load<Texture2D>("blocks/Doors");
+        GameServices.TileSheet = GameServices.Content.Load<Texture2D>("blocks/tiles");
 
         GameServices.OnLinkGrabbed = () =>
         {
             levelLoader.ResetToFirst();
             currentLevelData = levelLoader.GetCurrentLevel();
+            DoorStateRegistry.Reset();
             doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, currentLevelData.doorOffsets);
             UpdateBackground();
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
             RebuildCollisionManager();
             link.Position = GameServices.DungeonEntrancePosition;
+            GameServices.hudMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
+            GameServices.inventoryMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
         };
 
         Vector2 center = new Vector2(GameServices.GameWidth / 2, GameServices.GameHeight / 2);
@@ -92,9 +98,7 @@ class GameplayState : IGameState
         enemyManager = new EnemyManager();
         enemyFactory = new EnemyFactory(enemiesSheet, bossesSheet, linkSheet, dustSheet, NPCSheet);
 
-        uiManager = new UIManager();
-        hud = new HUDBar(0, 0, hudElements);
-        uiManager.AddElement(hud);
+        uiManager    = new UIManager();
         dungeonWalls = new OuterDungeonWalls(outerWallsTexture);
         innerWalls   = new InnerDungeonWalls(innerWallsTexture);
 
@@ -102,9 +106,24 @@ class GameplayState : IGameState
             (dungeonWalls.BottomDoorLeft + dungeonWalls.BottomDoorRight) / 2,
             dungeonWalls.BottomDoorTop - 16 * GameServices.ScaleFactor
         );
+        link.Position = GameServices.DungeonEntrancePosition;
 
         levelLoader      = new LevelLoader();
         currentLevelData = levelLoader.GetCurrentLevel();
+
+        invMap = new InventoryMap(levelLoader.GetCurrentLevel(), levelLoader.GetCurrentLevelGridLoc(), true);
+        GameServices.inventoryMap = invMap;
+
+        items     = new ItemManager();
+        inventory = new Inventory();
+
+        inventory.Add(ItemFactory.CreateBoomerang(Vector2.Zero, Vector2.Zero, maxDistance: 160f));
+        inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow,  Vector2.Zero, GameServices.ScaleFactor));
+        inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bomb, Vector2.Zero, GameServices.ScaleFactor));
+
+        hud = new HUDBar(0, 0, inventory, hudElements);
+        GameServices.hudMap = hud.Map;
+        uiManager.AddElement(hud);
 
         doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
         doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, currentLevelData.doorOffsets);
@@ -118,17 +137,12 @@ class GameplayState : IGameState
             () => dungeonWalls.SideDoorBottom,
             levelLoader, enemyFactory,
             (data, level) => { currentLevelData = data; currentLevel = level; },
-            RebuildCollisionManager);
+            RebuildCollisionManager,
+            hud.Map.UpdateLinkMapPos,
+            invMap.UpdateInventoryMap);
 
         UpdateBackground();
         currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
-
-        items     = new ItemManager();
-        inventory = new Inventory();
-
-        inventory.Add(ItemFactory.CreateBoomerang(Vector2.Zero, Vector2.Zero, maxDistance: 160f));
-        inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow,  Vector2.Zero, GameServices.ScaleFactor));
-        inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bomb, Vector2.Zero, GameServices.ScaleFactor));
 
         RebuildCollisionManager();
     }

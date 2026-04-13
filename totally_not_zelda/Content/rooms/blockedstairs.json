@@ -67,5 +67,6 @@
  "version":"1.10",
  "width":12,
  "doors": { "east": "dumbbell" },
- "doorTypes": { "east": "key" }
+ "doorTypes": { "east": "key" },
+ "gridPos": 18
 }
