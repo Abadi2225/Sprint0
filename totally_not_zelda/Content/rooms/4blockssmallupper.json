@@ -48,7 +48,6 @@
  "width":12,
  "doors": { "south": "4blocksbig", "east": "waffle", "west": "dice5" },
  "doorTypes": { "south": "bomb", "east": "open", "west": "key" },
- "roomClearDrop": "Boomerang"
-,
+ "roomClearDrop": "Boomerang",
  "gridPos": 36
 }

@@ -53,7 +53,7 @@ public class Link : ILink
     private bool isAttacking = false;
     private bool isUsingItem = false;
     private bool isDamaged = false;
-    private bool isVisible = false;
+    private bool isVisible = true;
     public bool isPushing = false;
 	private bool attackHitLanded = false;
     private Rectangle? pickUpItemRect = null;

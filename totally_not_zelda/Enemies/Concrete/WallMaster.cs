@@ -20,7 +20,7 @@ namespace Sprint.Enemies.Concrete
         private const float REENTER_MIN = 7f;
         private const float REENTER_MAX = 12f;
 
-        private enum WallMasterState { Entering, Creeping, Chasing, Leaving, Cooldown }
+        private enum WallMasterState { Hiding, Entering, Creeping, Chasing, Leaving, Cooldown }
 
         private WallMasterState currentState;
         private Vector2 homePosition;
@@ -31,7 +31,7 @@ namespace Sprint.Enemies.Concrete
         private float chaseTimer;
         private float cooldownTimer;
         private Rectangle innerBounds;
-        public bool IsEntering => currentState == WallMasterState.Entering;
+        public bool IsEntering => currentState == WallMasterState.Entering || currentState == WallMasterState.Hiding;
         public override bool HasCollision => currentState == WallMasterState.Chasing;
         private const float CREEP_STEP_SIZE = 16f;
         private const float CREEP_STEP_DELAY = 0.8f;
@@ -70,7 +70,7 @@ namespace Sprint.Enemies.Concrete
             entryStart = spawnPosition - entryDirection * 16f * GameServices.ScaleFactor;
             entryTarget = spawnPosition;
             Position = entryStart;
-            currentState = WallMasterState.Entering;
+            currentState = WallMasterState.Hiding;
         }
 
        private Vector2 DetermineEntryDirection(Vector2 spawnPosition)
@@ -114,6 +114,9 @@ namespace Sprint.Enemies.Concrete
 
             switch (currentState)
             {
+                case WallMasterState.Hiding:
+                    UpdateHiding();
+                    break;
                 case WallMasterState.Entering:
                     UpdateEntering(dt);
                     break;
@@ -133,6 +136,13 @@ namespace Sprint.Enemies.Concrete
 
             if (currentState != WallMasterState.Cooldown)
                 sprite.Update(gameTime);
+        }
+
+        private void UpdateHiding()
+        {
+            float dist = Vector2.Distance(GameServices.Link.Position, entryTarget);
+            if (dist <= DETECTION_RANGE)
+                currentState = WallMasterState.Entering;
         }
 
         private void UpdateEntering(float deltaTime)
@@ -280,7 +290,7 @@ namespace Sprint.Enemies.Concrete
         }
         public override void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            if (!isAlive || currentState == WallMasterState.Cooldown) return;
+            if (!isAlive || currentState == WallMasterState.Cooldown || currentState == WallMasterState.Hiding) return;
             sprite?.Draw(spriteBatch, location);
         }
 

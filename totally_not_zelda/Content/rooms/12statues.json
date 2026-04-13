@@ -35,7 +35,7 @@
  "type":"map",
  "version":"1.10",
  "width":12,
- "gridPos": 59,
  "doors": {  "north": "6blockslower", "east": "12blocks", "west": "template" },
- "doorTypes": { "north": "key", "east": "open", "west": "open", "south": "open" }
+ "doorTypes": { "north": "key", "east": "open", "west": "open", "south": "open" },
+ "gridPos": 59
 }

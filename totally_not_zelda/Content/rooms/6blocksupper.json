@@ -47,7 +47,6 @@
  "version":"1.10",
  "width":12,
  "doors": { "north": "1block", "east": "4blockssmalllower" },
- "doorTypes": { "north": "key", "east": "enemy" }
-,
+ "doorTypes": { "north": "key", "east": "enemy" },
  "gridPos": 42
 }
