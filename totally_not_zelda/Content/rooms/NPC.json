@@ -47,5 +47,6 @@
  "version":"1.10",
  "width":12,
  "doors": { "east": "1block" },
- "doorTypes": { "east": "open"}
+ "doorTypes": { "east": "open"},
+ "gridPos": 33
 }

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Sprint.Interfaces;
 using Sprint.Sprites;
+using Sprint.Item;
 
 namespace Sprint.UI.InventoryElements;
 
@@ -13,17 +14,18 @@ internal class InventoryBar : IUIElement
     public static readonly int ROWS = 2;
     private static readonly int LAST_SLOT = COLS * ROWS - 1;
 
-    private readonly Vector2 activePosition;
+    private static readonly Vector2 ACTIVE_ITEM_OFFSET = new Vector2(68, 48);
 
     private StaticSprite background;
-    private StaticSprite activeSlotBorder;
+    private StaticSprite selectedSlotBorder;
 
     private List<Vector2> slotPositions;
     public int X { get; set; }
     public int Y { get; set; }
 
-    private List<IItem> inventory;
     private int activeSlot = 0;
+    private StaticSprite activeItem;
+    private List<StaticSprite> itemSprites = new List<StaticSprite>();
 
     public InventoryBar(List<IItem> inventory, int activeSlot, int x, int y)
     {
@@ -37,40 +39,37 @@ internal class InventoryBar : IUIElement
             new Rectangle(1, 11, 256, 88)
         );
 
-        activeSlotBorder = new StaticSprite(
+        selectedSlotBorder = new StaticSprite(
                 GameServices.Content.Load<Texture2D>("images/ZeldaUIElements"),
                 getBorderPosition(this.activeSlot),
                 new Rectangle(519, 137, 16, 16)
                 );
 
-        activePosition = new Vector2(X + 68 * GameServices.ScaleFactor, Y + 48 * GameServices.ScaleFactor);
-        this.inventory = inventory;
-        for (int i = 0; i < MathHelper.Min(this.inventory.Count, ROWS * COLS); i++)
+        for (int i = 0; i < MathHelper.Min(inventory.Count, ROWS * COLS); i++)
         {
-            inventory[i].Position = getSlotPosition(i);
+            itemSprites.Add(ItemHudSprites.GetSprite(inventory[i].Name, getSlotPosition(i)));
         }
     }
 
     public void Draw(SpriteBatch sb)
     {
         background.Draw(sb, background.Position);
-        activeSlotBorder.Draw(sb, activeSlotBorder.Position);
-        for (int i = 0; i < MathHelper.Min(inventory.Count, ROWS * COLS); i++)
+        selectedSlotBorder.Draw(sb, selectedSlotBorder.Position);
+        for (int i = 0; i < itemSprites.Count; i++)
         {
-            inventory[i].Draw(sb, Vector2.Zero);
+            StaticSprite toDraw = itemSprites[i];
+            toDraw.Draw(sb, toDraw.Position);
             if (i == activeSlot)
             {
-                // jank way to draw one item in multiple positions
-                inventory[i].Position = activePosition;
-                inventory[i].Draw(sb, Vector2.Zero);
-                inventory[i].Position = getSlotPosition(i);  // restore position
+                // also draw in active slot
+                toDraw.Draw(sb, new Vector2(X, Y) + ACTIVE_ITEM_OFFSET * GameServices.ScaleFactor);
             }
         }
     }
 
     public void Update(GameTime time)
     {
-        activeSlotBorder.Position = getBorderPosition(activeSlot);
+        selectedSlotBorder.Position = getBorderPosition(activeSlot);
     }
 
     public void SetActiveSlot(int newSlot)

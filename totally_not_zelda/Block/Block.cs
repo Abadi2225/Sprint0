@@ -18,7 +18,8 @@ public class Block
 
 	public Block(Texture2D texture, Vector2 pos, Rectangle sourceRect, bool walkable, bool pushable)
 	{
-		sprite = new StaticSprite(texture, pos, sourceRect);
+		if (texture != null)
+        	sprite = new StaticSprite(texture, pos, sourceRect);
 		this.walkAble = walkable;
 		this.Position = pos;
 		this.pushAble = pushable;
@@ -26,7 +27,8 @@ public class Block
 
 	public void Draw(SpriteBatch spriteBatch)
 	{
-		sprite.Draw(spriteBatch, Position);
+		if (sprite == null) return;
+    		sprite.Draw(spriteBatch, Position);
 	}
 
 	public void Update(GameTime time)

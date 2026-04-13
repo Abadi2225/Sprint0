@@ -44,10 +44,10 @@ internal class ItemFactory
                 );
     }
 
-    public static TimeBomb CreateTimeBomb(double explodeDelayMillis, Vector2 pos, float scale)
+    public static TimeBomb CreateTimeBomb(double explodeDelayMillis, Vector2 pos, Vector2 velocity, float throwDistance, float scale)
     {
         Rectangle sourceRect = new Rectangle(136, 0, 8, 14);
-        return new TimeBomb(explodeDelayMillis, "TimeBomb", pos, sourceRect, scale);
+        return new TimeBomb(explodeDelayMillis, "TimeBomb", pos, velocity, throwDistance, sourceRect, scale);
     }
 
     public static StillItem CreateStillItem(StillType type, Vector2 pos, float scale = 1)

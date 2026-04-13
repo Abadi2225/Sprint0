@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
 using System.Collections.Generic;
 
-namespace Sprint.Block;
+namespace Sprint.Doors;
 
 public class DoorManager
 {
@@ -13,10 +13,10 @@ public class DoorManager
     private readonly float scale;
     private readonly float hudHeight;
 
+    private string currentRoomName;
     private Dictionary<string, string> targets = new();
     private Dictionary<string, string> configuredTypes = new();
     private readonly Dictionary<string, bool> unlocked = new();
-
     private readonly Dictionary<string, DoorBlock> doorBlocks = new();
 
     public DoorManager(Texture2D doorTexture, float scale, float hudHeight)
@@ -26,18 +26,48 @@ public class DoorManager
         this.hudHeight   = hudHeight;
     }
 
-    public void Reset(Dictionary<string, string> newTargets, Dictionary<string, string> newTypes)
+    public void Reset(Dictionary<string, string> newTargets, Dictionary<string, string> newTypes,
+        Dictionary<string, int[]> doorOffsets = null, string roomName = null)
     {
+        currentRoomName = roomName;
+
         if (newTargets != null) targets = newTargets;
         else targets = new Dictionary<string, string>();
 
         if (newTypes != null) configuredTypes = newTypes;
         else configuredTypes = new Dictionary<string, string>();
+
         unlocked.Clear();
         doorBlocks.Clear();
 
         foreach (string dir in AllDirections)
-            doorBlocks[dir] = new DoorBlock(doorTexture, dir, scale, hudHeight);
+        {
+            Vector2? customOrigin = null;
+            if (doorOffsets != null && doorOffsets.TryGetValue(dir, out int[] offset))
+                customOrigin = new Vector2(offset[0], offset[1]);
+            doorBlocks[dir] = new DoorBlock(doorTexture, dir, scale, hudHeight, customOrigin);
+
+            if (currentRoomName != null && DoorStateRegistry.IsUnlocked(currentRoomName, dir))
+                unlocked[dir] = true;
+        }
+    }
+
+    private static string OppositeDirection(string direction) => direction switch
+    {
+        "north" => "south",
+        "south" => "north",
+        "east"  => "west",
+        "west"  => "east",
+        _       => direction,
+    };
+
+    private void RegisterUnlock(string direction)
+    {
+        if (currentRoomName == null) return;
+        DoorStateRegistry.Unlock(currentRoomName, direction);
+        string targetRoom = GetTarget(direction);
+        if (targetRoom != null)
+            DoorStateRegistry.Unlock(targetRoom, OppositeDirection(direction));
     }
 
     public bool HasDoor(string direction) => targets.ContainsKey(direction);
@@ -51,11 +81,9 @@ public class DoorManager
     public bool IsLocked(string direction) =>
         GetDoorType(direction) switch
         {
-            "open"  => false,
-            "key"   => !unlocked.GetValueOrDefault(direction),
-            "enemy" => !unlocked.GetValueOrDefault(direction),
-            "bomb"  => !unlocked.GetValueOrDefault(direction),
-            _       => true,   // "wall" is impassable
+            "open" => false,
+            "wall" => true,
+            _      => !unlocked.GetValueOrDefault(direction),
         };
 
     private static readonly Dictionary<string, Vector2> DoorCenters = new()
@@ -69,8 +97,11 @@ public class DoorManager
     public void UnlockEnemyDoors()
     {
         foreach (string dir in AllDirections)
-            if (GetDoorType(dir) == "enemy")
-                unlocked[dir] = true;
+        {
+            if (GetDoorType(dir) != "enemy") continue;
+            unlocked[dir] = true;
+            RegisterUnlock(dir);
+        }
     }
 
     public void TryUnlockBomb(Vector2 explosionCenter, float radius)
@@ -81,7 +112,10 @@ public class DoorManager
             if (unlocked.GetValueOrDefault(dir)) continue;
             Vector2 doorCenter = new Vector2(DoorCenters[dir].X * scale, DoorCenters[dir].Y * scale + hudHeight);
             if (Vector2.Distance(explosionCenter, doorCenter) <= radius)
+            {
                 unlocked[dir] = true;
+                RegisterUnlock(dir);
+            }
         }
     }
 
@@ -95,6 +129,7 @@ public class DoorManager
             if (link.UseKey())
             {
                 unlocked[direction] = true;
+                RegisterUnlock(direction);
                 return true;
             }
             return false;
@@ -111,10 +146,8 @@ public class DoorManager
             bool locked = IsLocked(dir);
             string displayType = type switch
             {
-                "key"   => locked ? "key"  : "open",
-                "enemy" => locked ? "enemy": "open",
-                "bomb"  => locked ? "wall" : "bomb",
-                _       => type,
+                "bomb" => locked ? "wall" : "bomb",
+                _      => locked ? type   : "open",
             };
             doorBlocks[dir].Draw(spriteBatch, displayType);
         }

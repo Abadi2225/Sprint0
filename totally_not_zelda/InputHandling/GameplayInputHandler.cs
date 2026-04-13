@@ -1,11 +1,12 @@
-using Sprint.Interfaces;
-using Sprint.Commands;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
-using Sprint.Item;
 using Sprint.Character;
+using Sprint.Commands;
 using Sprint.GameStates;
+using Sprint.Interfaces;
+using Sprint.Item;
 using Sprint.UI;
+using Sprint.UI.InventoryElements;
+using System.Collections.Generic;
 
 namespace Sprint.InputHandling;
 
@@ -16,8 +17,9 @@ internal class GameplayInputHandler : IInputHandler
     private Inventory inventory;
     private ItemManager items;
     private HUDBar hud;
+	private InventoryMap invMap;
 
-    private Dictionary<Keys, ICommand> commands;
+	private Dictionary<Keys, ICommand> commands;
 
     public GameplayInputHandler(GameplayState thisState, Link link, Inventory inventory, ItemManager items, HUDBar hud)
     {
@@ -54,6 +56,7 @@ internal class GameplayInputHandler : IInputHandler
                         inventory,
                         inventory.ActiveSlot,
                         hud,
+						invMap,
                         state
                         ));
         }

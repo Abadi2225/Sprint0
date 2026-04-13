@@ -1,10 +1,7 @@
 using Sprint.Interfaces;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Sprites;
 using Microsoft.Xna.Framework;
-using Sprint.UI.Hud;
-using System.Runtime.InteropServices;
 
 namespace Sprint.UI;
 

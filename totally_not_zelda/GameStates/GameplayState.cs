@@ -7,6 +7,7 @@ using Sprint.Character;
 using Sprint.Collision;
 using Sprint.Collisions;
 using Sprint.Commands;
+using Sprint.Doors;
 using Sprint.Enemies;
 using Sprint.GameStates;
 using Sprint.InputHandling;
@@ -14,6 +15,7 @@ using Sprint.Interfaces;
 using Sprint.Item;
 using Sprint.Levels;
 using Sprint.UI;
+using Sprint.UI.InventoryElements;
 using System.Collections.Generic;
 
 class GameplayState : IGameState
@@ -26,13 +28,15 @@ class GameplayState : IGameState
     private Texture2D fontSheet;
     private Texture2D outerWallsTexture;
     private Texture2D innerWallsTexture;
-    private Texture2D hudElements;
+	private Texture2D staircaseTexture;
+	private Texture2D hudElements;
     private Texture2D doorSheet;
 
     private Link link;
     private ItemManager items;
     private Inventory inventory;
-    private EnemyManager enemyManager;
+	private InventoryMap invMap;
+	private EnemyManager enemyManager;
     private EnemyFactory enemyFactory;
     private LevelLoader levelLoader;
     private Level currentLevel;
@@ -40,11 +44,11 @@ class GameplayState : IGameState
 
     private UIManager uiManager;
     private HUDBar hud;
+	private IUIElement currentBackground;
 
-    private CollisionManager collisionManager;
+	private CollisionManager collisionManager;
     private DoorManager doorManager;
     private DoorTransitionHandler doorTransitionHandler;
-    // todo delete this
     private bool lmbReleased = true;
     private bool rmbReleased = true;
     private InnerDungeonWalls innerWalls;
@@ -75,20 +79,28 @@ class GameplayState : IGameState
         NPCSheet = GameServices.Content.Load<Texture2D>("images/NPC");
         outerWallsTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/ZeldaDungeonOuterWalls");
         innerWallsTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/ZeldaDungeonInnerWalls");
-        hudElements = GameServices.Content.Load<Texture2D>("images/ZeldaUIElements");
+		staircaseTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/Underground");
+		hudElements = GameServices.Content.Load<Texture2D>("images/ZeldaUIElements");
         GameServices.ItemSheet = GameServices.Content.Load<Texture2D>("items/sheet");
-        GameServices.BoomerangSheet = GameServices.Content.Load<Texture2D>("items/boomerang");
+		GameServices.LinkSheet = linkSheet;
+		GameServices.BoomerangSheet = GameServices.Content.Load<Texture2D>("items/boomerang");
         doorSheet = GameServices.Content.Load<Texture2D>("blocks/Doors");
         GameServices.TileSheet = GameServices.Content.Load<Texture2D>("blocks/tiles");
+
         GameServices.OnLinkGrabbed = () =>
         {
-            levelLoader.ResetToFirst();
-            currentLevelData = levelLoader.GetCurrentLevel();
-            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
-            currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
-            RebuildCollisionManager();
-            link.Position = GameServices.DungeonEntrancePosition;
-        };
+			levelLoader.ResetToFirst();
+			currentLevelData = levelLoader.GetCurrentLevel();
+			DoorStateRegistry.Reset();
+			doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
+			currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
+			UpdateBackground();
+			currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
+			RebuildCollisionManager();
+			link.Position = GameServices.DungeonEntrancePosition;
+			GameServices.hudMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
+			GameServices.inventoryMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
+		};
 
         Vector2 center = new Vector2(GameServices.GameWidth / 2, GameServices.GameHeight / 2);
 
@@ -99,47 +111,88 @@ class GameplayState : IGameState
         enemyFactory = new EnemyFactory(enemiesSheet, bossesSheet, linkSheet, dustSheet, NPCSheet);
 
         uiManager = new UIManager();
-        hud = new HUDBar(0, 0, hudElements);
-        uiManager.AddElement(hud);
         dungeonWalls = new OuterDungeonWalls(outerWallsTexture);
+		innerWalls = new InnerDungeonWalls(innerWallsTexture);
 
-        uiManager.AddElement(dungeonWalls);
+		uiManager.AddElement(dungeonWalls);
         innerWalls = new InnerDungeonWalls(innerWallsTexture);
-        gameOverText = new GameOverText(fontSheet);
+
+		GameServices.DungeonEntrancePosition = new Vector2(
+	        (dungeonWalls.BottomDoorLeft + dungeonWalls.BottomDoorRight) / 2,
+	        dungeonWalls.BottomDoorTop - 16 * GameServices.ScaleFactor
+        );
+		link.Position = GameServices.DungeonEntrancePosition;
+
+		levelLoader = new LevelLoader();
+		currentLevelData = levelLoader.GetCurrentLevel();
+
+		invMap = new InventoryMap(levelLoader.GetCurrentLevel(), levelLoader.GetCurrentLevelGridLoc(), true);
+		GameServices.inventoryMap = invMap;
+
+		items = new ItemManager();
+		inventory = new Inventory();
+
+		inventory.Add(ItemFactory.CreateBoomerang(Vector2.Zero, Vector2.Zero, maxDistance: 160f));
+		inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow, Vector2.Zero, GameServices.ScaleFactor));
+		inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bomb, Vector2.Zero, GameServices.ScaleFactor));
+
+		hud = new HUDBar(0, 0, inventory, hudElements);
+		GameServices.hudMap = hud.Map;
+		uiManager.AddElement(hud);
+
+		doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
+		doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
+		currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
+
+		gameOverText = new GameOverText(fontSheet);
 		gameOverTransition = new GameOverTransition(
 	        dungeonWalls.OuterBounds,
 	        Game1.Instance.GraphicsDevice,
             gameOverText
         );
 
-		GameServices.DungeonEntrancePosition = new Vector2(
-            (dungeonWalls.BottomDoorLeft + dungeonWalls.BottomDoorRight) / 2,
-            dungeonWalls.BottomDoorTop - 16 * GameServices.ScaleFactor
-        );
-
-        levelLoader = new LevelLoader();
-        currentLevelData = levelLoader.GetCurrentLevel();
-
         doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
         doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
-        doorTransitionHandler = new DoorTransitionHandler(doorManager, link, dungeonWalls, levelLoader, enemyFactory,
-            (data, level) => { currentLevelData = data; currentLevel = level; }, RebuildCollisionManager);
+		doorTransitionHandler = new DoorTransitionHandler(
+			doorManager, link,
+			() => GetInnerBounds(),
+			() => dungeonWalls.TopDoorLeft,
+			() => dungeonWalls.TopDoorRight,
+			() => dungeonWalls.SideDoorTop,
+			() => dungeonWalls.SideDoorBottom,
+			levelLoader, enemyFactory,
+			(data, level) => { currentLevelData = data; currentLevel = level; },
+			RebuildCollisionManager,
+			hud.Map.UpdateLinkMapPos,
+			invMap.UpdateInventoryMap);
 
-        currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
-
-        items = new ItemManager();
-        inventory = new Inventory();
-
-        // inventory items — D1=Boomerang, D2=Bow, D3=Bomb
-        inventory.Add(ItemFactory.CreateBoomerang(Vector2.Zero, Vector2.Zero, maxDistance: 160f));
-        inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow, Vector2.Zero, GameServices.ScaleFactor));
-        inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bomb, Vector2.Zero, GameServices.ScaleFactor));
-
+		UpdateBackground();
+		currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
 
         RebuildCollisionManager();
     }
 
-    private void RebuildCollisionManager()
+	private bool IsUnderground => currentLevelData?.background == "Underground";
+	private Rectangle GetInnerBounds()
+	{
+		if (IsUnderground && currentBackground is StaircaseBackground sb)
+			return sb.InnerBounds;
+		return dungeonWalls.InnerBounds;
+	}
+
+	private void UpdateBackground()
+	{
+		if (currentBackground != null)
+			uiManager.RemoveElement(currentBackground);
+
+		if (IsUnderground)
+			currentBackground = new StaircaseBackground(staircaseTexture);
+		else
+			currentBackground = dungeonWalls;
+
+		uiManager.AddElement(currentBackground);
+	}
+	private void RebuildCollisionManager()
     {
         collisionManager = new CollisionManager();
         collisionManager.Add(new LinkEnemyCollision(link, currentLevel.Enemies));

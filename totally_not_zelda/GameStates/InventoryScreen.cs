@@ -20,14 +20,21 @@ internal class InventoryScreen : IGameState
     private int hudOriginalY;
     private IGameState restoreState;
 
-    public InventoryScreen(Inventory inventory, int activeSlot, HUDBar hud, IGameState restoreState)
+    public InventoryScreen(Inventory inventory, int activeSlot, HUDBar hud, InventoryMap invMap, IGameState restoreState)
     {
         this.inventory = inventory;
         this.activeSlot = activeSlot;
         this.inventoryBar = new InventoryBar(
                 this.inventory.GetItems(),
                 this.activeSlot,
-                0, 56 * (int)GameServices.ScaleFactor
+                0, 48 * (int)GameServices.ScaleFactor
+                );
+        this.mapBar = new MapBar(
+                0,
+                136 * (int)GameServices.ScaleFactor,
+                invMap,
+                this.inventory.HasMap,
+                this.inventory.HasCompass
                 );
         this.hudOriginalX = hud.X;
         this.hudOriginalY = hud.Y;
@@ -41,6 +48,8 @@ internal class InventoryScreen : IGameState
         {
             hud.X = hudOriginalX;
             hud.Y = hudOriginalY;
+            inventory.ActiveSlot = this.activeSlot;
+            hud.UpdateActiveItem();
             Game1.Instance.ForceState(restoreState);
             return;
         }
@@ -90,12 +99,12 @@ internal class InventoryScreen : IGameState
     public void Draw(SpriteBatch sb)
     {
         this.inventoryBar.Draw(sb);
+        this.mapBar.Draw(sb);
         this.hud.Draw(sb);
     }
 
     public void Exit()
     {
-        inventory.ActiveSlot = this.activeSlot;
     }
 
     public void Enter() { }

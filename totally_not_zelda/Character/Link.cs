@@ -492,12 +492,4 @@ public class Link : ILink
         };
     }
 
-	// This method is intended for testing purposes to instantly kill Link without needing to wait for the damaged state to wear off.
-	public void Kill()
-	{
-		if (isDead) return;
-
-		health = 0;
-		StartDeath();
-	}
 }
