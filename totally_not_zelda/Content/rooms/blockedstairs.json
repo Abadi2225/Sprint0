@@ -68,4 +68,6 @@
  "width":12,
  "doors": { "east": "dumbbell" },
  "doorTypes": { "east": "key" }
+,
+ "gridPos": 18
 }

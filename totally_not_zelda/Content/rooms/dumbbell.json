@@ -49,4 +49,6 @@
  "doors": { "south": "wave", "west": "blockedstairs" },
  "doorTypes": { "south": "key", "west": "key" },
  "roomClearDrop": "Key"
+,
+ "gridPos": 19
 }

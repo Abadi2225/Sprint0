@@ -62,9 +62,9 @@ class HUDBar : IUIElement
         Map = new HudMap(
                 (int)(X + 16 * GameServices.ScaleFactor),
                 Y,
-                "template",
-                LevelLoader.LocOnGrid["template"],
-                LevelLoader.LocOnGrid["template"],
+                "12statues",
+                LevelLoader.Load("12statues").gridPos,
+                LevelLoader.Load("12statues").gridPos,
                 30,
                 false,
                 false,

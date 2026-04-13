@@ -105,7 +105,7 @@ class GameplayState : IGameState
             (dungeonWalls.BottomDoorLeft + dungeonWalls.BottomDoorRight) / 2,
             dungeonWalls.BottomDoorTop - 16 * GameServices.ScaleFactor
         );
-
+        link.Position = GameServices.DungeonEntrancePosition;
 
         levelLoader = new LevelLoader();
         currentLevelData = levelLoader.GetCurrentLevel();

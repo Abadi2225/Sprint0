@@ -48,5 +48,6 @@
  "width":12,
  "doors": { "east": "12statues" },
  "doorTypes": { "east": "open" },
- "roomClearDrop": "Key"
+ "roomClearDrop": "Key",
+ "gridPos": 58
 }

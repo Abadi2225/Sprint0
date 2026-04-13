@@ -49,4 +49,6 @@
  "doors": { "west": "boss" },
  "doorTypes": { "west": "open" },
  "roomItem": { "item": "GoldTriforce", "tile": 42 }
+,
+ "gridPos": 30
 }

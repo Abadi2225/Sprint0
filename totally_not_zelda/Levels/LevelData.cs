@@ -30,4 +30,7 @@ public class LevelData
 
     // A single item placed at a specific tile position in the room
     public RoomItemData roomItem { get; set; }
+
+    // Position of this room on the map grid
+    public int gridPos { get; set; }
 }
