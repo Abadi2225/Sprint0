@@ -116,6 +116,6 @@ class HUDBar : IUIElement
         int linkRupees = GameServices.Link.Rubies;
         rupees.SetNumber(GameServices.Link.Rubies);
         keys.SetNumber(GameServices.Link.Keys);
-        // bombs.SetNumber(GameServices.Link.Bombs);
+        bombs.SetNumber(GameServices.Link.Bombs);
     }
 }

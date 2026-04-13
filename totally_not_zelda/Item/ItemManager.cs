@@ -27,11 +27,11 @@ public class ItemManager
         float cy = pos.Y + spriteSize / 2f;
         return link.Facing switch
         {
-            Directions.Up    => new Vector2(cx, pos.Y),
-            Directions.Down  => new Vector2(cx, pos.Y + spriteSize),
-            Directions.Left  => new Vector2(pos.X, cy),
+            Directions.Up => new Vector2(cx, pos.Y),
+            Directions.Down => new Vector2(cx, pos.Y + spriteSize),
+            Directions.Left => new Vector2(pos.X, cy),
             Directions.Right => new Vector2(pos.X + spriteSize, cy),
-            _                => new Vector2(cx, cy)
+            _ => new Vector2(cx, cy)
         };
     }
 
@@ -39,10 +39,9 @@ public class ItemManager
     {
         if (slot < 0 || slot >= inventory.Count) return;
 
-        link.StartUseItem();
+        IItem used = inventory.Get(slot);
         Vector2 pos = ProjectileOrigin(link);
         Directions facing = link.Facing;
-        IItem used = inventory.Get(slot);
 
         if (used is Boomerang)
         {
@@ -78,6 +77,8 @@ public class ItemManager
         }
         else if (used.Name == "Bomb" || used.Name == "TimeBomb")
         {
+            if (!GameServices.Link.UseBomb()) return;
+
             float throwSpeed = 3f;
             float throwDistance = 72f;
             double explodeDelayMillis = 1500;
@@ -93,6 +94,8 @@ public class ItemManager
                         ));
             SoundPlayer.Play(SoundType.BOMB_PLACE);
         }
+
+        link.StartUseItem();
     }
 
     internal void SpawnItem(AbstractItem item) => spawnedItems.Add(item);
