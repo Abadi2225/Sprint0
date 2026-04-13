@@ -17,17 +17,18 @@ internal class GameplayInputHandler : IInputHandler
     private Inventory inventory;
     private ItemManager items;
     private HUDBar hud;
-	private InventoryMap invMap;
+    private InventoryMap invMap;
 
-	private Dictionary<Keys, ICommand> commands;
+    private Dictionary<Keys, ICommand> commands;
 
-    public GameplayInputHandler(GameplayState thisState, Link link, Inventory inventory, ItemManager items, HUDBar hud)
+    public GameplayInputHandler(GameplayState thisState, Link link, Inventory inventory, ItemManager items, HUDBar hud, InventoryMap invMap)
     {
         this.state = thisState;
         this.link = link;
         this.inventory = inventory;
         this.items = items;
         this.hud = hud;
+        this.invMap = invMap;
 
         commands = new Dictionary<Keys, ICommand>
         {
@@ -56,17 +57,17 @@ internal class GameplayInputHandler : IInputHandler
                         inventory,
                         inventory.ActiveSlot,
                         hud,
-						invMap,
+                        invMap,
                         state
                         ));
         }
 
-		if (GameServices.KeyInput.IsKeyPressed(Keys.K))
-		{
-			link.StartDeath();
-		}
+        if (GameServices.KeyInput.IsKeyPressed(Keys.K))
+        {
+            link.StartDeath();
+        }
 
-		foreach (var command in commands)
+        foreach (var command in commands)
         {
             if (GameServices.KeyInput.IsKeyPressed(command.Key))
             {
