@@ -22,12 +22,18 @@ public class LevelData
     // Optional door types: key = direction, value = "open" (default), "key", "enemy", or "bomb"
     public Dictionary<string, string> doorTypes { get; set; }
 
+    // Optional door position overrides: key = direction, value = [x, y] in source pixels
+    public Dictionary<string, int[]> doorOffsets { get; set; }
+
     // Item that spawns in the room center when all enemies are cleared
     public string roomClearDrop { get; set; }
 
-    // Enemies that carry an item dropped on death: key = tile index in Enemies layer, value = item name (e.g. "Key")
+    // Enemies that carry an item dropped on death: key = tile index in Enemies layer, value = item name
     public Dictionary<string, string> carriedItems { get; set; }
 
     // A single item placed at a specific tile position in the room
     public RoomItemData roomItem { get; set; }
+
+    // Custom background: null = use default dungeon walls
+    public string background { get; set; }
 }

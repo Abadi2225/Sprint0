@@ -26,7 +26,8 @@ public class DoorManager
         this.hudHeight   = hudHeight;
     }
 
-    public void Reset(Dictionary<string, string> newTargets, Dictionary<string, string> newTypes)
+    public void Reset(Dictionary<string, string> newTargets, Dictionary<string, string> newTypes, 
+        Dictionary<string, int[]> doorOffsets = null)
     {
         if (newTargets != null) targets = newTargets;
         else targets = new Dictionary<string, string>();
@@ -37,7 +38,12 @@ public class DoorManager
         doorBlocks.Clear();
 
         foreach (string dir in AllDirections)
-            doorBlocks[dir] = new DoorBlock(doorTexture, dir, scale, hudHeight);
+        {
+            Vector2? customOrigin = null;
+            if (doorOffsets != null && doorOffsets.TryGetValue(dir, out int[] offset))
+                customOrigin = new Vector2(offset[0], offset[1]);
+            doorBlocks[dir] = new DoorBlock(doorTexture, dir, scale, hudHeight, customOrigin);
+        }
     }
 
     public bool HasDoor(string direction) => targets.ContainsKey(direction);

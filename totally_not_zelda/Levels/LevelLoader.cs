@@ -23,7 +23,8 @@ public class LevelLoader
         "blockedstairs",
 		"boss",
         "pacman",
-        "NPC"
+        "NPC",
+        "Underground",
     };
     private int currentLevel = 0;
     public LevelData CycleNext()
