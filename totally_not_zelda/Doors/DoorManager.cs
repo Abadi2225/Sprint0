@@ -17,7 +17,6 @@ public class DoorManager
     private Dictionary<string, string> targets = new();
     private Dictionary<string, string> configuredTypes = new();
     private readonly Dictionary<string, bool> unlocked = new();
-
     private readonly Dictionary<string, DoorBlock> doorBlocks = new();
 
     public DoorManager(Texture2D doorTexture, float scale, float hudHeight)
@@ -27,12 +26,8 @@ public class DoorManager
         this.hudHeight   = hudHeight;
     }
 
-<<<<<<< HEAD:totally_not_zelda/Block/DoorManager.cs
-    public void Reset(Dictionary<string, string> newTargets, Dictionary<string, string> newTypes, 
-        Dictionary<string, int[]> doorOffsets = null)
-=======
-    public void Reset(Dictionary<string, string> newTargets, Dictionary<string, string> newTypes, string roomName)
->>>>>>> 6d90022b7a1874cc7c06f0b8fcd5ccae6e9d9851:totally_not_zelda/Doors/DoorManager.cs
+    public void Reset(Dictionary<string, string> newTargets, Dictionary<string, string> newTypes,
+        Dictionary<string, int[]> doorOffsets = null, string roomName = null)
     {
         currentRoomName = roomName;
 
@@ -41,20 +36,18 @@ public class DoorManager
 
         if (newTypes != null) configuredTypes = newTypes;
         else configuredTypes = new Dictionary<string, string>();
+
         unlocked.Clear();
         doorBlocks.Clear();
 
         foreach (string dir in AllDirections)
         {
-<<<<<<< HEAD:totally_not_zelda/Block/DoorManager.cs
             Vector2? customOrigin = null;
             if (doorOffsets != null && doorOffsets.TryGetValue(dir, out int[] offset))
                 customOrigin = new Vector2(offset[0], offset[1]);
             doorBlocks[dir] = new DoorBlock(doorTexture, dir, scale, hudHeight, customOrigin);
-        }
-=======
-            doorBlocks[dir] = new DoorBlock(doorTexture, dir, scale, hudHeight);
-            if (DoorStateRegistry.IsUnlocked(currentRoomName, dir))
+
+            if (currentRoomName != null && DoorStateRegistry.IsUnlocked(currentRoomName, dir))
                 unlocked[dir] = true;
         }
     }
@@ -70,11 +63,11 @@ public class DoorManager
 
     private void RegisterUnlock(string direction)
     {
+        if (currentRoomName == null) return;
         DoorStateRegistry.Unlock(currentRoomName, direction);
         string targetRoom = GetTarget(direction);
         if (targetRoom != null)
             DoorStateRegistry.Unlock(targetRoom, OppositeDirection(direction));
->>>>>>> 6d90022b7a1874cc7c06f0b8fcd5ccae6e9d9851:totally_not_zelda/Doors/DoorManager.cs
     }
 
     public bool HasDoor(string direction) => targets.ContainsKey(direction);

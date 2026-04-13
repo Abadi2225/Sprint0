@@ -82,7 +82,8 @@ class GameplayState : IGameState
             levelLoader.ResetToFirst();
             currentLevelData = levelLoader.GetCurrentLevel();
             DoorStateRegistry.Reset();
-            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, currentLevelData.doorOffsets);
+            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, 
+            currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
             UpdateBackground();
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
             RebuildCollisionManager();
@@ -126,7 +127,8 @@ class GameplayState : IGameState
         uiManager.AddElement(hud);
 
         doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
-        doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, currentLevelData.doorOffsets);
+        doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, 
+        currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
 
         doorTransitionHandler = new DoorTransitionHandler(
             doorManager, link,
@@ -207,7 +209,8 @@ class GameplayState : IGameState
         {
             rmbReleased = false;
             currentLevelData = levelLoader.CycleNext();
-            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, currentLevelData.doorOffsets);
+            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, 
+            currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
             UpdateBackground();
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
             RebuildCollisionManager();
@@ -216,7 +219,8 @@ class GameplayState : IGameState
         {
             lmbReleased = false;
             currentLevelData = levelLoader.CyclePrevious();
-            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, currentLevelData.doorOffsets);
+            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, 
+            currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
             UpdateBackground();
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
             RebuildCollisionManager();
