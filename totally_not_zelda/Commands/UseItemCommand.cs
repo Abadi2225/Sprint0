@@ -8,19 +8,17 @@ namespace Sprint.Commands
         private readonly ItemManager itemManager;
         private readonly Inventory inventory;
         private readonly ILink link;
-        private readonly int slot;
 
-        public UseItemCommand(ItemManager itemManager, Inventory inventory, ILink link, int slot)
+        public UseItemCommand(ItemManager itemManager, Inventory inventory, ILink link)
         {
             this.itemManager = itemManager;
             this.inventory = inventory;
             this.link = link;
-            this.slot = slot;
         }
 
         public void Execute()
         {
-            itemManager.UseItem(link, inventory, slot);
+            itemManager.UseItem(link, inventory, inventory.ActiveSlot);
         }
     }
 }
