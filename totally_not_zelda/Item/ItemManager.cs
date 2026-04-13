@@ -17,12 +17,30 @@ public class ItemManager
     internal IReadOnlyList<AbstractItem> SpawnedItems => spawnedItems;
     internal IReadOnlyList<AbstractItem> JustFinished => justFinishedItems;
 
+    private static Vector2 ProjectileOrigin(ILink link)
+    {
+        // link.Rect is the lower half of the sprite; reconstruct full bounds from Position
+        float scale = GameServices.ScaleFactor;
+        int spriteSize = (int)(16 * scale);
+        Vector2 pos = link.Position;
+        float cx = pos.X + spriteSize / 2f;
+        float cy = pos.Y + spriteSize / 2f;
+        return link.Facing switch
+        {
+            Directions.Up    => new Vector2(cx, pos.Y),
+            Directions.Down  => new Vector2(cx, pos.Y + spriteSize),
+            Directions.Left  => new Vector2(pos.X, cy),
+            Directions.Right => new Vector2(pos.X + spriteSize, cy),
+            _                => new Vector2(cx, cy)
+        };
+    }
+
     public void UseItem(ILink link, Inventory inventory, int slot)
     {
         if (slot < 0 || slot >= inventory.Count) return;
 
         link.StartUseItem();
-        Vector2 pos = link.Position;
+        Vector2 pos = ProjectileOrigin(link);
         Directions facing = link.Facing;
         IItem used = inventory.Get(slot);
 
@@ -63,9 +81,12 @@ public class ItemManager
             float throwSpeed = 3f;
             float throwDistance = 72f;
             double explodeDelayMillis = 1500;
+            float bombW = 8 * GameServices.ScaleFactor;
+            float bombH = 14 * GameServices.ScaleFactor;
+            Vector2 bombPos = pos - new Vector2(bombW / 2f, bombH / 2f);
             SpawnItem(ItemFactory.CreateTimeBomb(
                         explodeDelayMillis,
-                        pos,
+                        bombPos,
                         DirectionsUtils.CreateVector(facing, throwSpeed),
                         throwDistance,
                         scale: GameServices.ScaleFactor

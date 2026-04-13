@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 using Sprint.Sound;
 using Sprint.Sprites;
@@ -70,6 +71,22 @@ internal class TimeBomb : AbstractItem
             cloudElapsed += time.ElapsedGameTime.TotalMilliseconds;
             if (cloudElapsed >= CloudDurationMillis)
                 cloudDone = true;
+        }
+    }
+
+    public override void Draw(SpriteBatch sb, Vector2 location)
+    {
+        if (exploded && cloud != null)
+        {
+            float s = GameServices.ScaleFactor;
+            Vector2 cloudPos = Position + new Vector2(
+                (sourceRect.Width - CloudFrameW) * s / 2f,
+                (sourceRect.Height - CloudFrameH) * s / 2f);
+            cloud.Draw(sb, cloudPos);
+        }
+        else
+        {
+            base.Draw(sb, location);
         }
     }
 
