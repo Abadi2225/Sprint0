@@ -25,6 +25,7 @@ namespace Sprint.Enemies.Concrete
         public IReadOnlyList<AquamentusFireball> ActiveFireballs => activeFireballs;
         private float fireballTimer = 0f;
         private const float FIREBALL_INTERVAL = 3f;
+        protected override bool CanBeKnockedBack => false;
 
         // Faces left, walking back and forth
         // Fires three fireballs to the left in a triangle pattern
@@ -44,7 +45,7 @@ namespace Sprint.Enemies.Concrete
             Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
 
-        public override void Update(GameTime gameTime)
+        protected override void UpdateEnemy(GameTime gameTime)
         {
             if (!isAlive) return;
 

@@ -41,7 +41,7 @@ namespace Sprint.Enemies.Concrete
         }
         
 
-        public override void Update(GameTime gameTime)
+        protected override void UpdateEnemy(GameTime gameTime)
         {
             if (!isAlive) return;
 
@@ -63,7 +63,7 @@ namespace Sprint.Enemies.Concrete
                 velocity = GetRandomTurnDirection();
             }
 
-            base.Update(gameTime);
+            base.UpdateEnemy(gameTime);
         }
 
         public override void Reset()

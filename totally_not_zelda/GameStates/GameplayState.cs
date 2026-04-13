@@ -28,15 +28,15 @@ class GameplayState : IGameState
     private Texture2D fontSheet;
     private Texture2D outerWallsTexture;
     private Texture2D innerWallsTexture;
-	private Texture2D staircaseTexture;
-	private Texture2D hudElements;
+    private Texture2D staircaseTexture;
+    private Texture2D hudElements;
     private Texture2D doorSheet;
 
     private Link link;
     private ItemManager items;
     private Inventory inventory;
-	private InventoryMap invMap;
-	private EnemyManager enemyManager;
+    private InventoryMap invMap;
+    private EnemyManager enemyManager;
     private EnemyFactory enemyFactory;
     private LevelLoader levelLoader;
     private Level currentLevel;
@@ -44,9 +44,9 @@ class GameplayState : IGameState
 
     private UIManager uiManager;
     private HUDBar hud;
-	private IUIElement currentBackground;
+    private IUIElement currentBackground;
 
-	private CollisionManager collisionManager;
+    private CollisionManager collisionManager;
     private DoorManager doorManager;
     private DoorTransitionHandler doorTransitionHandler;
     private bool lmbReleased = true;
@@ -57,8 +57,8 @@ class GameplayState : IGameState
 
     private GameOverTransition gameOverTransition;
     private GameOverText gameOverText;
-    
-	public GameplayState()
+
+    public GameplayState()
     {
     }
 
@@ -66,41 +66,41 @@ class GameplayState : IGameState
 
     public void Enter()
     {
-        inputHandler = new GameplayInputHandler(this, link, inventory, items, hud);
+        inputHandler = new GameplayInputHandler(this, link, inventory, items, hud, invMap);
     }
 
     public void LoadContent()
     {
         fontSheet = GameServices.Content.Load<Texture2D>("images/Fonts");
-		linkSheet = GameServices.Content.Load<Texture2D>("images/Link");
+        linkSheet = GameServices.Content.Load<Texture2D>("images/Link");
         enemiesSheet = GameServices.Content.Load<Texture2D>("images/enemiesSheet");
         bossesSheet = GameServices.Content.Load<Texture2D>("images/BossesSpriteSheet");
         dustSheet = GameServices.Content.Load<Texture2D>("images/dustSheet");
         NPCSheet = GameServices.Content.Load<Texture2D>("images/NPC");
         outerWallsTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/ZeldaDungeonOuterWalls");
         innerWallsTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/ZeldaDungeonInnerWalls");
-		staircaseTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/Underground");
-		hudElements = GameServices.Content.Load<Texture2D>("images/ZeldaUIElements");
+        staircaseTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/Underground");
+        hudElements = GameServices.Content.Load<Texture2D>("images/ZeldaUIElements");
         GameServices.ItemSheet = GameServices.Content.Load<Texture2D>("items/sheet");
-		GameServices.LinkSheet = linkSheet;
-		GameServices.BoomerangSheet = GameServices.Content.Load<Texture2D>("items/boomerang");
+        GameServices.LinkSheet = linkSheet;
+        GameServices.BoomerangSheet = GameServices.Content.Load<Texture2D>("items/boomerang");
         doorSheet = GameServices.Content.Load<Texture2D>("blocks/Doors");
         GameServices.TileSheet = GameServices.Content.Load<Texture2D>("blocks/tiles");
 
         GameServices.OnLinkGrabbed = () =>
         {
-			levelLoader.ResetToFirst();
-			currentLevelData = levelLoader.GetCurrentLevel();
-			DoorStateRegistry.Reset();
-			doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
-			currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
-			UpdateBackground();
-			currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
-			RebuildCollisionManager();
-			link.Position = GameServices.DungeonEntrancePosition;
-			GameServices.hudMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
-			GameServices.inventoryMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
-		};
+            levelLoader.ResetToFirst();
+            currentLevelData = levelLoader.GetCurrentLevel();
+            DoorStateRegistry.Reset();
+            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
+            currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
+            UpdateBackground();
+            currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
+            RebuildCollisionManager();
+            link.Position = GameServices.DungeonEntrancePosition;
+            GameServices.hudMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
+            GameServices.inventoryMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
+        };
 
         Vector2 center = new Vector2(GameServices.GameWidth / 2, GameServices.GameHeight / 2);
 
@@ -112,87 +112,87 @@ class GameplayState : IGameState
 
         uiManager = new UIManager();
         dungeonWalls = new OuterDungeonWalls(outerWallsTexture);
-		innerWalls = new InnerDungeonWalls(innerWallsTexture);
-
-		uiManager.AddElement(dungeonWalls);
         innerWalls = new InnerDungeonWalls(innerWallsTexture);
 
-		GameServices.DungeonEntrancePosition = new Vector2(
-	        (dungeonWalls.BottomDoorLeft + dungeonWalls.BottomDoorRight) / 2,
-	        dungeonWalls.BottomDoorTop - 16 * GameServices.ScaleFactor
+        uiManager.AddElement(dungeonWalls);
+        innerWalls = new InnerDungeonWalls(innerWallsTexture);
+
+        GameServices.DungeonEntrancePosition = new Vector2(
+            (dungeonWalls.BottomDoorLeft + dungeonWalls.BottomDoorRight) / 2,
+            dungeonWalls.BottomDoorTop - 16 * GameServices.ScaleFactor
         );
-		link.Position = GameServices.DungeonEntrancePosition;
+        link.Position = GameServices.DungeonEntrancePosition;
 
-		levelLoader = new LevelLoader();
-		currentLevelData = levelLoader.GetCurrentLevel();
+        levelLoader = new LevelLoader();
+        currentLevelData = levelLoader.GetCurrentLevel();
 
-		invMap = new InventoryMap(levelLoader.GetCurrentLevel(), levelLoader.GetCurrentLevelGridLoc(), true);
-		GameServices.inventoryMap = invMap;
+        invMap = new InventoryMap(levelLoader.GetCurrentLevel(), levelLoader.GetCurrentLevelGridLoc(), true);
+        GameServices.inventoryMap = invMap;
 
-		items = new ItemManager();
-		inventory = new Inventory();
+        items = new ItemManager();
+        inventory = new Inventory();
 
-		inventory.Add(ItemFactory.CreateBoomerang(Vector2.Zero, Vector2.Zero, maxDistance: 160f));
-		inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow, Vector2.Zero, GameServices.ScaleFactor));
-		inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bomb, Vector2.Zero, GameServices.ScaleFactor));
+        inventory.Add(ItemFactory.CreateBoomerang(Vector2.Zero, Vector2.Zero, maxDistance: 160f));
+        inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow, Vector2.Zero, GameServices.ScaleFactor));
+        inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bomb, Vector2.Zero, GameServices.ScaleFactor));
 
-		hud = new HUDBar(0, 0, inventory, hudElements);
-		GameServices.hudMap = hud.Map;
-		uiManager.AddElement(hud);
+        hud = new HUDBar(0, 0, inventory, hudElements);
+        GameServices.hudMap = hud.Map;
+        uiManager.AddElement(hud);
 
-		doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
-		doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
-		currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
+        doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
+        doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
+        currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
 
-		gameOverText = new GameOverText(fontSheet);
-		gameOverTransition = new GameOverTransition(
-	        dungeonWalls.OuterBounds,
-	        Game1.Instance.GraphicsDevice,
+        gameOverText = new GameOverText(fontSheet);
+        gameOverTransition = new GameOverTransition(
+            dungeonWalls.OuterBounds,
+            Game1.Instance.GraphicsDevice,
             gameOverText
         );
 
         doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
         doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
-		doorTransitionHandler = new DoorTransitionHandler(
-			doorManager, link,
-			() => GetInnerBounds(),
-			() => dungeonWalls.TopDoorLeft,
-			() => dungeonWalls.TopDoorRight,
-			() => dungeonWalls.SideDoorTop,
-			() => dungeonWalls.SideDoorBottom,
-			levelLoader, enemyFactory,
-			(data, level) => { currentLevelData = data; currentLevel = level; },
-			RebuildCollisionManager,
-			hud.Map.UpdateLinkMapPos,
-			invMap.UpdateInventoryMap);
+        doorTransitionHandler = new DoorTransitionHandler(
+            doorManager, link,
+            () => GetInnerBounds(),
+            () => dungeonWalls.TopDoorLeft,
+            () => dungeonWalls.TopDoorRight,
+            () => dungeonWalls.SideDoorTop,
+            () => dungeonWalls.SideDoorBottom,
+            levelLoader, enemyFactory,
+            (data, level) => { currentLevelData = data; currentLevel = level; },
+            RebuildCollisionManager,
+            hud.Map.UpdateLinkMapPos,
+            invMap.UpdateInventoryMap);
 
-		UpdateBackground();
-		currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
+        UpdateBackground();
+        currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
 
         RebuildCollisionManager();
     }
 
-	private bool IsUnderground => currentLevelData?.background == "Underground";
-	private Rectangle GetInnerBounds()
-	{
-		if (IsUnderground && currentBackground is StaircaseBackground sb)
-			return sb.InnerBounds;
-		return dungeonWalls.InnerBounds;
-	}
+    private bool IsUnderground => currentLevelData?.background == "Underground";
+    private Rectangle GetInnerBounds()
+    {
+        if (IsUnderground && currentBackground is StaircaseBackground sb)
+            return sb.InnerBounds;
+        return dungeonWalls.InnerBounds;
+    }
 
-	private void UpdateBackground()
-	{
-		if (currentBackground != null)
-			uiManager.RemoveElement(currentBackground);
+    private void UpdateBackground()
+    {
+        if (currentBackground != null)
+            uiManager.RemoveElement(currentBackground);
 
-		if (IsUnderground)
-			currentBackground = new StaircaseBackground(staircaseTexture);
-		else
-			currentBackground = dungeonWalls;
+        if (IsUnderground)
+            currentBackground = new StaircaseBackground(staircaseTexture);
+        else
+            currentBackground = dungeonWalls;
 
-		uiManager.AddElement(currentBackground);
-	}
-	private void RebuildCollisionManager()
+        uiManager.AddElement(currentBackground);
+    }
+    private void RebuildCollisionManager()
     {
         collisionManager = new CollisionManager();
         collisionManager.Add(new LinkEnemyCollision(link, currentLevel.Enemies));
@@ -207,7 +207,7 @@ class GameplayState : IGameState
         collisionManager.Add(new EnemyWallCollisionHandler(currentLevel.Enemies.enemyList, dungeonWalls));
     }
 
-	public void Update(GameTime gameTime)
+    public void Update(GameTime gameTime)
     {
         uiManager.Update(gameTime);
         currentLevel.Update(gameTime);
@@ -251,30 +251,31 @@ class GameplayState : IGameState
             lmbReleased = true;
         }
 
-        if(link.IsDead && !gameOverTransition.Finished){
+        if (link.IsDead && !gameOverTransition.Finished)
+        {
             gameOverTransition.Start();
-		}
+        }
 
-		gameOverTransition.Update(gameTime, link);
-		
+        gameOverTransition.Update(gameTime, link);
+
         if (gameOverTransition.Finished)
-		{
-			MenuState menu = new MenuState();
-			menu.LoadContent();
-			menu.Enter();
-			Game1.Instance.ForceState(menu);
-			return;
-		}
-	}
+        {
+            MenuState menu = new MenuState();
+            menu.LoadContent();
+            menu.Enter();
+            Game1.Instance.ForceState(menu);
+            return;
+        }
+    }
 
     public void Draw(SpriteBatch spriteBatch)
     {
         currentLevel.Draw(spriteBatch);
         innerWalls.Draw(spriteBatch);       // blocks, then WallMaster entering
         doorManager.Draw(spriteBatch);     // locked door visuals over openings
-        items.Draw(spriteBatch);
+		items.Draw(spriteBatch);
         currentLevel.DrawOnTop(spriteBatch); // Keese on top
-        uiManager.Draw(spriteBatch);       // rest of UI (minus DungeonWalls)
+		uiManager.Draw(spriteBatch);       // rest of UI (minus DungeonWalls)
 		gameOverTransition.DrawBlackOut(spriteBatch);
 		gameOverTransition.DrawGameOverText(spriteBatch);
 		link.Draw(spriteBatch);

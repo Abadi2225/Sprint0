@@ -12,5 +12,6 @@ public interface IEnemy : IPositionedSprite
     public void TakeDamage(int damageAmount);
     public void Die();
     public void Reset();
+    public void Knockback(Vector2 direction, float force);
     bool HasCollision { get; }
 }

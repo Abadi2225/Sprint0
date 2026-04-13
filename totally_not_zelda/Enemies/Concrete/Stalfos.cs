@@ -56,7 +56,7 @@ namespace Sprint.Enemies.Concrete
 
         }
         
-       public override void Update(GameTime gameTime)
+       protected override void UpdateEnemy(GameTime gameTime)
         {
             if (!isAlive) return;
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -84,7 +84,7 @@ namespace Sprint.Enemies.Concrete
                 directionChangeTimer = DIRECTION_CHANGE_INTERVAL;
             }
 
-            base.Update(gameTime);
+            base.UpdateEnemy(gameTime);
         }
 
 
