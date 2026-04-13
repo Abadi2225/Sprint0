@@ -13,8 +13,8 @@ The *Sprint.csproj* project file contains:
 
 - 23 namespaces.
 - 133 named types.
-- 8,166 total lines of source code.
-- Approximately 2,517 lines of executable code.
+- 8,177 total lines of source code.
+- Approximately 2,520 lines of executable code.
 - The highest cyclomatic complexity is 31 :exploding_head:.
 
 <details>
@@ -4547,8 +4547,8 @@ The `Sprint.Sprites` namespace contains 8 named types.
 The `Sprint.UI` namespace contains 8 named types.
 
 - 8 named types.
-- 387 total lines of source code.
-- Approximately 111 lines of executable code.
+- 398 total lines of source code.
+- Approximately 114 lines of executable code.
 - The highest cyclomatic complexity is 5 :heavy_check_mark:.
 
 <details>
@@ -4595,32 +4595,35 @@ The `Sprint.UI` namespace contains 8 named types.
 </summary>
 <br>
 
-- The `HUDBar` contains 19 members.
-- 101 total lines of source code.
-- Approximately 30 lines of executable code.
+- The `HUDBar` contains 22 members.
+- 112 total lines of source code.
+- Approximately 33 lines of executable code.
 - The highest cyclomatic complexity is 5 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L31' title='HUDBar.HUDBar(int x, int y, Inventory inventory, Texture2D backgroundTexture)'>31</a> | 55 | 1 :heavy_check_mark: | 0 | 12 | 42 / 12 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L24' title='StaticSprite HUDBar.activeItem'>24</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L35' title='HUDBar.HUDBar(int x, int y, Inventory inventory, Texture2D backgroundTexture)'>35</a> | 54 | 1 :heavy_check_mark: | 0 | 12 | 48 / 13 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L14' title='Vector2 HUDBar.A_ITEM_OFFSET'>14</a> | 86 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L27' title='StaticSprite HUDBar.activeItem'>27</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L13' title='Vector2 HUDBar.B_ITEM_OFFSET'>13</a> | 86 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L17' title='StaticSprite HUDBar.background'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L28' title='TwoDigitDisplay HUDBar.bombs'>28</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L21' title='StaticSprite HUDBar.background'>21</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L17' title='Rectangle HUDBar.backgroundMask'>17</a> | 83 | 0 :heavy_check_mark: | 0 | 3 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L32' title='TwoDigitDisplay HUDBar.bombs'>32</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L12' title='Vector2 HUDBar.CROP'>12</a> | 91 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L82' title='void HUDBar.Draw(SpriteBatch spriteBatch)'>82</a> | 66 | 1 :heavy_check_mark: | 0 | 8 | 12 / 7 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L14' title='Vector2 HUDBar.HEART_DISPLAY_OFFSET'>14</a> | 86 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L25' title='HeartDisplay HUDBar.hearts'>25</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L23' title='Inventory HUDBar.inventory'>23</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L27' title='TwoDigitDisplay HUDBar.keys'>27</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L29' title='HudMap HUDBar.Map'>29</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L26' title='TwoDigitDisplay HUDBar.rupees'>26</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L18' title='Rectangle HUDBar.sourceRect'>18</a> | 83 | 0 :heavy_check_mark: | 0 | 3 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L16' title='Texture2D HUDBar.texture'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L95' title='void HUDBar.Update(GameTime gameTime)'>95</a> | 65 | 5 :heavy_check_mark: | 0 | 7 | 15 / 7 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L74' title='void HUDBar.UpdateActiveItem()'>74</a> | 86 | 1 :heavy_check_mark: | 0 | 6 | 7 / 1 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L20' title='int HUDBar.X'>20</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L21' title='int HUDBar.Y'>21</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L92' title='void HUDBar.Draw(SpriteBatch sb)'>92</a> | 64 | 1 :heavy_check_mark: | 0 | 8 | 13 / 8 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L15' title='Vector2 HUDBar.HEART_DISPLAY_OFFSET'>15</a> | 86 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L29' title='HeartDisplay HUDBar.hearts'>29</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L26' title='Inventory HUDBar.inventory'>26</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L31' title='TwoDigitDisplay HUDBar.keys'>31</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L33' title='HudMap HUDBar.Map'>33</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L30' title='TwoDigitDisplay HUDBar.rupees'>30</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L28' title='StaticSprite HUDBar.swordItem'>28</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L18' title='Rectangle HUDBar.swordMask'>18</a> | 87 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L20' title='Texture2D HUDBar.texture'>20</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L106' title='void HUDBar.Update(GameTime gameTime)'>106</a> | 65 | 5 :heavy_check_mark: | 0 | 7 | 15 / 7 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L84' title='void HUDBar.UpdateActiveItem()'>84</a> | 86 | 1 :heavy_check_mark: | 0 | 6 | 7 / 1 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L23' title='int HUDBar.X'>23</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/HUDBar.cs#L24' title='int HUDBar.Y'>24</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 
 <a href="#HUDBar-class-diagram">:link: to `HUDBar` class diagram</a>
 
@@ -7679,12 +7682,15 @@ IUIElement <|-- HUDBar : implements
 class HUDBar{
     -Vector2 CROP$
     -Vector2 B_ITEM_OFFSET$
+    -Vector2 A_ITEM_OFFSET$
     -Vector2 HEART_DISPLAY_OFFSET$
+    -Rectangle backgroundMask$
+    -Rectangle swordMask$
     -Texture2D texture
     -StaticSprite background
-    -Rectangle sourceRect
     -Inventory inventory
     -StaticSprite activeItem
+    -StaticSprite swordItem
     -HeartDisplay hearts
     -TwoDigitDisplay rupees
     -TwoDigitDisplay keys
@@ -7694,7 +7700,7 @@ class HUDBar{
     +HudMap Map
     +.ctor(int x, int y, Inventory inventory, Texture2D backgroundTexture) HUDBar
     +UpdateActiveItem() void
-    +Draw(SpriteBatch spriteBatch) void
+    +Draw(SpriteBatch sb) void
     +Update(GameTime gameTime) void
 }
 
