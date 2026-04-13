@@ -19,12 +19,10 @@ internal class InventoryBar : IUIElement
     private StaticSprite background;
     private StaticSprite selectedSlotBorder;
 
-    private List<Vector2> slotPositions;
     public int X { get; set; }
     public int Y { get; set; }
 
     private int activeSlot = 0;
-    private StaticSprite activeItem;
     private List<StaticSprite> itemSprites = new List<StaticSprite>();
 
     public InventoryBar(List<IItem> inventory, int activeSlot, int x, int y)
