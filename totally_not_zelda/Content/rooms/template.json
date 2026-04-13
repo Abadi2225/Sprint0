@@ -49,5 +49,27 @@
  "doors": { "east": "12statues" },
  "doorTypes": { "east": "open" },
  "roomClearDrop": "Key",
- "gridPos": 58
+ "gridPos": 58,
+ "roomItems": [
+   { "item": "Heart",          "tile": 25 },
+   { "item": "BlueHeart",      "tile": 26 },
+   { "item": "HalfHeart",      "tile": 27 },
+   { "item": "ZeroHeart",      "tile": 28 },
+   { "item": "HeartContainer", "tile": 29 },
+   { "item": "Fairy",          "tile": 30 },
+   { "item": "Clock",          "tile": 31 },
+   { "item": "GoldRupee",      "tile": 32 },
+   { "item": "PurpleRupee",    "tile": 37 },
+   { "item": "BluePotion",     "tile": 38 },
+   { "item": "Map",            "tile": 39 },
+   { "item": "Bomb",           "tile": 40 },
+   { "item": "Bow",            "tile": 41 },
+   { "item": "BlueCandle",     "tile": 42 },
+   { "item": "Key",            "tile": 43 },
+   { "item": "Compass",        "tile": 44 },
+   { "item": "GoldTriforce",   "tile": 49 },
+   { "item": "PurpleTriforce", "tile": 50 },
+   { "item": "Boomerang",      "tile": 51 }
+ ],
+ "TODO": "Delete remove roomItems - for testing only"
 }

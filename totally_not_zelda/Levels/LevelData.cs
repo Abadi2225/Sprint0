@@ -31,8 +31,8 @@ public class LevelData
     // Enemies that carry an item dropped on death: key = tile index in Enemies layer, value = item name
     public Dictionary<string, string> carriedItems { get; set; }
 
-    // A single item placed at a specific tile position in the room
-    public RoomItemData roomItem { get; set; }
+    // Multiple items placed at specific tile positions in the room
+    public List<RoomItemData> roomItems { get; set; }
 
     // Custom background: null = use default dungeon walls
     public string background { get; set; }
