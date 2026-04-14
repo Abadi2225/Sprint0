@@ -31,6 +31,9 @@
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }],
+ "precisePlacements": [
+  { "type": "GoldTriforce", "x": 369, "y": 405 }
+ ],
  "nextlayerid":2,
  "nextobjectid":1,
  "orientation":"orthogonal",
@@ -48,6 +51,5 @@
  "width":12,
  "doors": { "west": "boss" },
  "doorTypes": { "west": "open" },
- "roomItems": [{ "item": "GoldTriforce", "tile": 42 }],
  "gridPos": 30
 }

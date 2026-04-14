@@ -31,11 +31,11 @@
                   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
          }],
- "precisePlacements": [
-  { "type": "old_man", "x": 365, "y": 340 },
-  { "type": "flame_left", "x": 265, "y": 340 },
-  { "type": "flame_right", "x": 465, "y": 340 }
-],
+"precisePlacements": [
+  { "type": "old_man", "x": 369, "y": 340 },
+  { "type": "flame_left", "x": 269, "y": 340 },
+  { "type": "flame_right", "x": 469, "y": 340 }
+ ],
  "nextlayerid":2,
  "nextobjectid":1,
  "orientation":"orthogonal",
