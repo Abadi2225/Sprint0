@@ -29,6 +29,9 @@ public static class GameServices
     public static Texture2D BoomerangSheet { get; set; }
 	public static Texture2D LinkSheet { get; set; }
 
+    public static GraphicsDevice GraphicsDevice { get; set; }
+    public static Texture2D Pixel { get; set; }
+
 	public static Link Link { get; set; }
     public static Action OnLinkGrabbed { get; set; }
 	internal static InventoryMap inventoryMap { get; set; }

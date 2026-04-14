@@ -39,6 +39,7 @@ public class Game1 : Game, IGameActions
         // Initialize GameServices
         GameServices.GameActions = this;
         GameServices.Content = Content;
+        GameServices.GraphicsDevice = GraphicsDevice;
 
         base.Initialize();
     }

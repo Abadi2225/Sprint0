@@ -32,6 +32,7 @@ class GameplayState : IGameState
     private Texture2D staircaseTexture;
     private Texture2D hudElements;
     private Texture2D doorSheet;
+    private Texture2D pixel;
 
     private Link link;
     private ItemManager items;
@@ -46,6 +47,7 @@ class GameplayState : IGameState
     private UIManager uiManager;
     private HUDBar hud;
     private IUIElement currentBackground;
+    private TriforceOverlay triforceOverlay;
 
     private CollisionManager collisionManager;
     private DoorManager doorManager;
@@ -89,6 +91,8 @@ class GameplayState : IGameState
         doorSheet = GameServices.Content.Load<Texture2D>("blocks/Doors");
         GameServices.TileSheet = GameServices.Content.Load<Texture2D>("blocks/tiles");
 
+        pixel = new Texture2D(GameServices.GraphicsDevice, 1, 1);
+        pixel.SetData([Color.White]);
         GameServices.OnLinkGrabbed = () =>
         {
             levelLoader.ResetToFirst();
@@ -119,6 +123,7 @@ class GameplayState : IGameState
         uiManager.AddElement(dungeonWalls);
         innerWalls = new InnerDungeonWalls(innerWallsTexture);
 
+        triforceOverlay = new TriforceOverlay(link, pixel);
         GameServices.DungeonEntrancePosition = new Vector2(
             (dungeonWalls.BottomDoorLeft + dungeonWalls.BottomDoorRight) / 2,
             dungeonWalls.BottomDoorTop - 16 * GameServices.ScaleFactor
@@ -248,8 +253,23 @@ class GameplayState : IGameState
             if (item.Name == "TimeBomb")
                 doorManager.TryUnlockBomb(item.Position, 80f);
 
-        collisionManager.HandleAll();
-        inputHandler.HandleInput();
+        // if statements to handle Link Triforce pickup
+        if(!link.TriforceActive)
+        {
+            collisionManager.HandleAll();
+            inputHandler.HandleInput();
+        }
+
+        if (link.ShouldEndTriforceSequence())
+        {
+            Vector2 center = new Vector2(
+                GameServices.GameWidth / 2,
+                GameServices.GameHeight / 2
+            );
+
+            link.Position = center;
+            link.EndTriforceSequence();
+        }
 
         MouseState mouse = Mouse.GetState();
         if (mouse.RightButton == ButtonState.Pressed && rmbReleased)
@@ -310,6 +330,7 @@ class GameplayState : IGameState
         gameOverTransition.DrawGameOverText(spriteBatch);
 		link.Draw(spriteBatch);
 		items.Draw(spriteBatch);
+        triforceOverlay.Draw(spriteBatch);
 
 	}
 }

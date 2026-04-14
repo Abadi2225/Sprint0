@@ -95,7 +95,7 @@ internal class LinkItemCollision : ICollisionHandler
         // Triforce items trigger the triforce pickup animation
         if (item.Name == "GoldTriforce" || item.Name == "PurpleTriforce")
         {
-            link.StartPickUpTriforce();
+            link.StartPickUpTriforce(item.SourceRect);
             SoundPlayer.Play(SoundType.PICKUP_ITEM);
             return;
         }

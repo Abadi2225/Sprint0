@@ -68,7 +68,7 @@ internal static class LinkFactory
 	public static PickUpItem PickUpTriforce(Texture2D texture, System.Action onFinished)
 	{
 		PickUpItem.Frame[] frames = [new PickUpItem.Frame(new Rectangle(230, 11, 16, 16))];
-		return new PickUpItem(texture, SpriteEffects.None, frames, 3.0, 3.0, onFinished);
+		return new PickUpItem(texture, SpriteEffects.None, frames, 10.0, 10.0, onFinished);
 	}
 
 	public static Attacking AttackDown(Texture2D texture, System.Action onFinished)
