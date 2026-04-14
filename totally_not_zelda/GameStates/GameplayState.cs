@@ -47,6 +47,7 @@ class GameplayState : IGameState
     private UIManager uiManager;
     private HUDBar hud;
     private IUIElement currentBackground;
+    private TriforceOverlay triforceOverlay;
 
     private CollisionManager collisionManager;
     private DoorManager doorManager;
@@ -122,7 +123,7 @@ class GameplayState : IGameState
         uiManager.AddElement(dungeonWalls);
         innerWalls = new InnerDungeonWalls(innerWallsTexture);
 
-        uiManager.AddElement(new TriforceOverlay(link, pixel));
+        triforceOverlay = new TriforceOverlay(link, pixel);
         GameServices.DungeonEntrancePosition = new Vector2(
             (dungeonWalls.BottomDoorLeft + dungeonWalls.BottomDoorRight) / 2,
             dungeonWalls.BottomDoorTop - 16 * GameServices.ScaleFactor
@@ -318,6 +319,7 @@ class GameplayState : IGameState
 		gameOverTransition.DrawBlackOut(spriteBatch);
         gameOverTransition.DrawGameOverText(spriteBatch);
 		link.Draw(spriteBatch);
+        triforceOverlay.Draw(spriteBatch);
 
     }
 }
