@@ -1,6 +1,8 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
+using Sprint.Item;
 
 namespace Sprint.Enemies;
 
@@ -9,6 +11,9 @@ internal class EnemyEffectWrapper : IEnemy
     private readonly IEnemy enemy;
     private readonly ISprite spawnSprite;
     private readonly ISprite deathSprite;
+    private readonly AbstractItem droppedItem;
+    private readonly Action<AbstractItem> onItemDropped;
+    private bool itemDropped;
 
     private float spawnTimer;
     private float dyingTimer;
@@ -19,11 +24,14 @@ internal class EnemyEffectWrapper : IEnemy
     public bool IsSpawningPublic => IsSpawning;
     public bool HasCollision => enemy.HasCollision;
 
-    public EnemyEffectWrapper(IEnemy enemy, ISprite spawnSprite, ISprite deathSprite)
+    public EnemyEffectWrapper(IEnemy enemy, ISprite spawnSprite, ISprite deathSprite,
+        AbstractItem droppedItem = null, Action<AbstractItem> onItemDropped = null)
     {
         this.enemy = enemy;
         this.spawnSprite = spawnSprite;
         this.deathSprite = deathSprite;
+        this.droppedItem = droppedItem;
+        this.onItemDropped = onItemDropped;
         ResetSpawnTimer();
     }
 
@@ -53,6 +61,7 @@ internal class EnemyEffectWrapper : IEnemy
 
     public void TakeDamage(int amount) => enemy.TakeDamage(amount);
     public void Die() => enemy.Die();
+    public void Knockback(Vector2 direction, float force) => enemy.Knockback(direction, force);
     public override string ToString() => enemy.ToString();
 
     private void ResetSpawnTimer()
@@ -65,13 +74,13 @@ internal class EnemyEffectWrapper : IEnemy
         enemy.Reset();
         ResetSpawnTimer();
         dyingTimer = 0f;
+        itemDropped = false;
     }
 
     public void Update(GameTime gameTime)
     {
         float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-        // Spawn phase: freeze enemy, play cloud animation
         if (IsSpawning)
         {
             spawnTimer += dt;
@@ -79,7 +88,6 @@ internal class EnemyEffectWrapper : IEnemy
             return;
         }
 
-        // Death phase: play dust animation
         if (IsDyingAnimation)
         {
             dyingTimer += dt;
@@ -87,20 +95,24 @@ internal class EnemyEffectWrapper : IEnemy
             return;
         }
 
-        // Normal phase: update the actual enemy
+        if (!enemy.IsAlive && !itemDropped && droppedItem != null && onItemDropped != null)
+        {
+            droppedItem.Position = enemy.Position;
+            onItemDropped(droppedItem);
+            itemDropped = true;
+        }
+
         enemy.Update(gameTime);
     }
 
     public void Draw(SpriteBatch spriteBatch, Vector2 location)
     {
-        // Spawn phase: show cloud, hide enemy
         if (IsSpawning)
         {
             spawnSprite?.Draw(spriteBatch, location);
             return;
         }
 
-        // Death phase: show dust, hide enemy
         if (IsDyingAnimation)
         {
             deathSprite?.Draw(spriteBatch, location);

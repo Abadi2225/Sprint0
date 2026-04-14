@@ -7,10 +7,9 @@ using Sprint.Interfaces;
 
 namespace Sprint.Sprites;
 
-internal class BoomerangSprite : ISprite
+internal class BoomerangSprite : IPositionedSprite
 {
-    private Vector2 pos;
-    public Vector2 Position => pos;
+    public Vector2 Position { get; set; }
     private Texture2D texture;
     private Vector2 velocity;
     private float scale;
@@ -21,11 +20,12 @@ internal class BoomerangSprite : ISprite
     private bool returning = false;
     private bool thrown = false;
     public bool IsActive => thrown;
+    public bool WasThrown { get; private set; }
 
     public BoomerangSprite(Texture2D texture, Vector2 initialPos, Vector2 velocity, float maxDistance, float scale)
     {
         this.texture = texture;
-        pos = initialPos;
+        Position = initialPos;
         this.velocity = velocity;
         this.maxDistance = maxDistance;
         this.scale = scale;
@@ -34,18 +34,19 @@ internal class BoomerangSprite : ISprite
     public void Throw()
     {
         thrown = true;
+        WasThrown = true;
     }
 
     public void Draw(SpriteBatch sb, Vector2 location)
     {
         sb.Draw(
                 texture,
-                pos,
+                Position,
                 null,
                 Color.White,
                 rotation: animationFrame * 22.5f * (float)Math.PI / 180f,
                 origin: new Vector2(36, 64),
-                scale: new Vector2(0.2f, 0.2f),
+                scale: new Vector2(0.3f, 0.3f),
                 SpriteEffects.None,
                 0f
                );
@@ -66,7 +67,7 @@ internal class BoomerangSprite : ISprite
         {
             animationFrame = 1;
         }
-        pos += velocity;
+        Position += velocity;
         distanceTraveled += Vector2.Distance(new Vector2(0f, 0f), velocity);
         if (distanceTraveled > maxDistance)
         {

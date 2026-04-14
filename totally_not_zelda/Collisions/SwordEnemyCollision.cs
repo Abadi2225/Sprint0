@@ -8,6 +8,7 @@ namespace Sprint.Collision;
 internal class SwordEnemyCollision : ICollisionHandler
 {
     private const int SWORD_DAMAGE = 1;
+    private const float KNOCKBACK_FORCE = 1000f;
 
     private readonly Link link;
     private readonly EnemyManager enemyManager;
@@ -20,17 +21,20 @@ internal class SwordEnemyCollision : ICollisionHandler
 
     public void Handle()
     {
-        if (link.SwordRect == Rectangle.Empty)
-            return;
+        if (link.SwordRect == Rectangle.Empty) return;
 
         foreach (var enemy in enemyManager.enemyList)
-    {
-        if (!enemy.IsAlive) continue;
-        if (link.SwordRect.Intersects(enemy.Rect))
         {
-            enemy.TakeDamage(SWORD_DAMAGE);
-            link.RegisterSwordHit();
+            if (!enemy.IsAlive) continue;
+            if (!enemy.HasCollision) continue;
+            if (link.SwordRect.Intersects(enemy.Rect))
+            {
+                enemy.TakeDamage(SWORD_DAMAGE);
+                link.RegisterSwordHit();
+
+                var dir = DirectionsUtils.CreateVector(link.Facing, 1f);
+                enemy.Knockback(dir, KNOCKBACK_FORCE);
+            }
         }
-    }
     }
 }

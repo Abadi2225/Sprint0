@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace Sprint.Block;
+namespace Sprint.Doors;
 
 public class DoorBlock
 {
@@ -41,14 +41,14 @@ public class DoorBlock
     private readonly int rowX;
     private readonly int rowY;
 
-    public DoorBlock(Texture2D texture, string direction, float scale, float hudHeight)
+    public DoorBlock(Texture2D texture, string direction, float scale, float hudHeight, Vector2? customOrigin = null)
     {
         this.texture = texture;
         this.scale   = scale;
 
         (spriteWidth, spriteHeight, rowX, rowY) = DirectionInfo[direction];
 
-        Vector2 origin = DoorOrigins[direction];
+        Vector2 origin = customOrigin ?? DoorOrigins[direction];
         destination    = new Vector2(origin.X * scale, origin.Y * scale + hudHeight);
     }
 

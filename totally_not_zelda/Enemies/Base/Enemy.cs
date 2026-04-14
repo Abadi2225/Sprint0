@@ -24,6 +24,21 @@ namespace Sprint.Enemies.Base
         protected readonly Random random = new Random();
         protected virtual bool FlipsOnVertical => false;
         public virtual bool HasCollision => true;
+        private const float KNOCKBACK_DURATION = 0.15f;
+        private Vector2 knockbackVelocity;
+        private float knockbackTimer;
+        protected virtual bool CanBeKnockedBack => true;
+
+        private const float DAMAGE_COOLDOWN = 1f;
+        private float damageCooldownTimer;
+
+        public void Knockback(Vector2 direction, float force)
+        {
+            if (!CanBeKnockedBack) return;
+            knockbackVelocity = direction * force;
+            knockbackTimer = KNOCKBACK_DURATION;
+        }
+
         protected bool WouldIntersectBlock(Vector2 candidatePos, List<Sprint.Block.Block> solidBlocks)
         {
             Rectangle candidateRect = new Rectangle((int)candidatePos.X, (int)candidatePos.Y, Rect.Width, Rect.Height);
@@ -78,9 +93,10 @@ namespace Sprint.Enemies.Base
 
         public virtual void TakeDamage(int damageAmount)
         {
-            if (!isAlive || isInvincible)
+            if (!isAlive || isInvincible || damageCooldownTimer > 0)
                 return;
 
+            damageCooldownTimer = DAMAGE_COOLDOWN;
             health -= damageAmount;
 
             if (health <= 0)
@@ -105,15 +121,31 @@ namespace Sprint.Enemies.Base
             dyingTimer = 0f;
         }
 
-        public virtual void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
+        {
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (damageCooldownTimer > 0)
+                damageCooldownTimer -= dt;
+
+            if (knockbackTimer > 0)
+            {
+                Position += knockbackVelocity * dt;
+                knockbackTimer -= dt;
+                sprite?.Update(gameTime);
+                return;
+            }
+
+            UpdateEnemy(gameTime);
+        }
+
+        protected virtual void UpdateEnemy(GameTime gameTime)
         {
             if (!isAlive)
             {
                 dyingTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (dyingTimer >= DYING_DURATION)
-                {
                     return;
-                }
             }
 
             sprite?.Update(gameTime);

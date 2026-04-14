@@ -41,15 +41,15 @@ namespace Sprint.Sprites
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
             spriteBatch.Draw(
-                texture,                    // texture
-                location,                    // position
-                sourceRect,                 // sourceRectangle
-                Color.White,                // color
-                0.0f,                       // rotation
-                Vector2.Zero,               // origin
-                GameServices.ScaleFactor,                  // scale
-                SpriteEffects.None,         // effects
-                0.0f                        // layerDepth
+                texture,                                      
+                location,                                      
+                sourceRect,                                     
+                Color.White,                                     
+                0.0f,                                            
+                Vector2.Zero,                                    
+                customScale ?? GameServices.ScaleFactor,        
+                SpriteEffects.None,                             
+                0.0f                                            
             );
         }
     }

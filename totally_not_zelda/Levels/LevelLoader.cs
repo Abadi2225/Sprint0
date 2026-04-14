@@ -21,9 +21,12 @@ public class LevelLoader
         "wave",
         "dumbbell",
         "blockedstairs",
-		"boss",
-        "pacman"
+        "boss",
+        "pacman",
+        "NPC",
+        "Underground",
     };
+
     private int currentLevel = 0;
     public LevelData CycleNext()
     {
@@ -41,12 +44,26 @@ public class LevelLoader
         }
         return Load(levels[currentLevel]);
     }
+    public void ResetToFirst()
+    {
+        currentLevel = 1;
+    }
     public LevelData GetCurrentLevel()
     {
         return Load(levels[currentLevel]);
     }
 
-    public LevelData Load(string levelName)
+    public string GetCurrentLevelName()
+    {
+        return levels[currentLevel];
+    }
+
+    public int GetCurrentLevelGridLoc()
+    {
+        return GetCurrentLevel().gridPos;
+    }
+
+    public static LevelData Load(string levelName)
     {
         string path = $"Content/rooms/{levelName}.json";
         string json = File.ReadAllText(path);

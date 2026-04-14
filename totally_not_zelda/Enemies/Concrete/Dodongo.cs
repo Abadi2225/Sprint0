@@ -18,6 +18,7 @@ namespace Sprint.Enemies.Concrete
         private const float MOVE_SPEED = 80f;
         private const float FLIP_INTERVAL = 0.1f;
         private const float BOMB_STUN_DURATION = 2.0f;
+        protected override bool CanBeKnockedBack => false;
         
         private enum Direction { Up, Down, Left, Right }
         
@@ -59,7 +60,7 @@ namespace Sprint.Enemies.Concrete
             Rect = new Rectangle((int)position.X, (int)position.Y, 16 * (int)GameServices.ScaleFactor, 16 * (int)GameServices.ScaleFactor);
         }
         
-        public override void Update(GameTime gameTime)
+        protected override void UpdateEnemy(GameTime gameTime)
         {
             if (!isAlive) return;
             

@@ -22,13 +22,14 @@ namespace Sprint.Enemies.Concrete
         private bool isResting;
         private readonly IPositionedSprite flyingSprite;
         private readonly IPositionedSprite restingSprite;
-        public override bool HasCollision => false;
+        private Rectangle innerBounds;
+        public override bool HasCollision => true;
         
         // Rests against walls first before taking flight
         // Moves erratically in random directions, stopping sometimes to rest
         // Boomerang kills them instead of stunning
         // Never drop any items
-        public Keese(Texture2D texture, Vector2 position) : base(texture, position, HEALTH, DAMAGE)
+        public Keese(Texture2D texture, Vector2 position, Rectangle innerBounds) : base(texture, position, HEALTH, DAMAGE)
         {
             int[] flyingXPositions = [183, 200];
             int[] restingXPositions = [200];
@@ -43,6 +44,7 @@ namespace Sprint.Enemies.Concrete
             restingSprite = new AnimatedSprite(texture, position, restingXPositions, sheetY, 
                                         spriteWidth, spriteHeight, frameTime);
                                         
+            this.innerBounds = innerBounds;
             isResting = true;
             actionTimer = 0f;
             actionDuration = GetRandomFloat(REST_TIME_MIN, REST_TIME_MAX);
@@ -51,7 +53,7 @@ namespace Sprint.Enemies.Concrete
             Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
         
-        public override void Update(GameTime gameTime)
+        protected override void UpdateEnemy(GameTime gameTime)
         {
             if (!isAlive) return;
             
@@ -88,6 +90,11 @@ namespace Sprint.Enemies.Concrete
             // Move if not resting
             if (!isResting)
             {
+                Vector2 newPos = Position + moveDirection * MOVE_SPEED * dt;
+                if (newPos.X < innerBounds.Left || newPos.X + Rect.Width > innerBounds.Right)
+                    moveDirection.X = -moveDirection.X;
+                if (newPos.Y < innerBounds.Top || newPos.Y + Rect.Height > innerBounds.Bottom)
+                    moveDirection.Y = -moveDirection.Y;
                 Position += moveDirection * MOVE_SPEED * dt;
             }
             

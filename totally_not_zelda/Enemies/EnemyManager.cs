@@ -31,47 +31,29 @@ namespace Sprint.Enemies
             }
         }
         
-        public void CycleNext()
-        {
-            if (enemies.Count == 0)
-                return;
-                
-            currentEnemyIndex = (currentEnemyIndex + 1) % enemies.Count;
-            currentEnemy = enemies[currentEnemyIndex];
-        }
-    
-        public void CyclePrevious()
-        {
-            if (enemies.Count == 0)
-                return;
-                
-            currentEnemyIndex = (currentEnemyIndex - 1 + enemies.Count) % enemies.Count;
-            currentEnemy = enemies[currentEnemyIndex];
-        }
-        
         public void Update(GameTime gameTime)
         {
             foreach (var enemy in enemies)
                 enemy.Update(gameTime);
-                //Add collision testing call or loop for all enemies and then collision testing
         }
         
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (var enemy in enemies)
             {
-                if (enemy is WallMaster wallMaster && wallMaster.IsEntering) continue;
-                if (enemy is Keese) continue; // drawn separately on top
+                if (enemy is EnemyEffectWrapper w && w.InnerEnemy is Keese) continue;
+                if (enemy is Keese) continue;
                 enemy.Draw(spriteBatch, enemy.Position);
             }
-        }
+}
 
         public void DrawOnTop(SpriteBatch spriteBatch)
         {
             foreach (var enemy in enemies)
             {
-                if (enemy is Keese keese)
-                    keese.Draw(spriteBatch, keese.Position);
+                var actual = enemy is EnemyEffectWrapper w ? w.InnerEnemy : enemy;
+                if (actual is Keese)
+                    enemy.Draw(spriteBatch, enemy.Position);
             }
         }
         public void DrawBehindBlocks(SpriteBatch spriteBatch)

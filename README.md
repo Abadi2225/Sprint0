@@ -17,14 +17,12 @@ A 2D action-adventure game inspired by *The Legend of Zelda*, built in C# using 
 ### Combat
 | Key(s) | Action |
 |--------|--------|
-| `Z` / `N` | Attack with sword |
+| `X` | Attack with sword |
 
 ### Items
 | Key | Action |
 |-----|--------|
-| `1` | Use item in slot 1 (Boomerang) |
-| `2` | Use item in slot 2 (Bow / Arrow) |
-| `3` | Use item in slot 3 (Bomb) |
+| `1` | Use item in slot B |
 
 ### Navigation
 | Key(s) | Action |
@@ -39,13 +37,15 @@ A 2D action-adventure game inspired by *The Legend of Zelda*, built in C# using 
 | `Enter` | Start game from title screen |
 | `Q` | Quit game |
 | `R` | Reset game to title screen |
+| `K` | Link Dies |
+| `M` | Mute Game Sound |
 
 ---
 
-## Sprint 3 — New Features
+## Sprint 4 — New Features
 
 ### Inventory System
-Link now has an inventory that holds up to three usable items. Items can be used with `1`, `2`, `3`.
+Link now has an inventory that holds up to three usable items. Items can be used by assigning one to B slot and using `1`.
 
 ### Item Pickups
 Collectible items are placed in the world. Walking over them triggers a pickup animation and applies their effect immediately:
@@ -62,25 +62,6 @@ Throwable/usable items now deal damage to enemies:
 | **Boomerang** | 1 | Travels out and returns; passes through enemies |
 | **Bomb** | 2 | Placed in front of Link; explodes after 3 seconds in a 128 × 128 area |
 
-### Enemy Projectile Damage
-Enemy-fired projectiles now hurt Link:
-| Source | Projectile | Damage |
-|--------|-----------|--------|
-| **Aquamentus** | Fireball (3 shots) | 1 |
-| **Goriya** | Boomerang | 1 |
-
-### Collision System
-Six collision handlers now run every frame:
-
-| Handler | What it does |
-|---------|-------------|
-| `LinkEnemyCollision` | Link takes damage on contact with an enemy |
-| `SwordEnemyCollision` | Sword swing damages enemies |
-| `EnemyBlockCollisionHandler` | Enemies are pushed out of solid tiles |
-| `LinkItemCollision` | Link picks up world items on contact |
-| `ActiveItemEnemyCollision` | Arrow / Boomerang / Bomb damage enemies |
-| `LinkEnemyProjectileCollision` | Enemy projectiles (fireballs, Goriya boomerang) damage Link |
-
 ---
 
 ## Game Features
@@ -96,28 +77,10 @@ Six collision handlers now run every frame:
 
 ## Known Bugs
 
-- Link does not die
-- collision does exist but it's not 100% accurate
-- In the second room (with 12 statues) if you go right from there you can't get back as you get stuck in the door because of Link's size
-- All items disappear from the first map when right or left clicking the mouse
-
----
-
-## Design Patterns Used
-
-The project was built around recommended software design patterns to keep the code maintainable across sprints:
-
-### Command Pattern
-All keyboard/mouse input is wrapped in `ICommand` objects (`QuitCommand`, `CycleEnemyCommand`, `CycleItemCommand`, `CycleBlockCommand`, `UseItemCommand`, `SetStateCommand`). This decouples input handling from game logic and makes keybinding changes easier.
-
-### State Pattern
-Game flow is managed through `IGameState` implementations (`StartScreenState`, `GameplayState`). Link's animation is similar with (`Idle`, `Walking`, `Attacking`), cleanly separating each state's update and draw logic.
-
-### Factory Pattern
-`EnemyFactory`, `ItemFactory`, and `MapManager` centralise object creation. Adding a new enemy or item type only requires changes in one place.
-
-### Decorator Pattern
-`EnemyEffectWrapper` wraps any `IEnemy` to add spawn and death particle animations without modifying the enemy classes themselves.
+- Room transition was supposed to be done but member assigned faced problems before submitting
+- Not all sounds are linked up or working as supposed to
+- Underground room boundaries feels a bit off
+- No way to get to NPC room through the implemented game
 
 ---
 
@@ -143,16 +106,19 @@ totally_not_zelda/
 ├── Block/              # Tile management
 ├── Collisions/         # All collision handler implementations
 ├── Controllers/        # Keyboard and mouse input controllers
+├── Doors/              # Implementation for Doors
 ├── Enemies/
 │   ├── Base/           # Abstract enemy base class and manager
 │   └── Concrete/       # 12 concrete enemy implementations
-├── Factories/          # Link's Factory class
-├── Game States/        # StartScreenState and GameplayState
+├── GameStates/         # StartScreenState and GameplayState
 ├── Interfaces/         # All shared interface definitions
+├── InputHandling/      # Handles keybinds
 ├── Item/
 │   ├── Active/         # Throwable/usable items (Arrow, Boomerang, Bomb)
 │   └── Still/          # Collectible world items (Hearts, Rupees, etc.)
+├── Levels/             # Building rooms and levels from json file
 ├── Sprites/            # Sprite types (animated, directional, static, projectile)
+├── Sound/              # Sounds for the game
 ├── UI/                 # UIManager, HUD, and title screen UI
 ├── Content/            # Game assets (sprite sheets, block images, fonts)
 ├── Game1.cs            # Main game class

@@ -23,13 +23,13 @@
        {
       "name": "Enemies",
       "type": "tilelayer",
-      "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      "data": [0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+               0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0]
     }],
  "nextlayerid":2,
  "nextobjectid":1,
@@ -47,5 +47,7 @@
  "version":"1.10",
  "width":12,
  "doors": { "north": "boss", "west": "4blockssmallupper" },
- "doorTypes": { "north": "key", "west": "open" }
+ "doorTypes": { "north": "key", "west": "open" },
+ "roomClearDrop": "Key",
+ "gridPos": 37
 }

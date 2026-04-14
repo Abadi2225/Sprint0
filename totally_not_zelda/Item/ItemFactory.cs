@@ -23,7 +23,7 @@ internal class ItemFactory
         Key,
         Compass,
         GoldTriforce,
-        PurpleTriforce,
+        PurpleTriforce
     }
 
     public static Boomerang CreateBoomerang(Vector2 pos, Vector2 vel, float maxDistance)
@@ -44,10 +44,10 @@ internal class ItemFactory
                 );
     }
 
-    public static TimeBomb CreateTimeBomb(double explodeDelayMillis, Vector2 pos, float scale)
+    public static TimeBomb CreateTimeBomb(double explodeDelayMillis, Vector2 pos, Vector2 velocity, float throwDistance, float scale)
     {
         Rectangle sourceRect = new Rectangle(136, 0, 8, 14);
-        return new TimeBomb(explodeDelayMillis, "TimeBomb", pos, sourceRect, scale);
+        return new TimeBomb(explodeDelayMillis, "TimeBomb", pos, velocity, throwDistance, sourceRect, scale);
     }
 
     public static StillItem CreateStillItem(StillType type, Vector2 pos, float scale = 1)
@@ -72,7 +72,7 @@ internal class ItemFactory
             StillType.Compass        => new Rectangle(258, 1, 11, 12),
             StillType.GoldTriforce   => new Rectangle(275, 3, 10, 10),
             StillType.PurpleTriforce => new Rectangle(275, 19, 10, 10),
-            _                        => new Rectangle(0, 0, 0, 0),
+			_                        => new Rectangle(0, 0, 0, 0),
         };
         return new StillItem(type.ToString(), GameServices.ItemSheet, pos, sourceRect, scale);
     }

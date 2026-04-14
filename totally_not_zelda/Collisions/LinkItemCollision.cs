@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Sprint.Interfaces;
 using Sprint.Item;
 using Sprint.Sound;
+using Sprint.Character;
 
 namespace Sprint.Collision;
 
@@ -49,6 +50,7 @@ internal class LinkItemCollision : ICollisionHandler
                 SoundPlayer.Play(SoundType.PICKUP_RUPEE);
                 return;
             case "Heart":
+                link.GetHealed(2);
                 SoundPlayer.Play(SoundType.LINK_HEALED);
                 return;
             case "BlueHeart":
@@ -56,12 +58,27 @@ internal class LinkItemCollision : ICollisionHandler
                 link.GetHealed(1);
                 SoundPlayer.Play(SoundType.LINK_HEALED);
                 return;
+            case "HeartContainer":
+                link.AddHeartContainer();
+                SoundPlayer.Play(SoundType.PICKUP_ITEM);
+                return;
             case "Fairy":
                 link.GetHealed(link.MaxHealth);
                 SoundPlayer.Play(SoundType.PICKUP_ITEM);
                 return;
-            case "Key": link.AddKey(); 
+            case "Key":
+                link.AddKey();
                 SoundPlayer.Play(SoundType.PICKUP_ITEM);
+                return;
+            case "Bomb":
+                link.AddBomb();
+                SoundPlayer.Play(SoundType.PICKUP_ITEM);
+                return;
+            case "ZeroHeart":
+                // not sure what this does, but it shouldn't go in the inventory
+                return;
+            case "Clock":
+                // not sure what this does
                 return;
         }
 

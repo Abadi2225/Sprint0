@@ -11,18 +11,36 @@ public class Level
 {
     public BlockManager Blocks { get; private set; }
     public EnemyManager Enemies { get; private set; }
-    public List<AbstractItem> WorldItems { get; } = new();
+    public List<AbstractItem> WorldItems { get; }
 
-    public Level(BlockManager blockManager, EnemyManager enemyManager)
+    private readonly List<CarriedItem> carriedItems;
+    private readonly AbstractItem roomClearDropItem;
+    private bool roomClearDropped;
+
+    public Level(BlockManager blockManager, EnemyManager enemyManager, List<AbstractItem> worldItems,
+        List<CarriedItem> carriedItems = null, AbstractItem roomClearDropItem = null)
     {
         Blocks = blockManager;
         Enemies = enemyManager;
+        WorldItems = worldItems;
+        this.carriedItems = carriedItems ?? new();
+        this.roomClearDropItem = roomClearDropItem;
     }
 
     public void Update(GameTime gameTime)
     {
         Blocks.Update(gameTime);
         Enemies.Update(gameTime);
+
+        foreach (CarriedItem carried in carriedItems)
+            carried.Update();
+
+        if (!roomClearDropped && roomClearDropItem != null && Enemies.AllDead)
+        {
+            WorldItems.Add(roomClearDropItem);
+            roomClearDropped = true;
+        }
+
         foreach (AbstractItem item in WorldItems)
             item.Update(gameTime);
     }
@@ -32,11 +50,12 @@ public class Level
         Blocks.Draw(spriteBatch);
         Enemies.DrawBehindBlocks(spriteBatch);
         Enemies.Draw(spriteBatch);
-        foreach (AbstractItem item in WorldItems)
-            item.Draw(spriteBatch, item.Position);
     }
+
     public void DrawOnTop(SpriteBatch spriteBatch)
     {
+        foreach (AbstractItem item in WorldItems)
+            item.Draw(spriteBatch, item.Position);
         Enemies.DrawOnTop(spriteBatch);
     }
 }

@@ -43,13 +43,13 @@
         {
       "name": "Enemies",
       "type": "tilelayer",
-      "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      "data": [7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+               7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7]
     }],
  "nextlayerid":3,
  "nextobjectid":1,
@@ -62,10 +62,13 @@
          "firstgid":1,
          "source":"Zelda Dungeon Tileset.tsx"
         }],
+ "stairTarget": "Underground",
  "tilewidth":16,
  "type":"map",
  "version":"1.10",
  "width":12,
  "doors": { "east": "dumbbell" },
- "doorTypes": { "east": "key" }
+ "doorTypes": { "east": "key" },
+
+ "gridPos": 18
 }

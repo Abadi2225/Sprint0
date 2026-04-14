@@ -19,24 +19,6 @@
          "width":12,
          "x":0,
          "y":0
-        },
-        {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         "height":7,
-         "id":2,
-         "name":"PushableBlocks",
-         "opacity":1,
-         "type":"tilelayer",
-         "visible":true,
-         "width":12,
-         "x":0,
-         "y":0
         }],
  "nextlayerid":3,
  "nextobjectid":1,
@@ -54,5 +36,6 @@
  "version":"1.10",
  "width":12,
  "doors": {  "north": "6blockslower", "east": "12blocks", "west": "template" },
- "doorTypes": { "north": "key", "east": "open", "west": "open", "south": "open" }
+ "doorTypes": { "north": "key", "east": "open", "west": "open", "south": "open" },
+ "gridPos": 59
 }

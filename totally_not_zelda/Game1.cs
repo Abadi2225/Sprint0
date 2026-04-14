@@ -10,9 +10,9 @@ public class Game1 : Game, IGameActions
 
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
-	// private IController mouse;
+    // private IController mouse;
 
-	private IGameState currentState;
+    private IGameState currentState;
 
     public Game1()
     {
@@ -35,7 +35,7 @@ public class Game1 : Game, IGameActions
     protected override void Initialize()
     {
         // mouse = new MouseController(this, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, services);
-        
+
         // Initialize GameServices
         GameServices.GameActions = this;
         GameServices.Content = Content;
@@ -50,7 +50,7 @@ public class Game1 : Game, IGameActions
 
         currentState.LoadContent();
 
-	}
+    }
 
     protected override void Update(GameTime gameTime)
     {
@@ -65,7 +65,7 @@ public class Game1 : Game, IGameActions
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.SkyBlue);
-        
+
         spriteBatch.Begin(
             SpriteSortMode.Deferred,
             BlendState.AlphaBlend,
@@ -84,6 +84,13 @@ public class Game1 : Game, IGameActions
         currentState.Exit();
         currentState = newState;
         currentState.LoadContent();
+        currentState.Enter();
+        GameServices.KeyInput.Reset(); // flush key state
+    }
+
+    public void ForceState(IGameState newState)
+    {
+        currentState = newState;
         currentState.Enter();
         GameServices.KeyInput.Reset(); // flush key state
     }

@@ -17,15 +17,13 @@ internal class LinkEnemyCollision : ICollisionHandler
     }
 
     public void Handle()
-    {
-        foreach (var enemy in enemyManager.enemyList)
         {
-            if (!enemy.IsAlive) continue;
-            if (link.Rect.Intersects(enemy.Rect))
+            foreach (var enemy in enemyManager.enemyList)
             {
-                link.TakeDamage(enemy.Damage);
-                Console.WriteLine($"Link collided with {enemy} and took {enemy.Damage} damage. Current health: {link.Health}");
+                if (!enemy.IsAlive) continue;
+                if (!enemy.HasCollision) continue;
+                if (link.Rect.Intersects(enemy.Rect))
+                    link.TakeDamage(enemy.Damage);
             }
         }
-    }
 }

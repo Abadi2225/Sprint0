@@ -1,4 +1,5 @@
 namespace Sprint.Layers;
+using System.Collections.Generic;
 
 public class LayerData
 {
@@ -9,4 +10,5 @@ public class LayerData
     public int height { get; set; }
 
     public int[] data { get; set; }
+    public Dictionary<string, int[]> doorOffsets { get; set; } // e.g. {"north": [49, 0]}
 }

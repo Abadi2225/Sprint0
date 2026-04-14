@@ -1,5 +1,5 @@
 using Microsoft.Xna.Framework;
-using Sprint.Block;
+using Sprint.Doors;
 using Sprint.Interfaces;
 using Sprint.UI;
 using System;
@@ -25,6 +25,8 @@ namespace Sprint.Collisions
 
 		public void Handle()
 		{
+
+            if (link.IsGrabbed) return;
 			int spriteSize = link.Rect.Width;
 			int exitDepth  = dungeonWalls.DoorExitDepth;
 

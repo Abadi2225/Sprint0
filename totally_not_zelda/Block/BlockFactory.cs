@@ -22,7 +22,8 @@ public static class BlockFactory
         Water,
         Stairs,
         Bricks,
-        Ladder
+        Ladder,
+        InvisibleWall
     }
 
     public static Block Create(int tileId, Vector2 pos)
@@ -39,6 +40,8 @@ public static class BlockFactory
             7 => CreateBlock(BlockType.Stairs, pos),
             8 => CreateBlock(BlockType.Bricks, pos),
             9 => CreateBlock(BlockType.Ladder, pos),
+            10 => CreateInvisibleSolid(pos),
+            11 => CreateInvisibleWalkable(pos),
             _ => null,
         };
     }
@@ -59,12 +62,23 @@ public static class BlockFactory
         {
             BlockType.Blank or 
             BlockType.Sand or 
+            BlockType.Black or
             BlockType.Stairs => true,
             _ => false  // Square, Statues, Black, Water, Bricks, Ladder all block movement
         };
 
 
-		return new Block(GameServices.TileSheet, pos, textureMask, walkable, false);
+		return new Block(GameServices.TileSheet, pos, textureMask, walkable, false, type == BlockType.Stairs);
+    }
+
+    private static Block CreateInvisibleSolid(Vector2 pos)
+    {
+        return new Block(null, pos, Rectangle.Empty, false, false);
+    }
+
+    private static Block CreateInvisibleWalkable(Vector2 pos)
+    {
+        return new Block(null, pos, Rectangle.Empty, true, false);
     }
 
 	public static Block CreatePushable(int tileId, Vector2 pos)

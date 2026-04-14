@@ -23,10 +23,10 @@
        {
       "name": "Enemies",
       "type": "tilelayer",
-      "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0,
+               0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -47,5 +47,7 @@
  "version":"1.10",
  "width":12,
  "doors": { "north": "wave", "south": "4blockssmalllower", "east": "4blockssmallupper", "west": "1block" },
- "doorTypes": { "north": "open", "south": "bomb", "east": "key", "west": "open" }
+ "doorTypes": { "north": "open", "south": "bomb", "east": "key", "west": "open" },
+ "roomItems": [{ "item": "Map", "tile": 46 }],
+ "gridPos": 35
 }

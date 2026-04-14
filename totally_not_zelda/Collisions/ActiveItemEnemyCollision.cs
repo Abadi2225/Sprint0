@@ -50,13 +50,13 @@ internal class ActiveItemEnemyCollision : ICollisionHandler
         }
 
         // TimeBomb: deal AOE damage to enemies in explosion radius when it goes off
-        foreach (var item in itemManager.JustFinished)
+        foreach (var item in itemManager.SpawnedItems)
         {
-            if (item is TimeBomb bomb)
+            if (item is TimeBomb bomb && bomb.JustExploded)
             {
                 Rectangle blastZone = new Rectangle(
-                    bomb.Rect.Center.X - BOMB_RADIUS,
-                    bomb.Rect.Center.Y - BOMB_RADIUS,
+                    (int)bomb.ExplosionCenter.X - BOMB_RADIUS,
+                    (int)bomb.ExplosionCenter.Y - BOMB_RADIUS,
                     BOMB_RADIUS * 2,
                     BOMB_RADIUS * 2);
 
