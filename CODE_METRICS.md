@@ -12,9 +12,9 @@ This file is dynamically maintained by a bot, *please do not* edit this by hand.
 The *Sprint.csproj* project file contains:
 
 - 23 namespaces.
-- 137 named types.
-- 8,409 total lines of source code.
-- Approximately 2,588 lines of executable code.
+- 138 named types.
+- 8,459 total lines of source code.
+- Approximately 2,594 lines of executable code.
 - The highest cyclomatic complexity is 31 :exploding_head:.
 
 <details>
@@ -28,9 +28,9 @@ The *Sprint.csproj* project file contains:
 The `<global namespace>` namespace contains 7 named types.
 
 - 7 named types.
-- 612 total lines of source code.
-- Approximately 260 lines of executable code.
-- The highest cyclomatic complexity is 17 :exploding_head:.
+- 652 total lines of source code.
+- Approximately 266 lines of executable code.
+- The highest cyclomatic complexity is 23 :exploding_head:.
 
 <details>
 <summary>
@@ -62,8 +62,8 @@ The `<global namespace>` namespace contains 7 named types.
 <br>
 
 - The `GameplayState` contains 44 members.
-- 291 total lines of source code.
-- Approximately 142 lines of executable code.
+- 294 total lines of source code.
+- Approximately 144 lines of executable code.
 - The highest cyclomatic complexity is 13 :x:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
@@ -77,7 +77,7 @@ The `<global namespace>` namespace contains 7 named types.
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L51' title='DoorManager GameplayState.doorManager'>51</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L34' title='Texture2D GameplayState.doorSheet'>34</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L52' title='DoorTransitionHandler GameplayState.doorTransitionHandler'>52</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L301' title='void GameplayState.Draw(SpriteBatch spriteBatch)'>301</a> | 68 | 2 :heavy_check_mark: | 0 | 8 | 11 / 7 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L301' title='void GameplayState.Draw(SpriteBatch spriteBatch)'>301</a> | 64 | 2 :heavy_check_mark: | 0 | 9 | 14 / 9 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L57' title='OuterDungeonWalls GameplayState.dungeonWalls'>57</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L27' title='Texture2D GameplayState.dustSheet'>27</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L25' title='Texture2D GameplayState.enemiesSheet'>25</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
@@ -197,14 +197,14 @@ The `<global namespace>` namespace contains 7 named types.
 <br>
 
 - The `LevelBuilder` contains 3 members.
-- 127 total lines of source code.
-- Approximately 66 lines of executable code.
-- The highest cyclomatic complexity is 17 :exploding_head:.
+- 164 total lines of source code.
+- Approximately 70 lines of executable code.
+- The highest cyclomatic complexity is 23 :exploding_head:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L15' title='Level LevelBuilder.Build(LevelData data, EnemyFactory enemyFactory, Rectangle innerBounds)'>15</a> | 35 | 17 :exploding_head: | 0 | 19 | 116 / 64 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L132' title='AbstractItem LevelBuilder.CreatePickupItem(string name, Vector2 pos)'>132</a> | 91 | 1 :heavy_check_mark: | 0 | 6 | 5 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L15' title='Level LevelBuilder.Build(LevelData data, EnemyFactory enemyFactory, Rectangle innerBounds)'>15</a> | 33 | 23 :exploding_head: | 0 | 20 | 151 / 68 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L169' title='AbstractItem LevelBuilder.CreatePickupItem(string name, Vector2 pos)'>169</a> | 91 | 1 :heavy_check_mark: | 0 | 6 | 5 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L13' title='int LevelBuilder.TILE_SIZE'>13</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 
 <a href="#LevelBuilder-class-diagram">:link: to `LevelBuilder` class diagram</a>
@@ -4076,10 +4076,10 @@ The `Sprint.Layers` namespace contains 1 named types.
 </summary>
 <br>
 
-The `Sprint.Levels` namespace contains 2 named types.
+The `Sprint.Levels` namespace contains 3 named types.
 
-- 2 named types.
-- 43 total lines of source code.
+- 3 named types.
+- 53 total lines of source code.
 - Approximately 0 lines of executable code.
 - The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
@@ -4091,27 +4091,53 @@ The `Sprint.Levels` namespace contains 2 named types.
 </summary>
 <br>
 
-- The `LevelData` contains 12 members.
-- 34 total lines of source code.
+- The `LevelData` contains 13 members.
+- 37 total lines of source code.
 - Approximately 0 lines of executable code.
 - The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L38' title='string LevelData.background'>38</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 2 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L32' title='Dictionary<string, string> LevelData.carriedItems'>32</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 2 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L26' title='Dictionary<string, int[]> LevelData.doorOffsets'>26</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 2 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L20' title='Dictionary<string, string> LevelData.doors'>20</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 2 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L23' title='Dictionary<string, string> LevelData.doorTypes'>23</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 2 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L41' title='int LevelData.gridPos'>41</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 2 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L15' title='int LevelData.height'>15</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L17' title='List<LayerData> LevelData.layers'>17</a> | 100 | 2 :heavy_check_mark: | 0 | 2 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L29' title='string LevelData.roomClearDrop'>29</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 2 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L35' title='List<RoomItemData> LevelData.roomItems'>35</a> | 100 | 2 :heavy_check_mark: | 0 | 2 | 2 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L44' title='string LevelData.stairTarget'>44</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 2 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L14' title='int LevelData.width'>14</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L45' title='string LevelData.background'>45</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 2 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L39' title='Dictionary<string, string> LevelData.carriedItems'>39</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 2 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L33' title='Dictionary<string, int[]> LevelData.doorOffsets'>33</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 2 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L27' title='Dictionary<string, string> LevelData.doors'>27</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 2 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L30' title='Dictionary<string, string> LevelData.doorTypes'>30</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 2 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L51' title='int LevelData.gridPos'>51</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 2 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L22' title='int LevelData.height'>22</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L24' title='List<LayerData> LevelData.layers'>24</a> | 100 | 2 :heavy_check_mark: | 0 | 2 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L48' title='List<PrecisePlacementData> LevelData.precisePlacements'>48</a> | 100 | 2 :heavy_check_mark: | 0 | 2 | 2 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L36' title='string LevelData.roomClearDrop'>36</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 2 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L42' title='List<RoomItemData> LevelData.roomItems'>42</a> | 100 | 2 :heavy_check_mark: | 0 | 2 | 2 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L54' title='string LevelData.stairTarget'>54</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 2 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L21' title='int LevelData.width'>21</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 
 <a href="#LevelData-class-diagram">:link: to `LevelData` class diagram</a>
+
+<a href="#sprint-levels">:top: back to Sprint.Levels</a>
+
+</details>
+
+<details>
+<summary>
+  <strong id="preciseplacementdata">
+    PrecisePlacementData :heavy_check_mark:
+  </strong>
+</summary>
+<br>
+
+- The `PrecisePlacementData` contains 3 members.
+- 6 total lines of source code.
+- Approximately 0 lines of executable code.
+- The highest cyclomatic complexity is 2 :heavy_check_mark:.
+
+| Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L14' title='string PrecisePlacementData.type'>14</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L15' title='int PrecisePlacementData.x'>15</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L16' title='int PrecisePlacementData.y'>16</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+
+<a href="#PrecisePlacementData-class-diagram">:link: to `PrecisePlacementData` class diagram</a>
 
 <a href="#sprint-levels">:top: back to Sprint.Levels</a>
 
@@ -7500,8 +7526,23 @@ class LevelData{
     +Dictionary<string, string> carriedItems
     +List<RoomItemData> roomItems
     +string background
+    +List<PrecisePlacementData> precisePlacements
     +int gridPos
     +string stairTarget
+}
+
+```
+
+<div id="PrecisePlacementData-class-diagram"></div>
+
+##### `PrecisePlacementData` class diagram
+
+```mermaid
+classDiagram
+class PrecisePlacementData{
+    +string type
+    +int x
+    +int y
 }
 
 ```
