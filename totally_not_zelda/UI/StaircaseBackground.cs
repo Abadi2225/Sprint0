@@ -17,18 +17,33 @@ public class StaircaseBackground : IUIElement
         hudHeight = 48 * scale;
     }
 
-    public Rectangle InnerBounds => new Rectangle(
-        0,
-        (int)hudHeight,
-        (int)(256 * scale),
-        (int)(160 * scale)
-    );
-
     public void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(texture, new Vector2(0, hudHeight), null,
+        int imageHeight = (int)(161 * scale);
+        int totalSpace  = GameServices.GameHeight - (int)hudHeight;
+        int blackHeight = totalSpace - imageHeight;
+
+        // Fill gap above image with black
+        if (blackHeight > 0)
+        {
+            spriteBatch.Draw(
+                GameServices.TileSheet,
+                new Rectangle(0, (int)hudHeight, GameServices.GameWidth, blackHeight),
+                new Rectangle(0, 0, 1, 1),
+                Color.Black);
+        }
+
+        // Draw background image below the black gap
+        spriteBatch.Draw(texture, new Vector2(0, hudHeight + blackHeight), null,
             Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
     }
+
+    public Rectangle InnerBounds => new Rectangle(
+        0,
+        (int)(hudHeight + (GameServices.GameHeight - (int)hudHeight - 161 * scale)),
+        (int)(256 * scale),
+        (int)(161 * scale)
+    );
 
     public void Update(GameTime gameTime) { }
 }
