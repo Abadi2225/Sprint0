@@ -262,13 +262,11 @@ class GameplayState : IGameState
 
         if (link.ShouldEndTriforceSequence())
         {
-            Vector2 center = new Vector2(
-                GameServices.GameWidth / 2,
-                GameServices.GameHeight / 2
-            );
-
-            link.Position = center;
             link.EndTriforceSequence();
+            MenuState menu = new MenuState();
+            menu.LoadContent();
+            menu.Enter();
+            Game1.Instance.ForceState(menu);
         }
 
         MouseState mouse = Mouse.GetState();
