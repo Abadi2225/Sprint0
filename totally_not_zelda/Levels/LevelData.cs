@@ -36,7 +36,10 @@ public class LevelData
 
     // Custom background: null = use default dungeon walls
     public string background { get; set; }
-    
+
     // Position of this room on the map grid
     public int gridPos { get; set; }
+    
+    // room to transition to when stepping on stair tile
+    public string stairTarget { get; set; }
 }

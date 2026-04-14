@@ -40,7 +40,8 @@ public static class BlockFactory
             7 => CreateBlock(BlockType.Stairs, pos),
             8 => CreateBlock(BlockType.Bricks, pos),
             9 => CreateBlock(BlockType.Ladder, pos),
-            10 => CreateInvisibleWall(pos),
+            10 => CreateInvisibleSolid(pos),
+            11 => CreateInvisibleWalkable(pos),
             _ => null,
         };
     }
@@ -67,12 +68,17 @@ public static class BlockFactory
         };
 
 
-		return new Block(GameServices.TileSheet, pos, textureMask, walkable, false);
+		return new Block(GameServices.TileSheet, pos, textureMask, walkable, false, type == BlockType.Stairs);
     }
 
-        private static Block CreateInvisibleWall(Vector2 pos)
+    private static Block CreateInvisibleSolid(Vector2 pos)
     {
         return new Block(null, pos, Rectangle.Empty, false, false);
+    }
+
+    private static Block CreateInvisibleWalkable(Vector2 pos)
+    {
+        return new Block(null, pos, Rectangle.Empty, true, false);
     }
 
 	public static Block CreatePushable(int tileId, Vector2 pos)

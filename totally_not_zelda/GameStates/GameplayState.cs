@@ -74,7 +74,7 @@ class GameplayState : IGameState
         GameServices.ItemSheet      = GameServices.Content.Load<Texture2D>("items/sheet");
         GameServices.LinkSheet      = linkSheet;
         GameServices.BoomerangSheet = GameServices.Content.Load<Texture2D>("items/boomerang");
-        doorSheet          = GameServices.Content.Load<Texture2D>("blocks/Doors");
+        doorSheet         = GameServices.Content.Load<Texture2D>("blocks/Doors");
         GameServices.TileSheet = GameServices.Content.Load<Texture2D>("blocks/tiles");
 
         GameServices.OnLinkGrabbed = () =>
@@ -82,8 +82,8 @@ class GameplayState : IGameState
             levelLoader.ResetToFirst();
             currentLevelData = levelLoader.GetCurrentLevel();
             DoorStateRegistry.Reset();
-            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, 
-            currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
+            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
+                currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
             UpdateBackground();
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
             RebuildCollisionManager();
@@ -127,8 +127,8 @@ class GameplayState : IGameState
         uiManager.AddElement(hud);
 
         doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
-        doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, 
-        currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
+        doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
+            currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
 
         doorTransitionHandler = new DoorTransitionHandler(
             doorManager, link,
@@ -182,8 +182,32 @@ class GameplayState : IGameState
         collisionManager.Add(new LinkItemCollision(link, inventory, currentLevel.WorldItems));
         collisionManager.Add(new ActiveItemEnemyCollision(items, currentLevel.Enemies));
         collisionManager.Add(new LinkEnemyProjectileCollision(link, currentLevel.Enemies));
-        collisionManager.Add(new LinkWallCollisionHandler(link, dungeonWalls, doorManager, doorTransitionHandler.Handle));
         collisionManager.Add(new EnemyWallCollisionHandler(currentLevel.Enemies.enemyList, dungeonWalls));
+        if (!IsUnderground)
+        collisionManager.Add(new LinkWallCollisionHandler(link, dungeonWalls, doorManager, doorTransitionHandler.Handle));
+
+        if (currentLevelData?.stairTarget != null)
+            collisionManager.Add(new StairCollisionHandler(
+                link, currentLevel.Blocks,
+                currentLevelData.stairTarget,
+                HandleStairTransition));
+    }
+
+    private void HandleStairTransition(string targetRoom)
+    {
+        LevelData newData = LevelLoader.Load(targetRoom);
+        doorManager.Reset(newData.doors, newData.doorTypes, newData.doorOffsets, targetRoom);
+        currentLevelData = newData;
+        UpdateBackground();
+        currentLevel = LevelBuilder.Build(newData, enemyFactory, GetInnerBounds());
+
+        link.Position = new Vector2(
+            49 * GameServices.ScaleFactor + GetInnerBounds().Left,
+            GetInnerBounds().Top + 16 * GameServices.ScaleFactor);
+
+        RebuildCollisionManager();
+        hud.Map.UpdateLinkMapPos("stair");
+        invMap.UpdateInventoryMap(newData, "stair");
     }
 
     public void Update(GameTime gameTime)
@@ -209,8 +233,8 @@ class GameplayState : IGameState
         {
             rmbReleased = false;
             currentLevelData = levelLoader.CycleNext();
-            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, 
-            currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
+            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
+                currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
             UpdateBackground();
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
             RebuildCollisionManager();
@@ -219,8 +243,8 @@ class GameplayState : IGameState
         {
             lmbReleased = false;
             currentLevelData = levelLoader.CyclePrevious();
-            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes, 
-            currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
+            doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
+                currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
             UpdateBackground();
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
             RebuildCollisionManager();
@@ -235,9 +259,9 @@ class GameplayState : IGameState
         if (!IsUnderground)
             innerWalls.Draw(spriteBatch);
         doorManager.Draw(spriteBatch);
+        uiManager.Draw(spriteBatch);
+        currentLevel.DrawOnTop(spriteBatch);
         link.Draw(spriteBatch);
         items.Draw(spriteBatch);
-        currentLevel.DrawOnTop(spriteBatch);
-        uiManager.Draw(spriteBatch);
     }
 }

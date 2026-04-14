@@ -41,18 +41,19 @@ namespace Sprint.Enemies
         {
             foreach (var enemy in enemies)
             {
-                if (enemy is WallMaster wallMaster && wallMaster.IsEntering) continue;
-                if (enemy is Keese) continue; // drawn separately on top
+                if (enemy is EnemyEffectWrapper w && w.InnerEnemy is Keese) continue;
+                if (enemy is Keese) continue;
                 enemy.Draw(spriteBatch, enemy.Position);
             }
-        }
+}
 
         public void DrawOnTop(SpriteBatch spriteBatch)
         {
             foreach (var enemy in enemies)
             {
-                if (enemy is Keese keese)
-                    keese.Draw(spriteBatch, keese.Position);
+                var actual = enemy is EnemyEffectWrapper w ? w.InnerEnemy : enemy;
+                if (actual is Keese)
+                    enemy.Draw(spriteBatch, enemy.Position);
             }
         }
         public void DrawBehindBlocks(SpriteBatch spriteBatch)

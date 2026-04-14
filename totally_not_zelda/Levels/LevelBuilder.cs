@@ -20,6 +20,10 @@ public class LevelBuilder
         float blockBorderX = 32 * scale;
         float blockBorderY = 32 * scale + hudHeight;
 
+        bool useInnerBounds = data.background != null;
+        float blockOriginX = useInnerBounds ? innerBounds.Left : blockBorderX;
+        float blockOriginY = useInnerBounds ? innerBounds.Top  : blockBorderY;
+
         var backgroundLayer = data.layers.FirstOrDefault(l => l.name == "BackgroundTiles");
         if (backgroundLayer != null)
         {
@@ -34,8 +38,8 @@ public class LevelBuilder
                 Block block = BlockFactory.Create(
                     id - 1,
                     new Vector2(
-                        x * TILE_SIZE * scale + blockBorderX,
-                        y * TILE_SIZE * scale + blockBorderY));
+                        x * TILE_SIZE * scale + blockOriginX,
+                        y * TILE_SIZE * scale + blockOriginY));
 
                 blockManager.Add(block);
             }
@@ -53,8 +57,8 @@ public class LevelBuilder
                 int y = i / data.width;
 
                 Vector2 pos = new Vector2(
-                    x * TILE_SIZE * scale + blockBorderX,
-                    y * TILE_SIZE * scale + blockBorderY);
+                    x * TILE_SIZE * scale + blockOriginX,
+                    y * TILE_SIZE * scale + blockOriginY);
 
                 Block block = BlockFactory.CreatePushable(id - 1, pos);
                 blockManager.Add(block);

@@ -18,10 +18,10 @@ public class StaircaseBackground : IUIElement
     }
 
     public Rectangle InnerBounds => new Rectangle(
-        (int)(49 * scale),
-        (int)(0 * scale + hudHeight),
-        (int)((192 - 49) * scale),
-        (int)(129 * scale)
+        0,
+        (int)hudHeight,
+        (int)(256 * scale),
+        (int)(160 * scale)
     );
 
     public void Draw(SpriteBatch spriteBatch)

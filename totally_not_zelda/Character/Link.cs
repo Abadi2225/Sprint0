@@ -53,7 +53,7 @@ public class Link : ILink
     private bool isAttacking = false;
     private bool isUsingItem = false;
     private bool isDamaged = false;
-    private bool isVisible = true;
+    private bool isVisible = false;
     public bool isPushing = false;
 	private bool attackHitLanded = false;
     private Rectangle? pickUpItemRect = null;
@@ -93,7 +93,7 @@ public class Link : ILink
         set
         {
             position = value;
-            Rect = new Rectangle((int)value.X, (int)value.Y + BODY_SIZE / 2, BODY_SIZE, BODY_SIZE / 2);
+            Rect = new Rectangle((int)value.X, (int)value.Y + BODY_SIZE / 2, BODY_SIZE/2, BODY_SIZE / 2);
         }
     }
 

@@ -50,7 +50,7 @@ public class DoorTransitionHandler
         this.updateInventoryMap = updateInventoryMap;
     }
 
-    public void Handle(string exitDirection)
+   public void Handle(string exitDirection)
     {
         Rectangle innerBounds = getInnerBounds();
         string targetRoom = doorManager.GetTarget(exitDirection);
@@ -71,7 +71,15 @@ public class DoorTransitionHandler
 
         LevelData newData = LevelLoader.Load(targetRoom);
         doorManager.Reset(newData.doors, newData.doorTypes, newData.doorOffsets, targetRoom);
-        Level newLevel = LevelBuilder.Build(newData, enemyFactory, innerBounds);
+
+        // Update room first so getInnerBounds() reflects the new room
+        onRoomChanged(newData, LevelBuilder.Build(newData, enemyFactory, innerBounds));
+        
+        // Now get the correct bounds for the new room
+        Rectangle newInnerBounds = getInnerBounds();
+        Level newLevel = LevelBuilder.Build(newData, enemyFactory, newInnerBounds);
+        onRoomChanged(newData, newLevel);
+        onRebuildCollision();
 
         int spriteSize  = link.Rect.Width;
         int doorCenterX = (getTopDoorLeft() + getTopDoorRight()) / 2;
@@ -79,16 +87,14 @@ public class DoorTransitionHandler
 
         link.Position = exitDirection switch
         {
-            "east"  => new Vector2(innerBounds.Left, doorCenterY - spriteSize / 2),
-            "west"  => new Vector2(innerBounds.Right - spriteSize, doorCenterY - spriteSize / 2),
-            "south" => new Vector2(doorCenterX - spriteSize / 2, innerBounds.Top),
-            "north" => new Vector2(doorCenterX - spriteSize / 2, innerBounds.Bottom - spriteSize),
+            "east"  => new Vector2(newInnerBounds.Left, doorCenterY - spriteSize / 2),
+            "west"  => new Vector2(newInnerBounds.Right - spriteSize, doorCenterY - spriteSize / 2),
+            "south" => new Vector2(doorCenterX - spriteSize / 2, newInnerBounds.Top),
+            "north" => new Vector2(doorCenterX - spriteSize / 2, newInnerBounds.Bottom - spriteSize),
             _       => link.Position
         };
 
-        onRoomChanged(newData, newLevel);
-        onRebuildCollision();
         updateLinkMapPos(exitDirection);
         updateInventoryMap(newData, exitDirection);
-    }
+}
 }

@@ -22,4 +22,5 @@ public interface ILink
     void GetHealed(int amount);
     void IncreaseRubies(int amount);
     public bool IsGrabbed { get; set; }
+    void StopMove();
 }

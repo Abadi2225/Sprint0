@@ -32,9 +32,11 @@ namespace Sprint.Collisions
             }
         }
 
-        private static void ResolveCollision(IEnemy enemy, Sprint.Block.Block block)
+       private static void ResolveCollision(IEnemy enemy, Sprint.Block.Block block)
         {
             Rectangle overlap = Rectangle.Intersect(enemy.Rect, block.Rect);
+            if (overlap.IsEmpty) return;
+
             if (overlap.Width < overlap.Height)
             {
                 int pushX = enemy.Rect.Center.X < block.Rect.Center.X
