@@ -14,6 +14,7 @@ using Sprint.InputHandling;
 using Sprint.Interfaces;
 using Sprint.Item;
 using Sprint.Levels;
+using Sprint.Sound;
 using Sprint.UI;
 using Sprint.UI.InventoryElements;
 using System.Collections.Generic;
@@ -67,7 +68,8 @@ class GameplayState : IGameState
     public void Enter()
     {
         inputHandler = new GameplayInputHandler(this, link, inventory, items, hud, invMap);
-    }
+		MusicPlayer.Play(MusicType.DUNGEON);
+	}
 
     public void LoadContent()
     {

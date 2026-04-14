@@ -124,9 +124,9 @@ internal static class LinkFactory
 		Dead.Frame[] frames =
 		[
 			new Dead.Frame(new Rectangle(69, 11, 16, 16), SpriteEffects.None),            
-        new Dead.Frame(new Rectangle(35, 11, 16, 16), SpriteEffects.None),           
-        new Dead.Frame(new Rectangle(1, 11, 16, 16), SpriteEffects.None),            
-        new Dead.Frame(new Rectangle(35, 11, 16, 16), SpriteEffects.FlipHorizontally) 
+			new Dead.Frame(new Rectangle(35, 11, 16, 16), SpriteEffects.None),           
+			new Dead.Frame(new Rectangle(1, 11, 16, 16), SpriteEffects.None),            
+			new Dead.Frame(new Rectangle(35, 11, 16, 16), SpriteEffects.FlipHorizontally) 
 		];
 
 		return new Dead(texture, frames, 0.1);
