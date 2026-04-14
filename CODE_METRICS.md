@@ -13,8 +13,8 @@ The *Sprint.csproj* project file contains:
 
 - 23 namespaces.
 - 137 named types.
-- 8,382 total lines of source code.
-- Approximately 2,578 lines of executable code.
+- 8,397 total lines of source code.
+- Approximately 2,583 lines of executable code.
 - The highest cyclomatic complexity is 31 :exploding_head:.
 
 <details>
@@ -4668,8 +4668,8 @@ The `Sprint.Sprites` namespace contains 8 named types.
 The `Sprint.UI` namespace contains 8 named types.
 
 - 8 named types.
-- 398 total lines of source code.
-- Approximately 115 lines of executable code.
+- 413 total lines of source code.
+- Approximately 120 lines of executable code.
 - The highest cyclomatic complexity is 5 :heavy_check_mark:.
 
 <details>
@@ -4869,19 +4869,19 @@ The `Sprint.UI` namespace contains 8 named types.
 <br>
 
 - The `StaircaseBackground` contains 7 members.
-- 28 total lines of source code.
-- Approximately 6 lines of executable code.
+- 43 total lines of source code.
+- Approximately 11 lines of executable code.
 - The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/StaircaseBackground.cs#L13' title='StaircaseBackground.StaircaseBackground(Texture2D texture)'>13</a> | 78 | 1 :heavy_check_mark: | 0 | 3 | 6 / 3 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/StaircaseBackground.cs#L27' title='void StaircaseBackground.Draw(SpriteBatch spriteBatch)'>27</a> | 89 | 1 :heavy_check_mark: | 0 | 4 | 5 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/StaircaseBackground.cs#L20' title='void StaircaseBackground.Draw(SpriteBatch spriteBatch)'>20</a> | 66 | 2 :heavy_check_mark: | 0 | 6 | 20 / 6 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/StaircaseBackground.cs#L11' title='float StaircaseBackground.hudHeight'>11</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/StaircaseBackground.cs#L20' title='Rectangle StaircaseBackground.InnerBounds'>20</a> | 89 | 2 :heavy_check_mark: | 0 | 2 | 6 / 2 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/StaircaseBackground.cs#L41' title='Rectangle StaircaseBackground.InnerBounds'>41</a> | 86 | 2 :heavy_check_mark: | 0 | 3 | 6 / 2 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/StaircaseBackground.cs#L10' title='float StaircaseBackground.scale'>10</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/StaircaseBackground.cs#L9' title='Texture2D StaircaseBackground.texture'>9</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/StaircaseBackground.cs#L33' title='void StaircaseBackground.Update(GameTime gameTime)'>33</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../UI/StaircaseBackground.cs#L48' title='void StaircaseBackground.Update(GameTime gameTime)'>48</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 
 <a href="#StaircaseBackground-class-diagram">:link: to `StaircaseBackground` class diagram</a>
 
