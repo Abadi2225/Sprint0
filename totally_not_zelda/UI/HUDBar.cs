@@ -9,17 +9,23 @@ namespace Sprint.UI;
 
 class HUDBar : IUIElement
 {
-    private readonly Vector2 B_ITEM_OFFSET = new Vector2(128, 16);
+    private static readonly Vector2 CROP = new Vector2(0, 8);
+    private static readonly Vector2 B_ITEM_OFFSET = new Vector2(128, 24) - CROP;
+    private static readonly Vector2 A_ITEM_OFFSET = new Vector2(152, 24) - CROP;
+    private static readonly Vector2 HEART_DISPLAY_OFFSET = new Vector2(176, 40) - CROP;
+
+    private static readonly Rectangle backgroundMask = new Rectangle((int)(258 + CROP.X), (int)(11 + CROP.Y), 256, 48);
+    private static readonly Rectangle swordMask = new Rectangle(555, 137, 8, 16);
 
     private Texture2D texture;
     private StaticSprite background;
-    private Rectangle sourceRect;
 
     public int X { get; set; }
     public int Y { get; set; }
 
     private Inventory inventory;
-    private IItem activeItem;
+    private StaticSprite activeItem;
+    private StaticSprite swordItem;
     private HeartDisplay hearts;
     private TwoDigitDisplay rupees;
     private TwoDigitDisplay keys;
@@ -32,32 +38,35 @@ class HUDBar : IUIElement
         X = x;
         Y = y;
         this.inventory = inventory;
-        this.activeItem = inventory.Get(inventory.ActiveSlot);
+        UpdateActiveItem();
 
-        sourceRect = new Rectangle(258, 19, 256, 48);
-        background = new StaticSprite(texture, new Vector2(X, Y), sourceRect);
+        background = new StaticSprite(texture, new Vector2(X, Y), backgroundMask);
+
+        Vector2 origin = new Vector2(X, Y);
+        this.swordItem = new StaticSprite(
+                backgroundTexture,
+                origin + (A_ITEM_OFFSET) * GameServices.ScaleFactor,
+                swordMask
+                );
 
         rupees = new TwoDigitDisplay(
-            new Vector2(X + 96 * GameServices.ScaleFactor, Y + 8 * GameServices.ScaleFactor),
-            new Vector2(X + 104 * GameServices.ScaleFactor, Y + 8 * GameServices.ScaleFactor),
-            new Vector2(X + 112 * GameServices.ScaleFactor, Y + 8 * GameServices.ScaleFactor),
-            texture
+            origin + (new Vector2(96, 16) - CROP) * GameServices.ScaleFactor,
+            origin + (new Vector2(96 + 8, 16) - CROP) * GameServices.ScaleFactor,
+            origin + (new Vector2(96 + 16, 16) - CROP) * GameServices.ScaleFactor
         );
 
         keys = new TwoDigitDisplay(
             new Vector2(X + 96 * GameServices.ScaleFactor, Y + 24 * GameServices.ScaleFactor),
             new Vector2(X + 104 * GameServices.ScaleFactor, Y + 24 * GameServices.ScaleFactor),
-            new Vector2(X + 112 * GameServices.ScaleFactor, Y + 24 * GameServices.ScaleFactor),
-            texture
+            new Vector2(X + 112 * GameServices.ScaleFactor, Y + 24 * GameServices.ScaleFactor)
         );
 
         bombs = new TwoDigitDisplay(
             new Vector2(X + 96 * GameServices.ScaleFactor, Y + 32 * GameServices.ScaleFactor),
             new Vector2(X + 104 * GameServices.ScaleFactor, Y + 32 * GameServices.ScaleFactor),
-            new Vector2(X + 112 * GameServices.ScaleFactor, Y + 32 * GameServices.ScaleFactor),
-            texture
+            new Vector2(X + 112 * GameServices.ScaleFactor, Y + 32 * GameServices.ScaleFactor)
         );
-        hearts = new HeartDisplay(new Vector2(X + 505, Y + 100), 10);
+        hearts = new HeartDisplay(new Vector2(X, Y) + HEART_DISPLAY_OFFSET * GameServices.ScaleFactor, 10);
 
         Map = new HudMap(
                 (int)(X + 16 * GameServices.ScaleFactor),
@@ -74,24 +83,24 @@ class HUDBar : IUIElement
 
     public void UpdateActiveItem()
     {
-        this.activeItem = inventory.Get(inventory.ActiveSlot);
+        this.activeItem = ItemHudSprites.GetSprite(
+                inventory.Get(inventory.ActiveSlot).Name,
+                new Vector2(X, Y) + B_ITEM_OFFSET * GameServices.ScaleFactor
+                );
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch sb)
     {
-        background.Draw(spriteBatch, background.Position);
+        background.Draw(sb, background.Position);
 
-        // draw active item in inventory and hud at the same time
-        Vector2 prev = activeItem.Position;
-        activeItem.Position = new Vector2(X, Y) + B_ITEM_OFFSET * GameServices.ScaleFactor;
-        activeItem.Draw(spriteBatch, Vector2.Zero);
-        activeItem.Position = prev;
+        activeItem.Draw(sb, activeItem.Position);
+        swordItem.Draw(sb, swordItem.Position);
 
-        hearts.Draw(GameServices.Link.Health, GameServices.Link.MaxHealth, spriteBatch);
-        rupees.Draw(spriteBatch);
-        keys.Draw(spriteBatch);
-        bombs.Draw(spriteBatch);
-        Map.Draw(spriteBatch);
+        hearts.Draw(GameServices.Link.Health, GameServices.Link.MaxHealth, sb);
+        rupees.Draw(sb);
+        keys.Draw(sb);
+        bombs.Draw(sb);
+        Map.Draw(sb);
     }
 
     public void Update(GameTime gameTime)
@@ -106,7 +115,7 @@ class HUDBar : IUIElement
         }
         int linkRupees = GameServices.Link.Rubies;
         rupees.SetNumber(GameServices.Link.Rubies);
-        // keys.SetNumber(GameServices.Link.Keys);
-        // bombs.SetNumber(GameServices.Link.Bombs);
+        keys.SetNumber(GameServices.Link.Keys);
+        bombs.SetNumber(GameServices.Link.Bombs);
     }
 }

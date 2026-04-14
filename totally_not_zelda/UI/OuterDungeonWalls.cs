@@ -46,7 +46,15 @@ public class OuterDungeonWalls : IUIElement
             (int)((CENTER_BOTTOM - CENTER_TOP) * scale)
         );
 
-    public int TopDoorLeft => (int)(TOP_DOOR_LEFT * scale);
+	public Rectangle OuterBounds =>
+	    new Rectangle(
+		    0,
+		    (int)hudHeight,
+		    (int)(256 * scale),
+		    (int)(176 * scale)
+	    );
+
+	public int TopDoorLeft => (int)(TOP_DOOR_LEFT * scale);
     public int TopDoorRight => (int)(TOP_DOOR_RIGHT * scale);
     public int SideDoorTop => (int)(LEFT_DOOR_TOP * scale) + (int)hudHeight;
     public int SideDoorBottom => (int)(LEFT_DOOR_BOTTOM * scale) + (int)hudHeight;

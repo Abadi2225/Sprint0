@@ -17,14 +17,12 @@ A 2D action-adventure game inspired by *The Legend of Zelda*, built in C# using 
 ### Combat
 | Key(s) | Action |
 |--------|--------|
-| `Z` / `N` | Attack with sword |
+| `X` | Attack with sword |
 
 ### Items
 | Key | Action |
 |-----|--------|
-| `1` | Use item in slot 1 (Boomerang) |
-| `2` | Use item in slot 2 (Bow / Arrow) |
-| `3` | Use item in slot 3 (Bomb) |
+| `1` | Use item in slot B |
 
 ### Navigation
 | Key(s) | Action |
@@ -39,6 +37,7 @@ A 2D action-adventure game inspired by *The Legend of Zelda*, built in C# using 
 | `Enter` | Start game from title screen |
 | `Q` | Quit game |
 | `R` | Reset game to title screen |
+| `K` | Link Dies |
 
 ---
 

@@ -1,12 +1,12 @@
-using Sprint.Interfaces;
-using Sprint.Commands;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
-using Sprint.Item;
 using Sprint.Character;
+using Sprint.Commands;
 using Sprint.GameStates;
+using Sprint.Interfaces;
+using Sprint.Item;
 using Sprint.UI;
 using Sprint.UI.InventoryElements;
+using System.Collections.Generic;
 
 namespace Sprint.InputHandling;
 
@@ -32,10 +32,7 @@ internal class GameplayInputHandler : IInputHandler
 
         commands = new Dictionary<Keys, ICommand>
         {
-            {Keys.D1, new UseItemCommand(items, inventory, link, 0)},
-            {Keys.D2, new UseItemCommand(items, inventory, link, 1)},
-            {Keys.D3, new UseItemCommand(items, inventory, link, 2)},
-
+            {Keys.D1, new UseItemCommand(items, inventory, link)},
             {Keys.E, new TriggerDamageCommand(link)},
             {Keys.Q, new QuitCommand()},
             {Keys.R, new SetStateCommand(new MenuState())},
@@ -60,6 +57,11 @@ internal class GameplayInputHandler : IInputHandler
                         invMap,
                         state
                         ));
+        }
+
+        if (GameServices.KeyInput.IsKeyPressed(Keys.K))
+        {
+            link.StartDeath();
         }
 
         foreach (var command in commands)

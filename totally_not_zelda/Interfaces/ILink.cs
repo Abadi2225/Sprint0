@@ -18,8 +18,10 @@ public interface ILink
     int Keys { get; }
     void AddKey();
     bool UseKey();
+    void AddBomb();
     void TakeDamage(int amount);
     void GetHealed(int amount);
+    void AddHeartContainer();
     void IncreaseRubies(int amount);
     public bool IsGrabbed { get; set; }
     void StopMove();

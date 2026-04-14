@@ -1,13 +1,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint.Interfaces;
-using Sprint.UI;
-using Sprint;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
+using Sprint;
 using Sprint.Commands;
 using Sprint.InputHandling;
+using Sprint.Interfaces;
+using Sprint.Sound;
+using Sprint.UI;
+using System.Collections.Generic;
 
 class MenuState : IGameState
 {
@@ -29,7 +30,8 @@ class MenuState : IGameState
     public void Enter()
     {
         inputHandler = new MenuInputHandler();
-    }
+		MusicPlayer.Play(MusicType.TITLE_THEME);
+	}
 
     public void LoadContent()
     {

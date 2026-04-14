@@ -20,6 +20,7 @@ namespace Sprint.Enemies.Concrete
         private Vector2 chargeTarget;
         private bool sameRow;
         private bool sameColumn;
+        protected override bool CanBeKnockedBack => false;
         
         public Trap(Texture2D texture, Vector2 position) : base(texture, position, TRAP_HEALTH, TRAP_DAMAGE, isInvincible: true)
         {
@@ -36,7 +37,7 @@ namespace Sprint.Enemies.Concrete
             Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
 
-        public override void Update(GameTime gameTime)
+        protected override void UpdateEnemy(GameTime gameTime)
         {       
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             sameRow = Rect.Top < GameServices.Link.Rect.Bottom && GameServices.Link.Rect.Top < Rect.Bottom;

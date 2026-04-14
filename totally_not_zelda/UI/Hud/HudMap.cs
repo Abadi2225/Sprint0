@@ -58,7 +58,6 @@ internal class HudMap
                 frameTextureMask
                 );
         levelNumber = new NumberDisplay(
-                spriteSheet,
                 new Vector2(X + 48 * GameServices.ScaleFactor, Y),
                 LevelNum
                 );

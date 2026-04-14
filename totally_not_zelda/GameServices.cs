@@ -1,12 +1,12 @@
-using Microsoft.Xna.Framework.Content;
-using Sprint.Interfaces;
-using Sprint.Controllers;
-using Sprint.Character;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Sprint.Character;
+using Sprint.Controllers;
+using Sprint.Interfaces;
 using Sprint.UI.Hud;
 using Sprint.UI.InventoryElements;
+using System;
 
 /// <summary>
 /// A class to hold services that are commonly used across the game, such as the ContentManager.
@@ -27,10 +27,10 @@ public static class GameServices
     public static Texture2D TileSheet { get; set; }
     public static Texture2D ItemSheet { get; set; }
     public static Texture2D BoomerangSheet { get; set; }
-    public static Texture2D LinkSheet { get; set; }
+	public static Texture2D LinkSheet { get; set; }
 
-    public static Link Link { get; set; }
+	public static Link Link { get; set; }
     public static Action OnLinkGrabbed { get; set; }
-    internal static InventoryMap inventoryMap { get; set; }
-    internal static HudMap hudMap { get; set; }
+	internal static InventoryMap inventoryMap { get; set; }
+	internal static HudMap hudMap { get; set; }
 }

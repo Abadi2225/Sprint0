@@ -1,19 +1,23 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprint;
+using Sprint.Block;
 using Sprint.Character;
 using Sprint.Collision;
-using Sprint.Commands;
-using Sprint.Interfaces;
-using Sprint.Enemies;
-using Sprint.Item;
-using System.Collections.Generic;
-using Sprint.Doors;
 using Sprint.Collisions;
-using Sprint.Levels;
-using Sprint.UI;
+using Sprint.Commands;
+using Sprint.Doors;
+using Sprint.Enemies;
+using Sprint.GameStates;
 using Sprint.InputHandling;
+using Sprint.Interfaces;
+using Sprint.Item;
+using Sprint.Levels;
+using Sprint.Sound;
+using Sprint.UI;
 using Sprint.UI.InventoryElements;
+using System.Collections.Generic;
 
 class GameplayState : IGameState
 {
@@ -22,6 +26,7 @@ class GameplayState : IGameState
     private Texture2D bossesSheet;
     private Texture2D dustSheet;
     private Texture2D NPCSheet;
+    private Texture2D fontSheet;
     private Texture2D outerWallsTexture;
     private Texture2D innerWallsTexture;
     private Texture2D staircaseTexture;
@@ -51,30 +56,37 @@ class GameplayState : IGameState
     private GameplayInputHandler inputHandler;
     private OuterDungeonWalls dungeonWalls;
 
-    public GameplayState() { }
+    private GameOverTransition gameOverTransition;
+    private GameOverText gameOverText;
+
+    public GameplayState()
+    {
+    }
 
     public void Exit() { }
 
     public void Enter()
     {
         inputHandler = new GameplayInputHandler(this, link, inventory, items, hud, invMap);
-    }
+		MusicPlayer.Play(MusicType.DUNGEON);
+	}
 
     public void LoadContent()
     {
-        linkSheet         = GameServices.Content.Load<Texture2D>("images/Link");
-        enemiesSheet      = GameServices.Content.Load<Texture2D>("images/enemiesSheet");
-        bossesSheet       = GameServices.Content.Load<Texture2D>("images/BossesSpriteSheet");
-        dustSheet         = GameServices.Content.Load<Texture2D>("images/dustSheet");
-        NPCSheet          = GameServices.Content.Load<Texture2D>("images/NPC");
+        fontSheet = GameServices.Content.Load<Texture2D>("images/Fonts");
+        linkSheet = GameServices.Content.Load<Texture2D>("images/Link");
+        enemiesSheet = GameServices.Content.Load<Texture2D>("images/enemiesSheet");
+        bossesSheet = GameServices.Content.Load<Texture2D>("images/BossesSpriteSheet");
+        dustSheet = GameServices.Content.Load<Texture2D>("images/dustSheet");
+        NPCSheet = GameServices.Content.Load<Texture2D>("images/NPC");
         outerWallsTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/ZeldaDungeonOuterWalls");
         innerWallsTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/ZeldaDungeonInnerWalls");
-        staircaseTexture  = GameServices.Content.Load<Texture2D>("dungeonWalls/Underground");
-        hudElements       = GameServices.Content.Load<Texture2D>("images/ZeldaUIElements");
-        GameServices.ItemSheet      = GameServices.Content.Load<Texture2D>("items/sheet");
-        GameServices.LinkSheet      = linkSheet;
+        staircaseTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/Underground");
+        hudElements = GameServices.Content.Load<Texture2D>("images/ZeldaUIElements");
+        GameServices.ItemSheet = GameServices.Content.Load<Texture2D>("items/sheet");
+        GameServices.LinkSheet = linkSheet;
         GameServices.BoomerangSheet = GameServices.Content.Load<Texture2D>("items/boomerang");
-        doorSheet         = GameServices.Content.Load<Texture2D>("blocks/Doors");
+        doorSheet = GameServices.Content.Load<Texture2D>("blocks/Doors");
         GameServices.TileSheet = GameServices.Content.Load<Texture2D>("blocks/tiles");
 
         GameServices.OnLinkGrabbed = () =>
@@ -83,7 +95,7 @@ class GameplayState : IGameState
             currentLevelData = levelLoader.GetCurrentLevel();
             DoorStateRegistry.Reset();
             doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
-                currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
+            currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
             UpdateBackground();
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
             RebuildCollisionManager();
@@ -93,15 +105,19 @@ class GameplayState : IGameState
         };
 
         Vector2 center = new Vector2(GameServices.GameWidth / 2, GameServices.GameHeight / 2);
-        link = new Link(linkSheet, center);
+
+        link = new Link(linkSheet, dustSheet, center);
         GameServices.Link = link;
 
         enemyManager = new EnemyManager();
         enemyFactory = new EnemyFactory(enemiesSheet, bossesSheet, linkSheet, dustSheet, NPCSheet);
 
-        uiManager    = new UIManager();
+        uiManager = new UIManager();
         dungeonWalls = new OuterDungeonWalls(outerWallsTexture);
-        innerWalls   = new InnerDungeonWalls(innerWallsTexture);
+        innerWalls = new InnerDungeonWalls(innerWallsTexture);
+
+        uiManager.AddElement(dungeonWalls);
+        innerWalls = new InnerDungeonWalls(innerWallsTexture);
 
         GameServices.DungeonEntrancePosition = new Vector2(
             (dungeonWalls.BottomDoorLeft + dungeonWalls.BottomDoorRight) / 2,
@@ -109,17 +125,17 @@ class GameplayState : IGameState
         );
         link.Position = GameServices.DungeonEntrancePosition;
 
-        levelLoader      = new LevelLoader();
+        levelLoader = new LevelLoader();
         currentLevelData = levelLoader.GetCurrentLevel();
 
         invMap = new InventoryMap(levelLoader.GetCurrentLevel(), levelLoader.GetCurrentLevelGridLoc(), true);
         GameServices.inventoryMap = invMap;
 
-        items     = new ItemManager();
+        items = new ItemManager();
         inventory = new Inventory();
 
         inventory.Add(ItemFactory.CreateBoomerang(Vector2.Zero, Vector2.Zero, maxDistance: 160f));
-        inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow,  Vector2.Zero, GameServices.ScaleFactor));
+        inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow, Vector2.Zero, GameServices.ScaleFactor));
         inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bomb, Vector2.Zero, GameServices.ScaleFactor));
 
         hud = new HUDBar(0, 0, inventory, hudElements);
@@ -128,8 +144,17 @@ class GameplayState : IGameState
 
         doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
         doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
-            currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
+        currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
 
+        gameOverText = new GameOverText(fontSheet);
+        gameOverTransition = new GameOverTransition(
+            dungeonWalls.OuterBounds,
+            Game1.Instance.GraphicsDevice,
+            gameOverText
+        );
+
+        doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
+        doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
         doorTransitionHandler = new DoorTransitionHandler(
             doorManager, link,
             () => GetInnerBounds(),
@@ -144,13 +169,12 @@ class GameplayState : IGameState
             invMap.UpdateInventoryMap);
 
         UpdateBackground();
-        currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
+        currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
 
         RebuildCollisionManager();
     }
 
     private bool IsUnderground => currentLevelData?.background == "Underground";
-
     private Rectangle GetInnerBounds()
     {
         if (IsUnderground && currentBackground is StaircaseBackground sb)
@@ -170,7 +194,6 @@ class GameplayState : IGameState
 
         uiManager.AddElement(currentBackground);
     }
-
     private void RebuildCollisionManager()
     {
         collisionManager = new CollisionManager();
@@ -249,8 +272,30 @@ class GameplayState : IGameState
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
             RebuildCollisionManager();
         }
-        if (mouse.RightButton == ButtonState.Released) rmbReleased = true;
-        if (mouse.LeftButton  == ButtonState.Released) lmbReleased = true;
+        if (mouse.RightButton == ButtonState.Released)
+        {
+            rmbReleased = true;
+        }
+        if (mouse.LeftButton == ButtonState.Released)
+        {
+            lmbReleased = true;
+        }
+
+        if (link.IsDead && !gameOverTransition.Finished)
+        {
+            gameOverTransition.Start();
+        }
+
+        gameOverTransition.Update(gameTime, link);
+
+        if (gameOverTransition.Finished)
+        {
+            MenuState menu = new MenuState();
+            menu.LoadContent();
+            menu.Enter();
+            Game1.Instance.ForceState(menu);
+            return;
+        }
     }
 
     public void Draw(SpriteBatch spriteBatch)

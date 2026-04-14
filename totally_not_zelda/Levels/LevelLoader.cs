@@ -27,7 +27,7 @@ public class LevelLoader
         "Underground",
     };
 
-    private int currentLevel = 1;
+    private int currentLevel = 0;
     public LevelData CycleNext()
     {
         if (currentLevel < levels.Count - 1)

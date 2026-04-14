@@ -73,7 +73,7 @@ namespace Sprint.Enemies.Concrete
             Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
 
-        public override void Update(GameTime gameTime)
+        protected override void UpdateEnemy(GameTime gameTime)
         {
             if (!isAlive) return;
 

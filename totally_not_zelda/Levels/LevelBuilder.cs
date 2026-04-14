@@ -113,14 +113,17 @@ public class LevelBuilder
             roomClearDropItem = CreatePickupItem(data.roomClearDrop, center);
         }
 
-        if (data.roomItem != null)
+        if (data.roomItems != null)
         {
-            int x = data.roomItem.tile % data.width;
-            int y = data.roomItem.tile / data.width;
-            Vector2 pos = new Vector2(
-                x * TILE_SIZE * scale + innerBounds.Left,
-                y * TILE_SIZE * scale + innerBounds.Top);
-            worldItems.Add(CreatePickupItem(data.roomItem.item, pos));
+            foreach (var roomItemData in data.roomItems)
+            {
+                int x = roomItemData.tile % data.width;
+                int y = roomItemData.tile / data.width;
+                Vector2 pos = new Vector2(
+                    x * TILE_SIZE * scale + innerBounds.Left,
+                    y * TILE_SIZE * scale + innerBounds.Top);
+                worldItems.Add(CreatePickupItem(roomItemData.item, pos));
+            }
         }
 
         return new Level(blockManager, enemyManager, worldItems, carriedItems, roomClearDropItem);

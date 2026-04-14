@@ -118,4 +118,23 @@ internal static class LinkFactory
 		];
 		return new Attacking(texture, SpriteEffects.None, frames, 0.15, 0.6, onFinished);
 	}
+
+	public static Dead Dead(Texture2D texture)
+	{
+		Dead.Frame[] frames =
+		[
+			new Dead.Frame(new Rectangle(69, 11, 16, 16), SpriteEffects.None),            
+			new Dead.Frame(new Rectangle(35, 11, 16, 16), SpriteEffects.None),           
+			new Dead.Frame(new Rectangle(1, 11, 16, 16), SpriteEffects.None),            
+			new Dead.Frame(new Rectangle(35, 11, 16, 16), SpriteEffects.FlipHorizontally) 
+		];
+
+		return new Dead(texture, frames, 0.1);
+	}
+
+	public static ISprite WhiteDeadDown(Texture2D texture)
+	=> new Idle(texture, new Rectangle(160, 241, 16, 16), SpriteEffects.None);
+
+	public static DeathSparkle DeathSparkle(Texture2D texture)
+		=> new DeathSparkle(texture, new Rectangle(0, 0, 16, 16), 0.08);
 }

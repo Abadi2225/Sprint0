@@ -10,8 +10,8 @@ internal class TimeBomb : AbstractItem
 {
     private static readonly int[] CloudFrameX = [138, 155, 172];
     private const int CloudFrameY = 185;
-    private const int CloudFrameW = 15;
-    private const int CloudFrameH = 15;
+    private const int CloudFrameW = 16;
+    private const int CloudFrameH = 16;
     private const float CloudFrameTime = 0.12f;
     private const double CloudDurationMillis = 600;
 
@@ -26,6 +26,8 @@ internal class TimeBomb : AbstractItem
     private Rectangle sourceRect;
     private float scale;
     private bool landed = false;
+    private Vector2 explosionCenter;
+    public bool JustExploded { get; private set; } = false;
 
     public TimeBomb(double explodeDelayMillis, string name, Vector2 pos, Vector2 velocity, float throwDistance, Rectangle sourceRect, float scale) : base(name, GameServices.ItemSheet, pos)
     {
@@ -42,6 +44,7 @@ internal class TimeBomb : AbstractItem
 
     public override void Update(GameTime time)
     {
+        JustExploded = false;
         base.Update(time);
 
         if (!landed)
@@ -60,6 +63,8 @@ internal class TimeBomb : AbstractItem
             if (millisUntilExplode <= 0)
             {
                 exploded = true;
+                JustExploded = true;
+                explosionCenter = new Vector2(Rect.Center.X, Rect.Center.Y);
                 SoundPlayer.Play(SoundType.BOMB_EXPLODE);
                 cloud = new AnimatedSprite(GameServices.LinkSheet, Position, CloudFrameX, CloudFrameY, CloudFrameW, CloudFrameH, CloudFrameTime);
                 sprite = cloud;
@@ -89,6 +94,8 @@ internal class TimeBomb : AbstractItem
             base.Draw(sb, location);
         }
     }
+
+    public Vector2 ExplosionCenter => explosionCenter;
 
     public override bool IsFinished => exploded && cloudDone;
 }
