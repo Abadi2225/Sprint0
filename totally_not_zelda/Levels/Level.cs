@@ -50,12 +50,12 @@ public class Level
         Blocks.Draw(spriteBatch);
         Enemies.DrawBehindBlocks(spriteBatch);
         Enemies.Draw(spriteBatch);
-        foreach (AbstractItem item in WorldItems)
-            item.Draw(spriteBatch, item.Position);
     }
 
     public void DrawOnTop(SpriteBatch spriteBatch)
     {
+        foreach (AbstractItem item in WorldItems)
+            item.Draw(spriteBatch, item.Position);
         Enemies.DrawOnTop(spriteBatch);
     }
 }

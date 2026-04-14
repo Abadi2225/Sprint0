@@ -346,11 +346,13 @@ public class Link : ILink
 
     public void StartPickUpWeapon(Rectangle itemRect)
     {
-        if (isUsingItem || isAttacking || isDamaged || isDead)
+        if (isUsingItem || isAttacking || isDead)
             return;
 
         direction = Directions.Up;
         isUsingItem = true;
+        isDamaged = false;
+        isVisible = true;
         move = Vector2.Zero;
 
         pickUpItemRect = itemRect;
