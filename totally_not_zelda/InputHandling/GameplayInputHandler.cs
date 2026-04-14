@@ -4,6 +4,7 @@ using Sprint.Commands;
 using Sprint.GameStates;
 using Sprint.Interfaces;
 using Sprint.Item;
+using Sprint.Sound;
 using Sprint.UI;
 using Sprint.UI.InventoryElements;
 using System.Collections.Generic;
@@ -62,6 +63,11 @@ internal class GameplayInputHandler : IInputHandler
         if (GameServices.KeyInput.IsKeyPressed(Keys.K))
         {
             link.StartDeath();
+        }
+
+        if (GameServices.KeyInput.IsKeyPressed(Keys.M))
+        {
+            MusicPlayer.ToggleMute();
         }
 
         foreach (var command in commands)

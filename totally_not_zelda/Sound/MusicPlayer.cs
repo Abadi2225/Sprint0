@@ -32,5 +32,10 @@ namespace Sprint.Sound
 			MediaPlayer.Volume = 0f;
 		}
 
+		public static void ToggleMute()
+		{
+			MediaPlayer.IsMuted = !MediaPlayer.IsMuted;
+		}
+
 	}
 }
