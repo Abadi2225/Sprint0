@@ -5,6 +5,7 @@ namespace Sprint.Interfaces;
 public interface IEnemy : IPositionedSprite
 {
     Rectangle Rect { get; set; }
+    Rectangle NavRect { get; }
     int Health { get; set; }
     int MaxHealth { get; }
     int Damage { get; }

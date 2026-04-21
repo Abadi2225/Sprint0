@@ -46,6 +46,7 @@ internal class EnemyEffectWrapper : IEnemy
         get => enemy.Rect;
         set => enemy.Rect = value;
     }
+    public Rectangle NavRect => enemy.NavRect;
 
     public int Health
     {

@@ -7,6 +7,7 @@ public interface ILink
 {
     Vector2 Position { get; set; }
     Rectangle Rect { get; }
+    Rectangle BlockRect { get; }
     Directions Facing { get; }
     int Health { get; }
     int MaxHealth { get; }

@@ -36,7 +36,7 @@ namespace Sprint.Collisions
 				if (block.walkAble) continue;
 				if (!block.pushAble) continue;
 				if (block.HasBeenPushed) continue;
-				if (!link.Rect.Intersects(block.Rect)) continue;
+				if (!link.BlockRect.Intersects(block.Rect)) continue;
 
 				ResolvePush(link, block);
 				break;
@@ -48,11 +48,11 @@ namespace Sprint.Collisions
 			Vector2 originalPos = block.Position;
 			Vector2 targetPos = originalPos;
 
-			Rectangle overlap = Rectangle.Intersect(link.Rect, block.Rect);
+			Rectangle overlap = Rectangle.Intersect(link.BlockRect, block.Rect);
 			if (overlap.Width == 0 || overlap.Height == 0) return;
 
 			if (link.Facing != Directions.Up) return;
-			if (link.Rect.Center.Y <= block.Rect.Center.Y) return;
+			if (link.BlockRect.Center.Y <= block.Rect.Center.Y) return;
 
 			targetPos = new Vector2(originalPos.X, originalPos.Y - block.tileWidth);
 

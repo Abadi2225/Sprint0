@@ -26,7 +26,7 @@ namespace Sprint.Collisions
                 foreach (var block in blockManager.blocksList)
                 {
                     if (block.walkAble) continue;
-                    if (enemy.Rect.Intersects(block.Rect))
+                    if (enemy.NavRect.Intersects(block.Rect))
                         ResolveCollision(enemy, block);
                 }
             }
@@ -34,18 +34,18 @@ namespace Sprint.Collisions
 
        private static void ResolveCollision(IEnemy enemy, Sprint.Block.Block block)
         {
-            Rectangle overlap = Rectangle.Intersect(enemy.Rect, block.Rect);
+            Rectangle overlap = Rectangle.Intersect(enemy.NavRect, block.Rect);
             if (overlap.IsEmpty) return;
 
             if (overlap.Width < overlap.Height)
             {
-                int pushX = enemy.Rect.Center.X < block.Rect.Center.X
+                int pushX = enemy.NavRect.Center.X < block.Rect.Center.X
                     ? -overlap.Width : overlap.Width;
                 enemy.Position += new Vector2(pushX, 0);
             }
             else
             {
-                int pushY = enemy.Rect.Center.Y < block.Rect.Center.Y
+                int pushY = enemy.NavRect.Center.Y < block.Rect.Center.Y
                     ? -overlap.Height : overlap.Height;
                 enemy.Position += new Vector2(0, pushY);
             }

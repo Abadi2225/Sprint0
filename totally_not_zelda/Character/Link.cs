@@ -99,6 +99,7 @@ public class Link : ILink
         deathStage == DeathStage.WhiteFlash || deathStage == DeathStage.Sparkle || deathStage == DeathStage.Finished;
 
     public Rectangle Rect { get; private set; }
+    public Rectangle BlockRect { get; private set; }
 
     public Rectangle SwordRect
     {
@@ -127,7 +128,8 @@ public class Link : ILink
         set
         {
             position = value;
-            Rect = new Rectangle((int)value.X, (int)value.Y + BODY_SIZE / 2, BODY_SIZE/2, BODY_SIZE / 2);
+            Rect = new Rectangle((int)value.X, (int)value.Y + BODY_SIZE / 2, BODY_SIZE, BODY_SIZE / 2);
+            BlockRect = new Rectangle((int)value.X + BODY_SIZE / 4, (int)value.Y + BODY_SIZE / 2, BODY_SIZE / 2, BODY_SIZE / 2);
         }
     }
 

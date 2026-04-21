@@ -25,6 +25,7 @@ namespace Sprint.Enemies.Base
         protected virtual bool FlipsOnVertical => false;
         public virtual bool HasCollision => true;
         private const float KNOCKBACK_DURATION = 0.15f;
+        private const int NAV_INSET = 8;
         private Vector2 knockbackVelocity;
         private float knockbackTimer;
         protected virtual bool CanBeKnockedBack => true;
@@ -41,7 +42,7 @@ namespace Sprint.Enemies.Base
 
         protected bool WouldIntersectBlock(Vector2 candidatePos, List<Sprint.Block.Block> solidBlocks)
         {
-            Rectangle candidateRect = new Rectangle((int)candidatePos.X, (int)candidatePos.Y, Rect.Width, Rect.Height);
+            Rectangle candidateRect = new Rectangle((int)candidatePos.X + NAV_INSET, (int)candidatePos.Y + NAV_INSET, Rect.Width - NAV_INSET * 2, Rect.Height - NAV_INSET * 2);
             return solidBlocks.Any(b => !b.walkAble && b.Rect.Intersects(candidateRect));
         }
 
@@ -74,6 +75,7 @@ namespace Sprint.Enemies.Base
 
         public Texture2D Texture => texture;
         public Rectangle Rect { get; set; } = Rectangle.Empty;
+        public Rectangle NavRect => new Rectangle(Rect.X + NAV_INSET, Rect.Y + NAV_INSET, Rect.Width - NAV_INSET * 2, Rect.Height - NAV_INSET * 2);
 
         public int MaxHealth => maxHealth;
         public int Damage => damage;
