@@ -225,12 +225,19 @@ class GameplayState : IGameState
     private void HandleDoorExit(string direction)
     {
         Level oldLevel = currentLevel;
+
+        // Snapshot old room's door state before Handle() resets doorManager for the new room
+        var oldDoorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
+        oldDoorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
+            currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
+
         doorTransitionHandler.Handle(direction);
         Level newLevel = currentLevel;
 
         var transition = new RoomTransitionState(
-            oldLevel, newLevel, doorManager,
-            dungeonWalls, innerWalls, uiManager, link,
+            oldLevel, oldDoorManager,
+            newLevel, doorManager,
+            dungeonWalls, innerWalls, link,
             direction, this);
 
         roomTransitionActive = true;
@@ -360,5 +367,5 @@ class GameplayState : IGameState
         level.DrawOnTop(sb);
     }
 
-    internal void DrawHUDOnly(SpriteBatch sb) => uiManager.Draw(sb);
+    internal void DrawHUDOnly(SpriteBatch sb) => hud.Draw(sb);
 }

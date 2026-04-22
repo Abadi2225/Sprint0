@@ -12,11 +12,11 @@ namespace Sprint.GameStates;
 internal class RoomTransitionState : IGameState
 {
     private readonly Level oldLevel;
+    private readonly DoorManager oldDoorManager;
     private readonly Level newLevel;
     private readonly DoorManager newDoorManager;
     private readonly OuterDungeonWalls dungeonWalls;
     private readonly InnerDungeonWalls innerWalls;
-    private readonly UIManager uiManager;
     private readonly Link link;
     private readonly GameplayState gameplayState;
 
@@ -30,17 +30,17 @@ internal class RoomTransitionState : IGameState
     private readonly RasterizerState scissorRasterizer;
 
     public RoomTransitionState(
-        Level oldLevel, Level newLevel, DoorManager newDoorManager,
+        Level oldLevel, DoorManager oldDoorManager,
+        Level newLevel, DoorManager newDoorManager,
         OuterDungeonWalls dungeonWalls, InnerDungeonWalls innerWalls,
-        UIManager uiManager, Link link,
-        string direction, GameplayState gameplayState)
+        Link link, string direction, GameplayState gameplayState)
     {
         this.oldLevel = oldLevel;
+        this.oldDoorManager = oldDoorManager;
         this.newLevel = newLevel;
         this.newDoorManager = newDoorManager;
         this.dungeonWalls = dungeonWalls;
         this.innerWalls = innerWalls;
-        this.uiManager = uiManager;
         this.link = link;
         this.gameplayState = gameplayState;
 
@@ -76,7 +76,6 @@ internal class RoomTransitionState : IGameState
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        // Close the outer Begin() opened by Game1 so we can use custom batch settings.
         spriteBatch.End();
 
         float t = Math.Min(elapsed / Duration, 1f);
@@ -85,12 +84,12 @@ internal class RoomTransitionState : IGameState
 
         GameServices.GraphicsDevice.ScissorRectangle = dungeonWalls.OuterBounds;
 
-        // Old room — no doors (exit door is open anyway)
+        // Old room
         spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend,
             SamplerState.PointClamp, null, scissorRasterizer, null,
             Matrix.CreateTranslation(oldOffset.X, oldOffset.Y, 0));
         dungeonWalls.Draw(spriteBatch);
-        gameplayState.DrawRoomContent(spriteBatch, oldLevel, null, false);
+        gameplayState.DrawRoomContent(spriteBatch, oldLevel, oldDoorManager, true);
         spriteBatch.End();
 
         // New room with Link
@@ -102,10 +101,9 @@ internal class RoomTransitionState : IGameState
         link.Draw(spriteBatch);
         spriteBatch.End();
 
-        // HUD — fixed, no transform, no scissor.
-        // Leave the batch open so Game1's spriteBatch.End() closes it cleanly.
+        // Leave the batch open so Game1's spriteBatch.End() closes it cleanly
         spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend,
             SamplerState.PointClamp, null, null);
-        uiManager.Draw(spriteBatch);
+        gameplayState.DrawHUDOnly(spriteBatch);
     }
 }
