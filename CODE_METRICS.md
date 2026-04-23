@@ -13,8 +13,8 @@ The *Sprint.csproj* project file contains:
 
 - 23 namespaces.
 - 141 named types.
-- 8,807 total lines of source code.
-- Approximately 2,713 lines of executable code.
+- 8,826 total lines of source code.
+- Approximately 2,724 lines of executable code.
 - The highest cyclomatic complexity is 31 :exploding_head:.
 
 <details>
@@ -406,8 +406,8 @@ The `Sprint.Enemies.Base` namespace contains 1 named types.
 The `Sprint.Block` namespace contains 4 named types.
 
 - 4 named types.
-- 163 total lines of source code.
-- Approximately 31 lines of executable code.
+- 171 total lines of source code.
+- Approximately 34 lines of executable code.
 - The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
 <details>
@@ -425,7 +425,7 @@ The `Sprint.Block` namespace contains 4 named types.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L20' title='Block.Block(Texture2D texture, Vector2 pos, Rectangle sourceRect, bool walkable, bool pushable, bool isStair = false)'>20</a> | 67 | 2 :heavy_check_mark: | 0 | 4 | 9 / 6 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L20' title='Block.Block(Texture2D texture, Vector2 pos, Rectangle sourceRect, uint colorMask, bool walkable, bool pushable, bool isStair = false)'>20</a> | 67 | 2 :heavy_check_mark: | 0 | 4 | 9 / 6 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L30' title='void Block.Draw(SpriteBatch spriteBatch)'>30</a> | 84 | 2 :heavy_check_mark: | 0 | 3 | 5 / 2 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L17' title='bool Block.HasBeenPushed'>17</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L16' title='bool Block.IsStair'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
@@ -451,21 +451,22 @@ The `Sprint.Block` namespace contains 4 named types.
 </summary>
 <br>
 
-- The `BlockFactory` contains 8 members.
-- 102 total lines of source code.
-- Approximately 13 lines of executable code.
+- The `BlockFactory` contains 9 members.
+- 109 total lines of source code.
+- Approximately 16 lines of executable code.
 - The highest cyclomatic complexity is 1 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L29' title='Block BlockFactory.Create(int tileId, Vector2 pos)'>29</a> | 83 | 1 :heavy_check_mark: | 0 | 3 | 19 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L49' title='Block BlockFactory.CreateBlock(BlockType type, Vector2 pos)'>49</a> | 68 | 1 :heavy_check_mark: | 0 | 7 | 24 / 5 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L74' title='Block BlockFactory.CreateInvisibleSolid(Vector2 pos)'>74</a> | 94 | 1 :heavy_check_mark: | 0 | 3 | 4 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L79' title='Block BlockFactory.CreateInvisibleWalkable(Vector2 pos)'>79</a> | 93 | 1 :heavy_check_mark: | 0 | 3 | 4 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L84' title='Block BlockFactory.CreatePushable(int tileId, Vector2 pos)'>84</a> | 72 | 1 :heavy_check_mark: | 0 | 7 | 26 / 3 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L35' title='Block BlockFactory.Create(int tileId, Vector2 pos, int level = 2)'>35</a> | 69 | 1 :heavy_check_mark: | 0 | 5 | 20 / 3 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L56' title='Block BlockFactory.CreateBlock(BlockType type, Vector2 pos, uint colorMask)'>56</a> | 68 | 1 :heavy_check_mark: | 0 | 7 | 24 / 5 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L81' title='Block BlockFactory.CreateInvisibleSolid(Vector2 pos)'>81</a> | 92 | 1 :heavy_check_mark: | 0 | 3 | 4 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L86' title='Block BlockFactory.CreateInvisibleWalkable(Vector2 pos)'>86</a> | 92 | 1 :heavy_check_mark: | 0 | 3 | 4 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L91' title='Block BlockFactory.CreatePushable(int tileId, Vector2 pos, int level = 1)'>91</a> | 67 | 1 :heavy_check_mark: | 0 | 8 | 26 / 4 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L11' title='int BlockFactory.SHEET_COLUMNS'>11</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L12' title='int BlockFactory.TILE_SIZE'>12</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L13' title='int BlockFactory.TILE_SPACING'>13</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L30' title='Dictionary<int, uint> BlockFactory.tileColors'>30</a> | 87 | 0 :heavy_check_mark: | 0 | 2 | 3 / 1 |
 
 <a href="#BlockFactory-class-diagram">:link: to `BlockFactory` class diagram</a>
 
@@ -4467,8 +4468,8 @@ The `Sprint` namespace contains 1 named types.
 The `Sprint.Sprites` namespace contains 8 named types.
 
 - 8 named types.
-- 710 total lines of source code.
-- Approximately 213 lines of executable code.
+- 721 total lines of source code.
+- Approximately 221 lines of executable code.
 - The highest cyclomatic complexity is 5 :heavy_check_mark:.
 
 <details>
@@ -4726,23 +4727,25 @@ The `Sprint.Sprites` namespace contains 8 named types.
 </summary>
 <br>
 
-- The `StaticSprite` contains 10 members.
-- 49 total lines of source code.
-- Approximately 12 lines of executable code.
+- The `StaticSprite` contains 12 members.
+- 60 total lines of source code.
+- Approximately 20 lines of executable code.
 - The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L22' title='StaticSprite.StaticSprite(Texture2D texture, Vector2 position, Rectangle source)'>22</a> | 79 | 1 :heavy_check_mark: | 0 | 3 | 6 / 3 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L29' title='StaticSprite.StaticSprite(Texture2D texture, Vector2 position, Rectangle source, float scale)'>29</a> | 75 | 1 :heavy_check_mark: | 0 | 4 | 7 / 4 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L23' title='StaticSprite.StaticSprite(Texture2D texture, Vector2 position, Rectangle source, uint mask = 4294967295)'>23</a> | 71 | 1 :heavy_check_mark: | 0 | 3 | 7 / 5 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L31' title='StaticSprite.StaticSprite(Texture2D texture, Vector2 position, Rectangle source, float scale)'>31</a> | 75 | 1 :heavy_check_mark: | 0 | 4 | 7 / 4 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L13' title='uint StaticSprite.colorMask'>13</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L12' title='float? StaticSprite.customScale'>12</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L41' title='void StaticSprite.Draw(SpriteBatch spriteBatch, Vector2 location)'>41</a> | 89 | 2 :heavy_check_mark: | 0 | 7 | 14 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L43' title='void StaticSprite.Draw(SpriteBatch spriteBatch, Vector2 location)'>43</a> | 88 | 2 :heavy_check_mark: | 0 | 8 | 14 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L58' title='Color StaticSprite.getColor(uint colorMask)'>58</a> | 70 | 1 :heavy_check_mark: | 0 | 2 | 8 / 5 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L10' title='Vector2 StaticSprite.pos'>10</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L14' title='Vector2 StaticSprite.Position'>14</a> | 98 | 2 :heavy_check_mark: | 0 | 1 | 5 / 2 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L15' title='Vector2 StaticSprite.Position'>15</a> | 98 | 2 :heavy_check_mark: | 0 | 1 | 5 / 2 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L11' title='Rectangle StaticSprite.sourceRect'>11</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L9' title='Texture2D StaticSprite.texture'>9</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L20' title='Texture2D StaticSprite.Texture'>20</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 2 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L37' title='void StaticSprite.Update(GameTime gameTime)'>37</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 3 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L21' title='Texture2D StaticSprite.Texture'>21</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 2 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Sprites/StaticSprite.cs#L39' title='void StaticSprite.Update(GameTime gameTime)'>39</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 3 / 0 |
 
 <a href="#StaticSprite-class-diagram">:link: to `StaticSprite` class diagram</a>
 
@@ -5367,7 +5370,7 @@ class Block{
     -bool IsStair
     +bool HasBeenPushed
     +Rectangle Rect
-    +.ctor(Texture2D texture, Vector2 pos, Rectangle sourceRect, bool walkable, bool pushable, bool isStair = false) Block
+    +.ctor(Texture2D texture, Vector2 pos, Rectangle sourceRect, uint colorMask, bool walkable, bool pushable, bool isStair = false) Block
     +Draw(SpriteBatch spriteBatch) void
     +Update(GameTime time) void
 }
@@ -5384,11 +5387,12 @@ class BlockFactory{
     -int SHEET_COLUMNS$
     -int TILE_SIZE$
     -int TILE_SPACING$
-    +Create(int tileId, Vector2 pos)$ Block
-    +CreateBlock(BlockType type, Vector2 pos)$ Block
+    -Dictionary<int, uint> tileColors$
+    +Create(int tileId, Vector2 pos, int level = 2)$ Block
+    +CreateBlock(BlockType type, Vector2 pos, uint colorMask)$ Block
     +CreateInvisibleSolid(Vector2 pos)$ Block
     +CreateInvisibleWalkable(Vector2 pos)$ Block
-    +CreatePushable(int tileId, Vector2 pos)$ Block
+    +CreatePushable(int tileId, Vector2 pos, int level = 1)$ Block
 }
 
 ```
@@ -8063,12 +8067,14 @@ class StaticSprite{
     -Vector2 pos
     -Rectangle sourceRect
     -float? customScale
+    -uint colorMask
     +Vector2 Position
     +Texture2D Texture
-    +.ctor(Texture2D texture, Vector2 position, Rectangle source) StaticSprite
+    +.ctor(Texture2D texture, Vector2 position, Rectangle source, uint mask = 4294967295) StaticSprite
     +.ctor(Texture2D texture, Vector2 position, Rectangle source, float scale) StaticSprite
     +Update(GameTime gameTime) void
     +Draw(SpriteBatch spriteBatch, Vector2 location) void
+    +getColor(uint colorMask)$ Color
 }
 
 ```
