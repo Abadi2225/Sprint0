@@ -13,8 +13,8 @@ The *Sprint.csproj* project file contains:
 
 - 23 namespaces.
 - 141 named types.
-- 8,836 total lines of source code.
-- Approximately 2,728 lines of executable code.
+- 8,864 total lines of source code.
+- Approximately 2,732 lines of executable code.
 - The highest cyclomatic complexity is 31 :exploding_head:.
 
 <details>
@@ -28,9 +28,9 @@ The *Sprint.csproj* project file contains:
 The `<global namespace>` namespace contains 8 named types.
 
 - 8 named types.
-- 773 total lines of source code.
-- Approximately 311 lines of executable code.
-- The highest cyclomatic complexity is 23 :exploding_head:.
+- 778 total lines of source code.
+- Approximately 313 lines of executable code.
+- The highest cyclomatic complexity is 24 :exploding_head:.
 
 <details>
 <summary>
@@ -206,14 +206,14 @@ The `<global namespace>` namespace contains 8 named types.
 <br>
 
 - The `LevelBuilder` contains 3 members.
-- 164 total lines of source code.
-- Approximately 70 lines of executable code.
-- The highest cyclomatic complexity is 23 :exploding_head:.
+- 169 total lines of source code.
+- Approximately 72 lines of executable code.
+- The highest cyclomatic complexity is 24 :exploding_head:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L15' title='Level LevelBuilder.Build(LevelData data, EnemyFactory enemyFactory, Rectangle innerBounds)'>15</a> | 33 | 23 :exploding_head: | 0 | 20 | 151 / 68 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L169' title='AbstractItem LevelBuilder.CreatePickupItem(string name, Vector2 pos)'>169</a> | 91 | 1 :heavy_check_mark: | 0 | 6 | 5 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L15' title='Level LevelBuilder.Build(LevelData data, EnemyFactory enemyFactory, Rectangle innerBounds)'>15</a> | 32 | 24 :exploding_head: | 0 | 21 | 157 / 70 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L175' title='AbstractItem LevelBuilder.CreatePickupItem(string name, Vector2 pos)'>175</a> | 91 | 1 :heavy_check_mark: | 0 | 6 | 5 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L13' title='int LevelBuilder.TILE_SIZE'>13</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 
 <a href="#LevelBuilder-class-diagram">:link: to `LevelBuilder` class diagram</a>
@@ -408,8 +408,8 @@ The `Sprint.Enemies.Base` namespace contains 1 named types.
 The `Sprint.Block` namespace contains 4 named types.
 
 - 4 named types.
-- 171 total lines of source code.
-- Approximately 34 lines of executable code.
+- 174 total lines of source code.
+- Approximately 35 lines of executable code.
 - The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
 <details>
@@ -420,24 +420,25 @@ The `Sprint.Block` namespace contains 4 named types.
 </summary>
 <br>
 
-- The `Block` contains 11 members.
-- 33 total lines of source code.
-- Approximately 12 lines of executable code.
+- The `Block` contains 12 members.
+- 36 total lines of source code.
+- Approximately 13 lines of executable code.
 - The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L20' title='Block.Block(Texture2D texture, Vector2 pos, Rectangle sourceRect, uint colorMask, bool walkable, bool pushable, bool isStair = false)'>20</a> | 67 | 2 :heavy_check_mark: | 0 | 4 | 9 / 6 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L30' title='void Block.Draw(SpriteBatch spriteBatch)'>30</a> | 84 | 2 :heavy_check_mark: | 0 | 3 | 5 / 2 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L17' title='bool Block.HasBeenPushed'>17</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L16' title='bool Block.IsStair'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L14' title='Vector2 Block.Position'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L15' title='bool Block.pushAble'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L18' title='Rectangle Block.Rect'>18</a> | 93 | 2 :heavy_check_mark: | 0 | 3 | 1 / 2 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L12' title='StaticSprite Block.sprite'>12</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L11' title='int Block.tileWidth'>11</a> | 87 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L36' title='void Block.Update(GameTime time)'>36</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 4 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L13' title='bool Block.walkAble'>13</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L24' title='Block.Block(Texture2D texture, Vector2 pos, Rectangle sourceRect, uint colorMask, bool walkable, bool pushable, bool isStair = false)'>24</a> | 67 | 2 :heavy_check_mark: | 0 | 4 | 9 / 6 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L34' title='void Block.Draw(SpriteBatch spriteBatch)'>34</a> | 84 | 2 :heavy_check_mark: | 0 | 3 | 5 / 2 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L19' title='bool Block.HasBeenPushed'>19</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L18' title='bool Block.IsStair'>18</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L16' title='Vector2 Block.Position'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L17' title='bool Block.pushAble'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L20' title='Directions Block.PushDirection'>20</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 1 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L21' title='Rectangle Block.Rect'>21</a> | 93 | 2 :heavy_check_mark: | 0 | 3 | 1 / 2 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L14' title='StaticSprite Block.sprite'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L13' title='int Block.tileWidth'>13</a> | 87 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L40' title='void Block.Update(GameTime time)'>40</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 4 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/Block.cs#L15' title='bool Block.walkAble'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 
 <a href="#Block-class-diagram">:link: to `Block` class diagram</a>
 
@@ -1324,8 +1325,8 @@ The `Sprint.Collision` namespace contains 6 named types.
 The `Sprint.Collisions` namespace contains 7 named types.
 
 - 7 named types.
-- 427 total lines of source code.
-- Approximately 136 lines of executable code.
+- 444 total lines of source code.
+- Approximately 137 lines of executable code.
 - The highest cyclomatic complexity is 31 :exploding_head:.
 
 <details>
@@ -1418,22 +1419,22 @@ The `Sprint.Collisions` namespace contains 7 named types.
 <br>
 
 - The `LinkBlockPushHandler` contains 10 members.
-- 97 total lines of source code.
-- Approximately 43 lines of executable code.
+- 114 total lines of source code.
+- Approximately 44 lines of executable code.
 - The highest cyclomatic complexity is 10 :radioactive:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkBlockPushHandler.cs#L18' title='LinkBlockPushHandler.LinkBlockPushHandler(Link link, BlockManager blockManager)'>18</a> | 85 | 1 :heavy_check_mark: | 0 | 2 | 5 / 2 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkBlockPushHandler.cs#L11' title='BlockManager LinkBlockPushHandler.blockManager'>11</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkBlockPushHandler.cs#L97' title='void LinkBlockPushHandler.FinishPush()'>97</a> | 75 | 1 :heavy_check_mark: | 0 | 3 | 7 / 4 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkBlockPushHandler.cs#L114' title='void LinkBlockPushHandler.FinishPush()'>114</a> | 75 | 1 :heavy_check_mark: | 0 | 3 | 7 / 4 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkBlockPushHandler.cs#L24' title='void LinkBlockPushHandler.Handle()'>24</a> | 64 | 8 :warning: | 0 | 7 | 21 / 10 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkBlockPushHandler.cs#L10' title='Link LinkBlockPushHandler.link'>10</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkBlockPushHandler.cs#L13' title='Block LinkBlockPushHandler.movingBlock'>13</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkBlockPushHandler.cs#L14' title='Vector2 LinkBlockPushHandler.movingTargetPos'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkBlockPushHandler.cs#L16' title='float LinkBlockPushHandler.PUSH_STEP'>16</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkBlockPushHandler.cs#L46' title='void LinkBlockPushHandler.ResolvePush(Link link, Block block)'>46</a> | 53 | 10 :radioactive: | 0 | 9 | 33 / 18 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkBlockPushHandler.cs#L80' title='void LinkBlockPushHandler.UpdateMovingBlock()'>80</a> | 66 | 3 :heavy_check_mark: | 0 | 3 | 16 / 7 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkBlockPushHandler.cs#L46' title='void LinkBlockPushHandler.ResolvePush(Link link, Block block)'>46</a> | 51 | 10 :radioactive: | 0 | 9 | 50 / 19 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkBlockPushHandler.cs#L97' title='void LinkBlockPushHandler.UpdateMovingBlock()'>97</a> | 66 | 3 :heavy_check_mark: | 0 | 3 | 16 / 7 |
 
 <a href="#LinkBlockPushHandler-class-diagram">:link: to `LinkBlockPushHandler` class diagram</a>
 
@@ -4181,7 +4182,7 @@ The `Sprint.Layers` namespace contains 1 named types.
 The `Sprint.Levels` namespace contains 3 named types.
 
 - 3 named types.
-- 53 total lines of source code.
+- 56 total lines of source code.
 - Approximately 0 lines of executable code.
 - The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
@@ -4193,8 +4194,8 @@ The `Sprint.Levels` namespace contains 3 named types.
 </summary>
 <br>
 
-- The `LevelData` contains 13 members.
-- 37 total lines of source code.
+- The `LevelData` contains 14 members.
+- 40 total lines of source code.
 - Approximately 0 lines of executable code.
 - The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
@@ -4209,6 +4210,7 @@ The `Sprint.Levels` namespace contains 3 named types.
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L22' title='int LevelData.height'>22</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L24' title='List<LayerData> LevelData.layers'>24</a> | 100 | 2 :heavy_check_mark: | 0 | 2 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L48' title='List<PrecisePlacementData> LevelData.precisePlacements'>48</a> | 100 | 2 :heavy_check_mark: | 0 | 2 | 2 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L57' title='string LevelData.pushDirection'>57</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 2 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L36' title='string LevelData.roomClearDrop'>36</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 2 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L42' title='List<RoomItemData> LevelData.roomItems'>42</a> | 100 | 2 :heavy_check_mark: | 0 | 2 | 2 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelData.cs#L54' title='string LevelData.stairTarget'>54</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 2 / 0 |
@@ -5373,6 +5375,7 @@ class Block{
     -bool pushAble
     -bool IsStair
     +bool HasBeenPushed
+    +Directions PushDirection
     +Rectangle Rect
     +.ctor(Texture2D texture, Vector2 pos, Rectangle sourceRect, uint colorMask, bool walkable, bool pushable, bool isStair = false) Block
     +Draw(SpriteBatch spriteBatch) void
@@ -7741,6 +7744,7 @@ class LevelData{
     +List<PrecisePlacementData> precisePlacements
     +int gridPos
     +string stairTarget
+    +string pushDirection
 }
 
 ```
