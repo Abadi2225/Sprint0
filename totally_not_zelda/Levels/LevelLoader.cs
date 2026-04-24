@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Text.Json;
 using System.Collections.Generic;
@@ -5,7 +6,6 @@ using Sprint.Levels;
 
 public class LevelLoader
 {
-    // todo remove this
     private List<string> levels = new List<string>{
         "template",
         "12statues",
@@ -63,14 +63,23 @@ public class LevelLoader
         return GetCurrentLevel().gridPos;
     }
 
+    public static LevelData Load(string levelName, int dungeon)
+    {
+        try
+        {
+            string path = $"Content/rooms/{dungeon}/{levelName}.json";
+            string json = File.ReadAllText(path);
+            return JsonSerializer.Deserialize<LevelData>(json);
+        }
+        catch
+        {
+            Console.Error.WriteLine($"Room .json does not exist. Dungeon: {dungeon}, name: {levelName}");
+            return null;
+        }
+    }
+
     public static LevelData Load(string levelName)
     {
-        string path = $"Content/rooms/{levelName}.json";
-        string json = File.ReadAllText(path);
-
-        LevelData data =
-            JsonSerializer.Deserialize<LevelData>(json);
-
-        return data;
+        return Load(levelName, GameServices.CurrentDungeon);
     }
 }
