@@ -52,4 +52,7 @@ public class LevelData
     
     // room to transition to when stepping on stair tile
     public string stairTarget { get; set; }
+
+	// Direction that pushable blocks move in this room.
+	public string pushDirection { get; set; }
 }

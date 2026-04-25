@@ -10,20 +10,22 @@ namespace Sprint.Sprites
         private Vector2 pos;
         private Rectangle sourceRect;
         private float? customScale;
+        private uint colorMask = 0xFFFFFFFF;  // RGBA
 
         public Vector2 Position
         {
-            get {return pos;}
-            set {pos = value;}
+            get { return pos; }
+            set { pos = value; }
         }
 
         public Texture2D Texture => texture;
 
-        public StaticSprite(Texture2D texture, Vector2 position, Rectangle source)
+        public StaticSprite(Texture2D texture, Vector2 position, Rectangle source, uint mask = 0xFFFFFFFF)
         {
             this.texture = texture;
             pos = position;
             sourceRect = source;
+            this.colorMask = mask;
         }
 
         public StaticSprite(Texture2D texture, Vector2 position, Rectangle source, float scale)
@@ -41,16 +43,25 @@ namespace Sprint.Sprites
         public void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
             spriteBatch.Draw(
-                texture,                                      
-                location,                                      
-                sourceRect,                                     
-                Color.White,                                     
-                0.0f,                                            
-                Vector2.Zero,                                    
-                customScale ?? GameServices.ScaleFactor,        
-                SpriteEffects.None,                             
-                0.0f                                            
+                texture,
+                location,
+                sourceRect,
+                getColor(this.colorMask),
+                0.0f,
+                Vector2.Zero,
+                customScale ?? GameServices.ScaleFactor,
+                SpriteEffects.None,
+                0.0f
             );
+        }
+
+        private static Color getColor(uint colorMask)
+        {
+            byte r = (byte)((colorMask & 0xFF000000) >> 24);
+            byte g = (byte)((colorMask & 0xFF0000) >> 16);
+            byte b = (byte)((colorMask & 0xFF00) >> 8);
+            byte a = (byte)((colorMask & 0xFF));
+            return new Color(r, g, b, a);
         }
     }
 }

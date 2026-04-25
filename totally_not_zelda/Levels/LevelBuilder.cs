@@ -7,7 +7,7 @@ using Sprint.Enemies;
 using Sprint.Interfaces;
 using System.Linq;
 using System;
-
+using Sprint.Character;
 public class LevelBuilder
 {
     private const int TILE_SIZE = 16;
@@ -61,7 +61,13 @@ public class LevelBuilder
                     y * TILE_SIZE * scale + blockOriginY);
 
                 Block block = BlockFactory.CreatePushable(id - 1, pos);
-                blockManager.Add(block);
+
+				if (data.pushDirection == "left")
+				{
+					block.PushDirection = Directions.Left;
+				}
+
+				blockManager.Add(block);
             }
         }
 
