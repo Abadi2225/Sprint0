@@ -461,7 +461,7 @@ The `Sprint.Block` namespace contains 4 named types.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L35' title='Block BlockFactory.Create(int tileId, Vector2 pos, int level = 2)'>35</a> | 69 | 1 :heavy_check_mark: | 0 | 5 | 20 / 3 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L35' title='Block BlockFactory.Create(int tileId, Vector2 pos, int level = 1)'>35</a> | 69 | 1 :heavy_check_mark: | 0 | 5 | 20 / 3 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L56' title='Block BlockFactory.CreateBlock(BlockType type, Vector2 pos, uint colorMask)'>56</a> | 68 | 1 :heavy_check_mark: | 0 | 7 | 24 / 5 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L81' title='Block BlockFactory.CreateInvisibleSolid(Vector2 pos)'>81</a> | 92 | 1 :heavy_check_mark: | 0 | 3 | 4 / 1 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Block/BlockFactory.cs#L86' title='Block BlockFactory.CreateInvisibleWalkable(Vector2 pos)'>86</a> | 92 | 1 :heavy_check_mark: | 0 | 3 | 4 / 1 |
@@ -5726,7 +5726,7 @@ class BlockFactory{
     -int TILE_SIZE$
     -int TILE_SPACING$
     -Dictionary<int, uint> tileColors$
-    +Create(int tileId, Vector2 pos, int level = 2)$ Block
+    +Create(int tileId, Vector2 pos, int level = 1)$ Block
     +CreateBlock(BlockType type, Vector2 pos, uint colorMask)$ Block
     +CreateInvisibleSolid(Vector2 pos)$ Block
     +CreateInvisibleWalkable(Vector2 pos)$ Block
