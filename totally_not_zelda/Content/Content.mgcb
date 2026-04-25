@@ -24,7 +24,7 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.0
-/build:../../../Downloads/Underground.png;dungeonWalls/Underground.png
+/build:dungeonWalls/Underground.png;dungeonWalls/Underground
 
 #begin blocks/Doors.png
 /importer:TextureImporter

@@ -96,5 +96,5 @@ public class DoorTransitionHandler
 
         updateLinkMapPos(exitDirection);
         updateInventoryMap(newData, exitDirection);
-}
+    }
 }
