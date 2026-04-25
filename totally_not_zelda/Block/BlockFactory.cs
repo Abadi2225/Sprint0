@@ -1,8 +1,5 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using Sprint.Interfaces;
-using Sprint.Levels;
 
 namespace Sprint.Block;
 
@@ -27,12 +24,12 @@ public static class BlockFactory
     }
 
     // level # mapped to color mask for blocks
-    private static Dictionary<int, uint> tileColors = new Dictionary<int, uint>() {
+    internal static Dictionary<int, uint> tileColors = new() {
         {1, 0xFFFFFFFF},
         {2, 0xFFA0FFFF},
     };
 
-    public static Block Create(int tileId, Vector2 pos, int level = 1)
+    public static Block Create(int tileId, Vector2 pos, int level)
     {
         uint color = tileColors[level];
         return tileId switch
@@ -88,7 +85,7 @@ public static class BlockFactory
         return new Block(null, pos, Rectangle.Empty, 0xFFFFFFFF, true, false);
     }
 
-    public static Block CreatePushable(int tileId, Vector2 pos, int level = 1)
+    public static Block CreatePushable(int tileId, Vector2 pos, int level)
     {
         BlockType type = tileId switch
         {

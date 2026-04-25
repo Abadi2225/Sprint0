@@ -2,6 +2,7 @@ using Sprint.Interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Sprites;
 using Microsoft.Xna.Framework;
+using Sprint.Block;
 
 namespace Sprint.UI;
 
@@ -16,7 +17,7 @@ class InnerDungeonWalls : IUIElement
     public InnerDungeonWalls(Texture2D backgroundTexture)
     {
         sourceRect = new Rectangle(0, 0, 216, 136);
-        background = new StaticSprite(backgroundTexture, new Vector2(0, 0), sourceRect);
+        background = new StaticSprite(backgroundTexture, new Vector2(0, 0), sourceRect, BlockFactory.tileColors[GameServices.CurrentDungeon]);
     }
 
     public void Draw(SpriteBatch spriteBatch)

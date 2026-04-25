@@ -39,7 +39,8 @@ public class LevelBuilder
                     id - 1,
                     new Vector2(
                         x * TILE_SIZE * scale + blockOriginX,
-                        y * TILE_SIZE * scale + blockOriginY));
+                        y * TILE_SIZE * scale + blockOriginY),
+                        GameServices.CurrentDungeon);
 
                 blockManager.Add(block);
             }
@@ -60,7 +61,7 @@ public class LevelBuilder
                     x * TILE_SIZE * scale + blockOriginX,
                     y * TILE_SIZE * scale + blockOriginY);
 
-                Block block = BlockFactory.CreatePushable(id - 1, pos);
+                Block block = BlockFactory.CreatePushable(id - 1, pos, GameServices.CurrentDungeon);
 
 				if (data.pushDirection == "left")
 				{
@@ -163,14 +164,10 @@ public class LevelBuilder
                         worldItems.Add(CreatePickupItem("GoldTriforce", pos));
                         break;
                 }
-
-
             }
         }
         return new Level(blockManager, enemyManager, worldItems, carriedItems, roomClearDropItem);
     }
-
-
 
 	private static AbstractItem CreatePickupItem(string name, Vector2 pos) => name switch
     {

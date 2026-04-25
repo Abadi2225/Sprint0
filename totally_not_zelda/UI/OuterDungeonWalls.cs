@@ -2,6 +2,7 @@ using Sprint.Interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Sprint.Sprites;
+using Sprint.Block;
 
 namespace Sprint.UI;
 
@@ -28,7 +29,7 @@ public class OuterDungeonWalls : IUIElement
         scale = GameServices.ScaleFactor;
         hudHeight = 48 * scale;
         sourceRect = new Rectangle(0, 0, 256, 176);
-        background = new StaticSprite(backgroundTexture, new Vector2(0, 0), sourceRect);
+        background = new StaticSprite(backgroundTexture, new Vector2(0, 0), sourceRect, BlockFactory.tileColors[GameServices.CurrentDungeon]);
     }
 
     public void Draw(SpriteBatch spriteBatch)

@@ -67,13 +67,13 @@ public class LevelLoader
     {
         try
         {
-            string path = $"Content/rooms/{dungeon}/{levelName}.json";
+            string path = $"Content/rooms/dungeon{dungeon}/{levelName}.json";
             string json = File.ReadAllText(path);
             return JsonSerializer.Deserialize<LevelData>(json);
         }
         catch
         {
-            Console.Error.WriteLine($"Room .json does not exist. Dungeon: {dungeon}, name: {levelName}");
+            Console.Error.WriteLine($"Room {levelName}.json does not exist. Dungeon: {dungeon}");
             return null;
         }
     }
