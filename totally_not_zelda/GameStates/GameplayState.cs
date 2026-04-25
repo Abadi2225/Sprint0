@@ -359,6 +359,21 @@ class GameplayState : IGameState
 
 	}
 
+    // Used for switching dungeons for testing but might be useful
+    internal void SwitchDungeon(int dungeon)
+    {
+        if (GameServices.CurrentDungeon == dungeon) return;
+        GameServices.CurrentDungeon = dungeon;
+        currentLevelData = levelLoader.ResetForDungeon();
+        doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
+            currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
+        dungeonWalls.RefreshColor();
+        innerWalls.RefreshColor();
+        UpdateBackground();
+        currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
+        RebuildCollisionManager();
+    }
+
     internal void DrawRoomContent(SpriteBatch sb, Level level, DoorManager doors, bool drawDoors)
     {
         level.Draw(sb);

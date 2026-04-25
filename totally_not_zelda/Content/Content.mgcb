@@ -13,6 +13,19 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin ../../../Downloads/Underground.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:../../../Downloads/Underground.png;dungeonWalls/Underground.png
+
 #begin blocks/Doors.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -38,19 +51,6 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.0
 /build:blocks/tiles.png
-
-#begin dungeonWalls/Underground.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
-/build:dungeonWalls/Underground.png
 
 #begin dungeonWalls/ZeldaDungeonInnerWalls.png
 /importer:TextureImporter
@@ -90,19 +90,6 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.0
 /build:images/BossesSpriteSheet.png
-
-#begin images/credits.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
-/build:images/credits.png
 
 #begin images/dustSheet.png
 /importer:TextureImporter

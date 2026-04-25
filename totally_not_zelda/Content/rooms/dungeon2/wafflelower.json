@@ -1,0 +1,53 @@
+{ "compressionlevel":-1,
+ "height":7,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                     1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1,
+                     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                     1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1,
+                     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                     1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 1,
+                     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+         "height":7,
+         "id":1,
+         "name":"BackgroundTiles",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":12,
+         "x":0,
+         "y":0
+        },
+       {
+      "name": "Enemies",
+      "type": "tilelayer",
+      "data": [0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0,
+               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0]
+    }],
+ "nextlayerid":2,
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tiledversion":"1.11.2",
+ "tileheight":16,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "source":"Zelda Dungeon Tileset.tsx"
+        }],
+ "tilewidth":16,
+ "type":"map",
+ "version":"1.10",
+ "width":12,
+ "doors": { "north": "5blocks", "south": "emptylower", "east": "6blocks", "west": "4blocksbiglower" },
+ "doorTypes": { "north": "open", "south": "open", "east": "key", "west": "open" },
+ "roomClearDrop": "Key",
+ "gridPos": 37
+}

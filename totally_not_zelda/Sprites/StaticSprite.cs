@@ -20,6 +20,8 @@ namespace Sprint.Sprites
 
         public Texture2D Texture => texture;
 
+        public void SetColorMask(uint mask) => colorMask = mask;
+
         public StaticSprite(Texture2D texture, Vector2 position, Rectangle source, uint mask = 0xFFFFFFFF)
         {
             this.texture = texture;

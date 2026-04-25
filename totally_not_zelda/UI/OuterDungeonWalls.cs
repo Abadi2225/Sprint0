@@ -37,6 +37,11 @@ public class OuterDungeonWalls : IUIElement
         background.Draw(spriteBatch, new Vector2(0, hudHeight));
     }
 
+    public void RefreshColor()
+    {
+        background.SetColorMask(BlockFactory.tileColors[GameServices.CurrentDungeon]);
+    }
+
     public void Update(GameTime gameTime) { }
 
     public Rectangle InnerBounds =>

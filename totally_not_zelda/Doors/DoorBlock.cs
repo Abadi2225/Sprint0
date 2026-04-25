@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint.Block;
 using System.Collections.Generic;
 
 namespace Sprint.Doors;
@@ -57,7 +58,13 @@ public class DoorBlock
         int col  = TypeColumn[type];
         int srcX = rowX + col * (spriteWidth + 1);
         Rectangle sourceRect = new(srcX, rowY, spriteWidth, spriteHeight);
+        uint mask = BlockFactory.tileColors[GameServices.CurrentDungeon];
+        Color tint = new Color(
+            (byte)((mask & 0xFF000000) >> 24),
+            (byte)((mask & 0x00FF0000) >> 16),
+            (byte)((mask & 0x0000FF00) >> 8),
+            (byte)(mask & 0x000000FF));
         spriteBatch.Draw(texture, destination, sourceRect,
-            Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+            tint, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
     }
 }

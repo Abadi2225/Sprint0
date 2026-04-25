@@ -6,28 +6,53 @@ using Sprint.Levels;
 
 public class LevelLoader
 {
-    private List<string> levels = new List<string>{
-        "template",
-        "12statues",
-        "12blocks",
-        "6blockslower",
-        "6blocksupper",
-        "4blockssmalllower",
-        "4blocksbig",
-        "1block",
-        "dice5",
-        "4blockssmallupper",
-        "waffle",
-        "wave",
-        "dumbbell",
-        "blockedstairs",
-        "boss",
-        "pacman",
-        "NPC",
-        "Underground",
+    private Dictionary<int, List<string>> levelsByDungeon = new()
+    {
+        [1] = new List<string>{
+            "template",
+            "12statues",
+            "12blocks",
+            "6blockslower",
+            "6blocksupper",
+            "4blockssmalllower",
+            "4blocksbig",
+            "1block",
+            "dice5",
+            "4blockssmallupper",
+            "waffle",
+            "wave",
+            "dumbbell",
+            "blockedstairs",
+            "boss",
+            "pacman",
+            "NPC",
+            "Underground",
+        },
+        [2] = new List<string>{
+            "12blocks",
+            "12statues",
+            "4blocksbiglower",
+            "4blocksbigupper",
+            "4blockssmall",
+            "4statues",
+            "5blocks",
+            "6blocks",
+            "emptyleft",
+            "emptylower",
+            "trap",
+            "wafflelower",
+        },
     };
 
+    private List<string> levels => levelsByDungeon[GameServices.CurrentDungeon];
+
     private int currentLevel = 0;
+
+    public LevelData ResetForDungeon()
+    {
+        currentLevel = 0;
+        return Load(levels[currentLevel]);
+    }
     public LevelData CycleNext()
     {
         if (currentLevel < levels.Count - 1)

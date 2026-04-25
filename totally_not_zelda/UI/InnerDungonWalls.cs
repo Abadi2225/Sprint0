@@ -25,6 +25,11 @@ class InnerDungeonWalls : IUIElement
         background.Draw(spriteBatch, new Vector2(XOffset, YOffset));
     }
 
+    public void RefreshColor()
+    {
+        background.SetColorMask(BlockFactory.tileColors[GameServices.CurrentDungeon]);
+    }
+
     public void Update(GameTime gameTime)
     {
     }

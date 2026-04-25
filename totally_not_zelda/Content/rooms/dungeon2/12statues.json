@@ -1,0 +1,41 @@
+{ "compressionlevel":-1,
+ "height":7,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                     1, 3, 1, 1, 3, 1, 1, 4, 1, 1, 4, 1,
+                     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                     1, 3, 1, 1, 3, 1, 1, 4, 1, 1, 4, 1,
+                     1, 1, 1, 1, 1, 6, 6, 1, 1, 1, 1, 1,
+                     1, 3, 1, 6, 3, 6, 6, 4, 6, 1, 4, 1,
+                     1, 1, 1, 6, 6, 6, 6, 6, 6, 1, 1, 1],
+         "height":7,
+         "id":1,
+         "name":"BackgroundTiles",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":12,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":3,
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tiledversion":"1.11.2",
+ "tileheight":16,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "source":"Zelda Dungeon Tileset.tsx"
+        }],
+ "tilewidth":16,
+ "type":"map",
+ "version":"1.10",
+ "width":12,
+ "doors": {  "north": "4blocksbiglower", "east": "emptylower"},
+ "doorTypes": { "north": "open", "east": "open", "south": "open" },
+ "gridPos": 59
+}

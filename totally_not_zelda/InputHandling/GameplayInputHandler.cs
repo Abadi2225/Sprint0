@@ -70,6 +70,16 @@ internal class GameplayInputHandler : IInputHandler
             MusicPlayer.ToggleMute();
         }
 
+        if (GameServices.KeyInput.IsKeyPressed(Keys.H))
+        {
+            state.SwitchDungeon(1);
+        }
+
+        if (GameServices.KeyInput.IsKeyPressed(Keys.J))
+        {
+            state.SwitchDungeon(2);
+        }
+
         foreach (var command in commands)
         {
             if (GameServices.KeyInput.IsKeyPressed(command.Key))
