@@ -13,7 +13,6 @@ internal class StillItem : AbstractItem
         
         SourceRect = sourceRect;
 
-        // removed GameServices.ScaleFactor from multiplication steps
         Rect = new Rectangle((int)Position.X, (int)Position.Y,
                 (int)(sourceRect.Width * scale),
                 (int)(sourceRect.Height * scale));

@@ -36,6 +36,6 @@
  "version":"1.10",
  "width":12,
  "doors": {  "north": "4blocksbiglower", "east": "emptylower"},
- "doorTypes": { "north": "open", "east": "open", "south": "open" },
+ "doorTypes": { "north": "open", "south": "open", "east": "open" },
  "gridPos": 59
 }

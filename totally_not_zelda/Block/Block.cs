@@ -9,7 +9,6 @@ namespace Sprint.Block;
 
 public class Block
 {
-
 	internal int tileWidth = (int)(16 * GameServices.ScaleFactor);
 	private readonly StaticSprite sprite;
 	public readonly bool walkAble;
@@ -19,7 +18,6 @@ public class Block
 	public bool HasBeenPushed { get; set; } = false;
 	public Directions PushDirection { get; set; } = Directions.Up;
 	public Rectangle Rect => new Rectangle((int)Position.X, (int)Position.Y, tileWidth, tileWidth);
-
 
     public Block(Texture2D texture, Vector2 pos, Rectangle sourceRect, uint colorMask, bool walkable, bool pushable, bool isStair = false)
     {
@@ -41,5 +39,4 @@ public class Block
     {
 
     }
-
 }
