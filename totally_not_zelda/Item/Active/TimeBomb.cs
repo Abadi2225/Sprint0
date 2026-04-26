@@ -105,5 +105,5 @@ internal class TimeBomb : AbstractItem
         Rect = Rectangle.Empty;
     }
 
-    public override bool IsFinished => exploded && cloudDone;
+    public override bool IsFinished => base.IsFinished || (exploded && cloudDone);
 }

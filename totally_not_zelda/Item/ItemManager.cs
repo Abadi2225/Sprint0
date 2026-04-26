@@ -11,15 +11,18 @@ namespace Sprint.Item;
 
 public class ItemManager
 {
+    private static readonly double ITEM_COOLDOWN_MILLIS = 500;
+
     private List<AbstractItem> spawnedItems = new();
     private List<AbstractItem> justFinishedItems = new();
 
-    internal IReadOnlyList<AbstractItem> SpawnedItems => spawnedItems;
-    internal IReadOnlyList<AbstractItem> JustFinished => justFinishedItems;
+    public IReadOnlyList<AbstractItem> SpawnedItems => spawnedItems;
+    public IReadOnlyList<AbstractItem> JustFinished => justFinishedItems;
+
+    private double itemCooldownMillis = 0;
 
     private static Vector2 ProjectileOrigin(ILink link)
     {
-        // link.Rect is the lower half of the sprite; reconstruct full bounds from Position
         float scale = GameServices.ScaleFactor;
         int spriteSize = (int)(16 * scale);
         Vector2 pos = link.Position;
@@ -37,6 +40,7 @@ public class ItemManager
 
     public void UseItem(ILink link, Inventory inventory, int slot)
     {
+        if (itemCooldownMillis > 0) return;
         if (slot < 0 || slot >= inventory.Count) return;
 
         IItem used = inventory.Get(slot);
@@ -99,12 +103,24 @@ public class ItemManager
         }
 
         link.StartUseItem();
+        itemCooldownMillis = ITEM_COOLDOWN_MILLIS;
     }
 
-    internal void SpawnItem(AbstractItem item) => spawnedItems.Add(item);
+    public void SpawnItem(AbstractItem item) => spawnedItems.Add(item);
+
+    public void Clear()
+    {
+        spawnedItems.Clear();
+        justFinishedItems.Clear();
+    }
 
     public void Update(GameTime time)
     {
+        if (itemCooldownMillis > 0)
+        {
+            itemCooldownMillis -= time.ElapsedGameTime.TotalMilliseconds;
+        }
+
         foreach (AbstractItem item in spawnedItems)
             item.Update(time);
         justFinishedItems = spawnedItems.Where(item => item.IsFinished).ToList();

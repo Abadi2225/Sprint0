@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Enemies.Base;
+using Sprint.Item;
 using Sprint.Sprites;
 
 namespace Sprint.Enemies.Concrete
@@ -20,28 +19,33 @@ namespace Sprint.Enemies.Concrete
         private const float DIRECTION_SWAP_MAX = 2.0f;
         private float moveDirectionTimer;
         private bool moveLeft;
-        private EnemyProjectileFactory projectileFactory;
-        private List<AquamentusFireball> activeFireballs = new();
-        public IReadOnlyList<AquamentusFireball> ActiveFireballs => activeFireballs;
         private float fireballTimer = 0f;
         private const float FIREBALL_INTERVAL = 3f;
+        private readonly Action<AbstractItem> spawnProjectile;
         protected override bool CanBeKnockedBack => false;
+        private Fireball activeFireball;
+        private List<Fireball> activeFireballs = new();
 
-        // Faces left, walking back and forth
-        // Fires three fireballs to the left in a triangle pattern
+        private static readonly Vector2[] FireballDirections =
+        [
+            new Vector2(-1f,  0f),
+            new Vector2(-1f, -0.5f),
+            new Vector2(-1f,  0.5f),
+        ];
 
-        public Aquamentus(Texture2D texture, Vector2 position, List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds) : base(texture, position, HEALTH, DAMAGE)
+        public Aquamentus(Texture2D texture, Vector2 position, List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds,
+            Action<AbstractItem> spawnProjectile = null) : base(texture, position, HEALTH, DAMAGE)
         {
-            int[]sheetXPositions = [1, 26, 51, 76];
+            int[] sheetXPositions = [1, 26, 51, 76];
             int sheetY = 11;
             int spriteWidth = 24;
             int spriteHeight = 32;
             float frameTime = 0.2f;
             moveDirectionTimer = 0f;
-            directionChangeTimer = GetRandomFloat(DIRECTION_SWAP_MIN,DIRECTION_SWAP_MAX);
+            directionChangeTimer = GetRandomFloat(DIRECTION_SWAP_MIN, DIRECTION_SWAP_MAX);
+            this.spawnProjectile = spawnProjectile;
 
             sprite = new AnimatedSprite(texture, position, sheetXPositions, sheetY, spriteWidth, spriteHeight, frameTime);
-            projectileFactory = new EnemyProjectileFactory(texture);
             Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
 
@@ -55,14 +59,7 @@ namespace Sprint.Enemies.Concrete
             if (moveDirectionTimer >= directionChangeTimer)
             {
                 moveDirectionTimer = 0f;
-                if (moveLeft)
-                {
-                    velocity = new Vector2(-MOVE_SPEED, 0);
-
-                } else
-                {
-                    velocity = new Vector2(MOVE_SPEED, 0);
-                }
+                velocity = new Vector2(moveLeft ? -MOVE_SPEED : MOVE_SPEED, 0);
                 directionChangeTimer = GetRandomFloat(DIRECTION_SWAP_MIN, DIRECTION_SWAP_MAX);
                 moveLeft = !moveLeft;
             }
@@ -75,36 +72,33 @@ namespace Sprint.Enemies.Concrete
                 SpawnFireballs();
             }
 
-            activeFireballs.RemoveAll(f => !f.IsActive);
-            foreach (var fireball in activeFireballs)
-                fireball.Update(gameTime);
-
             sprite.Update(gameTime);
-        }
-
-        public override void Draw(SpriteBatch spriteBatch, Vector2 location)
-        {
-            base.Draw(spriteBatch, location);
-            foreach (var fireball in activeFireballs)
-                fireball.Draw(spriteBatch, fireball.Position);
         }
 
         private void SpawnFireballs()
         {
-            Vector2[] directions =
-            [
-                new Vector2(-1f,  0f),    // straight left
-                new Vector2(-1f, -0.5f),  // up-left
-                new Vector2(-1f,  0.5f),  // down-left
-            ];
-
-            foreach (var dir in directions)
-                activeFireballs.Add(projectileFactory.CreateFireball(Position, dir));
+            if (spawnProjectile == null) return;
+            foreach (var dir in FireballDirections)
+            {
+                activeFireball = ItemFactory.CreateFireball(texture, Position, dir);
+                spawnProjectile(activeFireball);
+                activeFireballs.Add(activeFireball);
+            }
         }
 
         private float GetRandomFloat(float min, float max)
         {
             return min + (float)random.NextDouble() * (max - min);
+        }
+
+        public override void Die()
+        {
+            base.Die();
+            foreach (var fireball in activeFireballs)
+            {
+                fireball?.Cancel();
+            }
+            activeFireballs.Clear();
         }
     }
 }

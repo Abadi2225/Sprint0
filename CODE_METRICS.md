@@ -12,8 +12,8 @@ This file is dynamically maintained by a bot, *please do not* edit this by hand.
 The *Sprint.csproj* project file contains:
 
 - 24 namespaces.
-- 153 named types.
-- 9,408 total lines of source code.
+- 150 named types.
+- 9,357 total lines of source code.
 - Approximately 2,896 lines of executable code.
 - The highest cyclomatic complexity is 31 :exploding_head:.
 
@@ -28,8 +28,8 @@ The *Sprint.csproj* project file contains:
 The `<global namespace>` namespace contains 8 named types.
 
 - 8 named types.
-- 888 total lines of source code.
-- Approximately 352 lines of executable code.
+- 891 total lines of source code.
+- Approximately 350 lines of executable code.
 - The highest cyclomatic complexity is 24 :exploding_head:.
 
 <details>
@@ -62,8 +62,8 @@ The `<global namespace>` namespace contains 8 named types.
 <br>
 
 - The `GameplayState` contains 55 members.
-- 405 total lines of source code.
-- Approximately 203 lines of executable code.
+- 406 total lines of source code.
+- Approximately 200 lines of executable code.
 - The highest cyclomatic complexity is 19 :exploding_head:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
@@ -77,9 +77,9 @@ The `<global namespace>` namespace contains 8 named types.
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L55' title='DoorManager GameplayState.doorManager'>55</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L36' title='Texture2D GameplayState.doorSheet'>36</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L56' title='DoorTransitionHandler GameplayState.doorTransitionHandler'>56</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L369' title='void GameplayState.Draw(SpriteBatch spriteBatch)'>369</a> | 58 | 3 :heavy_check_mark: | 0 | 11 | 21 / 14 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L415' title='void GameplayState.DrawHUDOnly(SpriteBatch sb)'>415</a> | 96 | 1 :heavy_check_mark: | 0 | 2 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L407' title='void GameplayState.DrawRoomContent(SpriteBatch sb, Level level, DoorManager doors, bool drawDoors)'>407</a> | 75 | 3 :heavy_check_mark: | 0 | 5 | 7 / 4 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L370' title='void GameplayState.Draw(SpriteBatch spriteBatch)'>370</a> | 58 | 3 :heavy_check_mark: | 0 | 11 | 21 / 14 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L416' title='void GameplayState.DrawHUDOnly(SpriteBatch sb)'>416</a> | 96 | 1 :heavy_check_mark: | 0 | 2 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L408' title='void GameplayState.DrawRoomContent(SpriteBatch sb, Level level, DoorManager doors, bool drawDoors)'>408</a> | 75 | 3 :heavy_check_mark: | 0 | 5 | 7 / 4 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L62' title='OuterDungeonWalls GameplayState.dungeonWalls'>62</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L29' title='Texture2D GameplayState.dustSheet'>29</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L27' title='Texture2D GameplayState.enemiesSheet'>27</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
@@ -90,9 +90,9 @@ The `<global namespace>` namespace contains 8 named types.
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L31' title='Texture2D GameplayState.fontSheet'>31</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L65' title='TextWriter GameplayState.gameOverText'>65</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L64' title='GameOverTransition GameplayState.gameOverTransition'>64</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L193' title='Rectangle GameplayState.GetInnerBounds()'>193</a> | 82 | 3 :heavy_check_mark: | 0 | 4 | 6 / 2 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L234' title='void GameplayState.HandleDoorExit(string direction)'>234</a> | 63 | 1 :heavy_check_mark: | 0 | 15 | 21 / 8 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L256' title='void GameplayState.HandleStairTransition(string targetRoom)'>256</a> | 59 | 2 :heavy_check_mark: | 0 | 15 | 24 / 11 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L195' title='Rectangle GameplayState.GetInnerBounds()'>195</a> | 82 | 3 :heavy_check_mark: | 0 | 4 | 6 / 2 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L235' title='void GameplayState.HandleDoorExit(string direction)'>235</a> | 63 | 1 :heavy_check_mark: | 0 | 15 | 21 / 8 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L257' title='void GameplayState.HandleStairTransition(string targetRoom)'>257</a> | 59 | 2 :heavy_check_mark: | 0 | 15 | 24 / 11 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L50' title='HUDBar GameplayState.hud'>50</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L35' title='Texture2D GameplayState.hudElements'>35</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L60' title='InnerDungeonWalls GameplayState.innerWalls'>60</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
@@ -100,29 +100,29 @@ The `<global namespace>` namespace contains 8 named types.
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L61' title='GameplayInputHandler GameplayState.inputHandler'>61</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L41' title='Inventory GameplayState.inventory'>41</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L42' title='InventoryMap GameplayState.invMap'>42</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L192' title='bool GameplayState.IsNPCRoom'>192</a> | 92 | 2 :heavy_check_mark: | 0 | 1 | 1 / 2 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L191' title='bool GameplayState.IsUnderground'>191</a> | 92 | 4 :heavy_check_mark: | 0 | 2 | 1 / 2 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L194' title='bool GameplayState.IsNPCRoom'>194</a> | 92 | 2 :heavy_check_mark: | 0 | 1 | 1 / 2 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L193' title='bool GameplayState.IsUnderground'>193</a> | 92 | 4 :heavy_check_mark: | 0 | 2 | 1 / 2 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L40' title='ItemManager GameplayState.items'>40</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L45' title='LevelLoader GameplayState.levelLoader'>45</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L39' title='Link GameplayState.link'>39</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L26' title='Texture2D GameplayState.linkSheet'>26</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L57' title='bool GameplayState.lmbReleased'>57</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L81' title='void GameplayState.LoadContent()'>81</a> | 34 | 1 :heavy_check_mark: | 0 | 39 | 109 / 74 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L81' title='void GameplayState.LoadContent()'>81</a> | 35 | 1 :heavy_check_mark: | 0 | 37 | 111 / 72 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L66' title='TextWriter GameplayState.NPCRoomTextRowOne'>66</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L67' title='TextWriter GameplayState.NPCRoomTextRowTwo'>67</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L30' title='Texture2D GameplayState.NPCSheet'>30</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L32' title='Texture2D GameplayState.outerWallsTexture'>32</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L37' title='Texture2D GameplayState.pixel'>37</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L212' title='void GameplayState.RebuildCollisionManager()'>212</a> | 56 | 4 :heavy_check_mark: | 0 | 27 | 21 / 12 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L417' title='void GameplayState.ResetMaps()'>417</a> | 65 | 1 :heavy_check_mark: | 0 | 7 | 11 / 7 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L214' title='void GameplayState.RebuildCollisionManager()'>214</a> | 57 | 4 :heavy_check_mark: | 0 | 26 | 20 / 11 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L418' title='void GameplayState.ResetMaps()'>418</a> | 65 | 1 :heavy_check_mark: | 0 | 7 | 11 / 7 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L58' title='bool GameplayState.rmbReleased'>58</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L59' title='bool GameplayState.roomTransitionActive'>59</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L34' title='Texture2D GameplayState.staircaseTexture'>34</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L392' title='void GameplayState.SwitchDungeon(int dungeon)'>392</a> | 62 | 2 :heavy_check_mark: | 0 | 11 | 15 / 10 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L393' title='void GameplayState.SwitchDungeon(int dungeon)'>393</a> | 62 | 2 :heavy_check_mark: | 0 | 11 | 15 / 10 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L52' title='TriforceOverlay GameplayState.triforceOverlay'>52</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L49' title='UIManager GameplayState.uiManager'>49</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L281' title='void GameplayState.Update(GameTime gameTime)'>281</a> | 38 | 19 :exploding_head: | 0 | 29 | 87 / 50 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L200' title='void GameplayState.UpdateBackground()'>200</a> | 76 | 3 :heavy_check_mark: | 0 | 5 | 12 / 3 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L282' title='void GameplayState.Update(GameTime gameTime)'>282</a> | 38 | 19 :exploding_head: | 0 | 28 | 87 / 50 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/GameplayState.cs#L202' title='void GameplayState.UpdateBackground()'>202</a> | 76 | 3 :heavy_check_mark: | 0 | 5 | 12 / 3 |
 
 <a href="#GameplayState-class-diagram">:link: to `GameplayState` class diagram</a>
 
@@ -211,14 +211,14 @@ The `<global namespace>` namespace contains 8 named types.
 <br>
 
 - The `LevelBuilder` contains 3 members.
-- 166 total lines of source code.
-- Approximately 70 lines of executable code.
+- 168 total lines of source code.
+- Approximately 71 lines of executable code.
 - The highest cyclomatic complexity is 24 :exploding_head:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L15' title='Level LevelBuilder.Build(LevelData data, EnemyFactory enemyFactory, Rectangle innerBounds)'>15</a> | 33 | 24 :exploding_head: | 0 | 20 | 155 / 68 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L171' title='AbstractItem LevelBuilder.CreatePickupItem(string name, Vector2 pos)'>171</a> | 89 | 1 :heavy_check_mark: | 0 | 7 | 6 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L15' title='Level LevelBuilder.Build(LevelData data, EnemyFactory enemyFactory, Rectangle innerBounds, Action<AbstractItem> spawnProjectile = null)'>15</a> | 32 | 24 :exploding_head: | 0 | 21 | 157 / 69 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L173' title='AbstractItem LevelBuilder.CreatePickupItem(string name, Vector2 pos)'>173</a> | 89 | 1 :heavy_check_mark: | 0 | 7 | 6 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L13' title='int LevelBuilder.TILE_SIZE'>13</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 
 <a href="#LevelBuilder-class-diagram">:link: to `LevelBuilder` class diagram</a>
@@ -319,7 +319,7 @@ The `<global namespace>` namespace contains 8 named types.
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/TriforceResetHandler.cs#L15' title='EnemyFactory TriforceResetHandler.enemyFactory'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/TriforceResetHandler.cs#L14' title='LevelLoader TriforceResetHandler.levelLoader'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/TriforceResetHandler.cs#L13' title='ILink TriforceResetHandler.link'>13</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/TriforceResetHandler.cs#L40' title='void TriforceResetHandler.Update()'>40</a> | 66 | 2 :heavy_check_mark: | 0 | 13 | 22 / 6 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/TriforceResetHandler.cs#L40' title='void TriforceResetHandler.Update()'>40</a> | 66 | 2 :heavy_check_mark: | 0 | 15 | 22 / 6 |
 
 <a href="#TriforceResetHandler-class-diagram">:link: to `TriforceResetHandler` class diagram</a>
 
@@ -1173,41 +1173,12 @@ The `Sprint.Character` namespace contains 16 named types.
 </summary>
 <br>
 
-The `Sprint.Collision` namespace contains 6 named types.
+The `Sprint.Collision` namespace contains 5 named types.
 
-- 6 named types.
-- 302 total lines of source code.
-- Approximately 82 lines of executable code.
-- The highest cyclomatic complexity is 25 :exploding_head:.
-
-<details>
-<summary>
-  <strong id="activeitemenemycollision">
-    ActiveItemEnemyCollision :exploding_head:
-  </strong>
-</summary>
-<br>
-
-- The `ActiveItemEnemyCollision` contains 7 members.
-- 83 total lines of source code.
-- Approximately 30 lines of executable code.
-- The highest cyclomatic complexity is 25 :exploding_head:.
-
-| Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
-| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L18' title='ActiveItemEnemyCollision.ActiveItemEnemyCollision(ItemManager itemManager, EnemyManager enemyManager)'>18</a> | 85 | 1 :heavy_check_mark: | 0 | 2 | 5 / 2 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L12' title='int ActiveItemEnemyCollision.BOMB_DAMAGE'>12</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L13' title='int ActiveItemEnemyCollision.BOMB_RADIUS'>13</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L16' title='EnemyManager ActiveItemEnemyCollision.enemyManager'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L24' title='void ActiveItemEnemyCollision.Handle()'>24</a> | 46 | 25 :exploding_head: | 0 | 15 | 67 / 26 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L15' title='ItemManager ActiveItemEnemyCollision.itemManager'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L11' title='int ActiveItemEnemyCollision.PROJECTILE_DAMAGE'>11</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-
-<a href="#ActiveItemEnemyCollision-class-diagram">:link: to `ActiveItemEnemyCollision` class diagram</a>
-
-<a href="#sprint-collision">:top: back to Sprint.Collision</a>
-
-</details>
+- 5 named types.
+- 266 total lines of source code.
+- Approximately 68 lines of executable code.
+- The highest cyclomatic complexity is 17 :exploding_head:.
 
 <details>
 <summary>
@@ -1262,33 +1233,6 @@ The `Sprint.Collision` namespace contains 6 named types.
 
 <details>
 <summary>
-  <strong id="linkenemyprojectilecollision">
-    LinkEnemyProjectileCollision :radioactive:
-  </strong>
-</summary>
-<br>
-
-- The `LinkEnemyProjectileCollision` contains 5 members.
-- 36 total lines of source code.
-- Approximately 12 lines of executable code.
-- The highest cyclomatic complexity is 10 :radioactive:.
-
-| Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
-| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkEnemyProjectileCollision.cs#L16' title='LinkEnemyProjectileCollision.LinkEnemyProjectileCollision(Link link, EnemyManager enemyManager)'>16</a> | 85 | 1 :heavy_check_mark: | 0 | 2 | 5 / 2 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkEnemyProjectileCollision.cs#L14' title='EnemyManager LinkEnemyProjectileCollision.enemyManager'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkEnemyProjectileCollision.cs#L22' title='void LinkEnemyProjectileCollision.Handle()'>22</a> | 61 | 10 :radioactive: | 0 | 13 | 22 / 9 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkEnemyProjectileCollision.cs#L13' title='Link LinkEnemyProjectileCollision.link'>13</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkEnemyProjectileCollision.cs#L11' title='int LinkEnemyProjectileCollision.PROJECTILE_DAMAGE'>11</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-
-<a href="#LinkEnemyProjectileCollision-class-diagram">:link: to `LinkEnemyProjectileCollision` class diagram</a>
-
-<a href="#sprint-collision">:top: back to Sprint.Collision</a>
-
-</details>
-
-<details>
-<summary>
   <strong id="linkitemcollision">
     LinkItemCollision :exploding_head:
   </strong>
@@ -1296,20 +1240,53 @@ The `Sprint.Collision` namespace contains 6 named types.
 <br>
 
 - The `LinkItemCollision` contains 6 members.
-- 96 total lines of source code.
-- Approximately 18 lines of executable code.
-- The highest cyclomatic complexity is 16 :exploding_head:.
+- 98 total lines of source code.
+- Approximately 19 lines of executable code.
+- The highest cyclomatic complexity is 17 :exploding_head:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkItemCollision.cs#L17' title='LinkItemCollision.LinkItemCollision(ILink link, Inventory inventory, List<AbstractItem> worldItems)'>17</a> | 79 | 1 :heavy_check_mark: | 0 | 4 | 6 / 3 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkItemCollision.cs#L24' title='void LinkItemCollision.Handle()'>24</a> | 68 | 3 :heavy_check_mark: | 0 | 5 | 15 / 6 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkItemCollision.cs#L40' title='void LinkItemCollision.HandlePickup(AbstractItem item)'>40</a> | 58 | 16 :exploding_head: | 0 | 7 | 66 / 9 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkItemCollision.cs#L40' title='void LinkItemCollision.HandlePickup(AbstractItem item)'>40</a> | 56 | 17 :exploding_head: | 0 | 7 | 68 / 10 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkItemCollision.cs#L14' title='Inventory LinkItemCollision.inventory'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkItemCollision.cs#L13' title='ILink LinkItemCollision.link'>13</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/LinkItemCollision.cs#L15' title='List<AbstractItem> LinkItemCollision.worldItems'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
 
 <a href="#LinkItemCollision-class-diagram">:link: to `LinkItemCollision` class diagram</a>
+
+<a href="#sprint-collision">:top: back to Sprint.Collision</a>
+
+</details>
+
+<details>
+<summary>
+  <strong id="projectilecollision">
+    ProjectileCollision :x:
+  </strong>
+</summary>
+<br>
+
+- The `ProjectileCollision` contains 11 members.
+- 84 total lines of source code.
+- Approximately 27 lines of executable code.
+- The highest cyclomatic complexity is 12 :x:.
+
+| Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ProjectileCollision.cs#L20' title='ProjectileCollision.ProjectileCollision(Link link, ItemManager itemManager, EnemyManager enemyManager)'>20</a> | 79 | 1 :heavy_check_mark: | 0 | 3 | 6 / 3 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ProjectileCollision.cs#L78' title='void ProjectileCollision.ApplyBombBlast(TimeBomb bomb)'>78</a> | 72 | 4 :heavy_check_mark: | 0 | 8 | 15 / 4 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ProjectileCollision.cs#L51' title='void ProjectileCollision.ApplyEnemyDamage(AbstractItem item)'>51</a> | 70 | 5 :heavy_check_mark: | 0 | 7 | 12 / 6 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ProjectileCollision.cs#L13' title='int ProjectileCollision.BOMB_DAMAGE'>13</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ProjectileCollision.cs#L14' title='int ProjectileCollision.BOMB_RADIUS'>14</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ProjectileCollision.cs#L18' title='EnemyManager ProjectileCollision.enemyManager'>18</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ProjectileCollision.cs#L27' title='void ProjectileCollision.Handle()'>27</a> | 64 | 12 :x: | 0 | 8 | 23 / 7 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ProjectileCollision.cs#L17' title='ItemManager ProjectileCollision.itemManager'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ProjectileCollision.cs#L16' title='Link ProjectileCollision.link'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ProjectileCollision.cs#L12' title='int ProjectileCollision.PROJECTILE_DAMAGE'>12</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ProjectileCollision.cs#L64' title='void ProjectileCollision.TryFeedDodongo(TimeBomb bomb)'>64</a> | 70 | 6 :heavy_check_mark: | 0 | 9 | 13 / 5 |
+
+<a href="#ProjectileCollision-class-diagram">:link: to `ProjectileCollision` class diagram</a>
 
 <a href="#sprint-collision">:top: back to Sprint.Collision</a>
 
@@ -1709,11 +1686,11 @@ The `Sprint.Commands` namespace contains 5 named types.
 </summary>
 <br>
 
-The `Sprint.Enemies.Concrete` namespace contains 20 named types.
+The `Sprint.Enemies.Concrete` namespace contains 19 named types.
 
-- 20 named types.
-- 1,652 total lines of source code.
-- Approximately 573 lines of executable code.
+- 19 named types.
+- 1,570 total lines of source code.
+- Approximately 545 lines of executable code.
 - The highest cyclomatic complexity is 11 :radioactive:.
 
 <details>
@@ -1724,71 +1701,36 @@ The `Sprint.Enemies.Concrete` namespace contains 20 named types.
 </summary>
 <br>
 
-- The `Aquamentus` contains 20 members.
-- 98 total lines of source code.
-- Approximately 40 lines of executable code.
-- The highest cyclomatic complexity is 6 :heavy_check_mark:.
+- The `Aquamentus` contains 21 members.
+- 93 total lines of source code.
+- Approximately 39 lines of executable code.
+- The highest cyclomatic complexity is 5 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L33' title='Aquamentus.Aquamentus(Texture2D texture, Vector2 position, List<Block> solidBlocks, Rectangle innerBounds)'>33</a> | 60 | 1 :heavy_check_mark: | 0 | 11 | 17 / 10 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L24' title='List<AquamentusFireball> Aquamentus.activeFireballs'>24</a> | 93 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L25' title='IReadOnlyList<AquamentusFireball> Aquamentus.ActiveFireballs'>25</a> | 100 | 2 :heavy_check_mark: | 0 | 3 | 1 / 2 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L28' title='bool Aquamentus.CanBeKnockedBack'>28</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L15' title='int Aquamentus.DAMAGE'>15</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L20' title='float Aquamentus.DIRECTION_SWAP_MAX'>20</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L19' title='float Aquamentus.DIRECTION_SWAP_MIN'>19</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L18' title='float Aquamentus.directionChangeTimer'>18</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L85' title='void Aquamentus.Draw(SpriteBatch spriteBatch, Vector2 location)'>85</a> | 85 | 2 :heavy_check_mark: | 0 | 7 | 6 / 2 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L27' title='float Aquamentus.FIREBALL_INTERVAL'>27</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L26' title='float Aquamentus.fireballTimer'>26</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L105' title='float Aquamentus.GetRandomFloat(float min, float max)'>105</a> | 90 | 1 :heavy_check_mark: | 0 | 2 | 4 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L14' title='int Aquamentus.HEALTH'>14</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L17' title='float Aquamentus.MOVE_SPEED'>17</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L21' title='float Aquamentus.moveDirectionTimer'>21</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L22' title='bool Aquamentus.moveLeft'>22</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L23' title='EnemyProjectileFactory Aquamentus.projectileFactory'>23</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L92' title='void Aquamentus.SpawnFireballs()'>92</a> | 81 | 2 :heavy_check_mark: | 0 | 5 | 12 / 2 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L48' title='void Aquamentus.UpdateEnemy(GameTime gameTime)'>48</a> | 53 | 6 :heavy_check_mark: | 0 | 7 | 36 / 19 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L16' title='Vector2 Aquamentus.velocity'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L36' title='Aquamentus.Aquamentus(Texture2D texture, Vector2 position, List<Block> solidBlocks, Rectangle innerBounds, Action<AbstractItem> spawnProjectile = null)'>36</a> | 58 | 1 :heavy_check_mark: | 0 | 12 | 15 / 11 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L26' title='Fireball Aquamentus.activeFireball'>26</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L27' title='List<Fireball> Aquamentus.activeFireballs'>27</a> | 93 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L25' title='bool Aquamentus.CanBeKnockedBack'>25</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L14' title='int Aquamentus.DAMAGE'>14</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L94' title='void Aquamentus.Die()'>94</a> | 81 | 3 :heavy_check_mark: | 0 | 5 | 9 / 4 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L19' title='float Aquamentus.DIRECTION_SWAP_MAX'>19</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L18' title='float Aquamentus.DIRECTION_SWAP_MIN'>18</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L17' title='float Aquamentus.directionChangeTimer'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L23' title='float Aquamentus.FIREBALL_INTERVAL'>23</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L29' title='Vector2[] Aquamentus.FireballDirections'>29</a> | 85 | 0 :heavy_check_mark: | 0 | 2 | 5 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L22' title='float Aquamentus.fireballTimer'>22</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L89' title='float Aquamentus.GetRandomFloat(float min, float max)'>89</a> | 90 | 1 :heavy_check_mark: | 0 | 2 | 4 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L13' title='int Aquamentus.HEALTH'>13</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L16' title='float Aquamentus.MOVE_SPEED'>16</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L20' title='float Aquamentus.moveDirectionTimer'>20</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L21' title='bool Aquamentus.moveLeft'>21</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L78' title='void Aquamentus.SpawnFireballs()'>78</a> | 71 | 3 :heavy_check_mark: | 0 | 8 | 10 / 5 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L24' title='Action<AbstractItem> Aquamentus.spawnProjectile'>24</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L52' title='void Aquamentus.UpdateEnemy(GameTime gameTime)'>52</a> | 57 | 5 :heavy_check_mark: | 0 | 4 | 25 / 14 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Aquamentus.cs#L15' title='Vector2 Aquamentus.velocity'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 
 <a href="#Aquamentus-class-diagram">:link: to `Aquamentus` class diagram</a>
-
-<a href="#sprint-enemies-concrete">:top: back to Sprint.Enemies.Concrete</a>
-
-</details>
-
-<details>
-<summary>
-  <strong id="aquamentusfireball">
-    AquamentusFireball :heavy_check_mark:
-  </strong>
-</summary>
-<br>
-
-- The `AquamentusFireball` contains 14 members.
-- 62 total lines of source code.
-- Approximately 25 lines of executable code.
-- The highest cyclomatic complexity is 2 :heavy_check_mark:.
-
-| Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
-| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/AquamentusFireball.cs#L37' title='AquamentusFireball.AquamentusFireball(Texture2D texture, Vector2 startPosition, Vector2 direction)'>37</a> | 61 | 2 :heavy_check_mark: | 0 | 5 | 16 / 10 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/AquamentusFireball.cs#L64' title='void AquamentusFireball.Draw(SpriteBatch spriteBatch, Vector2 location)'>64</a> | 85 | 2 :heavy_check_mark: | 0 | 4 | 5 / 2 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/AquamentusFireball.cs#L20' title='bool AquamentusFireball.IsActive'>20</a> | 94 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/AquamentusFireball.cs#L13' title='float AquamentusFireball.lifetime'>13</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/AquamentusFireball.cs#L14' title='float AquamentusFireball.MAX_LIFETIME'>14</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/AquamentusFireball.cs#L11' title='Vector2 AquamentusFireball.position'>11</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/AquamentusFireball.cs#L24' title='Vector2 AquamentusFireball.Position'>24</a> | 88 | 2 :heavy_check_mark: | 0 | 5 | 12 / 4 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/AquamentusFireball.cs#L22' title='Rectangle AquamentusFireball.Rect'>22</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/AquamentusFireball.cs#L18' title='int AquamentusFireball.SOURCE_HEIGHT'>18</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/AquamentusFireball.cs#L17' title='int AquamentusFireball.SOURCE_WIDTH'>17</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/AquamentusFireball.cs#L15' title='float AquamentusFireball.SPEED'>15</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/AquamentusFireball.cs#L10' title='IPositionedSprite AquamentusFireball.sprite'>10</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/AquamentusFireball.cs#L54' title='void AquamentusFireball.Update(GameTime gameTime)'>54</a> | 71 | 2 :heavy_check_mark: | 0 | 4 | 9 / 5 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/AquamentusFireball.cs#L12' title='Vector2 AquamentusFireball.velocity'>12</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-
-<a href="#AquamentusFireball-class-diagram">:link: to `AquamentusFireball` class diagram</a>
 
 <a href="#sprint-enemies-concrete">:top: back to Sprint.Enemies.Concrete</a>
 
@@ -1835,10 +1777,10 @@ The `Sprint.Enemies.Concrete` namespace contains 20 named types.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L27' title='Direction.Down'>27</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L27' title='Direction.Left'>27</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L27' title='Direction.Right'>27</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L27' title='Direction.Up'>27</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L28' title='Direction.Down'>28</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L28' title='Direction.Left'>28</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L28' title='Direction.Right'>28</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L28' title='Direction.Up'>28</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 
 <a href="#Goriya.Direction-class-diagram">:link: to `Goriya.Direction` class diagram</a>
 
@@ -2026,48 +1968,50 @@ The `Sprint.Enemies.Concrete` namespace contains 20 named types.
 </summary>
 <br>
 
-- The `Goriya` contains 36 members.
-- 248 total lines of source code.
-- Approximately 87 lines of executable code.
+- The `Goriya` contains 38 members.
+- 236 total lines of source code.
+- Approximately 85 lines of executable code.
 - The highest cyclomatic complexity is 10 :radioactive:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L52' title='Goriya.Goriya(Texture2D texture, Vector2 position, ContentManager content, List<Block> solidBlocks, Rectangle innerBounds)'>52</a> | 54 | 1 :heavy_check_mark: | 0 | 13 | 27 / 17 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L36' title='Boomerang Goriya.activeBoomerang'>36</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L37' title='Boomerang Goriya.ActiveBoomerang'>37</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 2 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L202' title='void Goriya.ChooseNextStep()'>202</a> | 69 | 2 :heavy_check_mark: | 0 | 5 | 12 / 6 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L47' title='Goriya.Goriya(Texture2D texture, Vector2 position, ContentManager content, List<Block> solidBlocks, Rectangle innerBounds, Action<AbstractItem> spawnProjectile = null)'>47</a> | 52 | 1 :heavy_check_mark: | 0 | 15 | 26 / 19 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L37' title='Boomerang Goriya.activeBoomerang'>37</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L24' title='float Goriya.BOOMERANG_RANGE'>24</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L23' title='float Goriya.BOOMERANG_SPEED'>23</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L188' title='void Goriya.ChooseNextStep()'>188</a> | 69 | 2 :heavy_check_mark: | 0 | 5 | 12 / 6 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L38' title='ContentManager Goriya.contentManager'>38</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L29' title='Direction Goriya.currentDirection'>29</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L16' title='GoriyaState Goriya.currentState'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L18' title='int Goriya.DAMAGE'>18</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L30' title='Direction Goriya.currentDirection'>30</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L15' title='GoriyaState Goriya.currentState'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L17' title='int Goriya.DAMAGE'>17</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L181' title='void Goriya.Die()'>181</a> | 83 | 2 :heavy_check_mark: | 0 | 3 | 6 / 3 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L42' title='int[] Goriya.downFrames'>42</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L108' title='void Goriya.Draw(SpriteBatch spriteBatch, Vector2 location)'>108</a> | 84 | 2 :heavy_check_mark: | 0 | 5 | 7 / 2 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L35' title='float Goriya.FLIP_INTERVAL'>35</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L36' title='float Goriya.FLIP_INTERVAL'>36</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L45' title='bool Goriya.FlipsOnVertical'>45</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L34' title='float Goriya.flipTimer'>34</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L215' title='Direction Goriya.GetDirectionTo(Vector2 target)'>215</a> | 80 | 4 :heavy_check_mark: | 0 | 3 | 8 / 2 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L256' title='float Goriya.GetRandomThrowTime()'>256</a> | 89 | 1 :heavy_check_mark: | 0 | 2 | 4 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L17' title='int Goriya.HEALTH'>17</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L25' title='Rectangle Goriya.innerBounds'>25</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L193' title='bool Goriya.IsBoomerangActive()'>193</a> | 77 | 4 :heavy_check_mark: | 0 | 4 | 8 / 3 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L21' title='float Goriya.MOVE_SPEED'>21</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L35' title='float Goriya.flipTimer'>35</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L201' title='Direction Goriya.GetDirectionTo(Vector2 target)'>201</a> | 80 | 4 :heavy_check_mark: | 0 | 3 | 8 / 2 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L243' title='float Goriya.GetRandomThrowTime()'>243</a> | 89 | 1 :heavy_check_mark: | 0 | 2 | 4 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L165' title='Vector2 Goriya.GetThrowOrigin()'>165</a> | 68 | 1 :heavy_check_mark: | 0 | 4 | 15 / 5 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L16' title='int Goriya.HEALTH'>16</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L26' title='Rectangle Goriya.innerBounds'>26</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L20' title='float Goriya.MOVE_SPEED'>20</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L43' title='int[] Goriya.sideFrames'>43</a> | 91 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L24' title='List<Block> Goriya.solidBlocks'>24</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L33' title='bool Goriya.spriteHorizontalFlip'>33</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L20' title='float Goriya.STEP_DELAY'>20</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L19' title='float Goriya.STEP_SIZE'>19</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L31' title='float Goriya.stepTimer'>31</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L30' title='Vector2 Goriya.targetPosition'>30</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L23' title='float Goriya.THROW_COOLDOWN_MAX'>23</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L22' title='float Goriya.THROW_COOLDOWN_MIN'>22</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L168' title='void Goriya.ThrowBoomerang()'>168</a> | 65 | 2 :heavy_check_mark: | 0 | 8 | 24 / 7 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L25' title='List<Block> Goriya.solidBlocks'>25</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L39' title='Action<AbstractItem> Goriya.spawnProjectile'>39</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L34' title='bool Goriya.spriteHorizontalFlip'>34</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L19' title='float Goriya.STEP_DELAY'>19</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L18' title='float Goriya.STEP_SIZE'>18</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L32' title='float Goriya.stepTimer'>32</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L31' title='Vector2 Goriya.targetPosition'>31</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L22' title='float Goriya.THROW_COOLDOWN_MAX'>22</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L21' title='float Goriya.THROW_COOLDOWN_MIN'>21</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L147' title='void Goriya.ThrowBoomerang()'>147</a> | 69 | 2 :heavy_check_mark: | 0 | 8 | 17 / 5 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L44' title='int[] Goriya.throwFrame'>44</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L32' title='float Goriya.throwTimer'>32</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L76' title='void Goriya.UpdateEnemy(GameTime gameTime)'>76</a> | 62 | 7 :heavy_check_mark: | 0 | 5 | 31 / 10 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L224' title='void Goriya.UpdateSprite()'>224</a> | 58 | 10 :radioactive: | 0 | 5 | 32 / 11 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L151' title='void Goriya.UpdateThrowing(float deltaTime)'>151</a> | 67 | 3 :heavy_check_mark: | 0 | 5 | 16 / 7 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L116' title='void Goriya.UpdateWalking(float deltaTime)'>116</a> | 55 | 7 :heavy_check_mark: | 0 | 3 | 34 / 15 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L33' title='float Goriya.throwTimer'>33</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L74' title='void Goriya.UpdateEnemy(GameTime gameTime)'>74</a> | 63 | 6 :heavy_check_mark: | 0 | 4 | 29 / 9 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L210' title='void Goriya.UpdateSprite()'>210</a> | 58 | 10 :radioactive: | 0 | 5 | 32 / 11 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L136' title='void Goriya.UpdateThrowing(float deltaTime)'>136</a> | 71 | 3 :heavy_check_mark: | 0 | 2 | 10 / 5 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L104' title='void Goriya.UpdateWalking(float deltaTime)'>104</a> | 55 | 7 :heavy_check_mark: | 0 | 3 | 31 / 15 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L41' title='int[] Goriya.upFrames'>41</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
 
 <a href="#Goriya-class-diagram">:link: to `Goriya` class diagram</a>
@@ -2091,8 +2035,8 @@ The `Sprint.Enemies.Concrete` namespace contains 20 named types.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L15' title='GoriyaState.Throwing'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L15' title='GoriyaState.Walking'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L14' title='GoriyaState.Throwing'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Goriya.cs#L14' title='GoriyaState.Walking'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 
 <a href="#Goriya.GoriyaState-class-diagram">:link: to `Goriya.GoriyaState` class diagram</a>
 
@@ -2507,8 +2451,8 @@ The `Sprint.Controllers` namespace contains 1 named types.
 The `Sprint.Doors` namespace contains 4 named types.
 
 - 4 named types.
-- 343 total lines of source code.
-- Approximately 108 lines of executable code.
+- 344 total lines of source code.
+- Approximately 110 lines of executable code.
 - The highest cyclomatic complexity is 8 :warning:.
 
 <details>
@@ -2624,29 +2568,30 @@ The `Sprint.Doors` namespace contains 4 named types.
 </summary>
 <br>
 
-- The `DoorTransitionHandler` contains 16 members.
-- 99 total lines of source code.
-- Approximately 34 lines of executable code.
+- The `DoorTransitionHandler` contains 17 members.
+- 100 total lines of source code.
+- Approximately 36 lines of executable code.
 - The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L26' title='DoorTransitionHandler.DoorTransitionHandler(DoorManager doorManager, ILink link, Func<Rectangle> getInnerBounds, Func<int> getTopDoorLeft, Func<int> getTopDoorRight, Func<int> getSideDoorTop, Func<int> getSideDoorBottom, LevelLoader levelLoader, EnemyFactory enemyFactory, Action<LevelData, Level> onRoomChanged, Action onRebuildCollision, Action<string> updateLinkMapPos, Action<LevelData, string> updateInventoryMap)'>26</a> | 59 | 1 :heavy_check_mark: | 0 | 11 | 26 / 13 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L12' title='DoorManager DoorTransitionHandler.doorManager'>12</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L20' title='EnemyFactory DoorTransitionHandler.enemyFactory'>20</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L14' title='Func<Rectangle> DoorTransitionHandler.getInnerBounds'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L18' title='Func<int> DoorTransitionHandler.getSideDoorBottom'>18</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L17' title='Func<int> DoorTransitionHandler.getSideDoorTop'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L15' title='Func<int> DoorTransitionHandler.getTopDoorLeft'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L16' title='Func<int> DoorTransitionHandler.getTopDoorRight'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L53' title='void DoorTransitionHandler.Handle(string exitDirection)'>53</a> | 51 | 2 :heavy_check_mark: | 0 | 15 | 49 / 19 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L19' title='LevelLoader DoorTransitionHandler.levelLoader'>19</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L13' title='ILink DoorTransitionHandler.link'>13</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L22' title='Action DoorTransitionHandler.onRebuildCollision'>22</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L21' title='Action<LevelData, Level> DoorTransitionHandler.onRoomChanged'>21</a> | 100 | 0 :heavy_check_mark: | 0 | 3 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L103' title='void DoorTransitionHandler.ReloadMapReferences()'>103</a> | 84 | 1 :heavy_check_mark: | 0 | 6 | 5 / 2 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L24' title='Action<LevelData, string> DoorTransitionHandler.updateInventoryMap'>24</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L23' title='Action<string> DoorTransitionHandler.updateLinkMapPos'>23</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L28' title='DoorTransitionHandler.DoorTransitionHandler(DoorManager doorManager, ILink link, Func<Rectangle> getInnerBounds, Func<int> getTopDoorLeft, Func<int> getTopDoorRight, Func<int> getSideDoorTop, Func<int> getSideDoorBottom, LevelLoader levelLoader, EnemyFactory enemyFactory, Action<LevelData, Level> onRoomChanged, Action onRebuildCollision, Action<string> updateLinkMapPos, Action<LevelData, string> updateInventoryMap, Action<AbstractItem> spawnProjectile = null)'>28</a> | 56 | 1 :heavy_check_mark: | 0 | 12 | 28 / 15 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L13' title='DoorManager DoorTransitionHandler.doorManager'>13</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L21' title='EnemyFactory DoorTransitionHandler.enemyFactory'>21</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L15' title='Func<Rectangle> DoorTransitionHandler.getInnerBounds'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L19' title='Func<int> DoorTransitionHandler.getSideDoorBottom'>19</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L18' title='Func<int> DoorTransitionHandler.getSideDoorTop'>18</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L16' title='Func<int> DoorTransitionHandler.getTopDoorLeft'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L17' title='Func<int> DoorTransitionHandler.getTopDoorRight'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L57' title='void DoorTransitionHandler.Handle(string exitDirection)'>57</a> | 51 | 2 :heavy_check_mark: | 0 | 16 | 47 / 19 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L20' title='LevelLoader DoorTransitionHandler.levelLoader'>20</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L14' title='ILink DoorTransitionHandler.link'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L23' title='Action DoorTransitionHandler.onRebuildCollision'>23</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L22' title='Action<LevelData, Level> DoorTransitionHandler.onRoomChanged'>22</a> | 100 | 0 :heavy_check_mark: | 0 | 3 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L105' title='void DoorTransitionHandler.ReloadMapReferences()'>105</a> | 84 | 1 :heavy_check_mark: | 0 | 6 | 5 / 2 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L24' title='Action<AbstractItem> DoorTransitionHandler.spawnProjectile'>24</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L26' title='Action<LevelData, string> DoorTransitionHandler.updateInventoryMap'>26</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Doors/DoorTransitionHandler.cs#L25' title='Action<string> DoorTransitionHandler.updateLinkMapPos'>25</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 
 <a href="#DoorTransitionHandler-class-diagram">:link: to `DoorTransitionHandler` class diagram</a>
 
@@ -2664,11 +2609,11 @@ The `Sprint.Doors` namespace contains 4 named types.
 </summary>
 <br>
 
-The `Sprint.Enemies` namespace contains 6 named types.
+The `Sprint.Enemies` namespace contains 4 named types.
 
-- 6 named types.
-- 332 total lines of source code.
-- Approximately 115 lines of executable code.
+- 4 named types.
+- 310 total lines of source code.
+- Approximately 116 lines of executable code.
 - The highest cyclomatic complexity is 9 :warning:.
 
 <details>
@@ -2734,7 +2679,7 @@ The `Sprint.Enemies` namespace contains 6 named types.
 
 - The `EnemyFactory` contains 12 members.
 - 87 total lines of source code.
-- Approximately 24 lines of executable code.
+- Approximately 25 lines of executable code.
 - The highest cyclomatic complexity is 3 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
@@ -2743,7 +2688,7 @@ The `Sprint.Enemies` namespace contains 6 named types.
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/EnemyFactory.cs#L34' title='Texture2D EnemyFactory.bossSpriteSheet'>34</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/EnemyFactory.cs#L38' title='ContentManager EnemyFactory.contentManager'>38</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/EnemyFactory.cs#L52' title='AbstractItem EnemyFactory.CreateDrop(EnemyType type)'>52</a> | 88 | 1 :heavy_check_mark: | 0 | 6 | 7 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/EnemyFactory.cs#L81' title='IEnemy EnemyFactory.CreateEnemy(EnemyType type, Vector2 position, List<Block> solidBlocks, Rectangle innerBounds, Action<AbstractItem> onItemDropped = null, bool skipRandomDrop = false)'>81</a> | 59 | 3 :heavy_check_mark: | 0 | 24 | 29 / 7 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/EnemyFactory.cs#L80' title='IEnemy EnemyFactory.CreateEnemy(EnemyType type, Vector2 position, List<Block> solidBlocks, Rectangle innerBounds, Action<AbstractItem> onItemDropped = null, bool skipRandomDrop = false, Action<AbstractItem> spawnProjectile = null)'>80</a> | 57 | 3 :heavy_check_mark: | 0 | 24 | 29 / 8 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/EnemyFactory.cs#L36' title='Texture2D EnemyFactory.dustSheet'>36</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/EnemyFactory.cs#L33' title='Texture2D EnemyFactory.enemySpriteSheet'>33</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/EnemyFactory.cs#L35' title='Texture2D EnemyFactory.linkSheet'>35</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
@@ -2797,28 +2742,6 @@ The `Sprint.Enemies` namespace contains 6 named types.
 
 <details>
 <summary>
-  <strong id="enemyprojectilefactory">
-    EnemyProjectileFactory :question:
-  </strong>
-</summary>
-<br>
-
-- The `EnemyProjectileFactory` contains 0 members.
-- 1 total lines of source code.
-- Approximately 0 lines of executable code.
-- The highest cyclomatic complexity is 0 :question:.
-
-| Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
-| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-
-<a href="#EnemyProjectileFactory-class-diagram">:link: to `EnemyProjectileFactory` class diagram</a>
-
-<a href="#sprint-enemies">:top: back to Sprint.Enemies</a>
-
-</details>
-
-<details>
-<summary>
   <strong id="enemytype">
     EnemyType :heavy_check_mark:
   </strong>
@@ -2847,29 +2770,6 @@ The `Sprint.Enemies` namespace contains 6 named types.
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/EnemyFactory.cs#L19' title='EnemyType.Zol'>19</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 
 <a href="#EnemyType-class-diagram">:link: to `EnemyType` class diagram</a>
-
-<a href="#sprint-enemies">:top: back to Sprint.Enemies</a>
-
-</details>
-
-<details>
-<summary>
-  <strong id="projectiletype">
-    ProjectileType :heavy_check_mark:
-  </strong>
-</summary>
-<br>
-
-- The `ProjectileType` contains 1 members.
-- 4 total lines of source code.
-- Approximately 0 lines of executable code.
-- The highest cyclomatic complexity is 0 :heavy_check_mark:.
-
-| Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
-| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/EnemyProjectileFactory.cs#L11' title='ProjectileType.AquamentusFireball'>11</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-
-<a href="#ProjectileType-class-diagram">:link: to `ProjectileType` class diagram</a>
 
 <a href="#sprint-enemies">:top: back to Sprint.Enemies</a>
 
@@ -3825,17 +3725,17 @@ The `Sprint.UI.InventoryElements` namespace contains 3 named types.
 <details>
 <summary>
   <strong id="sprint-item">
-    Sprint.Item :warning:
+    Sprint.Item :radioactive:
   </strong>
 </summary>
 <br>
 
-The `Sprint.Item` namespace contains 11 named types.
+The `Sprint.Item` namespace contains 12 named types.
 
-- 11 named types.
-- 555 total lines of source code.
-- Approximately 170 lines of executable code.
-- The highest cyclomatic complexity is 9 :warning:.
+- 12 named types.
+- 640 total lines of source code.
+- Approximately 211 lines of executable code.
+- The highest cyclomatic complexity is 10 :radioactive:.
 
 <details>
 <summary>
@@ -3845,26 +3745,32 @@ The `Sprint.Item` namespace contains 11 named types.
 </summary>
 <br>
 
-- The `AbstractItem` contains 13 members.
-- 46 total lines of source code.
-- Approximately 15 lines of executable code.
+- The `AbstractItem` contains 19 members.
+- 53 total lines of source code.
+- Approximately 22 lines of executable code.
 - The highest cyclomatic complexity is 3 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L35' title='AbstractItem.AbstractItem(string name, Texture2D texture, Vector2 position)'>35</a> | 79 | 1 :heavy_check_mark: | 0 | 2 | 6 / 3 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L44' title='void AbstractItem.Draw(SpriteBatch sb, Vector2 location)'>44</a> | 92 | 2 :heavy_check_mark: | 0 | 4 | 4 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L42' title='AbstractItem.AbstractItem(string name, Texture2D texture, Vector2 position)'>42</a> | 79 | 1 :heavy_check_mark: | 0 | 2 | 6 / 3 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L32' title='void AbstractItem.Cancel()'>32</a> | 96 | 1 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L31' title='bool AbstractItem.cancelled'>31</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L35' title='bool AbstractItem.DamagesEnemies'>35</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L36' title='bool AbstractItem.DamagesPlayer'>36</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L51' title='void AbstractItem.Draw(SpriteBatch sb, Vector2 location)'>51</a> | 92 | 2 :heavy_check_mark: | 0 | 4 | 4 / 1 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L30' title='bool AbstractItem.IsCollected'>30</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L31' title='bool AbstractItem.IsFinished'>31</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L33' title='bool AbstractItem.IsFinished'>33</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L27' title='string AbstractItem.Name'>27</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L42' title='void AbstractItem.OnCollect(ILink link)'>42</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L49' title='void AbstractItem.OnCollect(ILink link)'>49</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L38' title='void AbstractItem.OnEnemyHit()'>38</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L11' title='Vector2 AbstractItem.position'>11</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L13' title='Vector2 AbstractItem.Position'>13</a> | 87 | 3 :heavy_check_mark: | 0 | 4 | 13 / 5 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L28' title='Rectangle AbstractItem.Rect'>28</a> | 100 | 2 :heavy_check_mark: | 0 | 2 | 1 / 1 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L29' title='Rectangle AbstractItem.SourceRect'>29</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L33' title='IPositionedSprite AbstractItem.sprite'>33</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L40' title='IPositionedSprite AbstractItem.sprite'>40</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L37' title='bool AbstractItem.StopsOnHit'>37</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L10' title='Texture2D AbstractItem.texture'>10</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L49' title='void AbstractItem.Update(GameTime time)'>49</a> | 95 | 2 :heavy_check_mark: | 0 | 3 | 4 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/AbstractItem.cs#L56' title='void AbstractItem.Update(GameTime time)'>56</a> | 95 | 2 :heavy_check_mark: | 0 | 3 | 4 / 1 |
 
 <a href="#AbstractItem-class-diagram">:link: to `AbstractItem` class diagram</a>
 
@@ -3875,25 +3781,27 @@ The `Sprint.Item` namespace contains 11 named types.
 <details>
 <summary>
   <strong id="arrow">
-    Arrow :heavy_check_mark:
+    Arrow :warning:
   </strong>
 </summary>
 <br>
 
-- The `Arrow` contains 7 members.
-- 32 total lines of source code.
-- Approximately 12 lines of executable code.
-- The highest cyclomatic complexity is 6 :heavy_check_mark:.
+- The `Arrow` contains 9 members.
+- 34 total lines of source code.
+- Approximately 16 lines of executable code.
+- The highest cyclomatic complexity is 8 :warning:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Arrow.cs#L13' title='Arrow.Arrow(Rectangle sourceRect, Vector2 pos, Vector2 vel, float maxDistance, float rotation, Vector2 origin, float scale)'>13</a> | 79 | 1 :heavy_check_mark: | 0 | 8 | 5 / 2 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Arrow.cs#L37' title='bool Arrow.DamagesEnemies'>37</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Arrow.cs#L9' title='int Arrow.HITBOX_SIZE'>9</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Arrow.cs#L11' title='bool Arrow.hitEnemy'>11</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Arrow.cs#L37' title='bool Arrow.IsFinished'>37</a> | 89 | 6 :heavy_check_mark: | 0 | 2 | 1 / 2 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Arrow.cs#L28' title='void Arrow.MarkHit()'>28</a> | 96 | 1 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Arrow.cs#L35' title='bool Arrow.IsFinished'>35</a> | 88 | 8 :warning: | 0 | 3 | 1 / 2 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Arrow.cs#L39' title='void Arrow.OnEnemyHit()'>39</a> | 96 | 1 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Arrow.cs#L19' title='Arrow Arrow.StartMoving()'>19</a> | 84 | 2 :heavy_check_mark: | 0 | 2 | 8 / 3 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Arrow.cs#L30' title='void Arrow.Update(GameTime time)'>30</a> | 83 | 2 :heavy_check_mark: | 0 | 5 | 6 / 2 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Arrow.cs#L38' title='bool Arrow.StopsOnHit'>38</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Arrow.cs#L28' title='void Arrow.Update(GameTime time)'>28</a> | 83 | 2 :heavy_check_mark: | 0 | 5 | 6 / 2 |
 
 <a href="#Arrow-class-diagram">:link: to `Arrow` class diagram</a>
 
@@ -3904,24 +3812,27 @@ The `Sprint.Item` namespace contains 11 named types.
 <details>
 <summary>
   <strong id="boomerang">
-    Boomerang :heavy_check_mark:
+    Boomerang :warning:
   </strong>
 </summary>
 <br>
 
-- The `Boomerang` contains 6 members.
-- 31 total lines of source code.
-- Approximately 12 lines of executable code.
-- The highest cyclomatic complexity is 6 :heavy_check_mark:.
+- The `Boomerang` contains 9 members.
+- 39 total lines of source code.
+- Approximately 19 lines of executable code.
+- The highest cyclomatic complexity is 8 :warning:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L12' title='Boomerang.Boomerang(Vector2 pos, Vector2 vel, float maxDistance)'>12</a> | 74 | 1 :heavy_check_mark: | 0 | 8 | 6 / 3 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L37' title='ISprite Boomerang.GetSprite()'>37</a> | 100 | 1 :heavy_check_mark: | 0 | 2 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L10' title='int Boomerang.HITBOX_SIZE'>10</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L35' title='bool Boomerang.IsFinished'>35</a> | 89 | 6 :heavy_check_mark: | 0 | 3 | 1 / 2 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L19' title='Boomerang Boomerang.StartMoving()'>19</a> | 84 | 2 :heavy_check_mark: | 0 | 2 | 8 / 3 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L28' title='void Boomerang.Update(GameTime time)'>28</a> | 83 | 2 :heavy_check_mark: | 0 | 5 | 6 / 2 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L13' title='Boomerang.Boomerang(Vector2 pos, Vector2 vel, float maxDistance, bool damagesEnemies = true, bool damagesPlayer = false)'>13</a> | 63 | 1 :heavy_check_mark: | 0 | 8 | 10 / 7 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L10' title='bool Boomerang.damagesEnemies'>10</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L42' title='bool Boomerang.DamagesEnemies'>42</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L11' title='bool Boomerang.damagesPlayer'>11</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L43' title='bool Boomerang.DamagesPlayer'>43</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L8' title='int Boomerang.HITBOX_SIZE'>8</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L40' title='bool Boomerang.IsFinished'>40</a> | 88 | 8 :warning: | 0 | 4 | 1 / 2 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L24' title='Boomerang Boomerang.StartMoving()'>24</a> | 84 | 2 :heavy_check_mark: | 0 | 2 | 8 / 3 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Boomerang.cs#L33' title='void Boomerang.Update(GameTime time)'>33</a> | 83 | 2 :heavy_check_mark: | 0 | 5 | 6 / 2 |
 
 <a href="#Boomerang-class-diagram">:link: to `Boomerang` class diagram</a>
 
@@ -3952,6 +3863,41 @@ The `Sprint.Item` namespace contains 11 named types.
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/CarriedItem.cs#L22' title='void CarriedItem.Update()'>22</a> | 73 | 3 :heavy_check_mark: | 0 | 5 | 8 / 4 |
 
 <a href="#CarriedItem-class-diagram">:link: to `CarriedItem` class diagram</a>
+
+<a href="#sprint-item">:top: back to Sprint.Item</a>
+
+</details>
+
+<details>
+<summary>
+  <strong id="fireball">
+    Fireball :heavy_check_mark:
+  </strong>
+</summary>
+<br>
+
+- The `Fireball` contains 13 members.
+- 39 total lines of source code.
+- Approximately 15 lines of executable code.
+- The highest cyclomatic complexity is 4 :heavy_check_mark:.
+
+| Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Fireball.cs#L22' title='Fireball.Fireball(Texture2D texture, Vector2 pos, Vector2 direction)'>22</a> | 68 | 2 :heavy_check_mark: | 0 | 8 | 13 / 5 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Fireball.cs#L45' title='bool Fireball.DamagesPlayer'>45</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Fireball.cs#L17' title='float Fireball.FrameTime'>17</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Fireball.cs#L15' title='int[] Fireball.FrameX'>15</a> | 87 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Fireball.cs#L16' title='int Fireball.FrameY'>16</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Fireball.cs#L44' title='bool Fireball.IsFinished'>44</a> | 91 | 4 :heavy_check_mark: | 0 | 1 | 1 / 2 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Fireball.cs#L20' title='float Fireball.lifetime'>20</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Fireball.cs#L11' title='float Fireball.MAX_LIFETIME'>11</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Fireball.cs#L13' title='int Fireball.SOURCE_HEIGHT'>13</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Fireball.cs#L12' title='int Fireball.SOURCE_WIDTH'>12</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Fireball.cs#L10' title='float Fireball.SPEED'>10</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Fireball.cs#L36' title='void Fireball.Update(GameTime gameTime)'>36</a> | 75 | 1 :heavy_check_mark: | 0 | 4 | 7 / 4 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/Fireball.cs#L19' title='Vector2 Fireball.velocity'>19</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+
+<a href="#Fireball-class-diagram">:link: to `Fireball` class diagram</a>
 
 <a href="#sprint-item">:top: back to Sprint.Item</a>
 
@@ -3996,17 +3942,19 @@ The `Sprint.Item` namespace contains 11 named types.
 </summary>
 <br>
 
-- The `ItemFactory` contains 4 members.
-- 75 total lines of source code.
-- Approximately 9 lines of executable code.
+- The `ItemFactory` contains 6 members.
+- 85 total lines of source code.
+- Approximately 11 lines of executable code.
 - The highest cyclomatic complexity is 1 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L34' title='Arrow ItemFactory.CreateArrow(Vector2 pos, Vector2 vel, float rotation, float scale = 1, float maxDistance = null)'>34</a> | 72 | 1 :heavy_check_mark: | 0 | 3 | 12 / 3 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L29' title='Boomerang ItemFactory.CreateBoomerang(Vector2 pos, Vector2 vel, float maxDistance)'>29</a> | 92 | 1 :heavy_check_mark: | 0 | 2 | 4 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L53' title='StillItem ItemFactory.CreateStillItem(StillType type, Vector2 pos, float scale = null)'>53</a> | 68 | 1 :heavy_check_mark: | 0 | 7 | 26 / 3 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L47' title='TimeBomb ItemFactory.CreateTimeBomb(double explodeDelayMillis, Vector2 pos, Vector2 velocity, float throwDistance, float scale)'>47</a> | 81 | 1 :heavy_check_mark: | 0 | 3 | 5 / 2 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L45' title='Arrow ItemFactory.CreateArrow(Vector2 pos, Vector2 vel, float rotation, float scale = 1, float maxDistance = null)'>45</a> | 72 | 1 :heavy_check_mark: | 0 | 3 | 12 / 3 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L30' title='Boomerang ItemFactory.CreateBoomerang(Vector2 pos, Vector2 vel, float maxDistance)'>30</a> | 92 | 1 :heavy_check_mark: | 0 | 2 | 4 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L35' title='Boomerang ItemFactory.CreateEnemyBoomerang(Vector2 pos, Vector2 vel, float maxDistance)'>35</a> | 91 | 1 :heavy_check_mark: | 0 | 2 | 4 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L40' title='Fireball ItemFactory.CreateFireball(Texture2D texture, Vector2 pos, Vector2 direction)'>40</a> | 92 | 1 :heavy_check_mark: | 0 | 3 | 4 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L64' title='StillItem ItemFactory.CreateStillItem(StillType type, Vector2 pos, float scale = null)'>64</a> | 68 | 1 :heavy_check_mark: | 0 | 7 | 26 / 3 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L58' title='TimeBomb ItemFactory.CreateTimeBomb(double explodeDelayMillis, Vector2 pos, Vector2 velocity, float throwDistance, float scale)'>58</a> | 81 | 1 :heavy_check_mark: | 0 | 3 | 5 / 2 |
 
 <a href="#ItemFactory-class-diagram">:link: to `ItemFactory` class diagram</a>
 
@@ -4049,27 +3997,30 @@ The `Sprint.Item` namespace contains 11 named types.
 <details>
 <summary>
   <strong id="itemmanager">
-    ItemManager :warning:
+    ItemManager :radioactive:
   </strong>
 </summary>
 <br>
 
-- The `ItemManager` contains 9 members.
-- 108 total lines of source code.
-- Approximately 47 lines of executable code.
-- The highest cyclomatic complexity is 9 :warning:.
+- The `ItemManager` contains 12 members.
+- 124 total lines of source code.
+- Approximately 53 lines of executable code.
+- The highest cyclomatic complexity is 10 :radioactive:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L114' title='void ItemManager.Draw(SpriteBatch sb)'>114</a> | 94 | 2 :heavy_check_mark: | 0 | 4 | 5 / 1 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L18' title='IReadOnlyList<AbstractItem> ItemManager.JustFinished'>18</a> | 100 | 2 :heavy_check_mark: | 0 | 3 | 1 / 2 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L15' title='List<AbstractItem> ItemManager.justFinishedItems'>15</a> | 93 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L20' title='Vector2 ItemManager.ProjectileOrigin(ILink link)'>20</a> | 66 | 1 :heavy_check_mark: | 0 | 5 | 17 / 6 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L14' title='List<AbstractItem> ItemManager.spawnedItems'>14</a> | 93 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L17' title='IReadOnlyList<AbstractItem> ItemManager.SpawnedItems'>17</a> | 100 | 2 :heavy_check_mark: | 0 | 3 | 1 / 2 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L104' title='void ItemManager.SpawnItem(AbstractItem item)'>104</a> | 97 | 1 :heavy_check_mark: | 0 | 3 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L106' title='void ItemManager.Update(GameTime time)'>106</a> | 74 | 2 :heavy_check_mark: | 0 | 4 | 7 / 5 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L38' title='void ItemManager.UseItem(ILink link, Inventory inventory, int slot)'>38</a> | 46 | 9 :warning: | 0 | 16 | 65 / 28 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L111' title='void ItemManager.Clear()'>111</a> | 89 | 1 :heavy_check_mark: | 0 | 3 | 5 / 2 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L130' title='void ItemManager.Draw(SpriteBatch sb)'>130</a> | 94 | 2 :heavy_check_mark: | 0 | 4 | 5 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L14' title='double ItemManager.ITEM_COOLDOWN_MILLIS'>14</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L22' title='double ItemManager.itemCooldownMillis'>22</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L20' title='IReadOnlyList<AbstractItem> ItemManager.JustFinished'>20</a> | 100 | 2 :heavy_check_mark: | 0 | 3 | 1 / 2 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L17' title='List<AbstractItem> ItemManager.justFinishedItems'>17</a> | 93 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L24' title='Vector2 ItemManager.ProjectileOrigin(ILink link)'>24</a> | 66 | 1 :heavy_check_mark: | 0 | 5 | 16 / 6 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L16' title='List<AbstractItem> ItemManager.spawnedItems'>16</a> | 93 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L19' title='IReadOnlyList<AbstractItem> ItemManager.SpawnedItems'>19</a> | 100 | 2 :heavy_check_mark: | 0 | 3 | 1 / 2 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L109' title='void ItemManager.SpawnItem(AbstractItem item)'>109</a> | 97 | 1 :heavy_check_mark: | 0 | 3 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L117' title='void ItemManager.Update(GameTime time)'>117</a> | 68 | 3 :heavy_check_mark: | 0 | 4 | 12 / 7 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L41' title='void ItemManager.UseItem(ILink link, Inventory inventory, int slot)'>41</a> | 45 | 10 :radioactive: | 0 | 16 | 67 / 30 |
 
 <a href="#ItemManager-class-diagram">:link: to `ItemManager` class diagram</a>
 
@@ -4115,24 +4066,24 @@ The `Sprint.Item` namespace contains 11 named types.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L22' title='StillType.BlueCandle'>22</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L10' title='StillType.BlueHeart'>10</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L18' title='StillType.BluePotion'>18</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L20' title='StillType.Bomb'>20</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L21' title='StillType.Bow'>21</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L15' title='StillType.Clock'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L24' title='StillType.Compass'>24</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L14' title='StillType.Fairy'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L16' title='StillType.GoldRupee'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L25' title='StillType.GoldTriforce'>25</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L11' title='StillType.HalfHeart'>11</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L9' title='StillType.Heart'>9</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L13' title='StillType.HeartContainer'>13</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L23' title='StillType.Key'>23</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L19' title='StillType.Map'>19</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L17' title='StillType.PurpleRupee'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L26' title='StillType.PurpleTriforce'>26</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L12' title='StillType.ZeroHeart'>12</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L23' title='StillType.BlueCandle'>23</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L11' title='StillType.BlueHeart'>11</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L19' title='StillType.BluePotion'>19</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L21' title='StillType.Bomb'>21</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L22' title='StillType.Bow'>22</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L16' title='StillType.Clock'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L25' title='StillType.Compass'>25</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L15' title='StillType.Fairy'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L17' title='StillType.GoldRupee'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L26' title='StillType.GoldTriforce'>26</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L12' title='StillType.HalfHeart'>12</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L10' title='StillType.Heart'>10</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L14' title='StillType.HeartContainer'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L24' title='StillType.Key'>24</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L20' title='StillType.Map'>20</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L18' title='StillType.PurpleRupee'>18</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L27' title='StillType.PurpleTriforce'>27</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemFactory.cs#L13' title='StillType.ZeroHeart'>13</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 
 <a href="#ItemFactory.StillType-class-diagram">:link: to `ItemFactory.StillType` class diagram</a>
 
@@ -4170,7 +4121,7 @@ The `Sprint.Item` namespace contains 11 named types.
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L19' title='bool TimeBomb.exploded'>19</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L29' title='Vector2 TimeBomb.explosionCenter'>29</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L98' title='Vector2 TimeBomb.ExplosionCenter'>98</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 2 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L108' title='bool TimeBomb.IsFinished'>108</a> | 93 | 4 :heavy_check_mark: | 0 | 0 | 1 / 2 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L108' title='bool TimeBomb.IsFinished'>108</a> | 90 | 6 :heavy_check_mark: | 0 | 1 | 1 / 2 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L30' title='bool TimeBomb.JustExploded'>30</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L28' title='bool TimeBomb.landed'>28</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L18' title='double TimeBomb.millisUntilExplode'>18</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
@@ -5633,7 +5584,7 @@ class Level{
 classDiagram
 class LevelBuilder{
     -int TILE_SIZE$
-    +Build(LevelData data, EnemyFactory enemyFactory, Rectangle innerBounds)$ Level
+    +Build(LevelData data, EnemyFactory enemyFactory, Rectangle innerBounds, Action<AbstractItem> spawnProjectile = null)$ Level
     +CreatePickupItem(string name, Vector2 pos)$ AbstractItem
 }
 
@@ -6270,25 +6221,6 @@ class Walking{
 
 ```
 
-<div id="ActiveItemEnemyCollision-class-diagram"></div>
-
-##### `ActiveItemEnemyCollision` class diagram
-
-```mermaid
-classDiagram
-ICollisionHandler <|-- ActiveItemEnemyCollision : implements
-class ActiveItemEnemyCollision{
-    -int PROJECTILE_DAMAGE$
-    -int BOMB_DAMAGE$
-    -int BOMB_RADIUS$
-    -ItemManager itemManager
-    -EnemyManager enemyManager
-    +.ctor(ItemManager itemManager, EnemyManager enemyManager) ActiveItemEnemyCollision
-    +Handle() void
-}
-
-```
-
 <div id="CollisionManager-class-diagram"></div>
 
 ##### `CollisionManager` class diagram
@@ -6319,23 +6251,6 @@ class LinkEnemyCollision{
 
 ```
 
-<div id="LinkEnemyProjectileCollision-class-diagram"></div>
-
-##### `LinkEnemyProjectileCollision` class diagram
-
-```mermaid
-classDiagram
-ICollisionHandler <|-- LinkEnemyProjectileCollision : implements
-class LinkEnemyProjectileCollision{
-    -int PROJECTILE_DAMAGE$
-    -Link link
-    -EnemyManager enemyManager
-    +.ctor(Link link, EnemyManager enemyManager) LinkEnemyProjectileCollision
-    +Handle() void
-}
-
-```
-
 <div id="LinkItemCollision-class-diagram"></div>
 
 ##### `LinkItemCollision` class diagram
@@ -6350,6 +6265,29 @@ class LinkItemCollision{
     +.ctor(ILink link, Inventory inventory, List<AbstractItem> worldItems) LinkItemCollision
     +Handle() void
     +HandlePickup(AbstractItem item) void
+}
+
+```
+
+<div id="ProjectileCollision-class-diagram"></div>
+
+##### `ProjectileCollision` class diagram
+
+```mermaid
+classDiagram
+ICollisionHandler <|-- ProjectileCollision : implements
+class ProjectileCollision{
+    -int PROJECTILE_DAMAGE$
+    -int BOMB_DAMAGE$
+    -int BOMB_RADIUS$
+    -Link link
+    -ItemManager itemManager
+    -EnemyManager enemyManager
+    +.ctor(Link link, ItemManager itemManager, EnemyManager enemyManager) ProjectileCollision
+    +Handle() void
+    +ApplyEnemyDamage(AbstractItem item) void
+    +TryFeedDodongo(TimeBomb bomb) void
+    +ApplyBombBlast(TimeBomb bomb) void
 }
 
 ```
@@ -6590,43 +6528,18 @@ class Aquamentus{
     -float DIRECTION_SWAP_MAX$
     -float moveDirectionTimer
     -bool moveLeft
-    -EnemyProjectileFactory projectileFactory
-    -List<AquamentusFireball> activeFireballs
     -float fireballTimer
     -float FIREBALL_INTERVAL$
-    +IReadOnlyList<AquamentusFireball> ActiveFireballs
+    -Action<AbstractItem> spawnProjectile
+    -Fireball activeFireball
+    -List<Fireball> activeFireballs
+    -Vector2[] FireballDirections$
     +bool CanBeKnockedBack
-    +.ctor(Texture2D texture, Vector2 position, List<Block> solidBlocks, Rectangle innerBounds) Aquamentus
+    +.ctor(Texture2D texture, Vector2 position, List<Block> solidBlocks, Rectangle innerBounds, Action<AbstractItem> spawnProjectile = null) Aquamentus
     +UpdateEnemy(GameTime gameTime) void
-    +Draw(SpriteBatch spriteBatch, Vector2 location) void
     +SpawnFireballs() void
     +GetRandomFloat(float min, float max) float
-}
-
-```
-
-<div id="AquamentusFireball-class-diagram"></div>
-
-##### `AquamentusFireball` class diagram
-
-```mermaid
-classDiagram
-IPositionedSprite <|-- AquamentusFireball : implements
-class AquamentusFireball{
-    -IPositionedSprite sprite
-    -Vector2 position
-    -Vector2 velocity
-    -float lifetime
-    -float MAX_LIFETIME$
-    -float SPEED$
-    -int SOURCE_WIDTH$
-    -int SOURCE_HEIGHT$
-    +bool IsActive
-    +Rectangle Rect
-    +Vector2 Position
-    +.ctor(Texture2D texture, Vector2 startPosition, Vector2 direction) AquamentusFireball
-    +Update(GameTime gameTime) void
-    +Draw(SpriteBatch spriteBatch, Vector2 location) void
+    +Die() void
 }
 
 ```
@@ -6793,6 +6706,8 @@ class Goriya{
     -float MOVE_SPEED$
     -float THROW_COOLDOWN_MIN$
     -float THROW_COOLDOWN_MAX$
+    -float BOOMERANG_SPEED$
+    -float BOOMERANG_RANGE$
     -List<Block> solidBlocks
     -Rectangle innerBounds
     -Direction currentDirection
@@ -6804,19 +6719,19 @@ class Goriya{
     -float FLIP_INTERVAL$
     -Boomerang activeBoomerang
     -ContentManager contentManager
+    -Action<AbstractItem> spawnProjectile
     -int[] upFrames
     -int[] downFrames
     -int[] sideFrames
     -int[] throwFrame
-    +Boomerang ActiveBoomerang
     +bool FlipsOnVertical
-    +.ctor(Texture2D texture, Vector2 position, ContentManager content, List<Block> solidBlocks, Rectangle innerBounds) Goriya
+    +.ctor(Texture2D texture, Vector2 position, ContentManager content, List<Block> solidBlocks, Rectangle innerBounds, Action<AbstractItem> spawnProjectile = null) Goriya
     +UpdateEnemy(GameTime gameTime) void
-    +Draw(SpriteBatch spriteBatch, Vector2 location) void
     +UpdateWalking(float deltaTime) void
     +UpdateThrowing(float deltaTime) void
     +ThrowBoomerang() void
-    +IsBoomerangActive() bool
+    +GetThrowOrigin() Vector2
+    +Die() void
     +ChooseNextStep() void
     +GetDirectionTo(Vector2 target) Direction
     +UpdateSprite() void
@@ -7196,9 +7111,10 @@ class DoorTransitionHandler{
     -EnemyFactory enemyFactory
     -Action<LevelData, Level> onRoomChanged
     -Action onRebuildCollision
+    -Action<AbstractItem> spawnProjectile
     -Action<string> updateLinkMapPos
     -Action<LevelData, string> updateInventoryMap
-    +.ctor(DoorManager doorManager, ILink link, Func<Rectangle> getInnerBounds, Func<int> getTopDoorLeft, Func<int> getTopDoorRight, Func<int> getSideDoorTop, Func<int> getSideDoorBottom, LevelLoader levelLoader, EnemyFactory enemyFactory, Action<LevelData, Level> onRoomChanged, Action onRebuildCollision, Action<string> updateLinkMapPos, Action<LevelData, string> updateInventoryMap) DoorTransitionHandler
+    +.ctor(DoorManager doorManager, ILink link, Func<Rectangle> getInnerBounds, Func<int> getTopDoorLeft, Func<int> getTopDoorRight, Func<int> getSideDoorTop, Func<int> getSideDoorBottom, LevelLoader levelLoader, EnemyFactory enemyFactory, Action<LevelData, Level> onRoomChanged, Action onRebuildCollision, Action<string> updateLinkMapPos, Action<LevelData, string> updateInventoryMap, Action<AbstractItem> spawnProjectile = null) DoorTransitionHandler
     +Handle(string exitDirection) void
     +ReloadMapReferences() void
 }
@@ -7265,7 +7181,7 @@ class EnemyFactory{
     +.ctor(Texture2D enemySpriteSheet, Texture2D bossSpriteSheet, Texture2D linkSheet, Texture2D dustSheet, Texture2D NPCSheet) EnemyFactory
     +CreateDrop(EnemyType type)$ AbstractItem
     +RollRandomDrop()$ AbstractItem
-    +CreateEnemy(EnemyType type, Vector2 position, List<Block> solidBlocks, Rectangle innerBounds, Action<AbstractItem> onItemDropped = null, bool skipRandomDrop = false) IEnemy
+    +CreateEnemy(EnemyType type, Vector2 position, List<Block> solidBlocks, Rectangle innerBounds, Action<AbstractItem> onItemDropped = null, bool skipRandomDrop = false, Action<AbstractItem> spawnProjectile = null) IEnemy
     +WrapWithEffects(IEnemy enemy, Vector2 position, bool skipSpawnCloud = false, AbstractItem droppedItem = null, Action<AbstractItem> onItemDropped = null) EnemyEffectWrapper
 }
 
@@ -7297,17 +7213,6 @@ class EnemyManager{
 
 ```
 
-<div id="EnemyProjectileFactory-class-diagram"></div>
-
-##### `EnemyProjectileFactory` class diagram
-
-```mermaid
-classDiagram
-class EnemyProjectileFactory{
-}
-
-```
-
 <div id="EnemyType-class-diagram"></div>
 
 ##### `EnemyType` class diagram
@@ -7328,18 +7233,6 @@ class EnemyType{
     -OldMan$
     -FlameLeft$
     -FlameRight$
-}
-
-```
-
-<div id="ProjectileType-class-diagram"></div>
-
-##### `ProjectileType` class diagram
-
-```mermaid
-classDiagram
-class ProjectileType{
-    -AquamentusFireball$
 }
 
 ```
@@ -7926,6 +7819,7 @@ IItem <|-- AbstractItem : implements
 class AbstractItem{
     -Texture2D texture
     -Vector2 position
+    -bool cancelled
     -IPositionedSprite sprite
     +Vector2 Position
     +string Name
@@ -7933,6 +7827,11 @@ class AbstractItem{
     +Rectangle SourceRect
     +bool IsCollected
     +bool IsFinished
+    +bool DamagesEnemies
+    +bool DamagesPlayer
+    +bool StopsOnHit
+    +Cancel() void
+    +OnEnemyHit() void
     +.ctor(string name, Texture2D texture, Vector2 position) AbstractItem
     +OnCollect(ILink link) void
     +Draw(SpriteBatch sb, Vector2 location) void
@@ -7951,10 +7850,12 @@ class Arrow{
     -int HITBOX_SIZE$
     -bool hitEnemy
     +bool IsFinished
+    +bool DamagesEnemies
+    +bool StopsOnHit
     +.ctor(Rectangle sourceRect, Vector2 pos, Vector2 vel, float maxDistance, float rotation, Vector2 origin, float scale) Arrow
     +StartMoving() Arrow
-    +MarkHit() void
     +Update(GameTime time) void
+    +OnEnemyHit() void
 }
 
 ```
@@ -7967,11 +7868,14 @@ class Arrow{
 classDiagram
 class Boomerang{
     -int HITBOX_SIZE$
+    -bool damagesEnemies
+    -bool damagesPlayer
     +bool IsFinished
-    +.ctor(Vector2 pos, Vector2 vel, float maxDistance) Boomerang
+    +bool DamagesEnemies
+    +bool DamagesPlayer
+    +.ctor(Vector2 pos, Vector2 vel, float maxDistance, bool damagesEnemies = true, bool damagesPlayer = false) Boomerang
     +StartMoving() Boomerang
     +Update(GameTime time) void
-    +GetSprite() ISprite
 }
 
 ```
@@ -7989,6 +7893,30 @@ class CarriedItem{
     -bool dropped
     +.ctor(AbstractItem item, IEnemy carrier, Action<AbstractItem> onDropped) CarriedItem
     +Update() void
+}
+
+```
+
+<div id="Fireball-class-diagram"></div>
+
+##### `Fireball` class diagram
+
+```mermaid
+classDiagram
+class Fireball{
+    -float SPEED$
+    -float MAX_LIFETIME$
+    -int SOURCE_WIDTH$
+    -int SOURCE_HEIGHT$
+    -int[] FrameX$
+    -int FrameY$
+    -float FrameTime$
+    -Vector2 velocity
+    -float lifetime
+    +bool IsFinished
+    +bool DamagesPlayer
+    +.ctor(Texture2D texture, Vector2 pos, Vector2 direction) Fireball
+    +Update(GameTime gameTime) void
 }
 
 ```
@@ -8021,6 +7949,8 @@ class Inventory{
 classDiagram
 class ItemFactory{
     +CreateBoomerang(Vector2 pos, Vector2 vel, float maxDistance)$ Boomerang
+    +CreateEnemyBoomerang(Vector2 pos, Vector2 vel, float maxDistance)$ Boomerang
+    +CreateFireball(Texture2D texture, Vector2 pos, Vector2 direction)$ Fireball
     +CreateArrow(Vector2 pos, Vector2 vel, float rotation, float scale = 1, float maxDistance = null)$ Arrow
     +CreateTimeBomb(double explodeDelayMillis, Vector2 pos, Vector2 velocity, float throwDistance, float scale)$ TimeBomb
     +CreateStillItem(StillType type, Vector2 pos, float scale = null)$ StillItem
@@ -8056,13 +7986,16 @@ class ItemHudSprites{
 ```mermaid
 classDiagram
 class ItemManager{
+    -double ITEM_COOLDOWN_MILLIS$
     -List<AbstractItem> spawnedItems
     -List<AbstractItem> justFinishedItems
+    -double itemCooldownMillis
     +IReadOnlyList<AbstractItem> SpawnedItems
     +IReadOnlyList<AbstractItem> JustFinished
     +ProjectileOrigin(ILink link)$ Vector2
     +UseItem(ILink link, Inventory inventory, int slot) void
     +SpawnItem(AbstractItem item) void
+    +Clear() void
     +Update(GameTime time) void
     +Draw(SpriteBatch sb) void
 }

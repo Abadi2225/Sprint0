@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
@@ -16,11 +15,13 @@ namespace Sprint.Enemies.Concrete
         private GoriyaState currentState;
         private const int HEALTH = 3;
         private const int DAMAGE = 1;
-        private const float STEP_SIZE = 16f;  // One tile/step
-        private const float STEP_DELAY = 0.5f;  // Time between steps
-        private const float MOVE_SPEED = 100f;  // Speed of actual movement
+        private const float STEP_SIZE = 16f;
+        private const float STEP_DELAY = 0.5f;
+        private const float MOVE_SPEED = 100f;
         private const float THROW_COOLDOWN_MIN = 2.0f;
         private const float THROW_COOLDOWN_MAX = 4.0f;
+        private const float BOOMERANG_SPEED = 3f;
+        private const float BOOMERANG_RANGE = 400f;
         private List<Sprint.Block.Block> solidBlocks;
         private Rectangle innerBounds;
 
@@ -32,29 +33,26 @@ namespace Sprint.Enemies.Concrete
         private float throwTimer;
         private bool spriteHorizontalFlip;
         private float flipTimer;
-        const float FLIP_INTERVAL = 0.075f; //Time between flips for up/down walk
+        const float FLIP_INTERVAL = 0.075f;
         private Boomerang activeBoomerang;
-        public Boomerang ActiveBoomerang => activeBoomerang;
         private readonly ContentManager contentManager;
+        private readonly Action<AbstractItem> spawnProjectile;
 
-        // Sprite positions for each direction
         private readonly int[] upFrames = [239];
         private readonly int[] downFrames = [222];
         private readonly int[] sideFrames = [256, 273];
         private readonly int[] throwFrame = [273];
         protected override bool FlipsOnVertical => true;
 
-
-        // Attacks with boomerangs
-        // Drops a heart, one rupee, four bombs, or a clock
-        // Moves slowly in random directions, one step at a time
-
-        public Goriya(Texture2D texture, Vector2 position, ContentManager content, List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds) : base(texture, position, HEALTH, DAMAGE)
+        public Goriya(Texture2D texture, Vector2 position, ContentManager content,
+            List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds,
+            Action<AbstractItem> spawnProjectile = null) : base(texture, position, HEALTH, DAMAGE)
         {
             this.texture = texture;
             this.contentManager = content;
             this.solidBlocks = solidBlocks;
             this.innerBounds = innerBounds;
+            this.spawnProjectile = spawnProjectile;
             int sheetY = 11;
             int spriteWidth = 16;
             int spriteHeight = 16;
@@ -78,7 +76,6 @@ namespace Sprint.Enemies.Concrete
             if (!isAlive) return;
 
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             throwTimer -= dt;
 
             if (currentState == GoriyaState.Walking)
@@ -101,24 +98,13 @@ namespace Sprint.Enemies.Concrete
                     break;
             }
 
-            activeBoomerang?.Update(gameTime);
             sprite.Update(gameTime);
-        }
-
-        public override void Draw(SpriteBatch spriteBatch, Vector2 location)
-        {
-            base.Draw(spriteBatch, location);
-
-            // Draw the boomerang if active
-            activeBoomerang?.Draw(spriteBatch, Position);
         }
 
         private void UpdateWalking(float deltaTime)
         {
-            // Check if we're moving to a target
             if (Vector2.Distance(Position, targetPosition) > 1f)
             {
-                // Move toward target
                 Vector2 direction = targetPosition - Position;
                 direction.Normalize();
                 Position += direction * MOVE_SPEED * deltaTime;
@@ -136,7 +122,6 @@ namespace Sprint.Enemies.Concrete
             }
             else
             {
-                // Reached target, wait before next step
                 Position = targetPosition;
                 stepTimer -= deltaTime;
 
@@ -150,59 +135,60 @@ namespace Sprint.Enemies.Concrete
 
         private void UpdateThrowing(float deltaTime)
         {
-            // Check if boomerang has returned (not thrown anymore)
-            if (activeBoomerang != null)
+            if (activeBoomerang == null || activeBoomerang.IsFinished)
             {
-                var boomerangSprite = ((BoomerangSprite)activeBoomerang.GetSprite());
-
-                if (!IsBoomerangActive())
-                {
-                    activeBoomerang = null;
-                    currentState = GoriyaState.Walking;
-                    throwTimer = GetRandomThrowTime();
-                    UpdateSprite();
-                }
+                activeBoomerang = null;
+                currentState = GoriyaState.Walking;
+                throwTimer = GetRandomThrowTime();
+                UpdateSprite();
             }
         }
 
         private void ThrowBoomerang()
         {
             currentState = GoriyaState.Throwing;
-            UpdateSprite(); // Switch to throwing sprite
+            UpdateSprite();
 
-            // Calculate throw direction based on current facing direction
             Vector2 throwVelocity = currentDirection switch
             {
-                Direction.Up => new Vector2(0, -3),
-                Direction.Down => new Vector2(0, 3),
-                Direction.Left => new Vector2(-3, 0),
-                Direction.Right => new Vector2(3, 0),
-                _ => new Vector2(-3, 0) // Default left
+                Direction.Up => new Vector2(0, -BOOMERANG_SPEED),
+                Direction.Down => new Vector2(0, BOOMERANG_SPEED),
+                Direction.Left => new Vector2(-BOOMERANG_SPEED, 0),
+                Direction.Right => new Vector2(BOOMERANG_SPEED, 0),
+                _ => new Vector2(-BOOMERANG_SPEED, 0)
             };
 
-            Boomerang boomerang = ItemFactory.CreateBoomerang(Position, throwVelocity, 400f).StartMoving();
-            activeBoomerang = boomerang;
-
-            // Trigger the throw
-            if (activeBoomerang.GetSprite() is BoomerangSprite bSprite)
-            {
-                bSprite.Throw();
-            }
+            activeBoomerang = ItemFactory.CreateEnemyBoomerang(GetThrowOrigin(), throwVelocity, BOOMERANG_RANGE).StartMoving();
+            spawnProjectile?.Invoke(activeBoomerang);
         }
 
-        private bool IsBoomerangActive()
+        private Vector2 GetThrowOrigin()
         {
-            if (activeBoomerang == null)
-                return false;
+            float scale = GameServices.ScaleFactor;
+            int spriteSize = (int)(16 * scale);
+            float cx = Position.X + spriteSize / 2f;
+            float cy = Position.Y + spriteSize / 2f;
+            return currentDirection switch
+            {
+                Direction.Up => new Vector2(cx, Position.Y),
+                Direction.Down => new Vector2(cx, Position.Y + spriteSize),
+                Direction.Left => new Vector2(Position.X, cy),
+                Direction.Right => new Vector2(Position.X + spriteSize, cy),
+                _ => new Vector2(cx, cy)
+            };
+        }
 
-            var boomerangSprite = activeBoomerang.GetSprite() as BoomerangSprite;
-            return boomerangSprite?.IsActive ?? false;
+        public override void Die()
+        {
+            base.Die();
+            activeBoomerang?.Cancel();
+            activeBoomerang = null;
         }
 
         private void ChooseNextStep()
         {
             Vector2 candidate = ChooseValidStep(solidBlocks, innerBounds, STEP_SIZE);
-            
+
             if (candidate != Position)
             {
                 currentDirection = GetDirectionTo(candidate);
@@ -248,11 +234,12 @@ namespace Sprint.Enemies.Concrete
             {
                 dirSprite?.UpdateFrames(sideFrames, true);
             }
-            else // Right
+            else
             {
                 dirSprite?.UpdateFrames(sideFrames, false);
             }
         }
+        
         private float GetRandomThrowTime()
         {
             return THROW_COOLDOWN_MIN + (float)random.NextDouble() * (THROW_COOLDOWN_MAX - THROW_COOLDOWN_MIN);

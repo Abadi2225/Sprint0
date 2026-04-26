@@ -70,6 +70,7 @@ internal class LinkItemCollision : ICollisionHandler
                 link.AddKey();
                 SoundPlayer.Play(SoundType.PICKUP_ITEM);
                 return;
+            case "TimeBomb":
             case "Bomb":
                 link.AddBomb();
                 SoundPlayer.Play(SoundType.PICKUP_ITEM);
@@ -89,6 +90,7 @@ internal class LinkItemCollision : ICollisionHandler
         {
             link.StartPickUpWeapon(item.SourceRect);
             SoundPlayer.Play(SoundType.PICKUP_VALUABLE);
+            inventory.Add(item);
             return;
         }
 

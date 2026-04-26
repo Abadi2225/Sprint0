@@ -12,7 +12,8 @@ public class LevelBuilder
 {
     private const int TILE_SIZE = 16;
 
-    public static Level Build(LevelData data, EnemyFactory enemyFactory, Rectangle innerBounds)
+    public static Level Build(LevelData data, EnemyFactory enemyFactory, Rectangle innerBounds,
+        Action<AbstractItem> spawnProjectile = null)
     {
         BlockManager blockManager = new BlockManager();
         float scale = GameServices.ScaleFactor;
@@ -95,7 +96,8 @@ public class LevelBuilder
                 IEnemy enemy = enemyFactory.CreateEnemy(
                     (EnemyType)(id - 1), pos, solidBlocks, innerBounds,
                     onItemDropped: item => worldItems.Add(item),
-                    skipRandomDrop: hasCarriedItem);
+                    skipRandomDrop: hasCarriedItem,
+                    spawnProjectile: spawnProjectile);
 
                 enemyManager.AddEnemy(enemy);
 
