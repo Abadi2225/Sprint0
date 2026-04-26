@@ -144,8 +144,8 @@ class GameplayState : IGameState
         items = new ItemManager();
         inventory = new Inventory();
 
-        inventory.Add(ItemFactory.CreateBoomerang(Vector2.Zero, Vector2.Zero, maxDistance: 160f));
-        inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow, Vector2.Zero, GameServices.ScaleFactor));
+        // inventory.Add(ItemFactory.CreateBoomerang(Vector2.Zero, Vector2.Zero, maxDistance: 160f));
+        // inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bow, Vector2.Zero, GameServices.ScaleFactor));
         inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bomb, Vector2.Zero, GameServices.ScaleFactor));
 
         hud = new HUDBar(0, 0, inventory, hudElements);
