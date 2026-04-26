@@ -25,7 +25,8 @@ public class LevelBuilder
         float blockOriginY = useInnerBounds ? innerBounds.Top : blockBorderY;
 
         // Registers the room to DungeonState
-        DungeonState.GetRoomState(data.name);
+        GameServices.currentRoomState = DungeonState.GetRoomState(data.name);
+        RoomState roomState = GameServices.currentRoomState;
 
         var backgroundLayer = data.layers.FirstOrDefault(l => l.name == "BackgroundTiles");
         if (backgroundLayer != null)
@@ -100,23 +101,22 @@ public class LevelBuilder
 
                 int enemyID = i;
 
-                // if (!RoomState.DefeatedEnemies.Contains(enemyID))
-                // {
-                    
-                // }
-
-                IEnemy enemy = enemyFactory.CreateEnemy(
+                if (!roomState.DefeatedEnemies.Contains(enemyID))
+                {
+                    IEnemy enemy = enemyFactory.CreateEnemy(
                     (EnemyType)(enemyType - 1), pos, solidBlocks, innerBounds,
                     onItemDropped: item => worldItems.Add(item),
                     skipRandomDrop: hasCarriedItem);
+                    enemy.ID = enemyID;
 
-                enemyManager.AddEnemy(enemy);
+                    enemyManager.AddEnemy(enemy);
 
-                if (hasCarriedItem)
-                {
-                    data.carriedItems.TryGetValue(i.ToString(), out carriedItemName);
-                    var carriedDrop = CreatePickupItem(carriedItemName, Vector2.Zero);
-                    carriedItems.Add(new CarriedItem(carriedDrop, enemy, item => worldItems.Add(item)));
+                    if (hasCarriedItem)
+                    {
+                        data.carriedItems.TryGetValue(i.ToString(), out carriedItemName);
+                        var carriedDrop = CreatePickupItem(carriedItemName, Vector2.Zero);
+                        carriedItems.Add(new CarriedItem(carriedDrop, enemy, item => worldItems.Add(item)));
+                    }
                 }
             }
         }

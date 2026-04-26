@@ -5,6 +5,7 @@ using System;
 using Sprint.Block;
 using System.Linq;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Sprint.Enemies.Base
 {
@@ -14,6 +15,7 @@ namespace Sprint.Enemies.Base
         protected Vector2 position;
         protected Texture2D texture;
 
+        protected int id;
         protected int health;
         protected int maxHealth;
         protected int damage;
@@ -73,6 +75,12 @@ namespace Sprint.Enemies.Base
             set => health = MathHelper.Clamp(value, 0, maxHealth);
         }
 
+        public int ID
+        {
+            get => id;
+            set => id = value;
+        }
+
         public Texture2D Texture => texture;
         public Rectangle Rect { get; set; } = Rectangle.Empty;
         public Rectangle NavRect => new Rectangle(Rect.X + NAV_INSET, Rect.Y + NAV_INSET, Rect.Width - NAV_INSET * 2, Rect.Height - NAV_INSET * 2);
@@ -81,7 +89,7 @@ namespace Sprint.Enemies.Base
         public int Damage => damage;
         public bool IsAlive => isAlive;
 
-        protected Enemy(Texture2D texture, Vector2 position, int health, int damage,  bool isInvincible = false)
+        protected Enemy(Texture2D texture, Vector2 position, int health, int damage, bool isInvincible = false)
         {
             this.texture = texture;
             this.position = position;
@@ -114,6 +122,7 @@ namespace Sprint.Enemies.Base
                 return;
 
             isAlive = false;
+            GameServices.currentRoomState.DefeatedEnemies.Add(ID);
         }
 
         public virtual void Reset()

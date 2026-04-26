@@ -54,6 +54,12 @@ internal class EnemyEffectWrapper : IEnemy
         set => enemy.Health = value;
     }
 
+    public int ID
+        {
+            get => enemy.ID;
+            set => enemy.ID = value;
+        }
+
     private bool IsSpawning => spawnTimer < SPAWN_DURATION;
     public int MaxHealth => enemy.MaxHealth;
     public int Damage => enemy.Damage;
