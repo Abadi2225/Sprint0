@@ -2,13 +2,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint;
-using Sprint.Block;
 using Sprint.Character;
 using Sprint.Collision;
 using Sprint.Collisions;
-using Sprint.Commands;
 using Sprint.Doors;
 using Sprint.Enemies;
+using Sprint.Enemies.Concrete;
 using Sprint.GameStates;
 using Sprint.InputHandling;
 using Sprint.Interfaces;
@@ -17,8 +16,6 @@ using Sprint.Levels;
 using Sprint.Sound;
 using Sprint.UI;
 using Sprint.UI.InventoryElements;
-using System;
-using Sprint.UI.Hud;
 using System.Collections.Generic;
 
 class GameplayState : IGameState
@@ -66,9 +63,7 @@ class GameplayState : IGameState
     private TextWriter NPCRoomTextRowOne;
     private TextWriter NPCRoomTextRowTwo;
 
-    public GameplayState()
-    {
-    }
+    public GameplayState() { }
 
     public void Exit() { }
 
@@ -98,6 +93,7 @@ class GameplayState : IGameState
 
         pixel = new Texture2D(GameServices.GraphicsDevice, 1, 1);
         pixel.SetData([Color.White]);
+
         GameServices.OnLinkGrabbed = () =>
         {
             levelLoader.ResetToFirst();
@@ -114,7 +110,6 @@ class GameplayState : IGameState
         };
 
         Vector2 center = new Vector2(GameServices.GameWidth / 2, GameServices.GameHeight / 2);
-
         link = new Link(linkSheet, dustSheet, center);
         GameServices.Link = link;
 
@@ -166,8 +161,7 @@ class GameplayState : IGameState
 
         NPCRoomTextRowOne = TextWriter.CreateNPCText1(fontSheet);
         NPCRoomTextRowTwo = TextWriter.CreateNPCText2(fontSheet);
-        doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
-        doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
+
         doorTransitionHandler = new DoorTransitionHandler(
             doorManager, link,
             () => GetInnerBounds(),
@@ -214,6 +208,18 @@ class GameplayState : IGameState
     private void RebuildCollisionManager()
     {
         collisionManager = new CollisionManager();
+
+               // Moldorm collision
+        var moldorms = new List<Moldorm>();
+        foreach (var enemy in currentLevel.Enemies.enemyList)
+        {
+            var actual = enemy is EnemyEffectWrapper w ? w.InnerEnemy : enemy;
+            if (actual is Moldorm m)
+                moldorms.Add(m);
+        }
+        if (moldorms.Count > 0)
+            collisionManager.Add(new MoldormCollisionHandler(link, moldorms));
+        
         collisionManager.Add(new LinkEnemyCollision(link, currentLevel.Enemies));
         collisionManager.Add(new SwordEnemyCollision(link, currentLevel.Enemies));
         collisionManager.Add(new EnemyBlockCollisionHandler(currentLevel.Enemies.enemyList, currentLevel.Blocks));

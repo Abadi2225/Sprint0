@@ -25,6 +25,7 @@ namespace Sprint.Enemies
         Dodongo,
         OldMan,
         FlameLeft, FlameRight,
+        Moldorm,
 
     }
 
@@ -96,10 +97,11 @@ namespace Sprint.Enemies
             EnemyType.OldMan     => new OldMan(NPCSheet, position),
             EnemyType.FlameLeft  => new FlameLeft(NPCSheet, position),
             EnemyType.FlameRight => new FlameRight(NPCSheet, position),
-				_            => new Goriya(enemySpriteSheet, position, contentManager, solidBlocks, innerBounds, spawnProjectile),
+            EnemyType.Moldorm    => new Moldorm(bossSpriteSheet, position, Vector2.UnitX, innerBounds), //Replace UnitX with a real parameter after testing
+				_            => new Goriya(enemySpriteSheet, position, contentManager, solidBlocks, innerBounds),
             };
 
-            if (type == EnemyType.OldMan)
+            if (type == EnemyType.OldMan || type == EnemyType.Moldorm)
                 return enemy;
 
             AbstractItem drop = skipRandomDrop ? null : CreateDrop(type);

@@ -32,5 +32,6 @@ public interface ILink
     void StopMove();
     void DecreaseRupees(int amount);    
     int ReportRupees();
+    void RegisterSwordHit();
 
 }
