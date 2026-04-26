@@ -13,8 +13,8 @@ The *Sprint.csproj* project file contains:
 
 - 24 namespaces.
 - 153 named types.
-- 9,393 total lines of source code.
-- Approximately 2,892 lines of executable code.
+- 9,408 total lines of source code.
+- Approximately 2,896 lines of executable code.
 - The highest cyclomatic complexity is 31 :exploding_head:.
 
 <details>
@@ -561,8 +561,8 @@ The `Sprint.Block` namespace contains 4 named types.
 The `Sprint.Character` namespace contains 16 named types.
 
 - 16 named types.
-- 1,147 total lines of source code.
-- Approximately 376 lines of executable code.
+- 1,156 total lines of source code.
+- Approximately 378 lines of executable code.
 - The highest cyclomatic complexity is 6 :heavy_check_mark:.
 
 <details>
@@ -858,9 +858,9 @@ The `Sprint.Character` namespace contains 16 named types.
 </summary>
 <br>
 
-- The `Link` contains 79 members.
-- 249 total lines of source code.
-- Approximately 108 lines of executable code.
+- The `Link` contains 81 members.
+- 258 total lines of source code.
+- Approximately 110 lines of executable code.
 - The highest cyclomatic complexity is 6 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
@@ -882,6 +882,7 @@ The `Sprint.Character` namespace contains 16 named types.
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L61' title='bool Link.DeathFinished'>61</a> | 96 | 2 :heavy_check_mark: | 0 | 1 | 1 / 2 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L62' title='bool Link.DeathSequenceFinished'>62</a> | 96 | 2 :heavy_check_mark: | 0 | 1 | 1 / 2 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L42' title='DeathSparkle Link.DeathSparkleSprite'>42</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L258' title='void Link.DecreaseRupees(int amount)'>258</a> | 94 | 1 :heavy_check_mark: | 0 | 1 | 4 / 1 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L47' title='Directions Link.Direction'>47</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 1 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L173' title='void Link.Draw(SpriteBatch spriteBatch)'>173</a> | 56 | 6 :heavy_check_mark: | 0 | 10 | 51 / 13 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L232' title='void Link.EndTriforceSequence()'>232</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 1 / 1 |
@@ -895,7 +896,7 @@ The `Sprint.Character` namespace contains 16 named types.
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L19' title='ISprite Link.IdleLeft'>19</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L20' title='ISprite Link.IdleRight'>20</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L17' title='ISprite Link.IdleUp'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L252' title='void Link.IncreaseRubies(int amount)'>252</a> | 86 | 1 :heavy_check_mark: | 0 | 1 | 5 / 2 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L252' title='void Link.IncreaseRupees(int amount)'>252</a> | 86 | 1 :heavy_check_mark: | 0 | 1 | 5 / 2 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L60' title='bool Link.IsDead'>60</a> | 96 | 2 :heavy_check_mark: | 0 | 1 | 1 / 2 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L70' title='bool Link.IsGrabbed'>70</a> | 94 | 2 :heavy_check_mark: | 0 | 1 | 5 / 2 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L65' title='bool Link.IsPushing'>65</a> | 96 | 2 :heavy_check_mark: | 0 | 1 | 1 / 2 |
@@ -913,7 +914,8 @@ The `Sprint.Character` namespace contains 16 named types.
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L100' title='Vector2 Link.Position'>100</a> | 87 | 2 :heavy_check_mark: | 0 | 3 | 10 / 4 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L76' title='Rectangle Link.Rect'>76</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L98' title='void Link.RegisterSwordHit()'>98</a> | 93 | 1 :heavy_check_mark: | 0 | 1 | 1 / 1 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L111' title='int Link.Rubies'>111</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L262' title='int Link.ReportRupees()'>262</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 4 / 1 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L111' title='int Link.Rupees'>111</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L238' title='void Link.SetHealth(int value)'>238</a> | 96 | 1 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L225' title='void Link.SetMove(Directions dir)'>225</a> | 96 | 1 :heavy_check_mark: | 0 | 2 | 1 / 1 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Character/Link.cs#L231' title='bool Link.ShouldEndTriforceSequence()'>231</a> | 96 | 1 :heavy_check_mark: | 0 | 1 | 1 / 1 |
@@ -3314,7 +3316,7 @@ The `Sprint.InputHandling` namespace contains 2 named types.
 The `Sprint.Interfaces` namespace contains 13 named types.
 
 - 13 named types.
-- 128 total lines of source code.
+- 131 total lines of source code.
 - Approximately 0 lines of executable code.
 - The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
@@ -3532,8 +3534,8 @@ The `Sprint.Interfaces` namespace contains 13 named types.
 </summary>
 <br>
 
-- The `ILink` contains 25 members.
-- 28 total lines of source code.
+- The `ILink` contains 27 members.
+- 31 total lines of source code.
 - Approximately 0 lines of executable code.
 - The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
@@ -3543,16 +3545,18 @@ The `Sprint.Interfaces` namespace contains 13 named types.
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L29' title='void ILink.AddHeartContainer()'>29</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L24' title='void ILink.AddKey()'>24</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L10' title='Rectangle ILink.BlockRect'>10</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L33' title='void ILink.DecreaseRupees(int amount)'>33</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L22' title='void ILink.EndTriforceSequence()'>22</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L11' title='Directions ILink.Facing'>11</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L28' title='void ILink.GetHealed(int amount)'>28</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L12' title='int ILink.Health'>12</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L30' title='void ILink.IncreaseRubies(int amount)'>30</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L30' title='void ILink.IncreaseRupees(int amount)'>30</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L31' title='bool ILink.IsGrabbed'>31</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L23' title='int ILink.Keys'>23</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L13' title='int ILink.MaxHealth'>13</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L8' title='Vector2 ILink.Position'>8</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L9' title='Rectangle ILink.Rect'>9</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L34' title='int ILink.ReportRupees()'>34</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L21' title='bool ILink.ShouldEndTriforceSequence()'>21</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L17' title='void ILink.StartAttack()'>17</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Interfaces/ILink.cs#L20' title='void ILink.StartPickUpTriforce(Rectangle itemRect)'>20</a> | 100 | 1 :heavy_check_mark: | 0 | 1 | 1 / 0 |
@@ -3829,9 +3833,9 @@ The `Sprint.UI.InventoryElements` namespace contains 3 named types.
 The `Sprint.Item` namespace contains 11 named types.
 
 - 11 named types.
-- 552 total lines of source code.
-- Approximately 168 lines of executable code.
-- The highest cyclomatic complexity is 8 :warning:.
+- 555 total lines of source code.
+- Approximately 170 lines of executable code.
+- The highest cyclomatic complexity is 9 :warning:.
 
 <details>
 <summary>
@@ -4051,21 +4055,21 @@ The `Sprint.Item` namespace contains 11 named types.
 <br>
 
 - The `ItemManager` contains 9 members.
-- 105 total lines of source code.
-- Approximately 45 lines of executable code.
-- The highest cyclomatic complexity is 8 :warning:.
+- 108 total lines of source code.
+- Approximately 47 lines of executable code.
+- The highest cyclomatic complexity is 9 :warning:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L111' title='void ItemManager.Draw(SpriteBatch sb)'>111</a> | 94 | 2 :heavy_check_mark: | 0 | 4 | 5 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L114' title='void ItemManager.Draw(SpriteBatch sb)'>114</a> | 94 | 2 :heavy_check_mark: | 0 | 4 | 5 / 1 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L18' title='IReadOnlyList<AbstractItem> ItemManager.JustFinished'>18</a> | 100 | 2 :heavy_check_mark: | 0 | 3 | 1 / 2 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L15' title='List<AbstractItem> ItemManager.justFinishedItems'>15</a> | 93 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L20' title='Vector2 ItemManager.ProjectileOrigin(ILink link)'>20</a> | 66 | 1 :heavy_check_mark: | 0 | 5 | 17 / 6 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L14' title='List<AbstractItem> ItemManager.spawnedItems'>14</a> | 93 | 0 :heavy_check_mark: | 0 | 2 | 1 / 1 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L17' title='IReadOnlyList<AbstractItem> ItemManager.SpawnedItems'>17</a> | 100 | 2 :heavy_check_mark: | 0 | 3 | 1 / 2 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L101' title='void ItemManager.SpawnItem(AbstractItem item)'>101</a> | 97 | 1 :heavy_check_mark: | 0 | 3 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L103' title='void ItemManager.Update(GameTime time)'>103</a> | 74 | 2 :heavy_check_mark: | 0 | 4 | 7 / 5 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L38' title='void ItemManager.UseItem(ILink link, Inventory inventory, int slot)'>38</a> | 47 | 8 :warning: | 0 | 16 | 62 / 26 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L104' title='void ItemManager.SpawnItem(AbstractItem item)'>104</a> | 97 | 1 :heavy_check_mark: | 0 | 3 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L106' title='void ItemManager.Update(GameTime time)'>106</a> | 74 | 2 :heavy_check_mark: | 0 | 4 | 7 / 5 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/ItemManager.cs#L38' title='void ItemManager.UseItem(ILink link, Inventory inventory, int slot)'>38</a> | 46 | 9 :warning: | 0 | 16 | 65 / 28 |
 
 <a href="#ItemManager-class-diagram">:link: to `ItemManager` class diagram</a>
 
@@ -6072,7 +6076,7 @@ class Link{
     +Rectangle BlockRect
     +Rectangle SwordRect
     +Vector2 Position
-    +int Rubies
+    +int Rupees
     +int Keys
     +int Bombs
     +RegisterSwordHit() void
@@ -6101,7 +6105,9 @@ class Link{
     +SetHealth(int value) void
     +GetHealed(int amount) void
     +AddHeartContainer() void
-    +IncreaseRubies(int amount) void
+    +IncreaseRupees(int amount) void
+    +DecreaseRupees(int amount) void
+    +ReportRupees() int
 }
 
 ```
@@ -7749,8 +7755,10 @@ class ILink{
     +TakeDamage(int amount)* void
     +GetHealed(int amount)* void
     +AddHeartContainer()* void
-    +IncreaseRubies(int amount)* void
+    +IncreaseRupees(int amount)* void
     +StopMove()* void
+    +DecreaseRupees(int amount)* void
+    +ReportRupees()* int
 }
 
 ```
