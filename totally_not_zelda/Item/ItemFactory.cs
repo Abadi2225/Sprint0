@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint.Item;
 
@@ -29,6 +30,16 @@ internal class ItemFactory
     public static Boomerang CreateBoomerang(Vector2 pos, Vector2 vel, float maxDistance)
     {
         return new Boomerang(pos, vel, maxDistance);
+    }
+
+    public static Boomerang CreateEnemyBoomerang(Vector2 pos, Vector2 vel, float maxDistance)
+    {
+        return new Boomerang(pos, vel, maxDistance, damagesEnemies: false, damagesPlayer: true);
+    }
+
+    public static Fireball CreateFireball(Texture2D texture, Vector2 pos, Vector2 direction)
+    {
+        return new Fireball(texture, pos, direction);
     }
 
     public static Arrow CreateArrow(Vector2 pos, Vector2 vel, float rotation, float scale = 1f, float maxDistance = 600)

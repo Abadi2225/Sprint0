@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Sprint.Enemies;
 using Sprint.Interfaces;
+using Sprint.Item;
 using Sprint.Levels;
 using Sprint.UI;
 using System;
@@ -20,6 +21,7 @@ public class DoorTransitionHandler
     private readonly EnemyFactory enemyFactory;
     private readonly Action<LevelData, Level> onRoomChanged;
     private readonly Action onRebuildCollision;
+    private readonly Action<AbstractItem> spawnProjectile;
     private Action<string> updateLinkMapPos;
     private Action<LevelData, string> updateInventoryMap;
 
@@ -33,7 +35,8 @@ public class DoorTransitionHandler
         Action<LevelData, Level> onRoomChanged,
         Action onRebuildCollision,
         Action<string> updateLinkMapPos,
-        Action<LevelData, string> updateInventoryMap)
+        Action<LevelData, string> updateInventoryMap,
+        Action<AbstractItem> spawnProjectile = null)
     {
         this.doorManager = doorManager;
         this.link = link;
@@ -48,6 +51,7 @@ public class DoorTransitionHandler
         this.onRebuildCollision = onRebuildCollision;
         this.updateLinkMapPos = updateLinkMapPos;
         this.updateInventoryMap = updateInventoryMap;
+        this.spawnProjectile = spawnProjectile;
     }
 
     public void Handle(string exitDirection)
@@ -74,12 +78,10 @@ public class DoorTransitionHandler
 		LevelData newData = LevelLoader.Load(targetRoom);
         doorManager.Reset(newData.doors, newData.doorTypes, newData.doorOffsets, targetRoom);
 
-        // Update room first so getInnerBounds() reflects the new room
-        onRoomChanged(newData, LevelBuilder.Build(newData, enemyFactory, innerBounds));
+        onRoomChanged(newData, LevelBuilder.Build(newData, enemyFactory, innerBounds, spawnProjectile));
 
-        // Now get the correct bounds for the new room
         Rectangle newInnerBounds = getInnerBounds();
-        Level newLevel = LevelBuilder.Build(newData, enemyFactory, newInnerBounds);
+        Level newLevel = LevelBuilder.Build(newData, enemyFactory, newInnerBounds, spawnProjectile);
         onRoomChanged(newData, newLevel);
         onRebuildCollision();
 

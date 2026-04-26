@@ -77,26 +77,26 @@ namespace Sprint.Enemies
             return drop.HasValue ? ItemFactory.CreateStillItem(drop.Value, Vector2.Zero, scale: GameServices.ScaleFactor) : null;
         }
 
-        // skipRandomDrop: pass true when the enemy has a CarriedItem so it doesn't also roll a random drop
         public IEnemy CreateEnemy(EnemyType type, Vector2 position, List<BlockType> solidBlocks, Rectangle innerBounds,
-            Action<AbstractItem> onItemDropped = null, bool skipRandomDrop = false)
+            Action<AbstractItem> onItemDropped = null, bool skipRandomDrop = false,
+            Action<AbstractItem> spawnProjectile = null)
         {
             IEnemy enemy = type switch
             {
-            EnemyType.Goriya     => new Goriya(enemySpriteSheet, position, contentManager, solidBlocks, innerBounds),
+            EnemyType.Goriya     => new Goriya(enemySpriteSheet, position, contentManager, solidBlocks, innerBounds, spawnProjectile),
             EnemyType.Dodongo    => new Dodongo(bossSpriteSheet, position, solidBlocks, innerBounds),
             EnemyType.Stalfos    => new Stalfos(enemySpriteSheet, position, solidBlocks, innerBounds),
             EnemyType.Rope       => new Rope(enemySpriteSheet, position, solidBlocks, innerBounds),
             EnemyType.Gel        => new Gel(enemySpriteSheet, position, solidBlocks, innerBounds),
             EnemyType.Zol        => new Zol(enemySpriteSheet, position, solidBlocks, innerBounds),
-            EnemyType.Aquamentus => new Aquamentus(bossSpriteSheet, position, solidBlocks, innerBounds),
+            EnemyType.Aquamentus => new Aquamentus(bossSpriteSheet, position, solidBlocks, innerBounds, spawnProjectile),
             EnemyType.Keese      => new Keese(enemySpriteSheet, position, innerBounds),
             EnemyType.WallMaster => new WallMaster(enemySpriteSheet, position, solidBlocks, innerBounds),
             EnemyType.Trap       => new Trap(enemySpriteSheet, position),
             EnemyType.OldMan     => new OldMan(NPCSheet, position),
             EnemyType.FlameLeft  => new FlameLeft(NPCSheet, position),
             EnemyType.FlameRight => new FlameRight(NPCSheet, position),
-				_            => new Goriya(enemySpriteSheet, position, contentManager, solidBlocks, innerBounds),
+				_            => new Goriya(enemySpriteSheet, position, contentManager, solidBlocks, innerBounds, spawnProjectile),
             };
 
             if (type == EnemyType.OldMan)

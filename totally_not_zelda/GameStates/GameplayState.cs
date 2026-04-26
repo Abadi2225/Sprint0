@@ -106,7 +106,7 @@ class GameplayState : IGameState
             doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
             currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
             UpdateBackground();
-            currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
+            currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds(), items.SpawnItem);
             RebuildCollisionManager();
             link.Position = GameServices.DungeonEntrancePosition;
             GameServices.hudMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
@@ -117,6 +117,8 @@ class GameplayState : IGameState
 
         link = new Link(linkSheet, dustSheet, center);
         GameServices.Link = link;
+
+        items = new ItemManager();
 
         enemyManager = new EnemyManager();
         enemyFactory = new EnemyFactory(enemiesSheet, bossesSheet, linkSheet, dustSheet, NPCSheet);
@@ -141,7 +143,6 @@ class GameplayState : IGameState
         invMap = new InventoryMap(levelLoader.GetCurrentLevel(), levelLoader.GetCurrentLevelGridLoc(), false);
         GameServices.inventoryMap = invMap;
 
-        items = new ItemManager();
         inventory = new Inventory();
 
         // inventory.Add(ItemFactory.CreateBoomerang(Vector2.Zero, Vector2.Zero, maxDistance: 160f));
@@ -178,10 +179,11 @@ class GameplayState : IGameState
             (data, level) => { currentLevelData = data; currentLevel = level; },
             RebuildCollisionManager,
             hud.Map.UpdateLinkMapPos,
-            invMap.UpdateInventoryMap);
+            invMap.UpdateInventoryMap,
+            items.SpawnItem);
 
         UpdateBackground();
-        currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds);
+        currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, dungeonWalls.InnerBounds, items.SpawnItem);
         MusicPlayer.Play(MusicType.DUNGEON);
 
         RebuildCollisionManager();
@@ -218,8 +220,7 @@ class GameplayState : IGameState
         collisionManager.Add(new LinkBlockPushHandler(link, currentLevel.Blocks));
         collisionManager.Add(new LinkBlockCollisionHandler(link, currentLevel.Blocks));
         collisionManager.Add(new LinkItemCollision(link, inventory, currentLevel.WorldItems));
-        collisionManager.Add(new ActiveItemEnemyCollision(items, currentLevel.Enemies));
-        collisionManager.Add(new LinkEnemyProjectileCollision(link, currentLevel.Enemies));
+        collisionManager.Add(new ProjectileCollision(link, items, currentLevel.Enemies));
         collisionManager.Add(new EnemyWallCollisionHandler(currentLevel.Enemies.enemyList, dungeonWalls));
         if (!IsUnderground)
             collisionManager.Add(new LinkWallCollisionHandler(link, dungeonWalls, doorManager, HandleDoorExit));
@@ -259,7 +260,7 @@ class GameplayState : IGameState
         doorManager.Reset(newData.doors, newData.doorTypes, newData.doorOffsets, targetRoom);
         currentLevelData = newData;
         UpdateBackground();
-        currentLevel = LevelBuilder.Build(newData, enemyFactory, GetInnerBounds());
+        currentLevel = LevelBuilder.Build(newData, enemyFactory, GetInnerBounds(), items.SpawnItem);
 
         if (targetRoom == "blockedstairs")
         {
@@ -321,7 +322,7 @@ class GameplayState : IGameState
             doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
                 currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
             UpdateBackground();
-            currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
+            currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds(), items.SpawnItem);
             RebuildCollisionManager();
         }
         if (mouse.LeftButton == ButtonState.Pressed && lmbReleased)
@@ -331,7 +332,7 @@ class GameplayState : IGameState
             doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
                 currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
             UpdateBackground();
-            currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
+            currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds(), items.SpawnItem);
             RebuildCollisionManager();
         }
         if (mouse.RightButton == ButtonState.Released)
@@ -399,7 +400,7 @@ class GameplayState : IGameState
         dungeonWalls.RefreshColor();
         innerWalls.RefreshColor();
         UpdateBackground();
-        currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
+        currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds(), items.SpawnItem);
         RebuildCollisionManager();
         ResetMaps();
     }
