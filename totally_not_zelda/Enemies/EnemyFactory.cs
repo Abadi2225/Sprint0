@@ -52,6 +52,7 @@ namespace Sprint.Enemies
         private static AbstractItem CreateDrop(EnemyType type) => type switch
         {
             EnemyType.Aquamentus => ItemFactory.CreateStillItem(ItemFactory.StillType.HeartContainer, Vector2.Zero, scale: GameServices.ScaleFactor),
+            EnemyType.Dodongo => ItemFactory.CreateStillItem(ItemFactory.StillType.HeartContainer, Vector2.Zero, scale: GameServices.ScaleFactor),
             EnemyType.OldMan or EnemyType.FlameLeft or EnemyType.FlameRight or EnemyType.Trap => null,
             _ => RollRandomDrop(),
         };

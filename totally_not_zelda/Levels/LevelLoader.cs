@@ -35,12 +35,18 @@ public class LevelLoader
             "4blocksbigupper",
             "4blockssmall",
             "4statues",
-            "5blocks",
+            "dice5",
+            "desert",
+            "boss",
             "6blocks",
             "emptyleft",
             "emptylower",
+            "emptyupper",
+            "NPC",
+            "pacman",
             "trap",
             "wafflelower",
+            "waffleupper"
         },
     };
 

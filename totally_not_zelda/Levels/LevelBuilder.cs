@@ -63,11 +63,6 @@ public class LevelBuilder
 
                 Block block = BlockFactory.CreatePushable(id - 1, pos, GameServices.CurrentDungeon);
 
-				//if (data.pushDirection == "left")
-				//{
-				//	block.PushDirection = Directions.Left;
-				//}
-
 				blockManager.Add(block);
             }
         }
@@ -172,6 +167,7 @@ public class LevelBuilder
 	private static AbstractItem CreatePickupItem(string name, Vector2 pos) => name switch
     {
         "Boomerang" => ItemFactory.CreateBoomerang(pos, Vector2.Zero, maxDistance: 0),
+        "Bomb" => ItemFactory.CreateTimeBomb(100000, pos, Vector2.Zero, 0, GameServices.ScaleFactor),
         _ => ItemFactory.CreateStillItem(Enum.Parse<ItemFactory.StillType>(name), pos, scale: GameServices.ScaleFactor),
     };
 }

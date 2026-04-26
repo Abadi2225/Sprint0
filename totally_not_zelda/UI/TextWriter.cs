@@ -7,7 +7,6 @@ namespace Sprint.UI
 	internal class TextWriter : IUIElement
 	{
 		private const int CharWidth = 8;
-		private const int CharHeight = 8;
 		private const int CharSpacing = 1;
 
 		private int printedCharacters;

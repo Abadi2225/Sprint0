@@ -71,5 +71,5 @@
   "doors": { "north": "blockedstairs" },
   "doorTypes": { "north": "open" },
   "doorOffsets": { "north": [49, 0] },
-  "roomItems": [ { "item": "Bow", "tile": 72 } ]
+  "roomItems": [{ "item": "Bow", "tile": 72 }]
 }
