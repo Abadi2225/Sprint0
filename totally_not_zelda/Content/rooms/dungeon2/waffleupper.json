@@ -49,5 +49,6 @@
  "doors": { "north": "boss", "south": "12blocks", "east": "NPC" },
  "doorTypes": { "north": "enemy", "south": "enemy", "east": "bomb" },
  "roomClearDrop": "Bomb",
- "gridPos": 37
+ "gridPos": 37,
+ "name":"waffleupper"
 }

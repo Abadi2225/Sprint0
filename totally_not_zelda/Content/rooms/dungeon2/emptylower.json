@@ -49,5 +49,6 @@
  "doors": { "north": "wafflelower", "west": "12statues" },
  "doorTypes": { "north": "open", "west": "open" },
  "roomClearDrop": "Key",
- "gridPos": 58
+ "gridPos": 58,
+ "name":"emptylower"
 }

@@ -8,4 +8,5 @@ public interface IItem : IPositionedSprite
     Rectangle Rect { get; }
     bool IsCollected { get; }
     void OnCollect(ILink link);
+    int ID { get; set; }
 }

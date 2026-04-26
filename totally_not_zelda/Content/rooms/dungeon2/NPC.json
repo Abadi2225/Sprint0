@@ -42,5 +42,6 @@
  "width":12,
  "doors": { "south": "emptyupper", "west": "waffleupper" },
  "doorTypes": { "south": "open", "west": "bomb"},
- "gridPos": 33
+ "gridPos": 33,
+ "name":"NPC"
 }

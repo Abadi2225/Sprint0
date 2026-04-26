@@ -48,5 +48,6 @@
  "width":12,
  "doors": { "south": "waffle", "east": "pacman" },
  "doorTypes": { "south": "key", "east": "enemy" },
- "gridPos": 29
+ "gridPos": 29,
+ "name":"boss"
 }

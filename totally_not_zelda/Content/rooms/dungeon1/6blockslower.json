@@ -48,5 +48,6 @@
  "width":12,
  "doors": { "south": "12statues", "north": "4blockssmalllower"},
  "doorTypes": { "south": "key", "north": "open" },
- "gridPos": 51
+ "gridPos": 51,
+ "name":"6blockslower"
 }

@@ -49,5 +49,6 @@
  "doors": { "north": "4statues", "south": "6blocks", "west": "dice5" },
  "doorTypes": { "north": "bomb", "south": "bomb", "west": "key" },
  "roomItems": [{ "item": "Map", "tile": 42 }],
- "gridPos": 44
+ "gridPos": 44,
+ "name":"4blocksbigupper"
 }

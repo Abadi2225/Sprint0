@@ -49,5 +49,6 @@
  "doors": { "west": "12statues" },
  "doorTypes": { "west": "open" },
  "carriedItems": { "34": "Key" },
- "gridPos": 60
+ "gridPos": 60,
+ "name":"12blocks"
 }

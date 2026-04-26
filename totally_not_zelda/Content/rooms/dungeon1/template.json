@@ -50,6 +50,7 @@
  "doorTypes": { "east": "open" },
  "roomClearDrop": "Key",
  "gridPos": 58,
+ "name":"template",
  "roomItems": [
    { "item": "Heart",          "tile": 25 },
    { "item": "BlueHeart",      "tile": 26 },

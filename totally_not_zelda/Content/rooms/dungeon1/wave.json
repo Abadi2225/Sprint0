@@ -49,5 +49,6 @@
  "doors": { "south": "dice5", "north": "dumbbell" },
  "doorTypes": { "south": "open", "north": "key" },
  "roomClearDrop": "Key",
- "gridPos": 27
+ "gridPos": 27,
+ "name":"wave"
 }

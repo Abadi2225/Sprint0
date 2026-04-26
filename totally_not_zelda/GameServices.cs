@@ -38,4 +38,6 @@ public static class GameServices
     internal static HudMap hudMap { get; set; }
 
     internal static int CurrentDungeon { get; set; } = 1;
+
+    public static RoomState currentRoomState { get; set; }
 }

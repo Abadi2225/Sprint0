@@ -36,7 +36,7 @@ internal class GameplayInputHandler : IInputHandler
             {Keys.D1, new UseItemCommand(items, inventory, link)},
             {Keys.E, new TriggerDamageCommand(link)},
             {Keys.Q, new QuitCommand()},
-            {Keys.R, new SetStateCommand(new MenuState())},
+            {Keys.R, new RestartGameCommand()},
             {Keys.X, new AttackCommand(link)}
         };
     }

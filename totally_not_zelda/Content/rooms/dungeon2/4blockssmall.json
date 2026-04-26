@@ -49,5 +49,6 @@
  "doors": { "north": "desert", "south": "dice5", "east": "4statues" },
  "doorTypes": { "north": "open", "south": "enemy", "east": "open" },
  "roomClearDrop": "Key",
- "gridPos": 43
+ "gridPos": 43,
+ "name":"4blockssmaller"
 }

@@ -48,5 +48,6 @@
  "width":12,
  "doors": { "north": "waffleupper", "south": "desert", "east": "emptyupper" },
  "doorTypes": { "north": "enemy", "south": "open", "east": "key" },
- "gridPos": 20
+ "gridPos": 20,
+ "name":"12blocks"
 }

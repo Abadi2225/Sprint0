@@ -18,6 +18,7 @@ public class PrecisePlacementData
 
 public class LevelData
 {
+    public string name {get; set; }
     public int width { get; set; }
     public int height { get; set; }
 

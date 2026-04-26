@@ -49,5 +49,6 @@
  "doors": { "south": "4blocksbig", "east": "waffle", "west": "dice5" },
  "doorTypes": { "south": "bomb", "east": "open", "west": "key" },
  "roomClearDrop": "Boomerang",
- "gridPos": 36
+ "gridPos": 36,
+ "name":"4blockssmallerupper"
 }

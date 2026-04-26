@@ -49,5 +49,6 @@
  "doors": { "north": "dice5", "south": "6blockslower", "east": "4blocksbig", "west": "6blocksupper" },
  "doorTypes": { "north": "bomb", "south": "open", "east": "open", "west": "open" },
  "roomClearDrop": "Key",
- "gridPos": 43
+ "gridPos": 43,
+ "name":"4blockessmalllower"
 }

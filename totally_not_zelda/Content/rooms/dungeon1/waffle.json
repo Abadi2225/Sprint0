@@ -49,5 +49,6 @@
  "doors": { "north": "boss", "west": "4blockssmallupper" },
  "doorTypes": { "north": "key", "west": "open" },
  "roomClearDrop": "Key",
- "gridPos": 37
+ "gridPos": 37,
+ "name":"waffle"
 }

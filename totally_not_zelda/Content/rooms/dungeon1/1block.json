@@ -67,5 +67,7 @@
  "width":12,
  "doors": { "south": "6blocksupper", "east": "dice5", "west": "NPC" },
  "doorTypes": { "south": "key", "east": "open", "west": "enemy_block"},
- "gridPos": 34
+ "pushDirection": "left",
+ "gridPos": 34,
+ "name":"1block"
 }

@@ -40,5 +40,6 @@
  "width":12,
  "doors": { "east": "boss" },
  "doorTypes": { "east": "open" },
- "gridPos": 30
+ "gridPos": 30,
+ "name":"pacman"
 }

@@ -49,5 +49,6 @@
  "doors": { "east": "4blocksbiglower" },
  "doorTypes": { "east": "open" },
  "roomClearDrop": "Key",
- "gridPos": 58
+ "gridPos": 58,
+ "name":"emptyleft"
 }

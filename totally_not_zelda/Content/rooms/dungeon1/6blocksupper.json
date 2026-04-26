@@ -48,5 +48,6 @@
  "width":12,
  "doors": { "north": "1block", "east": "4blockssmalllower" },
  "doorTypes": { "north": "key", "east": "enemy" },
- "gridPos": 42
+ "gridPos": 42,
+ "name":"6blocksupper"
 }

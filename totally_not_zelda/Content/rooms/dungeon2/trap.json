@@ -49,5 +49,6 @@
  "doors": { "north": "emptyupper", "south": "4statues", "west": "desert" },
  "doorTypes": { "north": "bomb", "south": "bomb", "west": "open" },
  "roomClearDrop": "Bomb",
- "gridPos": 58
+ "gridPos": 58,
+ "name":"trap"
 }

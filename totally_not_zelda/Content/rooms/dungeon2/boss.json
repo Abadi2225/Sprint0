@@ -48,5 +48,6 @@
  "width":12,
  "doors": { "south": "waffleupper", "west": "pacman" },
  "doorTypes": { "south": "open", "west": "enemy" },
- "gridPos": 58
+ "gridPos": 58,
+ "name":"boss"
 }

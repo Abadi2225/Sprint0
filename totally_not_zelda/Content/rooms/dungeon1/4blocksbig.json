@@ -49,5 +49,6 @@
  "doors": { "north": "4blockssmallupper", "west": "4blockssmalllower" },
  "doorTypes": { "north": "bomb", "west": "open" },
  "roomItems": [{ "item": "Compass", "tile": 46 }],
- "gridPos": 44
+ "gridPos": 44,
+ "name":"4blocksbig"
 }

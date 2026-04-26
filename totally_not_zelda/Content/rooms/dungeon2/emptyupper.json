@@ -49,5 +49,6 @@
  "doors": { "north": "NPC", "south": "trap", "west": "12blocks" },
  "doorTypes": { "north": "open", "south": "bomb", "west": "key" },
  "roomClearDrop": "PurpleRupee",
- "gridPos": 58
+ "gridPos": 58,
+ "name":"emptyupper"
 }

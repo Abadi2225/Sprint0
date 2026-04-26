@@ -49,5 +49,6 @@
  "doors": { "north": "wave", "south": "4blockssmalllower", "east": "4blockssmallupper", "west": "1block" },
  "doorTypes": { "north": "open", "south": "bomb", "east": "key", "west": "open" },
  "roomItems": [{ "item": "Map", "tile": 46 }],
- "gridPos": 35
+ "gridPos": 35,
+ "name":"dice5"
 }

@@ -48,5 +48,6 @@
  "width":12,
  "doors": { "south": "12statues", "east": "wafflelower", "west": "emptyleft" },
  "doorTypes": { "south": "open", "east": "open", "west": "enemy" },
- "gridPos": 44
+ "gridPos": 44,
+ "name":"4blocksbiglower"
 }

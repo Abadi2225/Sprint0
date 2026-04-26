@@ -48,5 +48,6 @@
  "width":12,
  "doors": { "north": "dice5", "south": "emptylower", "east": "6blocks", "west": "4blocksbiglower" },
  "doorTypes": { "north": "open", "south": "open", "east": "key", "west": "open" },
- "gridPos": 37
+ "gridPos": 37,
+ "name":"wafflelower"
 }
