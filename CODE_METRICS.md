@@ -13,8 +13,8 @@ The *Sprint.csproj* project file contains:
 
 - 24 namespaces.
 - 153 named types.
-- 9,353 total lines of source code.
-- Approximately 2,876 lines of executable code.
+- 9,393 total lines of source code.
+- Approximately 2,892 lines of executable code.
 - The highest cyclomatic complexity is 31 :exploding_head:.
 
 <details>
@@ -28,9 +28,9 @@ The *Sprint.csproj* project file contains:
 The `<global namespace>` namespace contains 8 named types.
 
 - 8 named types.
-- 884 total lines of source code.
+- 888 total lines of source code.
 - Approximately 352 lines of executable code.
-- The highest cyclomatic complexity is 23 :exploding_head:.
+- The highest cyclomatic complexity is 24 :exploding_head:.
 
 <details>
 <summary>
@@ -211,14 +211,14 @@ The `<global namespace>` namespace contains 8 named types.
 <br>
 
 - The `LevelBuilder` contains 3 members.
-- 162 total lines of source code.
+- 166 total lines of source code.
 - Approximately 70 lines of executable code.
-- The highest cyclomatic complexity is 23 :exploding_head:.
+- The highest cyclomatic complexity is 24 :exploding_head:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L15' title='Level LevelBuilder.Build(LevelData data, EnemyFactory enemyFactory, Rectangle innerBounds)'>15</a> | 33 | 23 :exploding_head: | 0 | 20 | 151 / 68 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L167' title='AbstractItem LevelBuilder.CreatePickupItem(string name, Vector2 pos)'>167</a> | 89 | 1 :heavy_check_mark: | 0 | 7 | 6 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L15' title='Level LevelBuilder.Build(LevelData data, EnemyFactory enemyFactory, Rectangle innerBounds)'>15</a> | 33 | 24 :exploding_head: | 0 | 20 | 155 / 68 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L171' title='AbstractItem LevelBuilder.CreatePickupItem(string name, Vector2 pos)'>171</a> | 89 | 1 :heavy_check_mark: | 0 | 7 | 6 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Levels/LevelBuilder.cs#L13' title='int LevelBuilder.TILE_SIZE'>13</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 
 <a href="#LevelBuilder-class-diagram">:link: to `LevelBuilder` class diagram</a>
@@ -1174,9 +1174,9 @@ The `Sprint.Character` namespace contains 16 named types.
 The `Sprint.Collision` namespace contains 6 named types.
 
 - 6 named types.
-- 284 total lines of source code.
-- Approximately 74 lines of executable code.
-- The highest cyclomatic complexity is 16 :exploding_head:.
+- 302 total lines of source code.
+- Approximately 82 lines of executable code.
+- The highest cyclomatic complexity is 25 :exploding_head:.
 
 <details>
 <summary>
@@ -1187,19 +1187,19 @@ The `Sprint.Collision` namespace contains 6 named types.
 <br>
 
 - The `ActiveItemEnemyCollision` contains 7 members.
-- 65 total lines of source code.
-- Approximately 22 lines of executable code.
-- The highest cyclomatic complexity is 16 :exploding_head:.
+- 83 total lines of source code.
+- Approximately 30 lines of executable code.
+- The highest cyclomatic complexity is 25 :exploding_head:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L17' title='ActiveItemEnemyCollision.ActiveItemEnemyCollision(ItemManager itemManager, EnemyManager enemyManager)'>17</a> | 85 | 1 :heavy_check_mark: | 0 | 2 | 5 / 2 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L11' title='int ActiveItemEnemyCollision.BOMB_DAMAGE'>11</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L12' title='int ActiveItemEnemyCollision.BOMB_RADIUS'>12</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L15' title='EnemyManager ActiveItemEnemyCollision.enemyManager'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L23' title='void ActiveItemEnemyCollision.Handle()'>23</a> | 52 | 16 :exploding_head: | 0 | 13 | 49 / 18 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L14' title='ItemManager ActiveItemEnemyCollision.itemManager'>14</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L10' title='int ActiveItemEnemyCollision.PROJECTILE_DAMAGE'>10</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L18' title='ActiveItemEnemyCollision.ActiveItemEnemyCollision(ItemManager itemManager, EnemyManager enemyManager)'>18</a> | 85 | 1 :heavy_check_mark: | 0 | 2 | 5 / 2 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L12' title='int ActiveItemEnemyCollision.BOMB_DAMAGE'>12</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L13' title='int ActiveItemEnemyCollision.BOMB_RADIUS'>13</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L16' title='EnemyManager ActiveItemEnemyCollision.enemyManager'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L24' title='void ActiveItemEnemyCollision.Handle()'>24</a> | 46 | 25 :exploding_head: | 0 | 15 | 67 / 26 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L15' title='ItemManager ActiveItemEnemyCollision.itemManager'>15</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Collisions/ActiveItemEnemyCollision.cs#L11' title='int ActiveItemEnemyCollision.PROJECTILE_DAMAGE'>11</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 
 <a href="#ActiveItemEnemyCollision-class-diagram">:link: to `ActiveItemEnemyCollision` class diagram</a>
 
@@ -1710,8 +1710,8 @@ The `Sprint.Commands` namespace contains 5 named types.
 The `Sprint.Enemies.Concrete` namespace contains 20 named types.
 
 - 20 named types.
-- 1,642 total lines of source code.
-- Approximately 569 lines of executable code.
+- 1,652 total lines of source code.
+- Approximately 573 lines of executable code.
 - The highest cyclomatic complexity is 11 :radioactive:.
 
 <details>
@@ -1852,48 +1852,50 @@ The `Sprint.Enemies.Concrete` namespace contains 20 named types.
 </summary>
 <br>
 
-- The `Dodongo` contains 35 members.
-- 219 total lines of source code.
-- Approximately 64 lines of executable code.
+- The `Dodongo` contains 37 members.
+- 229 total lines of source code.
+- Approximately 68 lines of executable code.
 - The highest cyclomatic complexity is 6 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L46' title='Dodongo.Dodongo(Texture2D texture, Vector2 position, List<Block> solidBlocks, Rectangle innerBounds)'>46</a> | 59 | 1 :heavy_check_mark: | 0 | 12 | 18 / 11 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L47' title='Dodongo.Dodongo(Texture2D texture, Vector2 position, List<Block> solidBlocks, Rectangle innerBounds)'>47</a> | 59 | 1 :heavy_check_mark: | 0 | 12 | 18 / 11 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L20' title='float Dodongo.BOMB_STUN_DURATION'>20</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L37' title='int[] Dodongo.bombedDownFrame'>37</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L38' title='int[] Dodongo.bombedSideFrame'>38</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L36' title='int[] Dodongo.bombedUpFrame'>36</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L38' title='int[] Dodongo.bombedDownFrame'>38</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L39' title='int[] Dodongo.bombedSideFrame'>39</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L37' title='int[] Dodongo.bombedUpFrame'>37</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L30' title='int Dodongo.bombsEaten'>30</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L29' title='float Dodongo.bombStunTimer'>29</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L21' title='bool Dodongo.CanBeKnockedBack'>21</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L136' title='void Dodongo.ChooseNextStep()'>136</a> | 68 | 2 :heavy_check_mark: | 0 | 5 | 12 / 6 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L144' title='void Dodongo.ChooseNextStep()'>144</a> | 68 | 2 :heavy_check_mark: | 0 | 5 | 12 / 6 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L25' title='Direction Dodongo.currentDirection'>25</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L13' title='DodongoState Dodongo.currentState'>13</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L15' title='int Dodongo.DAMAGE'>15</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L34' title='int[] Dodongo.downFrames'>34</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L126' title='void Dodongo.EatBomb()'>126</a> | 72 | 3 :heavy_check_mark: | 0 | 2 | 9 / 5 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L35' title='int[] Dodongo.downFrames'>35</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L134' title='void Dodongo.EatBomb()'>134</a> | 72 | 3 :heavy_check_mark: | 0 | 2 | 9 / 5 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L19' title='float Dodongo.FLIP_INTERVAL'>19</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L41' title='bool Dodongo.FlipsOnVertical'>41</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L42' title='bool Dodongo.FlipsOnVertical'>42</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L28' title='float Dodongo.flipTimer'>28</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L149' title='Direction Dodongo.GetDirectionTo(Vector2 target)'>149</a> | 80 | 4 :heavy_check_mark: | 0 | 3 | 8 / 2 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L157' title='Direction Dodongo.GetDirectionTo(Vector2 target)'>157</a> | 80 | 4 :heavy_check_mark: | 0 | 3 | 8 / 2 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L14' title='int Dodongo.HEALTH'>14</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L40' title='Rectangle Dodongo.innerBounds'>40</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L41' title='Rectangle Dodongo.innerBounds'>41</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L18' title='float Dodongo.MOVE_SPEED'>18</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L220' title='void Dodongo.Reset()'>220</a> | 72 | 1 :heavy_check_mark: | 0 | 3 | 8 / 5 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L35' title='int[] Dodongo.sideFrames'>35</a> | 91 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L39' title='List<Block> Dodongo.solidBlocks'>39</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L30' title='bool Dodongo.spriteHorizontalFlip'>30</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L228' title='void Dodongo.Reset()'>228</a> | 68 | 1 :heavy_check_mark: | 0 | 4 | 10 / 7 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L36' title='int[] Dodongo.sideFrames'>36</a> | 91 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L40' title='List<Block> Dodongo.solidBlocks'>40</a> | 100 | 0 :heavy_check_mark: | 0 | 2 | 1 / 0 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L31' title='bool Dodongo.spriteHorizontalFlip'>31</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L17' title='float Dodongo.STEP_DELAY'>17</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L16' title='float Dodongo.STEP_SIZE'>16</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L27' title='float Dodongo.stepTimer'>27</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L132' title='void Dodongo.TakeDamage(int damageAmount)'>132</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L26' title='Vector2 Dodongo.targetPosition'>26</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L115' title='void Dodongo.UpdateBombEaten(float deltaTime)'>115</a> | 76 | 2 :heavy_check_mark: | 0 | 2 | 10 / 4 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L176' title='void Dodongo.UpdateBombedSprite(DirectionalAnimatedSprite dirSprite, int sheetY, float frameTime)'>176</a> | 82 | 5 :heavy_check_mark: | 0 | 5 | 21 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L63' title='void Dodongo.UpdateEnemy(GameTime gameTime)'>63</a> | 74 | 4 :heavy_check_mark: | 0 | 4 | 19 / 4 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L158' title='void Dodongo.UpdateSprite()'>158</a> | 73 | 3 :heavy_check_mark: | 0 | 3 | 17 / 4 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L83' title='void Dodongo.UpdateWalking(float deltaTime)'>83</a> | 56 | 6 :heavy_check_mark: | 0 | 3 | 31 / 15 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L198' title='void Dodongo.UpdateWalkingSprite(DirectionalAnimatedSprite dirSprite, int sheetY, float frameTime)'>198</a> | 82 | 5 :heavy_check_mark: | 0 | 5 | 21 / 1 |
-| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L33' title='int[] Dodongo.upFrames'>33</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L116' title='void Dodongo.UpdateBombEaten(float deltaTime)'>116</a> | 70 | 3 :heavy_check_mark: | 0 | 3 | 15 / 6 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L184' title='void Dodongo.UpdateBombedSprite(DirectionalAnimatedSprite dirSprite, int sheetY, float frameTime)'>184</a> | 82 | 5 :heavy_check_mark: | 0 | 5 | 21 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L64' title='void Dodongo.UpdateEnemy(GameTime gameTime)'>64</a> | 74 | 4 :heavy_check_mark: | 0 | 4 | 19 / 4 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L166' title='void Dodongo.UpdateSprite()'>166</a> | 73 | 3 :heavy_check_mark: | 0 | 3 | 17 / 4 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L84' title='void Dodongo.UpdateWalking(float deltaTime)'>84</a> | 56 | 6 :heavy_check_mark: | 0 | 3 | 31 / 15 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L206' title='void Dodongo.UpdateWalkingSprite(DirectionalAnimatedSprite dirSprite, int sheetY, float frameTime)'>206</a> | 82 | 5 :heavy_check_mark: | 0 | 5 | 21 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Dodongo.cs#L34' title='int[] Dodongo.upFrames'>34</a> | 93 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
 
 <a href="#Dodongo-class-diagram">:link: to `Dodongo` class diagram</a>
 
@@ -3827,8 +3829,8 @@ The `Sprint.UI.InventoryElements` namespace contains 3 named types.
 The `Sprint.Item` namespace contains 11 named types.
 
 - 11 named types.
-- 544 total lines of source code.
-- Approximately 164 lines of executable code.
+- 552 total lines of source code.
+- Approximately 168 lines of executable code.
 - The highest cyclomatic complexity is 8 :warning:.
 
 <details>
@@ -4142,9 +4144,9 @@ The `Sprint.Item` namespace contains 11 named types.
 </summary>
 <br>
 
-- The `TimeBomb` contains 23 members.
-- 93 total lines of source code.
-- Approximately 40 lines of executable code.
+- The `TimeBomb` contains 24 members.
+- 101 total lines of source code.
+- Approximately 44 lines of executable code.
 - The highest cyclomatic complexity is 7 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
@@ -4159,11 +4161,12 @@ The `Sprint.Item` namespace contains 11 named types.
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L13' title='int TimeBomb.CloudFrameW'>13</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L11' title='int[] TimeBomb.CloudFrameX'>11</a> | 89 | 0 :heavy_check_mark: | 0 | 1 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L12' title='int TimeBomb.CloudFrameY'>12</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L100' title='void TimeBomb.Consume()'>100</a> | 76 | 1 :heavy_check_mark: | 0 | 2 | 7 / 4 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L82' title='void TimeBomb.Draw(SpriteBatch sb, Vector2 location)'>82</a> | 68 | 3 :heavy_check_mark: | 0 | 7 | 15 / 5 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L19' title='bool TimeBomb.exploded'>19</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L29' title='Vector2 TimeBomb.explosionCenter'>29</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L98' title='Vector2 TimeBomb.ExplosionCenter'>98</a> | 100 | 2 :heavy_check_mark: | 0 | 1 | 1 / 2 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L100' title='bool TimeBomb.IsFinished'>100</a> | 93 | 4 :heavy_check_mark: | 0 | 0 | 1 / 2 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L108' title='bool TimeBomb.IsFinished'>108</a> | 93 | 4 :heavy_check_mark: | 0 | 0 | 1 / 2 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L30' title='bool TimeBomb.JustExploded'>30</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L28' title='bool TimeBomb.landed'>28</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Item/Active/TimeBomb.cs#L18' title='double TimeBomb.millisUntilExplode'>18</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
@@ -6672,6 +6675,7 @@ class Dodongo{
     -float stepTimer
     -float flipTimer
     -float bombStunTimer
+    -int bombsEaten
     -bool spriteHorizontalFlip
     -int[] upFrames
     -int[] downFrames
@@ -6687,6 +6691,7 @@ class Dodongo{
     +UpdateEnemy(GameTime gameTime) void
     +UpdateWalking(float deltaTime) void
     +UpdateBombEaten(float deltaTime) void
+    +TakeDamage(int damageAmount) void
     +EatBomb() void
     +ChooseNextStep() void
     +GetDirectionTo(Vector2 target) Direction
@@ -8127,6 +8132,7 @@ class TimeBomb{
     +.ctor(double explodeDelayMillis, string name, Vector2 pos, Vector2 velocity, float throwDistance, Rectangle sourceRect, float scale) TimeBomb
     +Update(GameTime time) void
     +Draw(SpriteBatch sb, Vector2 location) void
+    +Consume() void
 }
 
 ```
