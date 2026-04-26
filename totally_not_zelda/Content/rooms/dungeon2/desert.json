@@ -24,7 +24,7 @@
       "name": "Enemies",
       "type": "tilelayer",
       "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0,
+               0, 0, 0, 0, 0,14, 0, 0, 0, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -49,5 +49,6 @@
  "doors": { "north": "12blocks", "south": "4blockssmall", "east": "trap" },
  "doorTypes": { "north": "open", "south": "open", "east": "open" },
  "roomClearDrop": "Key",
- "gridPos": 58
+ "gridPos": 58,
+ "name":"desert"
 }
