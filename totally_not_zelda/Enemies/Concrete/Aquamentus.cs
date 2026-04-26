@@ -10,7 +10,7 @@ namespace Sprint.Enemies.Concrete
 {
     public class Aquamentus : Enemy
     {
-        private const int HEALTH = 1;
+        private const int HEALTH = 6;
         private const int DAMAGE = 1;
         private Vector2 velocity;
         private const float MOVE_SPEED = 20f;
