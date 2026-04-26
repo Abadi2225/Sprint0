@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 namespace Sprint.Block;
@@ -20,8 +21,14 @@ public static class BlockFactory
         Stairs,
         Bricks,
         Ladder,
-        InvisibleWall
+        InvisibleWall,
     }
+    private static HashSet<BlockType> walkables = new HashSet<BlockType>() {
+            BlockType.Blank,
+            BlockType.Sand,
+            BlockType.Black,
+            BlockType.Stairs,
+    };
 
     // level # mapped to color mask for blocks
     internal static Dictionary<int, uint> tileColors = new() {
@@ -46,6 +53,12 @@ public static class BlockFactory
             9 => CreateBlock(BlockType.Ladder, pos, color),
             10 => CreateInvisibleSolid(pos),
             11 => CreateInvisibleWalkable(pos),
+
+            // special dungeon2 blocks
+            20 => CreateBlock(BlockType.Sand, pos, 0xFFFFFFFF, new Rectangle(0, 0, 16, 16), GameServices.Content.Load<Texture2D>("blocks/sandwithredspecks")),
+            21 => CreateBlock(BlockType.Sand, pos, 0xFFFFFFFF, new Rectangle(0, 0, 16, 16), GameServices.Content.Load<Texture2D>("blocks/redsand")),
+            22 => CreateBlock(BlockType.StatueRight, pos, 0xFFFFFFFF, new Rectangle(0, 0, 16, 16), GameServices.Content.Load<Texture2D>("blocks/statuerightred")),
+            23 => CreateBlock(BlockType.StatueLeft, pos, 0xFFFFFFFF, new Rectangle(0, 0, 16, 16), GameServices.Content.Load<Texture2D>("blocks/statueleftred")),
             _ => null,
         };
     }
@@ -62,15 +75,12 @@ public static class BlockFactory
             TILE_SIZE                           // Height of the tile
         );
 
-        bool walkable = type switch
-        {
-            BlockType.Blank or
-            BlockType.Sand or
-            BlockType.Black or
-            BlockType.Stairs => true,
-            _ => false  // Square, Statues, Black, Water, Bricks, Ladder all block movement
-        };
-        return new Block(GameServices.TileSheet, pos, textureMask, colorMask, walkable, false, type == BlockType.Stairs);
+        return CreateBlock(type, pos, colorMask, textureMask, GameServices.TileSheet);
+    }
+
+    private static Block CreateBlock(BlockType type, Vector2 pos, uint colorMask, Rectangle textureMask, Texture2D sheet)
+    {
+        return new Block(sheet, pos, textureMask, colorMask, walkables.Contains(type), false, type == BlockType.Stairs);
     }
 
     private static Block CreateInvisibleSolid(Vector2 pos)
