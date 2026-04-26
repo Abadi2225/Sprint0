@@ -8,6 +8,7 @@ using Sprint.Interfaces;
 using System.Linq;
 using System;
 using Sprint.Character;
+using System.Diagnostics.Metrics;
 public class LevelBuilder
 {
     private const int TILE_SIZE = 16;
@@ -130,6 +131,8 @@ public class LevelBuilder
 
         if (data.roomItems != null)
         {
+            int itemID = 0;
+
             foreach (var roomItemData in data.roomItems)
             {
                 int x = roomItemData.tile % data.width;
@@ -137,7 +140,15 @@ public class LevelBuilder
                 Vector2 pos = new Vector2(
                     x * TILE_SIZE * scale + innerBounds.Left,
                     y * TILE_SIZE * scale + innerBounds.Top);
-                worldItems.Add(CreatePickupItem(roomItemData.item, pos));
+
+                if (!roomState.CollectedItems.Contains(itemID))
+                {
+                    AbstractItem item = CreatePickupItem(roomItemData.item, pos);
+                    item.ID = itemID;
+                    worldItems.Add(item);
+                }
+
+                itemID++;
             }
         }
 

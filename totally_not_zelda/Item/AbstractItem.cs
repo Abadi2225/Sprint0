@@ -9,6 +9,7 @@ public abstract class AbstractItem : IItem
 {
     protected Texture2D texture;
     private Vector2 position;
+    protected int id;
 
     public Vector2 Position
     {
@@ -50,4 +51,10 @@ public abstract class AbstractItem : IItem
     {
         sprite?.Update(time);
     }
+
+    public int ID
+        {
+            get => id;
+            set => id = value;
+        }
 }

@@ -31,6 +31,7 @@ internal class LinkItemCollision : ICollisionHandler
 
             if (linkRect.Intersects(item.Rect))
             {
+                GameServices.currentRoomState.CollectedItems.Add(item.ID);
                 worldItems.RemoveAt(i);
                 HandlePickup(item);
             }
