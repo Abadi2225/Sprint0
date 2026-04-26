@@ -97,5 +97,13 @@ internal class TimeBomb : AbstractItem
 
     public Vector2 ExplosionCenter => explosionCenter;
 
+    public void Consume()
+    {
+        landed = true;
+        exploded = true;
+        cloudDone = true;
+        Rect = Rectangle.Empty;
+    }
+
     public override bool IsFinished => exploded && cloudDone;
 }

@@ -158,6 +158,10 @@ public class LevelBuilder
                     case "GoldTriforce":
                         worldItems.Add(CreatePickupItem("GoldTriforce", pos));
                         break;
+
+                    case "PurpleTriforce":
+                        worldItems.Add(CreatePickupItem("PurpleTriforce", pos));
+                        break;
                 }
             }
         }

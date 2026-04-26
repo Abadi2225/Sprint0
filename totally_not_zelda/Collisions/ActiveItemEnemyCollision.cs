@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Sprint.Enemies;
+using Sprint.Enemies.Concrete;
 using Sprint.Interfaces;
 using Sprint.Item;
 
@@ -45,6 +46,24 @@ internal class ActiveItemEnemyCollision : ICollisionHandler
                     if (!enemy.IsAlive) continue;
                     if (boomerang.Rect.Intersects(enemy.Rect))
                         enemy.TakeDamage(PROJECTILE_DAMAGE);
+                }
+            }
+        }
+
+        // Dodongo eats unexploded bombs that touch it, bomb is consumed without exploding
+        foreach (var item in itemManager.SpawnedItems)
+        {
+            if (item is TimeBomb bomb && !bomb.IsFinished && !bomb.JustExploded)
+            {
+                foreach (var enemy in enemyManager.enemyList)
+                {
+                    var actual = enemy is EnemyEffectWrapper w ? w.InnerEnemy : enemy;
+                    if (actual is Dodongo dodongo && dodongo.IsAlive && bomb.Rect.Intersects(dodongo.Rect))
+                    {
+                        dodongo.EatBomb();
+                        bomb.Consume();
+                        break;
+                    }
                 }
             }
         }

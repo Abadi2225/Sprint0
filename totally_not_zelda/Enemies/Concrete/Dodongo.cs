@@ -11,7 +11,7 @@ namespace Sprint.Enemies.Concrete
     {
         private enum DodongoState { Walking, BombEaten }
         private DodongoState currentState;
-        private const int HEALTH = 4;
+        private const int HEALTH = 2;
         private const int DAMAGE = 2;
         private const float STEP_SIZE = 16f;
         private const float STEP_DELAY = 0.5f;
@@ -27,6 +27,7 @@ namespace Sprint.Enemies.Concrete
         private float stepTimer;
         private float flipTimer;
         private float bombStunTimer;
+        private int bombsEaten;
         private bool spriteHorizontalFlip;
         
         // side sprites are 32px wide, up/down are 16px wide
@@ -115,19 +116,26 @@ namespace Sprint.Enemies.Concrete
         private void UpdateBombEaten(float deltaTime)
         {
             bombStunTimer -= deltaTime;
-            
+
             if (bombStunTimer <= 0)
             {
+                if (bombsEaten >= HEALTH)
+                {
+                    base.TakeDamage(HEALTH);
+                    return;
+                }
                 currentState = DodongoState.Walking;
                 UpdateSprite();
             }
         }
 
+        public override void TakeDamage(int damageAmount) { }
+
         public void EatBomb()
         {
             if (!isAlive || currentState == DodongoState.BombEaten) return;
-                
-            TakeDamage(1);
+
+            bombsEaten++;
             currentState = DodongoState.BombEaten;
             bombStunTimer = BOMB_STUN_DURATION;
             UpdateSprite();
@@ -224,6 +232,8 @@ namespace Sprint.Enemies.Concrete
             flipTimer = FLIP_INTERVAL;
             currentDirection = Direction.Down;
             targetPosition = Position;
+            bombsEaten = 0;
+            currentState = DodongoState.Walking;
         }
     }
 }
