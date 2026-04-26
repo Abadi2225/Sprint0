@@ -158,8 +158,31 @@ namespace Sprint.Enemies.Concrete
                 _ => new Vector2(-BOOMERANG_SPEED, 0)
             };
 
-            activeBoomerang = ItemFactory.CreateEnemyBoomerang(Position, throwVelocity, BOOMERANG_RANGE).StartMoving();
+            activeBoomerang = ItemFactory.CreateEnemyBoomerang(GetThrowOrigin(), throwVelocity, BOOMERANG_RANGE).StartMoving();
             spawnProjectile?.Invoke(activeBoomerang);
+        }
+
+        private Vector2 GetThrowOrigin()
+        {
+            float scale = GameServices.ScaleFactor;
+            int spriteSize = (int)(16 * scale);
+            float cx = Position.X + spriteSize / 2f;
+            float cy = Position.Y + spriteSize / 2f;
+            return currentDirection switch
+            {
+                Direction.Up => new Vector2(cx, Position.Y),
+                Direction.Down => new Vector2(cx, Position.Y + spriteSize),
+                Direction.Left => new Vector2(Position.X, cy),
+                Direction.Right => new Vector2(Position.X + spriteSize, cy),
+                _ => new Vector2(cx, cy)
+            };
+        }
+
+        public override void Die()
+        {
+            base.Die();
+            activeBoomerang?.Cancel();
+            activeBoomerang = null;
         }
 
         private void ChooseNextStep()

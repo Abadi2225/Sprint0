@@ -37,7 +37,7 @@ public class Boomerang : AbstractItem
             Position = b.Position;
     }
 
-    public override bool IsFinished => sprite is BoomerangSprite b && b.WasThrown && !b.IsActive;
+    public override bool IsFinished => base.IsFinished || (sprite is BoomerangSprite b && b.WasThrown && !b.IsActive);
 
     public override bool DamagesEnemies => damagesEnemies;
     public override bool DamagesPlayer => damagesPlayer;

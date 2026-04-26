@@ -41,6 +41,6 @@ public class Fireball : AbstractItem
         Position += velocity * dt;
     }
 
-    public override bool IsFinished => lifetime >= MAX_LIFETIME;
+    public override bool IsFinished => base.IsFinished || lifetime >= MAX_LIFETIME;
     public override bool DamagesPlayer => true;
 }

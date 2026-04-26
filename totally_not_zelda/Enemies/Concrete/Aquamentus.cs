@@ -23,6 +23,8 @@ namespace Sprint.Enemies.Concrete
         private const float FIREBALL_INTERVAL = 3f;
         private readonly Action<AbstractItem> spawnProjectile;
         protected override bool CanBeKnockedBack => false;
+        private Fireball activeFireball;
+        private List<Fireball> activeFireballs = new();
 
         private static readonly Vector2[] FireballDirections =
         [
@@ -77,12 +79,26 @@ namespace Sprint.Enemies.Concrete
         {
             if (spawnProjectile == null) return;
             foreach (var dir in FireballDirections)
-                spawnProjectile(ItemFactory.CreateFireball(texture, Position, dir));
+            {
+                activeFireball = ItemFactory.CreateFireball(texture, Position, dir);
+                spawnProjectile(activeFireball);
+                activeFireballs.Add(activeFireball);
+            }
         }
 
         private float GetRandomFloat(float min, float max)
         {
             return min + (float)random.NextDouble() * (max - min);
+        }
+
+        public override void Die()
+        {
+            base.Die();
+            foreach (var fireball in activeFireballs)
+            {
+                fireball?.Cancel();
+            }
+            activeFireballs.Clear();
         }
     }
 }

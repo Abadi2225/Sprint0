@@ -32,7 +32,7 @@ internal class Arrow : AbstractItem
             Position = p.Position;
     }
 
-    public override bool IsFinished => hitEnemy || (sprite is ProjectileSprite p && p.ReachedMaxDistance);
+    public override bool IsFinished => base.IsFinished || hitEnemy || (sprite is ProjectileSprite p && p.ReachedMaxDistance);
 
     public override bool DamagesEnemies => true;
     public override bool StopsOnHit => true;

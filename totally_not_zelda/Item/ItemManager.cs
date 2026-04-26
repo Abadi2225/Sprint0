@@ -99,6 +99,12 @@ public class ItemManager
 
     public void SpawnItem(AbstractItem item) => spawnedItems.Add(item);
 
+    public void Clear()
+    {
+        spawnedItems.Clear();
+        justFinishedItems.Clear();
+    }
+
     public void Update(GameTime time)
     {
         foreach (AbstractItem item in spawnedItems)
