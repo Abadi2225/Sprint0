@@ -1,4 +1,5 @@
 using Sprint.Interfaces;
+using System;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Sprites;
 using Microsoft.Xna.Framework;
@@ -30,7 +31,7 @@ class HUDBar : IUIElement
     private TwoDigitDisplay rupees;
     private TwoDigitDisplay keys;
     private TwoDigitDisplay bombs;
-    public HudMap Map { get; }
+    public HudMap Map { get; set; }
 
     public HUDBar(int x, int y, Inventory inventory, Texture2D backgroundTexture)
     {
@@ -79,6 +80,7 @@ class HUDBar : IUIElement
                 false,
                 1
                 );
+        GameServices.hudMap = Map;
     }
 
     public void UpdateActiveItem()
@@ -87,6 +89,22 @@ class HUDBar : IUIElement
                 inventory.Get(inventory.ActiveSlot).Name,
                 new Vector2(X, Y) + B_ITEM_OFFSET * GameServices.ScaleFactor
                 );
+    }
+
+    public void SetMap(string startingRoomName, int triforcePos, bool enabled, int dungeonNum)
+    {
+        this.Map = new HudMap(
+                (int)(X + 16 * GameServices.ScaleFactor),
+                Y,
+                startingRoomName,
+                LevelLoader.Load(startingRoomName).gridPos,
+                LevelLoader.Load(startingRoomName).gridPos,
+                LevelLoader.getTriforceGridLoc(dungeonNum),
+                false,
+                false,
+                dungeonNum
+                );
+        GameServices.hudMap = Map;
     }
 
     public void Draw(SpriteBatch sb)

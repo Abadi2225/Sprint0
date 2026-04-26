@@ -18,6 +18,7 @@ using Sprint.Sound;
 using Sprint.UI;
 using Sprint.UI.InventoryElements;
 using System;
+using Sprint.UI.Hud;
 using System.Collections.Generic;
 
 class GameplayState : IGameState
@@ -65,7 +66,7 @@ class GameplayState : IGameState
     private TextWriter NPCRoomTextRowOne;
     private TextWriter NPCRoomTextRowTwo;
 
-	public GameplayState()
+    public GameplayState()
     {
     }
 
@@ -74,8 +75,8 @@ class GameplayState : IGameState
     public void Enter()
     {
         inputHandler = new GameplayInputHandler(this, link, inventory, items, hud, invMap);
-		//MusicPlayer.Play(MusicType.DUNGEON); moved to loadcontent to fix restarting issue
-	}
+        //MusicPlayer.Play(MusicType.DUNGEON); moved to loadcontent to fix restarting issue
+    }
 
     public void LoadContent()
     {
@@ -137,7 +138,7 @@ class GameplayState : IGameState
         levelLoader = new LevelLoader();
         currentLevelData = levelLoader.GetCurrentLevel();
 
-        invMap = new InventoryMap(levelLoader.GetCurrentLevel(), levelLoader.GetCurrentLevelGridLoc(), true);
+        invMap = new InventoryMap(levelLoader.GetCurrentLevel(), levelLoader.GetCurrentLevelGridLoc(), false);
         GameServices.inventoryMap = invMap;
 
         items = new ItemManager();
@@ -156,15 +157,15 @@ class GameplayState : IGameState
         currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
 
         gameOverText = TextWriter.CreateGameOverText(fontSheet);
-		gameOverTransition = new GameOverTransition(
+        gameOverTransition = new GameOverTransition(
             dungeonWalls.OuterBounds,
             Game1.Instance.GraphicsDevice,
             gameOverText
         );
 
-		NPCRoomTextRowOne = TextWriter.CreateNPCText1(fontSheet);
-		NPCRoomTextRowTwo = TextWriter.CreateNPCText2(fontSheet);
-		doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
+        NPCRoomTextRowOne = TextWriter.CreateNPCText1(fontSheet);
+        NPCRoomTextRowTwo = TextWriter.CreateNPCText2(fontSheet);
+        doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
         doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
         doorTransitionHandler = new DoorTransitionHandler(
             doorManager, link,
@@ -184,11 +185,12 @@ class GameplayState : IGameState
         MusicPlayer.Play(MusicType.DUNGEON);
 
         RebuildCollisionManager();
+        ResetMaps();
     }
 
     private bool IsUnderground => currentLevelData?.background == "Underground";
-	private bool IsNPCRoom => levelLoader.GetCurrentLevelName() == "NPC";
-	private Rectangle GetInnerBounds()
+    private bool IsNPCRoom => levelLoader.GetCurrentLevelName() == "NPC";
+    private Rectangle GetInnerBounds()
     {
         if (IsUnderground && currentBackground is StaircaseBackground sb)
             return sb.InnerBounds;
@@ -220,7 +222,7 @@ class GameplayState : IGameState
         collisionManager.Add(new LinkEnemyProjectileCollision(link, currentLevel.Enemies));
         collisionManager.Add(new EnemyWallCollisionHandler(currentLevel.Enemies.enemyList, dungeonWalls));
         if (!IsUnderground)
-        collisionManager.Add(new LinkWallCollisionHandler(link, dungeonWalls, doorManager, HandleDoorExit));
+            collisionManager.Add(new LinkWallCollisionHandler(link, dungeonWalls, doorManager, HandleDoorExit));
 
         if (currentLevelData?.stairTarget != null)
             collisionManager.Add(new StairCollisionHandler(
@@ -271,10 +273,10 @@ class GameplayState : IGameState
                 49 * GameServices.ScaleFactor + GetInnerBounds().Left,
                 GetInnerBounds().Top + 16 * GameServices.ScaleFactor);
         }
-            RebuildCollisionManager();
-            hud.Map.UpdateLinkMapPos("stair");
-            invMap.UpdateInventoryMap(newData, "stair");
-        }
+        RebuildCollisionManager();
+        hud.Map.UpdateLinkMapPos("stair");
+        invMap.UpdateInventoryMap(newData, "stair");
+    }
 
     public void Update(GameTime gameTime)
     {
@@ -295,7 +297,7 @@ class GameplayState : IGameState
                 doorManager.TryUnlockBomb(item.Position, 80f);
 
         // if statements to handle Link Triforce pickup
-        if(!link.TriforceActive)
+        if (!link.TriforceActive)
         {
             collisionManager.HandleAll();
             if (roomTransitionActive) { roomTransitionActive = false; return; }
@@ -357,12 +359,12 @@ class GameplayState : IGameState
             return;
         }
 
-		if (IsNPCRoom)
-		{
-			NPCRoomTextRowOne.Update(gameTime);
-			NPCRoomTextRowTwo.Update(gameTime);
-		}
-	}
+        if (IsNPCRoom)
+        {
+            NPCRoomTextRowOne.Update(gameTime);
+            NPCRoomTextRowTwo.Update(gameTime);
+        }
+    }
 
     public void Draw(SpriteBatch spriteBatch)
     {
@@ -372,18 +374,19 @@ class GameplayState : IGameState
         doorManager.Draw(spriteBatch);
         uiManager.Draw(spriteBatch);
         currentLevel.DrawOnTop(spriteBatch);
-		if (IsNPCRoom)
-		{
-			NPCRoomTextRowOne.Draw(spriteBatch);
-			NPCRoomTextRowTwo.Draw(spriteBatch); ;
-		}
-		gameOverTransition.DrawBlackOut(spriteBatch);
+        if (IsNPCRoom)
+        {
+            NPCRoomTextRowOne.Draw(spriteBatch);
+            NPCRoomTextRowTwo.Draw(spriteBatch); ;
+        }
+        gameOverTransition.DrawBlackOut(spriteBatch);
+        gameOverTransition.DrawBlackOut(spriteBatch);
         gameOverTransition.DrawGameOverText(spriteBatch);
-		link.Draw(spriteBatch);
-		items.Draw(spriteBatch);
+        link.Draw(spriteBatch);
+        items.Draw(spriteBatch);
         triforceOverlay.Draw(spriteBatch);
 
-	}
+    }
 
     // Used for switching dungeons for testing but might be useful
     internal void SwitchDungeon(int dungeon)
@@ -398,6 +401,7 @@ class GameplayState : IGameState
         UpdateBackground();
         currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
         RebuildCollisionManager();
+        ResetMaps();
     }
 
     internal void DrawRoomContent(SpriteBatch sb, Level level, DoorManager doors, bool drawDoors)
@@ -409,4 +413,16 @@ class GameplayState : IGameState
     }
 
     internal void DrawHUDOnly(SpriteBatch sb) => hud.Draw(sb);
+
+    private void ResetMaps()
+    {
+        int dungeon = GameServices.CurrentDungeon;
+        // reset maps
+        inventory.HasMap = false;
+        inventory.HasCompass = false;
+        hud.SetMap(levelLoader.GetCurrentLevelName(), LevelLoader.getTriforceGridLoc(dungeon), false, dungeon);
+        invMap = new InventoryMap(levelLoader.GetCurrentLevel(), levelLoader.GetCurrentLevelGridLoc(), false);
+        GameServices.inventoryMap = invMap;
+        doorTransitionHandler.ReloadMapReferences();
+    }
 }

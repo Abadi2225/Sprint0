@@ -9,8 +9,8 @@ namespace Sprint.Item;
 public class Inventory
 {
     private readonly List<IItem> items = new();
-    public bool HasCompass { get; private set; }
-    public bool HasMap { get; private set; }
+    public bool HasCompass { get; set; }
+    public bool HasMap { get; set; }
 
     public int ActiveSlot { get; set; }
     public int Count => items.Count;

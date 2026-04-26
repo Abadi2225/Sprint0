@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
 using Sprint.Sprites;
@@ -9,7 +10,7 @@ internal class HudMap
 {
     private static readonly int WIDTH = 64;
     private static readonly int HEIGHT = 32;
-    private static readonly int MAP_Y_OFFSET = 4;
+    private static readonly int MAP_Y_OFFSET = 8;
     private static readonly int NODE_WIDTH = 8;
     private static readonly int NODE_HEIGHT = 4;
     private static readonly int DOT_X_OFFSET = 2;

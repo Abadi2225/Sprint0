@@ -64,7 +64,7 @@ internal class InventoryMap
     {
         Enabled = enabled;
         this.linkPos = linkPos;
-        UpdateInventoryMap(startingRoom, null);
+        UpdateInventoryMap(startingRoom, null);  // add current room
         linkDot = new StaticSprite(
                 spriteSheet,
                 getDotPosition(this.linkPos),

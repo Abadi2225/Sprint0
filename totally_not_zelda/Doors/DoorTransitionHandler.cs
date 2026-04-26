@@ -20,8 +20,8 @@ public class DoorTransitionHandler
     private readonly EnemyFactory enemyFactory;
     private readonly Action<LevelData, Level> onRoomChanged;
     private readonly Action onRebuildCollision;
-    private readonly Action<string> updateLinkMapPos;
-    private readonly Action<LevelData, string> updateInventoryMap;
+    private Action<string> updateLinkMapPos;
+    private Action<LevelData, string> updateInventoryMap;
 
     public DoorTransitionHandler(DoorManager doorManager, ILink link,
         Func<Rectangle> getInnerBounds,
@@ -35,22 +35,22 @@ public class DoorTransitionHandler
         Action<string> updateLinkMapPos,
         Action<LevelData, string> updateInventoryMap)
     {
-        this.doorManager       = doorManager;
-        this.link              = link;
-        this.getInnerBounds    = getInnerBounds;
-        this.getTopDoorLeft    = getTopDoorLeft;
-        this.getTopDoorRight   = getTopDoorRight;
-        this.getSideDoorTop    = getSideDoorTop;
+        this.doorManager = doorManager;
+        this.link = link;
+        this.getInnerBounds = getInnerBounds;
+        this.getTopDoorLeft = getTopDoorLeft;
+        this.getTopDoorRight = getTopDoorRight;
+        this.getSideDoorTop = getSideDoorTop;
         this.getSideDoorBottom = getSideDoorBottom;
-        this.levelLoader       = levelLoader;
-        this.enemyFactory      = enemyFactory;
-        this.onRoomChanged     = onRoomChanged;
+        this.levelLoader = levelLoader;
+        this.enemyFactory = enemyFactory;
+        this.onRoomChanged = onRoomChanged;
         this.onRebuildCollision = onRebuildCollision;
-        this.updateLinkMapPos  = updateLinkMapPos;
+        this.updateLinkMapPos = updateLinkMapPos;
         this.updateInventoryMap = updateInventoryMap;
     }
 
-   public void Handle(string exitDirection)
+    public void Handle(string exitDirection)
     {
         Rectangle innerBounds = getInnerBounds();
         string targetRoom = doorManager.GetTarget(exitDirection);
@@ -60,11 +60,11 @@ public class DoorTransitionHandler
             int s = link.Rect.Width;
             link.Position = exitDirection switch
             {
-                "west"  => new Vector2(innerBounds.Left, link.Position.Y),
-                "east"  => new Vector2(innerBounds.Right - s, link.Position.Y),
+                "west" => new Vector2(innerBounds.Left, link.Position.Y),
+                "east" => new Vector2(innerBounds.Right - s, link.Position.Y),
                 "north" => new Vector2(link.Position.X, innerBounds.Top),
                 "south" => new Vector2(link.Position.X, innerBounds.Bottom - s),
-                _       => link.Position
+                _ => link.Position
             };
             return;
         }
@@ -76,27 +76,33 @@ public class DoorTransitionHandler
 
         // Update room first so getInnerBounds() reflects the new room
         onRoomChanged(newData, LevelBuilder.Build(newData, enemyFactory, innerBounds));
-        
+
         // Now get the correct bounds for the new room
         Rectangle newInnerBounds = getInnerBounds();
         Level newLevel = LevelBuilder.Build(newData, enemyFactory, newInnerBounds);
         onRoomChanged(newData, newLevel);
         onRebuildCollision();
 
-        int spriteSize  = link.Rect.Width;
+        int spriteSize = link.Rect.Width;
         int doorCenterX = (getTopDoorLeft() + getTopDoorRight()) / 2;
         int doorCenterY = (getSideDoorTop() + getSideDoorBottom()) / 2;
 
         link.Position = exitDirection switch
         {
-            "east"  => new Vector2(newInnerBounds.Left, doorCenterY - spriteSize / 2),
-            "west"  => new Vector2(newInnerBounds.Right - spriteSize, doorCenterY - spriteSize / 2),
+            "east" => new Vector2(newInnerBounds.Left, doorCenterY - spriteSize / 2),
+            "west" => new Vector2(newInnerBounds.Right - spriteSize, doorCenterY - spriteSize / 2),
             "south" => new Vector2(doorCenterX - spriteSize / 2, newInnerBounds.Top),
             "north" => new Vector2(doorCenterX - spriteSize / 2, newInnerBounds.Bottom - spriteSize),
-            _       => link.Position
+            _ => link.Position
         };
 
         updateLinkMapPos(exitDirection);
         updateInventoryMap(newData, exitDirection);
+    }
+
+    public void ReloadMapReferences()
+    {
+        updateLinkMapPos = GameServices.hudMap.UpdateLinkMapPos;
+        updateInventoryMap = GameServices.inventoryMap.UpdateInventoryMap;
     }
 }

@@ -50,6 +50,11 @@ public class LevelLoader
         },
     };
 
+    private static Dictionary<int, int> triforcePositions = new Dictionary<int, int>() {
+        {1, 30},
+        {2, 4}
+    };
+
     private List<string> levels => levelsByDungeon[GameServices.CurrentDungeon];
 
     private int currentLevel = 0;
@@ -92,6 +97,18 @@ public class LevelLoader
     public int GetCurrentLevelGridLoc()
     {
         return GetCurrentLevel().gridPos;
+    }
+
+    public static int getTriforceGridLoc(int dungeon)
+    {
+        try
+        {
+            return triforcePositions[dungeon];
+        }
+        catch
+        {
+            return 0;
+        }
     }
 
     public static LevelData Load(string levelName, int dungeon)
