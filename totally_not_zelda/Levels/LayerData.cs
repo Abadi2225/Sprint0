@@ -10,5 +10,5 @@ public class LayerData
     public int height { get; set; }
 
     public int[] data { get; set; }
-    public Dictionary<string, int[]> doorOffsets { get; set; } // e.g. {"north": [49, 0]}
+	public Dictionary<string, int[]> doorOffsets { get; set; } // e.g. {"north": [49, 0]}
 }

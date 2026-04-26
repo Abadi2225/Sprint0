@@ -108,7 +108,8 @@ class GameplayState : IGameState
             UpdateBackground();
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
             RebuildCollisionManager();
-            link.Position = GameServices.DungeonEntrancePosition;
+			UpdateNPCText();
+			link.Position = GameServices.DungeonEntrancePosition;
             GameServices.hudMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
             GameServices.inventoryMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
         };
@@ -163,9 +164,7 @@ class GameplayState : IGameState
             gameOverText
         );
 
-        NPCRoomTextRowOne = TextWriter.CreateNPCText1(fontSheet);
-        NPCRoomTextRowTwo = TextWriter.CreateNPCText2(fontSheet);
-        doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
+		doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
         doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes);
         doorTransitionHandler = new DoorTransitionHandler(
             doorManager, link,
@@ -175,7 +174,7 @@ class GameplayState : IGameState
             () => dungeonWalls.SideDoorTop,
             () => dungeonWalls.SideDoorBottom,
             levelLoader, enemyFactory,
-            (data, level) => { currentLevelData = data; currentLevel = level; },
+            (data, level) => { currentLevelData = data; currentLevel = level; UpdateNPCText();},
             RebuildCollisionManager,
             hud.Map.UpdateLinkMapPos,
             invMap.UpdateInventoryMap);
@@ -209,7 +208,28 @@ class GameplayState : IGameState
 
         uiManager.AddElement(currentBackground);
     }
-    private void RebuildCollisionManager()
+
+	private void UpdateNPCText()
+	{
+		if (currentLevelData?.npcText != null && currentLevelData.npcText.Length > 0)
+		{
+			var npcTexts = TextWriter.CreateNPCText(
+				fontSheet,
+				currentLevelData.npcText,
+				GameServices.CurrentDungeon
+			);
+
+			NPCRoomTextRowOne = npcTexts[0];
+			NPCRoomTextRowTwo = npcTexts.Length > 1 ? npcTexts[1] : null;
+		}
+		else
+		{
+			NPCRoomTextRowOne = null;
+			NPCRoomTextRowTwo = null;
+		}
+	}
+
+	private void RebuildCollisionManager()
     {
         collisionManager = new CollisionManager();
         collisionManager.Add(new LinkEnemyCollision(link, currentLevel.Enemies));
@@ -320,6 +340,7 @@ class GameplayState : IGameState
             currentLevelData = levelLoader.CycleNext();
             doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
                 currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
+            UpdateNPCText();
             UpdateBackground();
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
             RebuildCollisionManager();
@@ -330,6 +351,7 @@ class GameplayState : IGameState
             currentLevelData = levelLoader.CyclePrevious();
             doorManager.Reset(currentLevelData.doors, currentLevelData.doorTypes,
                 currentLevelData.doorOffsets, levelLoader.GetCurrentLevelName());
+            UpdateNPCText();
             UpdateBackground();
             currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
             RebuildCollisionManager();
@@ -361,12 +383,12 @@ class GameplayState : IGameState
 
         if (IsNPCRoom)
         {
-            NPCRoomTextRowOne.Update(gameTime);
-            NPCRoomTextRowTwo.Update(gameTime);
-        }
+			NPCRoomTextRowOne?.Update(gameTime);
+			NPCRoomTextRowTwo?.Update(gameTime);
+		}
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+	public void Draw(SpriteBatch spriteBatch)
     {
         currentLevel.Draw(spriteBatch);
         if (!IsUnderground)
@@ -376,9 +398,9 @@ class GameplayState : IGameState
         currentLevel.DrawOnTop(spriteBatch);
         if (IsNPCRoom)
         {
-            NPCRoomTextRowOne.Draw(spriteBatch);
-            NPCRoomTextRowTwo.Draw(spriteBatch); ;
-        }
+			NPCRoomTextRowOne?.Draw(spriteBatch);
+			NPCRoomTextRowTwo?.Draw(spriteBatch);
+		}
         gameOverTransition.DrawBlackOut(spriteBatch);
         gameOverTransition.DrawBlackOut(spriteBatch);
         gameOverTransition.DrawGameOverText(spriteBatch);
@@ -400,6 +422,7 @@ class GameplayState : IGameState
         innerWalls.RefreshColor();
         UpdateBackground();
         currentLevel = LevelBuilder.Build(currentLevelData, enemyFactory, GetInnerBounds());
+        UpdateNPCText();
         RebuildCollisionManager();
         ResetMaps();
     }
