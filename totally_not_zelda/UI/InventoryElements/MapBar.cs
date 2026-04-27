@@ -18,16 +18,16 @@ internal class MapBar
     private StaticSprite compassItem;
     private InventoryMap map;
     private bool hasCompass;
-
-    public bool Enabled { get; private set; }
+    private bool hasMap;
 
     public int X { get; set; }
     public int Y { get; set; }
 
-    public MapBar(int x, int y, InventoryMap map, bool enabled, bool hasCompass)
+    public MapBar(int x, int y, InventoryMap map, bool drawMap, bool hasMap, bool hasCompass)
     {
         X = x;
         Y = y;
+        this.hasMap = hasMap;
         this.hasCompass = hasCompass;
         frame = new StaticSprite(
                 spriteSheet,
@@ -47,21 +47,17 @@ internal class MapBar
 
         this.map = map;
         this.map.SetPosition(x, y);
-
-        SetEnabled(enabled);
-    }
-
-    public void SetEnabled(bool enabled)
-    {
-        Enabled = enabled;
-        map.Enabled = enabled;
+        if (drawMap)
+        {
+            map.Enabled = true;
+        }
     }
 
     public void Draw(SpriteBatch sb)
     {
         frame.Draw(sb, frame.Position);
         map.Draw(sb);
-        if (Enabled)
+        if (hasMap)
         {
             mapItem.Draw(sb, mapItem.Position);
         }

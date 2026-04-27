@@ -33,6 +33,7 @@ internal class InventoryScreen : IGameState
                 0,
                 136 * (int)GameServices.ScaleFactor,
                 invMap,
+                true,
                 this.inventory.HasMap,
                 this.inventory.HasCompass
                 );
