@@ -13,7 +13,7 @@ The *Sprint.csproj* project file contains:
 
 - 25 namespaces.
 - 161 named types.
-- 9,921 total lines of source code.
+- 9,922 total lines of source code.
 - Approximately 3,119 lines of executable code.
 - The highest cyclomatic complexity is 31 :exploding_head:.
 
@@ -3010,7 +3010,7 @@ The `Sprint.Enemies` namespace contains 4 named types.
 <details>
 <summary>
   <strong id="sprint-gamestates">
-    Sprint.GameStates :radioactive:
+    Sprint.GameStates :x:
   </strong>
 </summary>
 <br>
@@ -3020,7 +3020,7 @@ The `Sprint.GameStates` namespace contains 6 named types.
 - 6 named types.
 - 502 total lines of source code.
 - Approximately 157 lines of executable code.
-- The highest cyclomatic complexity is 11 :radioactive:.
+- The highest cyclomatic complexity is 12 :x:.
 
 <details>
 <summary>
@@ -3093,7 +3093,7 @@ The `Sprint.GameStates` namespace contains 6 named types.
 <details>
 <summary>
   <strong id="inventoryscreen">
-    InventoryScreen :radioactive:
+    InventoryScreen :x:
   </strong>
 </summary>
 <br>
@@ -3101,7 +3101,7 @@ The `Sprint.GameStates` namespace contains 6 named types.
 - The `InventoryScreen` contains 14 members.
 - 101 total lines of source code.
 - Approximately 35 lines of executable code.
-- The highest cyclomatic complexity is 11 :radioactive:.
+- The highest cyclomatic complexity is 12 :x:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -3118,7 +3118,7 @@ The `Sprint.GameStates` namespace contains 6 named types.
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/InventoryScreen.cs#L111' title='void InventoryScreen.LoadContent()'>111</a> | 100 | 1 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/InventoryScreen.cs#L17' title='MapBar InventoryScreen.mapBar'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/InventoryScreen.cs#L21' title='IGameState InventoryScreen.restoreState'>21</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/InventoryScreen.cs#L45' title='void InventoryScreen.Update(GameTime time)'>45</a> | 49 | 11 :radioactive: | 0 | 10 | 54 / 24 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../GameStates/InventoryScreen.cs#L45' title='void InventoryScreen.Update(GameTime time)'>45</a> | 49 | 12 :x: | 0 | 10 | 54 / 24 |
 
 <a href="#InventoryScreen-class-diagram">:link: to `InventoryScreen` class diagram</a>
 
@@ -3450,9 +3450,9 @@ The `Sprint.UI.Hud` namespace contains 5 named types.
 The `Sprint.InputHandling` namespace contains 2 named types.
 
 - 2 named types.
-- 92 total lines of source code.
+- 93 total lines of source code.
 - Approximately 20 lines of executable code.
-- The highest cyclomatic complexity is 8 :warning:.
+- The highest cyclomatic complexity is 9 :warning:.
 
 <details>
 <summary>
@@ -3463,15 +3463,15 @@ The `Sprint.InputHandling` namespace contains 2 named types.
 <br>
 
 - The `GameplayInputHandler` contains 9 members.
-- 62 total lines of source code.
+- 63 total lines of source code.
 - Approximately 16 lines of executable code.
-- The highest cyclomatic complexity is 8 :warning:.
+- The highest cyclomatic complexity is 9 :warning:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L24' title='GameplayInputHandler.GameplayInputHandler(GameplayState thisState, Link link, Inventory inventory, ItemManager items, HUDBar hud, InventoryMap invMap)'>24</a> | 65 | 1 :heavy_check_mark: | 0 | 20 | 22 / 7 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L24' title='GameplayInputHandler.GameplayInputHandler(GameplayState thisState, Link link, Inventory inventory, ItemManager items, HUDBar hud, InventoryMap invMap)'>24</a> | 65 | 1 :heavy_check_mark: | 0 | 20 | 23 / 7 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L22' title='Dictionary<Keys, ICommand> GameplayInputHandler.commands'>22</a> | 100 | 0 :heavy_check_mark: | 0 | 3 | 1 / 0 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L47' title='void GameplayInputHandler.HandleInput()'>47</a> | 62 | 8 :warning: | 0 | 16 | 27 / 9 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L48' title='void GameplayInputHandler.HandleInput()'>48</a> | 62 | 9 :warning: | 0 | 16 | 27 / 9 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L19' title='HUDBar GameplayInputHandler.hud'>19</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L17' title='Inventory GameplayInputHandler.inventory'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L20' title='InventoryMap GameplayInputHandler.invMap'>20</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
