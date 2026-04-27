@@ -313,6 +313,7 @@ class GameplayState : IGameState
             menu.LoadContent();
             menu.Enter();
             Game1.Instance.ForceState(menu);
+            DungeonState.ResetProgess();
             return;
         }
 
