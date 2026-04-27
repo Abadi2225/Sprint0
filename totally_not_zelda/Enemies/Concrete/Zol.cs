@@ -9,20 +9,16 @@ namespace Sprint.Enemies.Concrete
 {
     public class Zol : Enemy
     {
-        private const int ZOL_HEALTH = 1;
-        private const int ZOL_DAMAGE = 2;
+        private const int HEALTH = 1;
+        private const int DAMAGE = 1;
         private const float BOUNCE_SPEED = 40f;
-        private const float BOUNCE_INTERVAL = 1f;
-        private const float AIR_TIME = 1f;
+        private const float TURN_INTERVAL = 1f;
+        private readonly List<Sprint.Block.Block> solidBlocks;
+        private readonly Rectangle innerBounds;
         private Vector2 velocity;
         private float turnTimer;
-        private const float TURN_SPEED = 30f;
-        private const float TURN_INTERVAL = 1f;
-        private const float MOVE_SPEED = 0.7f;
-        private List<Sprint.Block.Block> solidBlocks;
-        private Rectangle innerBounds;
 
-        public Zol(Texture2D texture, Vector2 position, List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds) : base(texture, position, ZOL_HEALTH, ZOL_DAMAGE)
+        public Zol(Texture2D texture, Vector2 position, List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds) : base(texture, position, HEALTH, DAMAGE)
         {
             int[] frameXPositions = [77, 94];
             int frameY = 11;
@@ -32,9 +28,8 @@ namespace Sprint.Enemies.Concrete
             this.solidBlocks = solidBlocks;
             this.innerBounds = innerBounds;
 
-            sprite = new AnimatedSprite(texture, position, frameXPositions, frameY, 
-                                        spriteWidth, spriteHeight, frameTime);
-            
+            sprite = new AnimatedSprite(texture, position, frameXPositions, frameY, spriteWidth, spriteHeight, frameTime);
+
             turnTimer = TURN_INTERVAL;
             velocity = Vector2.Zero;
             Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
@@ -45,22 +40,19 @@ namespace Sprint.Enemies.Concrete
             if (!isAlive) return;
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
-            
-                turnTimer -= deltaTime;
-                if (turnTimer <= 0)
-                {
-                    velocity = GetRandomTurnDirection();
-                    turnTimer = TURN_INTERVAL;
-                }
-            
-            Vector2 candidatePosition =Position + velocity * deltaTime;
+
+            turnTimer -= deltaTime;
+            if (turnTimer <= 0)
+            {
+                velocity = GetRandomTurnDirection();
+                turnTimer = TURN_INTERVAL;
+            }
+
+            Vector2 candidatePosition = Position + velocity * deltaTime;
             if (!WouldIntersectBlock(candidatePosition, solidBlocks) && !WouldIntersectWall(candidatePosition, innerBounds))
                 Position = candidatePosition;
             else
-            {
                 velocity = GetRandomTurnDirection();
-            }
 
             base.UpdateEnemy(gameTime);
         }
@@ -76,10 +68,10 @@ namespace Sprint.Enemies.Concrete
         {
             return random.Next(4) switch
             {
-                0 => new Vector2(0, -BOUNCE_SPEED),   // Up
-                1 => new Vector2(0, BOUNCE_SPEED),    // Down
-                2 => new Vector2(-BOUNCE_SPEED, 0),   // Left
-                3 => new Vector2(BOUNCE_SPEED, 0),    // Right
+                0 => new Vector2(0, -BOUNCE_SPEED),
+                1 => new Vector2(0, BOUNCE_SPEED),
+                2 => new Vector2(-BOUNCE_SPEED, 0),
+                3 => new Vector2(BOUNCE_SPEED, 0),
                 _ => Vector2.Zero,
             };
         }

@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Enemies.Concrete;
 using Sprint.Interfaces;
@@ -24,9 +23,8 @@ namespace Sprint.Enemies
         Aquamentus,
         Dodongo,
         OldMan,
-        FlameLeft, FlameRight,
+        Flame,
         Moldorm,
-
     }
 
     public class EnemyFactory
@@ -36,7 +34,6 @@ namespace Sprint.Enemies
         private readonly Texture2D linkSheet;
         private readonly Texture2D dustSheet;
         private readonly Texture2D NPCSheet;
-        private readonly ContentManager contentManager;
 
         public EnemyFactory(Texture2D enemySpriteSheet, Texture2D bossSpriteSheet, Texture2D linkSheet, Texture2D dustSheet, Texture2D NPCSheet)
         {
@@ -45,7 +42,6 @@ namespace Sprint.Enemies
             this.linkSheet = linkSheet;
             this.dustSheet = dustSheet;
             this.NPCSheet = NPCSheet;
-            this.contentManager = GameServices.Content;
         }
 
         private static readonly Random Rng = new();
@@ -54,7 +50,7 @@ namespace Sprint.Enemies
         {
             EnemyType.Aquamentus => ItemFactory.CreateStillItem(ItemFactory.StillType.HeartContainer, Vector2.Zero, scale: GameServices.ScaleFactor),
             EnemyType.Dodongo => ItemFactory.CreateStillItem(ItemFactory.StillType.HeartContainer, Vector2.Zero, scale: GameServices.ScaleFactor),
-            EnemyType.OldMan or EnemyType.FlameLeft or EnemyType.FlameRight or EnemyType.Trap => null,
+            EnemyType.OldMan or EnemyType.Flame or EnemyType.Trap => null,
             _ => RollRandomDrop(),
         };
 
@@ -69,11 +65,11 @@ namespace Sprint.Enemies
                 // < 55 => ItemFactory.StillType.Fairy,       //  5%
                 // _    => null,                              // 45% nothing
                 // For testing 100% drops:
-                < 25 => ItemFactory.StillType.Heart,       
-                < 50 => ItemFactory.StillType.GoldRupee,   
-                < 75 => ItemFactory.StillType.PurpleRupee, 
+                < 25 => ItemFactory.StillType.Heart,
+                < 50 => ItemFactory.StillType.GoldRupee,
+                < 75 => ItemFactory.StillType.PurpleRupee,
                 <= 100 => ItemFactory.StillType.Fairy,
-                _ => null,      
+                _ => null,
             };
             return drop.HasValue ? ItemFactory.CreateStillItem(drop.Value, Vector2.Zero, scale: GameServices.ScaleFactor) : null;
         }
@@ -84,24 +80,23 @@ namespace Sprint.Enemies
         {
             IEnemy enemy = type switch
             {
-            EnemyType.Goriya     => new Goriya(enemySpriteSheet, position, contentManager, solidBlocks, innerBounds, spawnProjectile),
-            EnemyType.Dodongo    => new Dodongo(bossSpriteSheet, position, solidBlocks, innerBounds),
-            EnemyType.Stalfos    => new Stalfos(enemySpriteSheet, position, solidBlocks, innerBounds),
-            EnemyType.Rope       => new Rope(enemySpriteSheet, position, solidBlocks, innerBounds),
-            EnemyType.Gel        => new Gel(enemySpriteSheet, position, solidBlocks, innerBounds),
-            EnemyType.Zol        => new Zol(enemySpriteSheet, position, solidBlocks, innerBounds),
-            EnemyType.Aquamentus => new Aquamentus(bossSpriteSheet, position, solidBlocks, innerBounds, spawnProjectile),
-            EnemyType.Keese      => new Keese(enemySpriteSheet, position, innerBounds),
-            EnemyType.WallMaster => new WallMaster(enemySpriteSheet, position, solidBlocks, innerBounds),
-            EnemyType.Trap       => new Trap(enemySpriteSheet, position),
-            EnemyType.OldMan     => new OldMan(NPCSheet, position),
-            EnemyType.FlameLeft  => new FlameLeft(NPCSheet, position),
-            EnemyType.FlameRight => new FlameRight(NPCSheet, position),
-            EnemyType.Moldorm    => new Moldorm(bossSpriteSheet, position, Vector2.UnitX, innerBounds), //Replace UnitX with a real parameter after testing
-				_            => new Goriya(enemySpriteSheet, position, contentManager, solidBlocks, innerBounds),
+                EnemyType.Goriya     => new Goriya(enemySpriteSheet, position, solidBlocks, innerBounds, spawnProjectile),
+                EnemyType.Dodongo    => new Dodongo(bossSpriteSheet, position, solidBlocks, innerBounds),
+                EnemyType.Stalfos    => new Stalfos(enemySpriteSheet, position, solidBlocks, innerBounds),
+                EnemyType.Rope       => new Rope(enemySpriteSheet, position, solidBlocks, innerBounds),
+                EnemyType.Gel        => new Gel(enemySpriteSheet, position, solidBlocks, innerBounds),
+                EnemyType.Zol        => new Zol(enemySpriteSheet, position, solidBlocks, innerBounds),
+                EnemyType.Aquamentus => new Aquamentus(bossSpriteSheet, position, spawnProjectile),
+                EnemyType.Keese      => new Keese(enemySpriteSheet, position, innerBounds),
+                EnemyType.WallMaster => new WallMaster(enemySpriteSheet, position, solidBlocks, innerBounds),
+                EnemyType.Trap       => new Trap(enemySpriteSheet, position),
+                EnemyType.OldMan     => new OldMan(NPCSheet, position),
+                EnemyType.Flame      => new Flame(NPCSheet, position),
+                EnemyType.Moldorm    => new Moldorm(bossSpriteSheet, position, Vector2.UnitX, innerBounds),
+                _                    => new Goriya(enemySpriteSheet, position, solidBlocks, innerBounds),
             };
 
-            if (type == EnemyType.OldMan || type == EnemyType.Moldorm)
+            if (type == EnemyType.OldMan || type == EnemyType.Moldorm || type == EnemyType.Flame)
                 return enemy;
 
             AbstractItem drop = skipRandomDrop ? null : CreateDrop(type);

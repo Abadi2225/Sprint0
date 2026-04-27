@@ -2,10 +2,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
 using System;
-using Sprint.Block;
 using System.Linq;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
 namespace Sprint.Enemies.Base
 {
@@ -22,8 +20,8 @@ namespace Sprint.Enemies.Base
         protected bool isAlive;
         protected bool isInvincible;
         protected float dyingTimer;
-        protected const float DYING_DURATION = 0.5f; // For the death animation
-        protected readonly Random random = new Random();
+        protected const float DYING_DURATION = 0.5f;
+        protected readonly Random random = new();
         protected virtual bool FlipsOnVertical => false;
         public virtual bool HasCollision => true;
         private const float KNOCKBACK_DURATION = 0.15f;
@@ -34,6 +32,15 @@ namespace Sprint.Enemies.Base
 
         private const float DAMAGE_COOLDOWN = 1f;
         private float damageCooldownTimer;
+        private float stunTimer;
+
+        public virtual bool BoomerangKills => false;
+
+        public void Stun(float duration)
+        {
+            if (duration > stunTimer)
+                stunTimer = duration;
+        }
 
         public void Knockback(Vector2 direction, float force)
         {
@@ -44,13 +51,13 @@ namespace Sprint.Enemies.Base
 
         protected bool WouldIntersectBlock(Vector2 candidatePos, List<Sprint.Block.Block> solidBlocks)
         {
-            Rectangle candidateRect = new Rectangle((int)candidatePos.X + NAV_INSET, (int)candidatePos.Y + NAV_INSET, Rect.Width - NAV_INSET * 2, Rect.Height - NAV_INSET * 2);
+            Rectangle candidateRect = new((int)candidatePos.X + NAV_INSET, (int)candidatePos.Y + NAV_INSET, Rect.Width - NAV_INSET * 2, Rect.Height - NAV_INSET * 2);
             return solidBlocks.Any(b => !b.walkAble && b.Rect.Intersects(candidateRect));
         }
 
         protected bool WouldIntersectWall(Vector2 candidatePos, Rectangle innerBounds)
         {
-            Rectangle candidateRect = new Rectangle((int)candidatePos.X, (int)candidatePos.Y, Rect.Width, Rect.Height);
+            Rectangle candidateRect = new((int)candidatePos.X, (int)candidatePos.Y, Rect.Width, Rect.Height);
             return candidateRect.Left < innerBounds.Left ||
                 candidateRect.Right > innerBounds.Right ||
                 candidateRect.Top < innerBounds.Top ||
@@ -65,7 +72,7 @@ namespace Sprint.Enemies.Base
                 position = value;
                 if (sprite != null)
                     sprite.Position = value;
-                Rect = new Rectangle((int)value.X, (int)value.Y, Rect.Width, Rect.Height);
+                Rect = new((int)value.X, (int)value.Y, Rect.Width, Rect.Height);
             }
         }
 
@@ -83,7 +90,7 @@ namespace Sprint.Enemies.Base
 
         public Texture2D Texture => texture;
         public Rectangle Rect { get; set; } = Rectangle.Empty;
-        public Rectangle NavRect => new Rectangle(Rect.X + NAV_INSET, Rect.Y + NAV_INSET, Rect.Width - NAV_INSET * 2, Rect.Height - NAV_INSET * 2);
+        public Rectangle NavRect => new(Rect.X + NAV_INSET, Rect.Y + NAV_INSET, Rect.Width - NAV_INSET * 2, Rect.Height - NAV_INSET * 2);
 
         public int MaxHealth => maxHealth;
         public int Damage => damage;
@@ -93,12 +100,12 @@ namespace Sprint.Enemies.Base
         {
             this.texture = texture;
             this.position = position;
-            this.maxHealth = health;
+            maxHealth = health;
             this.health = health;
             this.damage = damage;
-            this.isAlive = true;
+            isAlive = true;
             this.isInvincible = isInvincible;
-            this.dyingTimer = 0f;
+            dyingTimer = 0f;
         }
 
         public virtual void TakeDamage(int damageAmount)
@@ -139,6 +146,13 @@ namespace Sprint.Enemies.Base
             if (damageCooldownTimer > 0)
                 damageCooldownTimer -= dt;
 
+            if (stunTimer > 0)
+            {
+                stunTimer -= dt;
+                sprite?.Update(gameTime);
+                return;
+            }
+
             if (knockbackTimer > 0)
             {
                 Position += knockbackVelocity * dt;
@@ -168,6 +182,9 @@ namespace Sprint.Enemies.Base
 
             sprite?.Draw(spriteBatch, location);
         }
+
+        protected float GetRandomFloat(float min, float max) =>
+            min + (float)random.NextDouble() * (max - min);
 
         protected Vector2 ChooseValidStep(List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds, float stepSize, int minSteps = 1, int maxSteps = 2, int maxAttempts = 4)
         {

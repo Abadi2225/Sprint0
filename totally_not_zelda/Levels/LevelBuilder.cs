@@ -165,14 +165,9 @@ public class LevelBuilder
                         break;
 
                     case "flame_left":
-                        enemyManager.AddEnemy(
-                            enemyFactory.CreateEnemy(EnemyType.FlameLeft, pos, solidBlocks, innerBounds)
-                        );
-                        break;
-
                     case "flame_right":
                         enemyManager.AddEnemy(
-                            enemyFactory.CreateEnemy(EnemyType.FlameRight, pos, solidBlocks, innerBounds)
+                            enemyFactory.CreateEnemy(EnemyType.Flame, pos, solidBlocks, innerBounds)
                         );
                         break;
 

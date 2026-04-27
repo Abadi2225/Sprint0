@@ -23,7 +23,7 @@ internal class SwordEnemyCollision : ICollisionHandler
     {
         if (link.SwordRect == Rectangle.Empty) return;
 
-        foreach (var enemy in enemyManager.enemyList)
+        foreach (var enemy in enemyManager.EnemyList)
         {
             if (!enemy.IsAlive) continue;
             if (!enemy.HasCollision) continue;

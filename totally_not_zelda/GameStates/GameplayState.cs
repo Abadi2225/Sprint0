@@ -182,7 +182,7 @@ class GameplayState : IGameState
         collisionManager = new CollisionManager();
 
         var moldorms = new List<Moldorm>();
-        foreach (var enemy in roomManager.CurrentLevel.Enemies.enemyList)
+        foreach (var enemy in roomManager.CurrentLevel.Enemies.EnemyList)
         {
             var actual = enemy is EnemyEffectWrapper w ? w.InnerEnemy : enemy;
             if (actual is Moldorm m)
@@ -193,12 +193,12 @@ class GameplayState : IGameState
 
         collisionManager.Add(new LinkEnemyCollision(link, roomManager.CurrentLevel.Enemies));
         collisionManager.Add(new SwordEnemyCollision(link, roomManager.CurrentLevel.Enemies));
-        collisionManager.Add(new EnemyBlockCollisionHandler(roomManager.CurrentLevel.Enemies.enemyList, roomManager.CurrentLevel.Blocks));
+        collisionManager.Add(new EnemyBlockCollisionHandler(roomManager.CurrentLevel.Enemies.EnemyList, roomManager.CurrentLevel.Blocks));
         collisionManager.Add(new LinkBlockPushHandler(link, roomManager.CurrentLevel.Blocks));
         collisionManager.Add(new LinkBlockCollisionHandler(link, roomManager.CurrentLevel.Blocks));
         collisionManager.Add(new LinkItemCollision(link, inventory, roomManager.CurrentLevel.WorldItems));
         collisionManager.Add(new ProjectileCollision(link, items, roomManager.CurrentLevel.Enemies));
-        collisionManager.Add(new EnemyWallCollisionHandler(roomManager.CurrentLevel.Enemies.enemyList, dungeonWalls));
+        collisionManager.Add(new EnemyWallCollisionHandler(roomManager.CurrentLevel.Enemies.EnemyList, dungeonWalls));
 
         if (!roomManager.IsUnderground)
             collisionManager.Add(new LinkWallCollisionHandler(link, dungeonWalls, doorManager, HandleDoorExit));

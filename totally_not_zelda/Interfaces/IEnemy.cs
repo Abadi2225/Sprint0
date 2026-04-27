@@ -15,5 +15,7 @@ public interface IEnemy : IPositionedSprite
     public void Die();
     public void Reset();
     public void Knockback(Vector2 direction, float force);
+    public void Stun(float duration);
+    bool BoomerangKills { get; }
     bool HasCollision { get; }
 }

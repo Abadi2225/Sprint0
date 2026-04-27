@@ -22,13 +22,9 @@ namespace Sprint.Enemies.Concrete
         private bool isResting;
         private readonly IPositionedSprite flyingSprite;
         private readonly IPositionedSprite restingSprite;
-        private Rectangle innerBounds;
-        public override bool HasCollision => true;
-        
-        // Rests against walls first before taking flight
-        // Moves erratically in random directions, stopping sometimes to rest
-        // Boomerang kills them instead of stunning
-        // Never drop any items
+        private readonly Rectangle innerBounds;
+        public override bool BoomerangKills => true;
+
         public Keese(Texture2D texture, Vector2 position, Rectangle innerBounds) : base(texture, position, HEALTH, DAMAGE)
         {
             int[] flyingXPositions = [183, 200];
@@ -37,13 +33,13 @@ namespace Sprint.Enemies.Concrete
             int spriteWidth = 16;
             int spriteHeight = 10;
             float frameTime = 0.2f;
-            
-            flyingSprite = new AnimatedSprite(texture, position, flyingXPositions, sheetY, 
+
+            flyingSprite = new AnimatedSprite(texture, position, flyingXPositions, sheetY,
                                         spriteWidth, spriteHeight, frameTime);
-        
-            restingSprite = new AnimatedSprite(texture, position, restingXPositions, sheetY, 
+
+            restingSprite = new AnimatedSprite(texture, position, restingXPositions, sheetY,
                                         spriteWidth, spriteHeight, frameTime);
-                                        
+
             this.innerBounds = innerBounds;
             isResting = true;
             actionTimer = 0f;
@@ -52,42 +48,34 @@ namespace Sprint.Enemies.Concrete
             sprite = restingSprite;
             Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
-        
+
         protected override void UpdateEnemy(GameTime gameTime)
         {
             if (!isAlive) return;
-            
+
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             actionTimer += dt;
-            
-            // Check if it's time to switch between moving and resting
+
             if (actionTimer >= actionDuration)
             {
                 actionTimer = 0f;
                 isResting = !isResting;
-                
+
                 if (isResting)
                 {
-                    // Start resting
                     actionDuration = GetRandomFloat(REST_TIME_MIN, REST_TIME_MAX);
                     sprite = restingSprite;
-
                 }
                 else
                 {
-                    // Start moving in a new random direction
                     actionDuration = GetRandomFloat(MOVE_TIME_MIN, MOVE_TIME_MAX);
                     sprite = flyingSprite;
                     ChooseRandomDirection();
                 }
 
-                if (sprite != null)
-                {
-                    sprite.Position = Position;
-                }
+                sprite.Position = Position;
             }
-            
-            // Move if not resting
+
             if (!isResting)
             {
                 Vector2 newPos = Position + moveDirection * MOVE_SPEED * dt;
@@ -97,24 +85,16 @@ namespace Sprint.Enemies.Concrete
                     moveDirection.Y = -moveDirection.Y;
                 Position += moveDirection * MOVE_SPEED * dt;
             }
-            
-            if (sprite != null)
-            {
-                sprite.Update(gameTime);
-            }
+
+            sprite.Update(gameTime);
         }
-        
+
         private void ChooseRandomDirection()
         {
-            // Pick a random angle in radians
             float angle = (float)(random.NextDouble() * Math.PI * 2);
             moveDirection = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
             moveDirection.Normalize();
         }
-        
-        private float GetRandomFloat(float min, float max)
-        {
-            return min + (float)random.NextDouble() * (max - min);
-        }
+
     }
 }
