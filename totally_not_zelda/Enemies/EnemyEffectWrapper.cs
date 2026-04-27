@@ -21,7 +21,6 @@ internal class EnemyEffectWrapper : IEnemy
 
     private const float SPAWN_DURATION = 1.5f;
     private const float DYING_DURATION = 0.5f;
-    public bool IsSpawningPublic => IsSpawning;
     public bool HasCollision => enemy.HasCollision;
 
     public EnemyEffectWrapper(IEnemy enemy, ISprite spawnSprite, ISprite deathSprite,
@@ -55,10 +54,10 @@ internal class EnemyEffectWrapper : IEnemy
     }
 
     public int ID
-        {
-            get => enemy.ID;
-            set => enemy.ID = value;
-        }
+    {
+        get => enemy.ID;
+        set => enemy.ID = value;
+    }
 
     private bool IsSpawning => spawnTimer < SPAWN_DURATION;
     public int MaxHealth => enemy.MaxHealth;

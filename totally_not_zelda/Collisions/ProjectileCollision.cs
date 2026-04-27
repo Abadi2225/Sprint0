@@ -51,7 +51,7 @@ internal class ProjectileCollision : ICollisionHandler
 
     private void ApplyEnemyDamage(AbstractItem item)
     {
-        foreach (var enemy in enemyManager.enemyList)
+        foreach (var enemy in enemyManager.EnemyList)
         {
             if (!enemy.IsAlive) continue;
             if (!item.Rect.Intersects(enemy.Rect)) continue;
@@ -75,7 +75,7 @@ internal class ProjectileCollision : ICollisionHandler
 
     private void TryFeedDodongo(TimeBomb bomb)
     {
-        foreach (var enemy in enemyManager.enemyList)
+        foreach (var enemy in enemyManager.EnemyList)
         {
             var actual = enemy is EnemyEffectWrapper w ? w.InnerEnemy : enemy;
             if (actual is Dodongo dodongo && dodongo.IsAlive && bomb.Rect.Intersects(dodongo.Rect))
@@ -95,7 +95,7 @@ internal class ProjectileCollision : ICollisionHandler
             BOMB_RADIUS * 2,
             BOMB_RADIUS * 2);
 
-        foreach (var enemy in enemyManager.enemyList)
+        foreach (var enemy in enemyManager.EnemyList)
         {
             if (!enemy.IsAlive) continue;
             if (blastZone.Intersects(enemy.Rect))

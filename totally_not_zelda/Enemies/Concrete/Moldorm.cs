@@ -14,9 +14,10 @@ namespace Sprint.Enemies.Concrete
         private const float MOVE_SPEED = 100f;
         private const float TURN_INTERVAL_MIN = 0.5f;
         private const float TURN_INTERVAL_MAX = 2.0f;
-        private const float SEGMENT_RADIUS = 4f; // source pixels
+        private const float SEGMENT_RADIUS = 4f;
         private const float FLASH_DURATION = 0.15f;
         private const float PUSH_AMOUNT = 6f;
+        private const float SEGMENT_DAMAGE_COOLDOWN = 1f;
 
         private const int SPRITE_X = 119;
         private const int SPRITE_Y = 14;
@@ -46,13 +47,13 @@ namespace Sprint.Enemies.Concrete
         private readonly Rectangle innerBounds;
         private readonly float scaledRadius;
         private readonly float diameter;
+        private readonly Vector2 initialPosition;
+        private readonly Vector2 normalizedInitialDir;
 
-        // head = segments[0], tail = segments[^1]
         private int headIndex => 0;
         private int tailIndex => segments.Count - 1;
         private float headDamageCooldown = 0f;
         private float tailDamageCooldown = 0f;
-        private const float SEGMENT_DAMAGE_COOLDOWN = 1f;
 
         public Moldorm(Texture2D texture, Vector2 position, Vector2 initialDirection, Rectangle innerBounds)
             : base(texture, position, SEGMENT_HEALTH, 1)
@@ -61,9 +62,10 @@ namespace Sprint.Enemies.Concrete
             scaledRadius = SEGMENT_RADIUS * GameServices.ScaleFactor;
             diameter = scaledRadius * 2f;
 
-            // Initialize segments in a line behind the head
             Vector2 dir = initialDirection;
             dir.Normalize();
+            normalizedInitialDir = dir;
+            initialPosition = position;
             headVelocity = dir * MOVE_SPEED;
 
             for (int i = 0; i < SEGMENT_COUNT; i++)
@@ -71,8 +73,7 @@ namespace Sprint.Enemies.Concrete
 
             turnTimer = GetRandomTurnTime();
 
-            Rect = new Rectangle((int)position.X, (int)position.Y,
-                (int)diameter, (int)diameter);
+            Rect = new Rectangle((int)position.X, (int)position.Y, (int)diameter, (int)diameter);
         }
 
         protected override void UpdateEnemy(GameTime gameTime)
@@ -84,12 +85,10 @@ namespace Sprint.Enemies.Concrete
             if (headDamageCooldown > 0) headDamageCooldown -= dt;
             if (tailDamageCooldown > 0) tailDamageCooldown -= dt;
 
-            // Update flash timers
             foreach (var seg in segments)
                 if (seg.FlashTimer > 0)
                     seg.FlashTimer -= dt;
 
-            // Random turn
             turnTimer -= dt;
             if (turnTimer <= 0)
             {
@@ -97,10 +96,8 @@ namespace Sprint.Enemies.Concrete
                 turnTimer = GetRandomTurnTime();
             }
 
-            // Move head
             MoveHead(dt);
 
-            // Follow: each segment moves toward the one ahead of it
             for (int i = 1; i < segments.Count; i++)
             {
                 Vector2 target = segments[i - 1].Position;
@@ -112,17 +109,14 @@ namespace Sprint.Enemies.Concrete
                 }
             }
 
-            // Update head rect for collision
             Position = segments[headIndex].Position;
-            Rect = new Rectangle((int)Position.X, (int)Position.Y,
-                (int)diameter, (int)diameter);
+            Rect = new Rectangle((int)Position.X, (int)Position.Y, (int)diameter, (int)diameter);
         }
 
         private void MoveHead(float dt)
         {
             Vector2 newPos = segments[headIndex].Position + headVelocity * dt;
 
-            // Wall reflection
             bool reflectX = false, reflectY = false;
 
             if (newPos.X - scaledRadius < innerBounds.Left)
@@ -155,7 +149,6 @@ namespace Sprint.Enemies.Concrete
 
         private void TurnHead()
         {
-            // Randomly turn 0, +45, or -45 degrees
             int turn = random.Next(3) - 1;
             if (turn == 0) return;
 
@@ -201,23 +194,30 @@ namespace Sprint.Enemies.Concrete
 
         public void PushMiddleSegments(Vector2 pushDir)
         {
-            // Push all segments except head and tail
             for (int i = 1; i < segments.Count - 1; i++)
                 segments[i].Position += pushDir * PUSH_AMOUNT;
         }
 
         private void CheckDeath()
         {
-            if (segments.Count == 0 || (segments.Count == 1 && segments[0].Health <= 0))
-            {
+            if (segments.Count == 0)
                 isAlive = false;
-                return;
-            }
         }
 
-        public override void TakeDamage(int amount)
+        public override void TakeDamage(int amount) { }
+
+        public override void Reset()
         {
-            // Default damage goes to head — specific methods handle head/tail/middle
+            base.Reset();
+            segments.Clear();
+            for (int i = 0; i < SEGMENT_COUNT; i++)
+                segments.Add(new Segment(initialPosition - normalizedInitialDir * diameter * i));
+            headVelocity = normalizedInitialDir * MOVE_SPEED;
+            headDamageCooldown = 0f;
+            tailDamageCooldown = 0f;
+            turnTimer = GetRandomTurnTime();
+            Position = segments[headIndex].Position;
+            Rect = new Rectangle((int)Position.X, (int)Position.Y, (int)diameter, (int)diameter);
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 location)
@@ -233,29 +233,20 @@ namespace Sprint.Enemies.Concrete
 
                 Color color = seg.IsFlashing ? Color.White * 0.3f : Color.White;
 
-                spriteBatch.Draw(
-                    texture,
-                    seg.Position,
-                    sourceRect,
-                    color,
-                    0f,
-                    Vector2.Zero,
-                    GameServices.ScaleFactor,
-                    SpriteEffects.None,
-                    0f);
+                spriteBatch.Draw(texture, seg.Position, sourceRect, color, 0f, Vector2.Zero, GameServices.ScaleFactor, SpriteEffects.None, 0f);
             }
         }
 
         public Rectangle GetHeadRect() =>
             new Rectangle(
-                (int)(segments[headIndex].Position.X),
-                (int)(segments[headIndex].Position.Y),
+                (int)segments[headIndex].Position.X,
+                (int)segments[headIndex].Position.Y,
                 (int)diameter, (int)diameter);
 
         public Rectangle GetTailRect() =>
             new Rectangle(
-                (int)(segments[tailIndex].Position.X),
-                (int)(segments[tailIndex].Position.Y),
+                (int)segments[tailIndex].Position.X,
+                (int)segments[tailIndex].Position.Y,
                 (int)diameter, (int)diameter);
 
         public List<Rectangle> GetMiddleRects()
@@ -263,13 +254,12 @@ namespace Sprint.Enemies.Concrete
             var rects = new List<Rectangle>();
             for (int i = 1; i < segments.Count - 1; i++)
                 rects.Add(new Rectangle(
-                    (int)(segments[i].Position.X),
-                    (int)(segments[i].Position.Y),
+                    (int)segments[i].Position.X,
+                    (int)segments[i].Position.Y,
                     (int)diameter, (int)diameter));
             return rects;
         }
 
-        private float GetRandomTurnTime() =>
-            TURN_INTERVAL_MIN + (float)random.NextDouble() * (TURN_INTERVAL_MAX - TURN_INTERVAL_MIN);
+        private float GetRandomTurnTime() => GetRandomFloat(TURN_INTERVAL_MIN, TURN_INTERVAL_MAX);
     }
 }

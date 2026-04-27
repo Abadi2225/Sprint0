@@ -8,55 +8,49 @@ namespace Sprint.Enemies.Concrete
 {
     public class Stalfos : Enemy
     {
-        private const int STALFOS_HEALTH = 2;
-        private const int STALFOS_DAMAGE = 1;
-        
+        private const int HEALTH = 2;
+        private const int DAMAGE = 1;
         private const float MOVE_SPEED = 50f;
+        private const float DIRECTION_CHANGE_INTERVAL = 2.0f;
+        private const float FLIP_INTERVAL = 0.15f;
+        private readonly Rectangle sourceRect;
+        private readonly List<Sprint.Block.Block> solidBlocks;
+        private readonly Rectangle innerBounds;
         private Vector2 velocity;
         private float directionChangeTimer;
-        private const float DIRECTION_CHANGE_INTERVAL = 2.0f;
-        private Rectangle sourceRect;
         private bool isFlipped;
         private float flipTimer;
-        private const float FLIP_INTERVAL = 0.15f;
-        private List<Sprint.Block.Block> solidBlocks;
-        private Rectangle innerBounds;
-        
-        public Stalfos(Texture2D texture, Vector2 position, List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds) 
-    : base(texture, position, STALFOS_HEALTH, STALFOS_DAMAGE)
+
+        public Stalfos(Texture2D texture, Vector2 position, List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds)
+            : base(texture, position, HEALTH, DAMAGE)
         {
-            int frameX = 1;
-            int frameY = 59;
             int spriteWidth = 16;
             int spriteHeight = 16;
             this.solidBlocks = solidBlocks;
             this.innerBounds = innerBounds;
-            
-            sourceRect = new Rectangle(frameX, frameY, spriteWidth, spriteHeight);
-            
+
+            sourceRect = new Rectangle(1, 59, spriteWidth, spriteHeight);
+
             velocity = GetRandomCardinalDirection();
             directionChangeTimer = DIRECTION_CHANGE_INTERVAL;
             isFlipped = false;
             flipTimer = FLIP_INTERVAL;
             Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
-        
+
         private Vector2 GetRandomCardinalDirection()
         {
-            // Only move in 4 directions (up, down, left, right)
-            int direction = random.Next(4);
-            return direction switch
+            return random.Next(4) switch
             {
-                0 => new Vector2(0, -MOVE_SPEED),// Up
-                1 => new Vector2(0, MOVE_SPEED),// Down
-                2 => new Vector2(-MOVE_SPEED, 0),// Left
-                3 => new Vector2(MOVE_SPEED, 0),// Right
-                _ => (Vector2)Vector2.Zero,
+                0 => new Vector2(0, -MOVE_SPEED),
+                1 => new Vector2(0, MOVE_SPEED),
+                2 => new Vector2(-MOVE_SPEED, 0),
+                3 => new Vector2(MOVE_SPEED, 0),
+                _ => Vector2.Zero,
             };
-
         }
-        
-       protected override void UpdateEnemy(GameTime gameTime)
+
+        protected override void UpdateEnemy(GameTime gameTime)
         {
             if (!isAlive) return;
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -80,43 +74,19 @@ namespace Sprint.Enemies.Concrete
                 Position = candidatePos;
             else
             {
-                velocity = GetRandomCardinalDirection(); // bounce to new direction
+                velocity = GetRandomCardinalDirection();
                 directionChangeTimer = DIRECTION_CHANGE_INTERVAL;
             }
 
             base.UpdateEnemy(gameTime);
         }
 
-
-        // Didn't use the animatedSprite class for this one since it only has 1 frame.
         public override void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
-            if (!isAlive)
-                return;
-            
+            if (!isAlive) return;
+
             SpriteEffects effects = isFlipped ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-
-            //Vector2 drawPosition = new Vector2(
-            //    location.X - sourceRect.Width / 2,
-            //    location.Y - sourceRect.Height / 2
-            //);
-
-			Vector2 drawPosition = new Vector2(
-				location.X,
-				location.Y
-			);
-
-			spriteBatch.Draw(
-                texture, 
-                drawPosition, 
-                sourceRect, 
-                Color.White, 
-                0f,
-                Vector2.Zero, 
-                GameServices.ScaleFactor, 
-                effects, 
-                0f
-            );
+            spriteBatch.Draw(texture, location, sourceRect, Color.White, 0f, Vector2.Zero, GameServices.ScaleFactor, effects, 0f);
         }
     }
 }

@@ -9,27 +9,30 @@ namespace Sprint.Enemies.Concrete
 {
     public class Rope : Enemy
     {
-        private const int ROPE_HEALTH = 1;
-        private const int ROPE_DAMAGE = 1;
+        private const int HEALTH = 1;
+        private const int DAMAGE = 1;
         private const float PATROL_SPEED = 45f;
         private const float CHARGE_SPEED = 160f;
         private const float DIRECTION_CHANGE_MIN = 1.5f;
         private const float DIRECTION_CHANGE_MAX = 3f;
-        private const float CHARGE_DURATION = 3f;
+        private const float CHARGE_DURATION = 1f;
+        private const float CHARGE_COOLDOWN = 2f;
+        private readonly List<Sprint.Block.Block> solidBlocks;
+        private readonly Rectangle innerBounds;
+        private readonly int[] frameXPositions = [127, 144];
 
         private Vector2 moveDirection;
         private bool isCharging;
         private float chargeTimer;
+        private float chargeCooldownTimer;
         private float directionChangeTimer;
         private float directionChangeDuration;
         private bool facingLeft;
-        private List<Sprint.Block.Block> solidBlocks;
-        private Rectangle innerBounds;
 
-        readonly int[] frameXPositions = [127, 144];
+        public override bool BoomerangKills => true;
 
-        public Rope(Texture2D texture, Vector2 position, List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds) 
-    : base(texture, position, ROPE_HEALTH, ROPE_DAMAGE)
+        public Rope(Texture2D texture, Vector2 position, List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds)
+            : base(texture, position, HEALTH, DAMAGE)
         {
             int frameY = 59;
             int spriteWidth = 15;
@@ -37,10 +40,10 @@ namespace Sprint.Enemies.Concrete
             float frameTime = 0.3f;
             this.solidBlocks = solidBlocks;
             this.innerBounds = innerBounds;
-            
-            sprite = new DirectionalAnimatedSprite(texture, position, frameXPositions, frameY, 
+
+            sprite = new DirectionalAnimatedSprite(texture, position, frameXPositions, frameY,
                                         spriteWidth, spriteHeight, frameTime, false);
-            
+
             isCharging = false;
             chargeTimer = 0f;
             directionChangeDuration = GetRandomFloat(DIRECTION_CHANGE_MIN, DIRECTION_CHANGE_MAX);
@@ -52,13 +55,29 @@ namespace Sprint.Enemies.Concrete
         protected override void UpdateEnemy(GameTime gameTime)
         {
             if (!isAlive) return;
-            
+
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
-            // TODO: To trigger a charge, check whether Link's X position
-            // matches Rope's X within a threshold (for vertical charge) or Link's Y matches
-            // Rope's Y (for horizontal charge). If aligned, set isCharging = true, set
-            // chargeTimer = CHARGE_DURATION, and set moveDirection toward Link.
+
+            if (chargeCooldownTimer > 0)
+                chargeCooldownTimer -= deltaTime;
+
+            if (!isCharging && chargeCooldownTimer <= 0)
+            {
+                Rectangle linkRect = GameServices.Link.Rect;
+                bool sameRow = Rect.Top < linkRect.Bottom && linkRect.Top < Rect.Bottom;
+                bool sameCol = Rect.Left < linkRect.Right && linkRect.Left < Rect.Right;
+
+                if (sameRow || sameCol)
+                {
+                    isCharging = true;
+                    chargeTimer = CHARGE_DURATION;
+                    Vector2 toLink = linkRect.Center.ToVector2() - Rect.Center.ToVector2();
+                    if (sameRow && (!sameCol || Math.Abs(toLink.X) >= Math.Abs(toLink.Y)))
+                        moveDirection = toLink.X >= 0 ? Vector2.UnitX : -Vector2.UnitX;
+                    else
+                        moveDirection = toLink.Y >= 0 ? Vector2.UnitY : -Vector2.UnitY;
+                }
+            }
 
             if (isCharging)
             {
@@ -66,6 +85,7 @@ namespace Sprint.Enemies.Concrete
                 if (chargeTimer <= 0)
                 {
                     isCharging = false;
+                    chargeCooldownTimer = CHARGE_COOLDOWN;
                     directionChangeDuration = GetRandomFloat(DIRECTION_CHANGE_MIN, DIRECTION_CHANGE_MAX);
                     directionChangeTimer = directionChangeDuration;
                 }
@@ -87,26 +107,25 @@ namespace Sprint.Enemies.Concrete
                 Position = candidatePosition;
             else
             {
-                // If we hit a wall or block, stop charging and pick a new direction
                 isCharging = false;
+                chargeCooldownTimer = CHARGE_COOLDOWN;
                 directionChangeDuration = GetRandomFloat(DIRECTION_CHANGE_MIN, DIRECTION_CHANGE_MAX);
                 directionChangeTimer = directionChangeDuration;
                 ChooseRandomCardinalDirection();
             }
 
             UpdateSpriteFlip();
-            
             sprite.Update(gameTime);
         }
-        
+
         private void ChooseRandomCardinalDirection()
         {
             moveDirection = random.Next(4) switch
             {
-                0 => new Vector2(0, -1),   // Up
-                1 => new Vector2(0, 1),    // Down
-                2 => new Vector2(-1, 0),   // Left
-                3 => new Vector2(1, 0),    // Right
+                0 => new Vector2(0, -1),
+                1 => new Vector2(0, 1),
+                2 => new Vector2(-1, 0),
+                3 => new Vector2(1, 0),
                 _ => Vector2.UnitX,
             };
         }
@@ -121,10 +140,6 @@ namespace Sprint.Enemies.Concrete
                 dirSprite?.UpdateFrames(frameXPositions, facingLeft);
             }
         }
-        
-        private float GetRandomFloat(float min, float max)
-        {
-            return min + (float)random.NextDouble() * (max - min);
-        }
+
     }
 }

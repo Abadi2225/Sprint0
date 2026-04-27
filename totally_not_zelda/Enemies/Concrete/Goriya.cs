@@ -1,7 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
 using Sprint.Enemies.Base;
 using Sprint.Sprites;
 using Sprint.Item;
@@ -22,8 +21,9 @@ namespace Sprint.Enemies.Concrete
         private const float THROW_COOLDOWN_MAX = 4.0f;
         private const float BOOMERANG_SPEED = 3f;
         private const float BOOMERANG_RANGE = 400f;
-        private List<Sprint.Block.Block> solidBlocks;
-        private Rectangle innerBounds;
+        private const float FLIP_INTERVAL = 0.075f;
+        private readonly List<Sprint.Block.Block> solidBlocks;
+        private readonly Rectangle innerBounds;
 
         private enum Direction { Up, Down, Left, Right }
 
@@ -33,9 +33,7 @@ namespace Sprint.Enemies.Concrete
         private float throwTimer;
         private bool spriteHorizontalFlip;
         private float flipTimer;
-        const float FLIP_INTERVAL = 0.075f;
         private Boomerang activeBoomerang;
-        private readonly ContentManager contentManager;
         private readonly Action<AbstractItem> spawnProjectile;
 
         private readonly int[] upFrames = [239];
@@ -44,12 +42,10 @@ namespace Sprint.Enemies.Concrete
         private readonly int[] throwFrame = [273];
         protected override bool FlipsOnVertical => true;
 
-        public Goriya(Texture2D texture, Vector2 position, ContentManager content,
+        public Goriya(Texture2D texture, Vector2 position,
             List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds,
             Action<AbstractItem> spawnProjectile = null) : base(texture, position, HEALTH, DAMAGE)
         {
-            this.texture = texture;
-            this.contentManager = content;
             this.solidBlocks = solidBlocks;
             this.innerBounds = innerBounds;
             this.spawnProjectile = spawnProjectile;
@@ -76,15 +72,12 @@ namespace Sprint.Enemies.Concrete
             if (!isAlive) return;
 
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            throwTimer -= dt;
 
             if (currentState == GoriyaState.Walking)
             {
                 throwTimer -= dt;
                 if (throwTimer <= 0)
-                {
                     ThrowBoomerang();
-                }
             }
 
             switch (currentState)
@@ -239,10 +232,7 @@ namespace Sprint.Enemies.Concrete
                 dirSprite?.UpdateFrames(sideFrames, false);
             }
         }
-        
-        private float GetRandomThrowTime()
-        {
-            return THROW_COOLDOWN_MIN + (float)random.NextDouble() * (THROW_COOLDOWN_MAX - THROW_COOLDOWN_MIN);
-        }
+
+        private float GetRandomThrowTime() => GetRandomFloat(THROW_COOLDOWN_MIN, THROW_COOLDOWN_MAX);
     }
 }

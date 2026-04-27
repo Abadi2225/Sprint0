@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Enemies.Base;
 using Sprint.Sprites;
-using Sprint;
 using System.Collections.Generic;
 
 namespace Sprint.Enemies.Concrete
@@ -12,15 +11,12 @@ namespace Sprint.Enemies.Concrete
     {
         private const int HEALTH = 1;
         private const int DAMAGE = 1;
-        
-        private Vector2 velocity;
-        private float turnTimer;
         private const float TURN_SPEED = 30f;
         private const float TURN_INTERVAL = 1f;
-        private const float MOVE_SPEED = 0.7f;
-        private List<Sprint.Block.Block> solidBlocks;
-        private Rectangle innerBounds;
-
+        private readonly List<Sprint.Block.Block> solidBlocks;
+        private readonly Rectangle innerBounds;
+        private Vector2 velocity;
+        private float turnTimer;
 
         public override bool BoomerangKills => true;
 
@@ -34,36 +30,31 @@ namespace Sprint.Enemies.Concrete
             this.solidBlocks = solidBlocks;
             this.innerBounds = innerBounds;
 
-            sprite = new AnimatedSprite(texture, position, frameXPositions, frameY,
-                                        spriteWidth, spriteHeight, frameTime);
+            sprite = new AnimatedSprite(texture, position, frameXPositions, frameY, spriteWidth, spriteHeight, frameTime);
 
             turnTimer = TURN_INTERVAL;
             velocity = Vector2.Zero;
             Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
-        
 
         protected override void UpdateEnemy(GameTime gameTime)
         {
             if (!isAlive) return;
 
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
-            
-                turnTimer -= deltaTime;
-                if (turnTimer <= 0)
-                {
-                    velocity = GetRandomTurnDirection();
-                    turnTimer = TURN_INTERVAL;
-                }
-            
-            Vector2 candidatePosition =Position + velocity * deltaTime;
+
+            turnTimer -= deltaTime;
+            if (turnTimer <= 0)
+            {
+                velocity = GetRandomTurnDirection();
+                turnTimer = TURN_INTERVAL;
+            }
+
+            Vector2 candidatePosition = Position + velocity * deltaTime;
             if (!WouldIntersectBlock(candidatePosition, solidBlocks) && !WouldIntersectWall(candidatePosition, innerBounds))
                 Position = candidatePosition;
             else
-            {
                 velocity = GetRandomTurnDirection();
-            }
 
             base.UpdateEnemy(gameTime);
         }
@@ -79,10 +70,10 @@ namespace Sprint.Enemies.Concrete
         {
             return random.Next(4) switch
             {
-                0 => new Vector2(0, -TURN_SPEED),   // Up
-                1 => new Vector2(0, TURN_SPEED),    // Down
-                2 => new Vector2(-TURN_SPEED, 0),   // Left
-                3 => new Vector2(TURN_SPEED, 0),    // Right
+                0 => new Vector2(0, -TURN_SPEED),
+                1 => new Vector2(0, TURN_SPEED),
+                2 => new Vector2(-TURN_SPEED, 0),
+                3 => new Vector2(TURN_SPEED, 0),
                 _ => Vector2.Zero
             };
         }

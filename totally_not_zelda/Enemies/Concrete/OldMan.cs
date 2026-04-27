@@ -12,14 +12,11 @@ namespace Sprint.Enemies.Concrete
 
         public OldMan(Texture2D texture, Vector2 position) : base(texture, position, HEALTH, DAMAGE, isInvincible: true)
         {
-            int spriteWidth  = 16;
+            int spriteWidth = 16;
             int spriteHeight = 16;
 
             sprite = new StaticSprite(texture, position, new Rectangle(18, 11, spriteWidth, spriteHeight));
             Rect = new Rectangle((int)position.X, (int)position.Y, spriteWidth * (int)GameServices.ScaleFactor, spriteHeight * (int)GameServices.ScaleFactor);
         }
-
-        public override void TakeDamage(int damageAmount) { }
-        public override void Die() { }
     }
 }

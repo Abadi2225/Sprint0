@@ -9,8 +9,8 @@ namespace Sprint.Enemies.Concrete
 {
     public class WallMaster : Enemy
     {
-        private const int WALLMASTER_HEALTH = 3;
-        private const int WALLMASTER_DAMAGE = 1;
+        private const int HEALTH = 3;
+        private const int DAMAGE = 1;
         private const float CREEP_SPEED = 60f;
         private const float DETECTION_RANGE = 160f;
         private const float GRAB_RANGE = 12f;
@@ -19,29 +19,30 @@ namespace Sprint.Enemies.Concrete
         private const float CHASE_DURATION = 20f;
         private const float REENTER_MIN = 7f;
         private const float REENTER_MAX = 12f;
+        private const float CREEP_STEP_SIZE = 16f;
+        private const float CREEP_STEP_DELAY = 0.8f;
 
         private enum WallMasterState { Hiding, Entering, Creeping, Chasing, Leaving, Cooldown }
 
         private WallMasterState currentState;
-        private Vector2 homePosition;
+        private readonly Vector2 homePosition;
         private Vector2 entryStart;
         private Vector2 entryTarget;
         private Vector2 leaveTarget;
         private bool movingVertically;
         private float chaseTimer;
         private float cooldownTimer;
-        private Rectangle innerBounds;
-        public bool IsEntering => currentState == WallMasterState.Entering || currentState == WallMasterState.Hiding;
-        public override bool HasCollision => currentState == WallMasterState.Chasing;
-        private const float CREEP_STEP_SIZE = 16f;
-        private const float CREEP_STEP_DELAY = 0.8f;
+        private readonly Rectangle innerBounds;
         private Vector2 creepTarget;
         private float stepTimer;
-        private List<Sprint.Block.Block> solidBlocks;
+        private readonly List<Sprint.Block.Block> solidBlocks;
         private Vector2 linkGrabOffset;
         private bool isGrabbingLink;
 
-        public WallMaster(Texture2D texture, Vector2 position, List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds) : base(texture, position, WALLMASTER_HEALTH, WALLMASTER_DAMAGE)
+        public bool IsEntering => currentState == WallMasterState.Entering || currentState == WallMasterState.Hiding;
+        public override bool HasCollision => currentState == WallMasterState.Chasing;
+
+        public WallMaster(Texture2D texture, Vector2 position, List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds) : base(texture, position, HEALTH, DAMAGE)
         {
             int[] frameXPositions = [393, 410];
             int frameY = 11;
@@ -53,8 +54,7 @@ namespace Sprint.Enemies.Concrete
             creepTarget = position;
             stepTimer = CREEP_STEP_DELAY;
 
-            sprite = new AnimatedSprite(texture, position, frameXPositions, frameY,
-                                        spriteWidth, spriteHeight, frameTime);
+            sprite = new AnimatedSprite(texture, position, frameXPositions, frameY, spriteWidth, spriteHeight, frameTime);
 
             homePosition = position;
             SetupEntry(position);
@@ -73,7 +73,7 @@ namespace Sprint.Enemies.Concrete
             currentState = WallMasterState.Hiding;
         }
 
-       private Vector2 DetermineEntryDirection(Vector2 spawnPosition)
+        private Vector2 DetermineEntryDirection(Vector2 spawnPosition)
         {
             float distLeft   = Math.Max(0, spawnPosition.X - innerBounds.Left);
             float distRight  = Math.Max(0, innerBounds.Right - spawnPosition.X);
@@ -83,13 +83,12 @@ namespace Sprint.Enemies.Concrete
             float min = MathHelper.Min(MathHelper.Min(distLeft, distRight),
                                     MathHelper.Min(distTop, distBottom));
 
-            if (min == distRight)  return -Vector2.UnitX;  // right wall, enter leftward
-            else if (min == distLeft)   return Vector2.UnitX;   // left wall, enter rightward
-            else if (min == distBottom) return -Vector2.UnitY;  // bottom wall, enter upward
-            else return Vector2.UnitY;                           // top wall, enter downward
+            if (min == distRight)  return -Vector2.UnitX;
+            else if (min == distLeft)   return Vector2.UnitX;
+            else if (min == distBottom) return -Vector2.UnitY;
+            else return Vector2.UnitY;
         }
 
-        // Pick a random wall position different from the current one
         private Vector2 ChooseNewWallPosition()
         {
             int wall = random.Next(4);
@@ -98,10 +97,10 @@ namespace Sprint.Enemies.Concrete
 
             return wall switch
             {
-                0 => new Vector2(entryTarget.X, 0),                      // top
-                1 => new Vector2(entryTarget.X, scaledHeight),            // bottom
-                2 => new Vector2(0, entryTarget.Y),                      // left
-                3 => new Vector2(scaledWidth, entryTarget.Y),            // right
+                0 => new Vector2(entryTarget.X, 0),
+                1 => new Vector2(entryTarget.X, scaledHeight),
+                2 => new Vector2(0, entryTarget.Y),
+                3 => new Vector2(scaledWidth, entryTarget.Y),
                 _ => entryTarget
             };
         }
@@ -140,8 +139,7 @@ namespace Sprint.Enemies.Concrete
 
         private void UpdateHiding()
         {
-            float dist = Vector2.Distance(GameServices.Link.Position, entryTarget);
-            if (dist <= DETECTION_RANGE)
+            if (Vector2.Distance(GameServices.Link.Position, entryTarget) <= DETECTION_RANGE)
                 currentState = WallMasterState.Entering;
         }
 
@@ -162,7 +160,6 @@ namespace Sprint.Enemies.Concrete
 
         private void UpdateCreeping(float deltaTime)
         {
-            // Random tile-based movement
             stepTimer -= deltaTime;
             if (stepTimer <= 0)
             {
@@ -183,12 +180,7 @@ namespace Sprint.Enemies.Concrete
                 Position = creepTarget;
             }
 
-            // Check if Link is within detection range
-            float dx = GameServices.Link.Position.X - Position.X;
-            float dy = GameServices.Link.Position.Y - Position.Y;
-            float dist = new Vector2(dx, dy).Length();
-
-            if (dist <= DETECTION_RANGE)
+            if (Vector2.Distance(GameServices.Link.Position, Position) <= DETECTION_RANGE)
             {
                 chaseTimer = CHASE_DURATION;
                 currentState = WallMasterState.Chasing;
@@ -216,7 +208,6 @@ namespace Sprint.Enemies.Concrete
 
             if (chaseTimer <= 0)
             {
-                // Failed to catch Link — leave through nearest wall
                 leaveTarget = DetermineLeaveTarget();
                 currentState = WallMasterState.Leaving;
                 return;
@@ -288,6 +279,7 @@ namespace Sprint.Enemies.Concrete
             if (min == distTop)    return new Vector2(Position.X, innerBounds.Top - Rect.Height - wallThickness);
             return new Vector2(Position.X, innerBounds.Bottom + Rect.Height + wallThickness);
         }
+
         public override void Draw(SpriteBatch spriteBatch, Vector2 location)
         {
             if (!isAlive || currentState == WallMasterState.Cooldown || currentState == WallMasterState.Hiding) return;
