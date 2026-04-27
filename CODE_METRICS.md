@@ -13,8 +13,8 @@ The *Sprint.csproj* project file contains:
 
 - 25 namespaces.
 - 160 named types.
-- 9,848 total lines of source code.
-- Approximately 3,095 lines of executable code.
+- 9,850 total lines of source code.
+- Approximately 3,099 lines of executable code.
 - The highest cyclomatic complexity is 31 :exploding_head:.
 
 <details>
@@ -1869,8 +1869,8 @@ The `Sprint.Commands` namespace contains 9 named types.
 The `Sprint.Enemies.Concrete` namespace contains 20 named types.
 
 - 20 named types.
-- 1,684 total lines of source code.
-- Approximately 637 lines of executable code.
+- 1,686 total lines of source code.
+- Approximately 641 lines of executable code.
 - The highest cyclomatic complexity is 20 :exploding_head:.
 
 <details>
@@ -2057,14 +2057,15 @@ The `Sprint.Enemies.Concrete` namespace contains 20 named types.
 </summary>
 <br>
 
-- The `Flame` contains 3 members.
-- 14 total lines of source code.
-- Approximately 6 lines of executable code.
-- The highest cyclomatic complexity is 1 :heavy_check_mark:.
+- The `Flame` contains 4 members.
+- 15 total lines of source code.
+- Approximately 8 lines of executable code.
+- The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Flame.cs#L13' title='Flame.Flame(Texture2D texture, Vector2 position)'>13</a> | 71 | 1 :heavy_check_mark: | 0 | 8 | 8 / 4 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Flame.cs#L14' title='Flame.Flame(Texture2D texture, Vector2 position)'>14</a> | 71 | 1 :heavy_check_mark: | 0 | 8 | 8 / 4 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Flame.cs#L12' title='bool Flame.CanBeKnockedBack'>12</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Flame.cs#L11' title='int Flame.DAMAGE'>11</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Flame.cs#L10' title='int Flame.HEALTH'>10</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 
@@ -2302,14 +2303,15 @@ The `Sprint.Enemies.Concrete` namespace contains 20 named types.
 </summary>
 <br>
 
-- The `OldMan` contains 3 members.
-- 14 total lines of source code.
-- Approximately 6 lines of executable code.
-- The highest cyclomatic complexity is 1 :heavy_check_mark:.
+- The `OldMan` contains 4 members.
+- 15 total lines of source code.
+- Approximately 8 lines of executable code.
+- The highest cyclomatic complexity is 2 :heavy_check_mark:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/OldMan.cs#L13' title='OldMan.OldMan(Texture2D texture, Vector2 position)'>13</a> | 71 | 1 :heavy_check_mark: | 0 | 8 | 8 / 4 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/OldMan.cs#L14' title='OldMan.OldMan(Texture2D texture, Vector2 position)'>14</a> | 71 | 1 :heavy_check_mark: | 0 | 8 | 8 / 4 |
+| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/OldMan.cs#L12' title='bool OldMan.CanBeKnockedBack'>12</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/OldMan.cs#L11' title='int OldMan.DAMAGE'>11</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/OldMan.cs#L10' title='int OldMan.HEALTH'>10</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 
@@ -7075,6 +7077,7 @@ classDiagram
 class Flame{
     -int HEALTH$
     -int DAMAGE$
+    +bool CanBeKnockedBack
     +.ctor(Texture2D texture, Vector2 position) Flame
 }
 
@@ -7254,6 +7257,7 @@ classDiagram
 class OldMan{
     -int HEALTH$
     -int DAMAGE$
+    +bool CanBeKnockedBack
     +.ctor(Texture2D texture, Vector2 position) OldMan
 }
 
