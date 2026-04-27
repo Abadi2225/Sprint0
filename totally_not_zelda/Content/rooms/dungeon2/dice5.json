@@ -49,5 +49,5 @@
  "doors": { "north": "4blockssmall", "south": "wafflelower", "east": "4blocksbigupper" },
  "doorTypes": { "north": "open", "south": "open", "east": "key" },
  "gridPos": 44,
- "name":"5blocks"
+ "name":"dice5"
 }

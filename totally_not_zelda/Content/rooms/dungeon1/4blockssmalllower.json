@@ -50,5 +50,5 @@
  "doorTypes": { "north": "bomb", "south": "open", "east": "open", "west": "open" },
  "roomClearDrop": "Key",
  "gridPos": 43,
- "name":"4blockessmalllower"
+ "name":"4blockssmalllower"
 }

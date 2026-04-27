@@ -9,6 +9,7 @@ namespace Sprint.Enemies.Concrete
     {
         private const int HEALTH = 1;
         private const int DAMAGE = 0;
+        protected override bool CanBeKnockedBack => false;
 
         public Flame(Texture2D texture, Vector2 position) : base(texture, position, HEALTH, DAMAGE, isInvincible: true)
         {
