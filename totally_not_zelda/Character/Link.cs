@@ -126,7 +126,7 @@ public class Link : ILink
         bombs--;
         return true;
     }
-    public void AddBomb() => bombs++;
+    public void AddBomb() => bombs += 4;
 
 
     public Link(Texture2D texture, Texture2D dustTexture, Vector2 position)
