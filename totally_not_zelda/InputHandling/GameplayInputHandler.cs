@@ -40,7 +40,8 @@ internal class GameplayInputHandler : IInputHandler
             {Keys.M, new ToggleMusicCommand()},
             {Keys.Q, new QuitCommand()},
             {Keys.R, new RestartGameCommand()},
-            {Keys.X, new AttackCommand(link)}
+            {Keys.X, new AttackCommand(link)},
+            {Keys.Z, new UseItemCommand(items, inventory, link)}
         };
     }
 
@@ -52,7 +53,7 @@ internal class GameplayInputHandler : IInputHandler
         else if (GameServices.KeyInput.IsKeyDown(Keys.Right)) link.SetMove(Directions.Right);
         else link.StopMove();
 
-        if (GameServices.KeyInput.IsKeyPressed(Keys.I))
+        if (GameServices.KeyInput.IsKeyPressed(Keys.I) || GameServices.KeyInput.IsKeyPressed(Keys.S))
         {
             GameServices.GameActions.ChangeState(new InventoryScreen(
                         inventory,

@@ -44,7 +44,7 @@ internal class InventoryScreen : IGameState
 
     public void Update(GameTime time)
     {
-        if (GameServices.KeyInput.IsKeyPressed(Keys.I) || GameServices.KeyInput.IsKeyPressed(Keys.Escape))
+        if (GameServices.KeyInput.IsKeyPressed(Keys.I) || GameServices.KeyInput.IsKeyPressed(Keys.Escape) || GameServices.KeyInput.IsKeyPressed(Keys.S))
         {
             hud.X = hudOriginalX;
             hud.Y = hudOriginalY;
