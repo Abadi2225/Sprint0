@@ -59,7 +59,7 @@ internal class GameplayInputHandler : IInputHandler
                         inventory,
                         inventory.ActiveSlot,
                         hud,
-                        invMap,
+                        GameServices.inventoryMap,
                         state
                         ));
         }
