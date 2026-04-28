@@ -9,10 +9,10 @@ A 2D action-adventure game inspired by *The Legend of Zelda*, built in C# using 
 ### Movement
 | Key(s) | Action |
 |--------|--------|
-| `W` / `Up Arrow` | Move up |
-| `S` / `Down Arrow` | Move down |
-| `A` / `Left Arrow` | Move left |
-| `D` / `Right Arrow` | Move right |
+| `Up Arrow` | Move up |
+| `Down Arrow` | Move down |
+| `Left Arrow` | Move left |
+| `Right Arrow` | Move right |
 
 ### Combat
 | Key(s) | Action |
