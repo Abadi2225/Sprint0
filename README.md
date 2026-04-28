@@ -4,83 +4,100 @@ A 2D action-adventure game inspired by *The Legend of Zelda*, built in C# using 
 
 ---
 
-## Program Controls
+## Controls
 
 ### Movement
-| Key(s) | Action |
-|--------|--------|
-| `W` / `Up Arrow` | Move up |
-| `S` / `Down Arrow` | Move down |
-| `A` / `Left Arrow` | Move left |
-| `D` / `Right Arrow` | Move right |
-
-### Combat
-| Key(s) | Action |
-|--------|--------|
-| `X` | Attack with sword |
-
-### Items
 | Key | Action |
 |-----|--------|
-| `1` | Use item in slot B |
+| `Up Arrow` | Move up |
+| `Down Arrow` | Move down |
+| `Left Arrow` | Move left |
+| `Right Arrow` | Move right |
 
-### Navigation
-| Key(s) | Action |
-|--------|--------|
-| `Left Mouse` | Go to previous room |
-| `Right Mouse` | Go to next room |
+### Combat & Items
+| Key | Action |
+|-----|--------|
+| `X` | Attack with sword |
+| `1` / `Z` | Use item in slot B |
+| `I` / `S` | Open inventory screen |
 
-### Demo Controls
-| Key(s) | Action |
-|--------|--------|
-| `E` | Trigger damage animation on Link |
-| `Enter` | Start game from title screen |
+### Title Screen
+| Key | Action |
+|-----|--------|
+| `Enter` | Start game |
 | `Q` | Quit game |
-| `R` | Reset game to title screen |
-| `K` | Link Dies |
-| `M` | Mute Game Sound |
+
+### In-Game
+| Key | Action |
+|-----|--------|
+| `R` | Reset to title screen |
+| `Q` | Quit game |
+| `M` | Mute / unmute sound |
+| `Left Mouse` | Go to previous room (debug) |
+| `Right Mouse` | Go to next room (debug) |
+| `H` | Switch to Dungeon 1 (debug) |
+| `J` | Switch to Dungeon 2 (debug) |
+| `K` | Kill Link (debug) |
+| `E` | Trigger damage animation (debug) |
+| `C` | Debug toggle mode |
 
 ---
 
-## Sprint 4 — New Features
+## Game Overview
 
-### Inventory System
-Link now has an inventory that holds up to three usable items. Items can be used by assigning one to B slot and using `1`.
+The Legend of Zilda is an action game where Link explores two distinct dungeons, fights enemies, collects items, and faces a boss at the end of each dungeon. The game has inventory system, combat items, an 12 enemy types, and a HUD that tracks hearts, rupees, keys, and the dungeon map. Take the Triforce to Advance!
 
-### Item Pickups
-Collectible items are placed in the world. Walking over them triggers a pickup animation and applies their effect immediately:
-- **Heart** — Restores 1 heart
-- **Fairy** — Fully restores all hearts
-- **Gold Rupee** / **Purple Rupee** — Increases Link's ruby count
-- **Key, Bow, Map, Compass, etc.** — Collected into the inventory
+---
 
-### Active Item Combat
-Throwable/usable items now deal damage to enemies:
+## The Two Dungeons
+
+### Dungeon 1 — Stone Keep
+The first dungeon has 18 different rooms, including an underground staircase room accessible by pushing a block and going down the stairs. The dungeon's boss is **Aquamentus**, a dragon that fires fireballs. Defeating it and collecting the Triforce completes the dungeon and transforms you to the next.
+
+- Boss: **Aquamentus** (No special way to defeat it)
+- Special room: underground staircase reached by a pushable block
+- NPC room: an Old Man who gives hints
+
+### Dungeon 2 — Desert Ruins
+The second dungeon has 18 rooms including desert, statue corridors, and more. The boss is **Dodongo**, a large dinosaur or rihno-like enemy that must be fed bombs to damage.
+
+- Boss: **Dodongo** (immune to all attacts, must be damaged with bombs)
+- NPC room: a second Old Man with dialogue
+
+---
+
+## Key Design Choices
+
+### State Machine for Link
+Link's behavior is modelled as a state machine (`LinkStateMachine`). States: Idle, Walking, Attacking, Damaged, Dead, PickingUp, UsingItem, Grabbed are objects that own their own update and draw logic.
+
+### Command Pattern for Input
+All player actions are wrapped in command objects (in [Commands/](totally_not_zelda/Commands/)). The input handler creates a command and executes it rather than directly calling methods on Link.
+
+### Collision Handler
+Collision detection is split into handler classes (e.g. `LinkBlockCollisionHandler`, `SwordEnemyCollision`, `ProjectileCollision`) rather than a single check. The `CollisionManager` calls each handler every frame. This makes it easy to add or remove a collision type.
+
+### Service Locator (`GameServices`)
+Shared singletons the input system, the sound manager, the scale factor, the current dungeon index, are accessed through a static `GameServices` class.
+
+### Factory Pattern for Enemies and Link
+`EnemyFactory` maps tile IDs from room JSON to enemy instances, and `LinkFactory` constructs Link with all its dependencies.
+
+---
+
+## Combat Items
+
 | Item | Damage | Behaviour |
 |------|--------|-----------|
-| **Arrow** | 1 | Travels in a straight line; disappears on first enemy hit |
-| **Boomerang** | 1 | Travels out and returns; passes through enemies |
-| **Bomb** | 2 | Placed in front of Link; explodes after 3 seconds in a 128 × 128 area |
+| **Arrow** | 1 | Travels in a straight line, disappears on first enemy hit |
+| **Boomerang** | 1 | Travels out and returns, passes through enemies |
+| **Bomb** | 2 | Placed in front of Link, explodes after 3 seconds in a 128×128 area. Required to damage Dodongo |
 
 ---
 
-## Game Features
+## Known Issues
 
-- **Link** — Four directional movement and sword-attack animations with a 0.5 second damage state on being hit.
-- **12 Enemy Types** — Including standard enemies (Gel, Keese, Stalfos, Zol, Rope, Goriya, WallMaster, Trap), two bosses (Aquamentus, Dodongo), a boss projectile (AquamentusFireball), and an NPC (OldMan).
-- **18 Item Types** — Usable items (Boomerang, Bow, Bomb) and collectibles (Heart, HeartContainer, Fairy, Clock, Rupee variants, Potions, Map, Candle, Key, Compass, Triforce).
-- **10 Block/Tile Types** — Blank, Square, StatueRight, StatueLeft, Black, Sand, Water, Stairs, Bricks, Ladder.
-- **Multiple Rooms** — Rooms are loaded from data files and can be cycled with the mouse.
-- **Start Screen** — Title screen with Enter-to-start option.
-
----
-
-## Known Bugs
-
-- Room transition was supposed to be done but member assigned faced problems before submitting
-- Not all sounds are linked up or working as supposed to
-- Underground room boundaries feels a bit off
-- No way to get to NPC room through the implemented game
+- Underground room boundaries feel slightly off
 
 ---
 
@@ -99,28 +116,33 @@ Throwable/usable items now deal damage to enemies:
 ## Project Structure
 
 ```
-CODE_METRICS            # Shows the code metrics for all the project
+CODE_METRICS            # Automated code metrics report
 totally_not_zelda/
-├── Character/          # Link player character with movement/attack states
-├── Commands/           # Command actions
-├── Block/              # Tile management
-├── Collisions/         # All collision handler implementations
+├── Character/          # Link player character and state machine
+│   └── States/         # Idle, Walking, Attacking, Damaged, Dead, etc.
+├── Commands/           # Command pattern — one class per player action
+├── Block/              # Tile types and tile management
+├── Collisions/         # Per-pair collision handler classes
 ├── Controllers/        # Keyboard and mouse input controllers
-├── Doors/              # Implementation for Doors
+├── Doors/              # Door types, door manager, dungeon outer walls
 ├── Enemies/
-│   ├── Base/           # Abstract enemy base class and manager
+│   ├── Base/           # Abstract enemy base and EnemyFactory
 │   └── Concrete/       # 12 concrete enemy implementations
-├── GameStates/         # StartScreenState and GameplayState
-├── Interfaces/         # All shared interface definitions
-├── InputHandling/      # Handles keybinds
+├── GameStates/         # Title, Gameplay, Inventory, GameOver, GameComplete, RoomTransition
+├── InputHandling/      # Maps raw key presses to commands
+├── Interfaces/         # Shared interface definitions (ILink, IEnemy, ISprite, …)
 ├── Item/
 │   ├── Active/         # Throwable/usable items (Arrow, Boomerang, Bomb)
 │   └── Still/          # Collectible world items (Hearts, Rupees, etc.)
-├── Levels/             # Building rooms and levels from json file
-├── Sprites/            # Sprite types (animated, directional, static, projectile)
-├── Sound/              # Sounds for the game
-├── UI/                 # UIManager, HUD, and title screen UI
-├── Content/            # Game assets (sprite sheets, block images, fonts)
-├── Game1.cs            # Main game class
-└── GameServices.cs     # Service locator for shared dependencies
+├── Levels/             # LevelLoader, LevelBuilder, LevelData — JSON → live objects
+├── Saving/             # Save/load state
+├── Sound/              # SoundManager and all sound effect bindings
+├── Sprites/            # Sprite variants (animated, directional, static, projectile)
+├── UI/                 # UIManager, HUD, minimap, title screen
+├── Content/            # Assets (sprite sheets, fonts, room JSON files)
+│   └── rooms/
+│       ├── dungeon1/   # 18 room JSON files for Dungeon 1
+│       └── dungeon2/   # 18 room JSON files for Dungeon 2
+├── Game1.cs            # MonoGame entry point
+└── GameServices.cs     # Service locator for shared singletons
 ```
