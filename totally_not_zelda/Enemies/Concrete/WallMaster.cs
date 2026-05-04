@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using BlockType = Sprint.Block.Block;
 using Sprint.Enemies.Base;
 using Sprint.Sprites;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace Sprint.Enemies.Concrete
     {
         private const int HEALTH = 3;
         private const int DAMAGE = 1;
+        private const int SPRITE_WIDTH = 16;
+        private const int SPRITE_HEIGHT = 16;
         private const float CREEP_SPEED = 60f;
         private const float DETECTION_RANGE = 160f;
         private const float GRAB_RANGE = 12f;
@@ -21,86 +24,81 @@ namespace Sprint.Enemies.Concrete
         private const float REENTER_MAX = 12f;
         private const float CREEP_STEP_SIZE = 16f;
         private const float CREEP_STEP_DELAY = 0.8f;
+        private const float WALL_THICKNESS_TILES = 31f;
 
         private enum WallMasterState { Hiding, Entering, Creeping, Chasing, Leaving, Cooldown }
 
+        private readonly struct NavigationContext(List<BlockType> solidBlocks, Rectangle innerBounds)
+        {
+            public readonly List<BlockType> SolidBlocks = solidBlocks;
+            public readonly Rectangle InnerBounds = innerBounds;
+        }
+
+        private readonly NavigationContext navigation;
         private WallMasterState currentState;
         private readonly Vector2 homePosition;
-        private Vector2 entryStart;
         private Vector2 entryTarget;
         private Vector2 leaveTarget;
         private bool movingVertically;
         private float chaseTimer;
         private float cooldownTimer;
-        private readonly Rectangle innerBounds;
         private Vector2 creepTarget;
         private float stepTimer;
-        private readonly List<Sprint.Block.Block> solidBlocks;
         private Vector2 linkGrabOffset;
         private bool isGrabbingLink;
 
         public bool IsEntering => currentState == WallMasterState.Entering || currentState == WallMasterState.Hiding;
         public override bool HasCollision => currentState == WallMasterState.Chasing;
 
-        public WallMaster(Texture2D texture, Vector2 position, List<Sprint.Block.Block> solidBlocks, Rectangle innerBounds) : base(texture, position, HEALTH, DAMAGE)
+        public WallMaster(Texture2D texture, Vector2 position, List<BlockType> solidBlocks, Rectangle innerBounds)
+            : base(texture, position, HEALTH, DAMAGE)
         {
-            int[] frameXPositions = [393, 410];
-            int frameY = 11;
-            int spriteWidth = 16;
-            int spriteHeight = 16;
-            float frameTime = 0.2f;
-            this.innerBounds = innerBounds;
-            this.solidBlocks = solidBlocks;
+            navigation = new NavigationContext(solidBlocks, innerBounds);
+            homePosition = position;
             creepTarget = position;
             stepTimer = CREEP_STEP_DELAY;
 
-            sprite = new AnimatedSprite(texture, position, frameXPositions, frameY, spriteWidth, spriteHeight, frameTime);
-
-            homePosition = position;
-            SetupEntry(position);
-
+            sprite = new AnimatedSprite(texture, position, [393, 410], 11, SPRITE_WIDTH, SPRITE_HEIGHT, 0.2f);
             Rect = new Rectangle((int)position.X, (int)position.Y,
-                                spriteWidth * (int)GameServices.ScaleFactor,
-                                spriteHeight * (int)GameServices.ScaleFactor);
+                SPRITE_WIDTH * (int)GameServices.ScaleFactor,
+                SPRITE_HEIGHT * (int)GameServices.ScaleFactor);
+
+            SetupEntry(position);
         }
 
         private void SetupEntry(Vector2 spawnPosition)
         {
             Vector2 entryDirection = DetermineEntryDirection(spawnPosition);
-            entryStart = spawnPosition - entryDirection * 16f * GameServices.ScaleFactor;
             entryTarget = spawnPosition;
-            Position = entryStart;
+            Position = spawnPosition - entryDirection * SPRITE_WIDTH * GameServices.ScaleFactor;
             currentState = WallMasterState.Hiding;
         }
 
         private Vector2 DetermineEntryDirection(Vector2 spawnPosition)
         {
-            float distLeft   = Math.Max(0, spawnPosition.X - innerBounds.Left);
-            float distRight  = Math.Max(0, innerBounds.Right - spawnPosition.X);
-            float distTop    = Math.Max(0, spawnPosition.Y - innerBounds.Top);
-            float distBottom = Math.Max(0, innerBounds.Bottom - spawnPosition.Y);
+            Rectangle bounds = navigation.InnerBounds;
+            float distLeft   = Math.Max(0, spawnPosition.X - bounds.Left);
+            float distRight  = Math.Max(0, bounds.Right - spawnPosition.X);
+            float distTop    = Math.Max(0, spawnPosition.Y - bounds.Top);
+            float distBottom = Math.Max(0, bounds.Bottom - spawnPosition.Y);
 
             float min = MathHelper.Min(MathHelper.Min(distLeft, distRight),
-                                    MathHelper.Min(distTop, distBottom));
+                                       MathHelper.Min(distTop, distBottom));
 
             if (min == distRight)  return -Vector2.UnitX;
-            else if (min == distLeft)   return Vector2.UnitX;
-            else if (min == distBottom) return -Vector2.UnitY;
-            else return Vector2.UnitY;
+            if (min == distLeft)   return Vector2.UnitX;
+            if (min == distBottom) return -Vector2.UnitY;
+            return Vector2.UnitY;
         }
 
         private Vector2 ChooseNewWallPosition()
         {
-            int wall = random.Next(4);
-            float scaledWidth = GameServices.GameWidth;
-            float scaledHeight = GameServices.GameHeight;
-
-            return wall switch
+            return random.Next(4) switch
             {
                 0 => new Vector2(entryTarget.X, 0),
-                1 => new Vector2(entryTarget.X, scaledHeight),
+                1 => new Vector2(entryTarget.X, GameServices.GameHeight),
                 2 => new Vector2(0, entryTarget.Y),
-                3 => new Vector2(scaledWidth, entryTarget.Y),
+                3 => new Vector2(GameServices.GameWidth, entryTarget.Y),
                 _ => entryTarget
             };
         }
@@ -113,24 +111,12 @@ namespace Sprint.Enemies.Concrete
 
             switch (currentState)
             {
-                case WallMasterState.Hiding:
-                    UpdateHiding();
-                    break;
-                case WallMasterState.Entering:
-                    UpdateEntering(dt);
-                    break;
-                case WallMasterState.Creeping:
-                    UpdateCreeping(dt);
-                    break;
-                case WallMasterState.Chasing:
-                    UpdateChasing(dt);
-                    break;
-                case WallMasterState.Leaving:
-                    UpdateLeaving(dt);
-                    break;
-                case WallMasterState.Cooldown:
-                    UpdateCooldown(dt);
-                    break;
+                case WallMasterState.Hiding:   UpdateHiding();      break;
+                case WallMasterState.Entering: UpdateEntering(dt);  break;
+                case WallMasterState.Creeping: UpdateCreeping(dt);  break;
+                case WallMasterState.Chasing:  UpdateChasing(dt);   break;
+                case WallMasterState.Leaving:  UpdateLeaving(dt);   break;
+                case WallMasterState.Cooldown: UpdateCooldown(dt);  break;
             }
 
             if (currentState != WallMasterState.Cooldown)
@@ -143,10 +129,10 @@ namespace Sprint.Enemies.Concrete
                 currentState = WallMasterState.Entering;
         }
 
-        private void UpdateEntering(float deltaTime)
+        private void UpdateEntering(float dt)
         {
             Vector2 toTarget = entryTarget - Position;
-            if (toTarget.Length() < ENTER_SPEED * deltaTime)
+            if (toTarget.Length() < ENTER_SPEED * dt)
             {
                 Position = entryTarget;
                 currentState = WallMasterState.Creeping;
@@ -154,16 +140,16 @@ namespace Sprint.Enemies.Concrete
             else
             {
                 toTarget.Normalize();
-                Position += toTarget * ENTER_SPEED * deltaTime;
+                Position += toTarget * ENTER_SPEED * dt;
             }
         }
 
-        private void UpdateCreeping(float deltaTime)
+        private void UpdateCreeping(float dt)
         {
-            stepTimer -= deltaTime;
+            stepTimer -= dt;
             if (stepTimer <= 0)
             {
-                Vector2 candidate = ChooseValidStep(solidBlocks, innerBounds, CREEP_STEP_SIZE);
+                Vector2 candidate = ChooseValidStep(navigation.SolidBlocks, navigation.InnerBounds, CREEP_STEP_SIZE);
                 if (candidate != Position)
                     creepTarget = candidate;
                 stepTimer = CREEP_STEP_DELAY;
@@ -173,7 +159,7 @@ namespace Sprint.Enemies.Concrete
             {
                 Vector2 dir = creepTarget - Position;
                 dir.Normalize();
-                Position += dir * CREEP_SPEED * deltaTime;
+                Position += dir * CREEP_SPEED * dt;
             }
             else
             {
@@ -187,22 +173,15 @@ namespace Sprint.Enemies.Concrete
             }
         }
 
-        private void UpdateChasing(float deltaTime)
+        private void UpdateChasing(float dt)
         {
-            chaseTimer -= deltaTime;
+            chaseTimer -= dt;
 
-            float dx = GameServices.Link.Position.X - Position.X;
-            float dy = GameServices.Link.Position.Y - Position.Y;
-            float dist = new Vector2(dx, dy).Length();
+            Vector2 toLink = GameServices.Link.Position - Position;
 
-            if (dist <= GRAB_RANGE)
+            if (toLink.Length() <= GRAB_RANGE)
             {
-                ((AnimatedSprite)sprite).SetFrame(1);
-                linkGrabOffset = GameServices.Link.Position - Position;
-                isGrabbingLink = true;
-                GameServices.Link.IsGrabbed = true;
-                leaveTarget = DetermineLeaveTarget();
-                currentState = WallMasterState.Leaving;
+                GrabLink();
                 return;
             }
 
@@ -213,71 +192,83 @@ namespace Sprint.Enemies.Concrete
                 return;
             }
 
-            if (movingVertically && Math.Abs(dy) < 1f)
+            if (movingVertically && Math.Abs(toLink.Y) < 1f)
                 movingVertically = false;
-            else if (!movingVertically && Math.Abs(dx) < 1f)
+            else if (!movingVertically && Math.Abs(toLink.X) < 1f)
                 movingVertically = true;
 
             Vector2 direction = movingVertically
-                ? new Vector2(0, Math.Sign(dy))
-                : new Vector2(Math.Sign(dx), 0);
+                ? new Vector2(0, Math.Sign(toLink.Y))
+                : new Vector2(Math.Sign(toLink.X), 0);
 
-            Position += direction * CREEP_SPEED * deltaTime;
+            Position += direction * CREEP_SPEED * dt;
         }
 
-        private void UpdateLeaving(float deltaTime)
+        private void GrabLink()
+        {
+            (sprite as AnimatedSprite)?.SetFrame(1);
+            linkGrabOffset = GameServices.Link.Position - Position;
+            isGrabbingLink = true;
+            GameServices.Link.IsGrabbed = true;
+            leaveTarget = DetermineLeaveTarget();
+            currentState = WallMasterState.Leaving;
+        }
+
+        private void UpdateLeaving(float dt)
         {
             Vector2 toLeave = leaveTarget - Position;
-            if (toLeave.Length() < LEAVE_SPEED * deltaTime)
+            if (toLeave.Length() < LEAVE_SPEED * dt)
             {
                 Position = leaveTarget;
                 if (isGrabbingLink)
                 {
-                    GameServices.Link.Position = Position + linkGrabOffset;
-                    isGrabbingLink = false;
-                    GameServices.Link.IsGrabbed = false;
-                    GameServices.OnLinkGrabbed?.Invoke();
+                    ReleaseLink();
                     return;
                 }
 
-                cooldownTimer = REENTER_MIN + (float)random.NextDouble() * (REENTER_MAX - REENTER_MIN);
+                cooldownTimer = GetRandomFloat(REENTER_MIN, REENTER_MAX);
                 currentState = WallMasterState.Cooldown;
             }
             else
             {
                 toLeave.Normalize();
-                Position += toLeave * LEAVE_SPEED * deltaTime;
+                Position += toLeave * LEAVE_SPEED * dt;
                 if (isGrabbingLink)
                     GameServices.Link.Position = Position + linkGrabOffset;
             }
         }
 
-        private void UpdateCooldown(float deltaTime)
+        private void ReleaseLink()
         {
-            cooldownTimer -= deltaTime;
+            GameServices.Link.Position = Position + linkGrabOffset;
+            isGrabbingLink = false;
+            GameServices.Link.IsGrabbed = false;
+            GameServices.OnLinkGrabbed?.Invoke();
+        }
+
+        private void UpdateCooldown(float dt)
+        {
+            cooldownTimer -= dt;
             if (cooldownTimer <= 0)
-            {
-                Vector2 newSpawn = ChooseNewWallPosition();
-                entryTarget = newSpawn;
-                SetupEntry(newSpawn);
-            }
+                SetupEntry(ChooseNewWallPosition());
         }
 
         private Vector2 DetermineLeaveTarget()
         {
-            float distLeft   = Position.X - innerBounds.Left;
-            float distRight  = innerBounds.Right - Position.X;
-            float distTop    = Position.Y - innerBounds.Top;
-            float distBottom = innerBounds.Bottom - Position.Y;
+            Rectangle bounds = navigation.InnerBounds;
+            float distLeft   = Position.X - bounds.Left;
+            float distRight  = bounds.Right - Position.X;
+            float distTop    = Position.Y - bounds.Top;
+            float distBottom = bounds.Bottom - Position.Y;
 
-            float wallThickness = 31 * GameServices.ScaleFactor;
+            float wallThickness = WALL_THICKNESS_TILES * GameServices.ScaleFactor;
             float min = MathHelper.Min(MathHelper.Min(distLeft, distRight),
-                                    MathHelper.Min(distTop, distBottom));
+                                       MathHelper.Min(distTop, distBottom));
 
-            if (min == distLeft)   return new Vector2(innerBounds.Left - Rect.Width - wallThickness, Position.Y);
-            if (min == distRight)  return new Vector2(innerBounds.Right + Rect.Width + wallThickness, Position.Y);
-            if (min == distTop)    return new Vector2(Position.X, innerBounds.Top - Rect.Height - wallThickness);
-            return new Vector2(Position.X, innerBounds.Bottom + Rect.Height + wallThickness);
+            if (min == distLeft)  return new Vector2(bounds.Left - Rect.Width - wallThickness, Position.Y);
+            if (min == distRight) return new Vector2(bounds.Right + Rect.Width + wallThickness, Position.Y);
+            if (min == distTop)   return new Vector2(Position.X, bounds.Top - Rect.Height - wallThickness);
+            return new Vector2(Position.X, bounds.Bottom + Rect.Height + wallThickness);
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 location)
