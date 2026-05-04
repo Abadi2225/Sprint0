@@ -201,7 +201,7 @@ namespace Sprint.Enemies.Concrete
         private void CheckDeath()
         {
             if (segments.Count == 0)
-                isAlive = false;
+                base.Die();
         }
 
         public override void TakeDamage(int amount) { }
@@ -238,16 +238,14 @@ namespace Sprint.Enemies.Concrete
         }
 
         public Rectangle GetHeadRect() =>
-            new Rectangle(
-                (int)segments[headIndex].Position.X,
-                (int)segments[headIndex].Position.Y,
-                (int)diameter, (int)diameter);
+            segments.Count > 0
+                ? new Rectangle((int)segments[headIndex].Position.X, (int)segments[headIndex].Position.Y, (int)diameter, (int)diameter)
+                : Rectangle.Empty;
 
         public Rectangle GetTailRect() =>
-            new Rectangle(
-                (int)segments[tailIndex].Position.X,
-                (int)segments[tailIndex].Position.Y,
-                (int)diameter, (int)diameter);
+            segments.Count > 0
+                ? new Rectangle((int)segments[tailIndex].Position.X, (int)segments[tailIndex].Position.Y, (int)diameter, (int)diameter)
+                : Rectangle.Empty;
 
         public List<Rectangle> GetMiddleRects()
         {
