@@ -13,7 +13,7 @@ The *Sprint.csproj* project file contains:
 
 - 25 namespaces.
 - 165 named types.
-- 10,071 total lines of source code.
+- 10,069 total lines of source code.
 - Approximately 3,059 lines of executable code.
 - The highest cyclomatic complexity is 31 :exploding_head:.
 
@@ -1870,7 +1870,7 @@ The `Sprint.Commands` namespace contains 9 named types.
 The `Sprint.Enemies.Concrete` namespace contains 22 named types.
 
 - 22 named types.
-- 1,702 total lines of source code.
+- 1,700 total lines of source code.
 - Approximately 538 lines of executable code.
 - The highest cyclomatic complexity is 20 :exploding_head:.
 
@@ -2245,23 +2245,23 @@ The `Sprint.Enemies.Concrete` namespace contains 22 named types.
 <br>
 
 - The `Moldorm` contains 40 members.
-- 255 total lines of source code.
+- 253 total lines of source code.
 - Approximately 104 lines of executable code.
 - The highest cyclomatic complexity is 9 :warning:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L58' title='Moldorm.Moldorm(Texture2D texture, Vector2 position, Vector2 initialDirection, Rectangle innerBounds)'>58</a> | 59 | 2 :heavy_check_mark: | 0 | 8 | 20 / 11 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L201' title='void Moldorm.CheckDeath()'>201</a> | 91 | 2 :heavy_check_mark: | 0 | 3 | 5 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L201' title='void Moldorm.CheckDeath()'>201</a> | 93 | 2 :heavy_check_mark: | 0 | 4 | 5 / 1 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L165' title='void Moldorm.DamageHead(int amount)'>165</a> | 63 | 4 :heavy_check_mark: | 0 | 3 | 14 / 9 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L180' title='void Moldorm.DamageTail(int amount)'>180</a> | 63 | 4 :heavy_check_mark: | 0 | 3 | 14 / 9 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L49' title='float Moldorm.diameter'>49</a> | 100 | 0 :heavy_check_mark: | 0 | 0 | 1 / 0 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L223' title='void Moldorm.Draw(SpriteBatch spriteBatch, Vector2 location)'>223</a> | 65 | 5 :heavy_check_mark: | 0 | 9 | 16 / 7 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L18' title='float Moldorm.FLASH_DURATION'>18</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L240' title='Rectangle Moldorm.GetHeadRect()'>240</a> | 90 | 1 :heavy_check_mark: | 0 | 4 | 5 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L252' title='List<Rectangle> Moldorm.GetMiddleRects()'>252</a> | 76 | 2 :heavy_check_mark: | 0 | 4 | 10 / 3 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L263' title='float Moldorm.GetRandomTurnTime()'>263</a> | 93 | 1 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L246' title='Rectangle Moldorm.GetTailRect()'>246</a> | 90 | 1 :heavy_check_mark: | 0 | 4 | 5 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L240' title='Rectangle Moldorm.GetHeadRect()'>240</a> | 88 | 2 :heavy_check_mark: | 0 | 4 | 4 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L250' title='List<Rectangle> Moldorm.GetMiddleRects()'>250</a> | 76 | 2 :heavy_check_mark: | 0 | 4 | 10 / 3 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L261' title='float Moldorm.GetRandomTurnTime()'>261</a> | 93 | 1 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L245' title='Rectangle Moldorm.GetTailRect()'>245</a> | 88 | 2 :heavy_check_mark: | 0 | 4 | 4 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L55' title='float Moldorm.headDamageCooldown'>55</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L53' title='int Moldorm.headIndex'>53</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 2 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../Enemies/Concrete/Moldorm.cs#L45' title='Vector2 Moldorm.headVelocity'>45</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
