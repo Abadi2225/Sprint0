@@ -12,7 +12,6 @@ public class Link : ILink
     private const int HAND_X = 2;
     private const int HAND_Y = 1;
     private int maxHealth = 6;
-    private static readonly int STARTING_BOMBS = 6;
 
     internal readonly ISprite IdleUp;
     internal readonly ISprite IdleDown;
@@ -41,14 +40,14 @@ public class Link : ILink
 
     internal readonly DeathSparkle DeathSparkleSprite;
 
-    private ISprite sprite;
+	private readonly LinkResources resources = new LinkResources();
+
+	private ISprite sprite;
     internal ISprite Sprite { get => sprite; set => sprite = value; }
     internal Directions Direction { get; set; } = Directions.Down;
 
     private Vector2 position;
     private int health;
-    private int keys;
-    private int bombs = STARTING_BOMBS;
 
     private readonly LinkStateMachine stateMachine;
 
@@ -100,31 +99,21 @@ public class Link : ILink
         }
     }
 
-    public int Rupees { get; private set; }
+    public int Rupees => resources.Rupees;
 
-    public int Keys => keys;
-    public void AddKey() => keys++;
-    public bool UseKey()
-    {
-        if (keys <= 0) return false;
-        keys--;
-        return true;
-    }
+	public int Keys => resources.Keys;
+	public int Bombs => resources.Bombs;
+	public void AddKey() => resources.AddKey();
+    public bool UseKey() => resources.UseKey();
 
-    public int Bombs => bombs;
-    public bool UseBomb()
-    {
-        if (bombs <= 0) return false;
-        bombs--;
-        return true;
-    }
-    public void AddBomb() => bombs += 4;
+	public bool UseBomb() => resources.UseBomb();
+    public void AddBomb() => resources.AddBombs(4);
 
-    // For debug mode
-    public void SetBombs(int amount) => bombs = amount;
-    public void SetKeys(int amount) => keys = amount;
+	// For debug mode
+	public void SetBombs(int amount) => resources.SetBombs(amount);
+	public void SetKeys(int amount) => resources.SetKeys(amount);
 
-    public Link(Texture2D texture, Texture2D dustTexture, Vector2 position)
+	public Link(Texture2D texture, Texture2D dustTexture, Vector2 position)
     {
         IdleDown = LinkFactory.IdleDown(texture);
         IdleUp = LinkFactory.IdleUp(texture);
@@ -167,55 +156,36 @@ public class Link : ILink
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        if (stateMachine.IsSparkleStage)
-        {
-            Vector2 center = new Vector2(position.X + BODY_SIZE / 2f, position.Y + BODY_SIZE / 2f);
-            DeathSparkleSprite.Draw(spriteBatch, center);
-            return;
-        }
+		if (stateMachine.IsSparkleStage)
+		{
+			Vector2 center = new Vector2(position.X + BODY_SIZE / 2f, position.Y + BODY_SIZE / 2f);
+			DeathSparkleSprite.Draw(spriteBatch, center);
+			return;
+		}
 
-        if (stateMachine.DeathSequenceFinished) return;
-        if (!stateMachine.IsVisible) return;
+		if (stateMachine.DeathSequenceFinished) return;
+		if (!stateMachine.IsVisible) return;
 
-        sprite.Draw(spriteBatch, position);
+		sprite.Draw(spriteBatch, position);
 
-        if (stateMachine.PickUpItemRect.HasValue)
-        {
-            Rectangle rect = stateMachine.PickUpItemRect.Value;
-            Vector2 itemPos;
+		if (stateMachine.PickUpItemRect.HasValue)
+		{
+			Rectangle rect = stateMachine.PickUpItemRect.Value;
+			Vector2 itemPos = GetPickedUpItemPosition(rect);
 
-            if (stateMachine.IsTriforcePickup)
-            {
-                itemPos = new Vector2(
-                    position.X + rect.Width,
-                    position.Y - rect.Height * GameServices.ScaleFactor - 4
-                );
-            }
-            else
-            {
-                Vector2 handPos = new Vector2(
-                    position.X + HAND_X * GameServices.ScaleFactor,
-                    position.Y + HAND_Y * GameServices.ScaleFactor
-                );
-                itemPos = new Vector2(
-                    handPos.X - (rect.Width * GameServices.ScaleFactor) / 2f,
-                    handPos.Y - rect.Height * GameServices.ScaleFactor
-                );
-            }
-
-            spriteBatch.Draw(
-                GameServices.ItemSheet,
-                itemPos,
-                rect,
-                Color.White,
-                0f,
-                Vector2.Zero,
-                GameServices.ScaleFactor,
-                SpriteEffects.None,
-                0f
-            );
-        }
-    }
+			spriteBatch.Draw(
+				GameServices.ItemSheet,
+				itemPos,
+				rect,
+				Color.White,
+				0f,
+				Vector2.Zero,
+				GameServices.ScaleFactor,
+				SpriteEffects.None,
+				0f
+			);
+		}
+	}
 
     public void SetMove(Directions dir) => stateMachine.HandleSetMove(dir);
     public void StopMove() => stateMachine.HandleStopMove();
@@ -246,14 +216,14 @@ public class Link : ILink
 
     public void IncreaseRupees(int amount)
     {
-        Rupees += amount;
+        resources.AddRupees(amount);
         Console.WriteLine($"Link picked up {amount} rupees. Current Rupees: {Rupees}");
     }
 
     public void DecreaseRupees(int amount)
     {
-        Rupees -=amount;
-    }
+		resources.RemoveRupees(amount);
+	}
     public int ReportRupees()
     {
         return Rupees;
@@ -267,5 +237,26 @@ public class Link : ILink
 		if (direction == Directions.Right) return AttackRight;
 
 		return AttackDown;
+	}
+
+	private Vector2 GetPickedUpItemPosition(Rectangle rect)
+	{
+		if (stateMachine.IsTriforcePickup)
+		{
+			return new Vector2(
+				position.X + rect.Width,
+				position.Y - rect.Height * GameServices.ScaleFactor - 4
+			);
+		}
+
+		Vector2 handPos = new Vector2(
+			position.X + HAND_X * GameServices.ScaleFactor,
+			position.Y + HAND_Y * GameServices.ScaleFactor
+		);
+
+		return new Vector2(
+			handPos.X - (rect.Width * GameServices.ScaleFactor) / 2f,
+			handPos.Y - rect.Height * GameServices.ScaleFactor
+		);
 	}
 }
