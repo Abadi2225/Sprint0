@@ -23,7 +23,6 @@ public class Game1 : Game, IGameActions
         IsMouseVisible = true;
 
         currentState = new MenuState();
-        currentState.Enter();
 
         // Set the window size to be 3 times the original NES resolution (256x224)
         System.Console.WriteLine($"Game width: {GameServices.GameWidth}, Game height: {GameServices.GameHeight}");
@@ -49,7 +48,7 @@ public class Game1 : Game, IGameActions
         spriteBatch = new SpriteBatch(GraphicsDevice);
 
         currentState.LoadContent();
-
+        currentState.Enter();
     }
 
     protected override void Update(GameTime gameTime)

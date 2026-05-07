@@ -18,21 +18,11 @@ using Sprint.UI;
 using Sprint.UI.InventoryElements;
 using Sprint.UI.Text;
 using System.Collections.Generic;
+using Sprint.GameStates.Gameplay;
 
 class GameplayState : IGameState
 {
-    private Texture2D linkSheet;
-    private Texture2D enemiesSheet;
-    private Texture2D bossesSheet;
-    private Texture2D dustSheet;
-    private Texture2D NPCSheet;
-    private Texture2D fontSheet;
-    private Texture2D outerWallsTexture;
-    private Texture2D innerWallsTexture;
-    private Texture2D staircaseTexture;
-    private Texture2D hudElements;
-    private Texture2D doorSheet;
-    private Texture2D pixel;
+    private Textures textures;
 
     private Link link;
     private ItemManager items;
@@ -42,7 +32,7 @@ class GameplayState : IGameState
     private LevelLoader levelLoader;
     private RoomManager roomManager;
 
-   private GameplayHUD gameplayHUD;
+    private GameplayHUD gameplayHUD;
 
     private GameplayCollisionManager collisionManager;
     private DoorManager doorManager;
@@ -70,35 +60,19 @@ class GameplayState : IGameState
 
     public void LoadContent()
     {
-        fontSheet         = GameServices.Content.Load<Texture2D>("images/Fonts");
-        linkSheet         = GameServices.Content.Load<Texture2D>("images/Link");
-        enemiesSheet      = GameServices.Content.Load<Texture2D>("images/enemiesSheet");
-        bossesSheet       = GameServices.Content.Load<Texture2D>("images/BossesSpriteSheet");
-        dustSheet         = GameServices.Content.Load<Texture2D>("images/dustSheet");
-        NPCSheet          = GameServices.Content.Load<Texture2D>("images/NPC");
-        outerWallsTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/ZeldaDungeonOuterWalls");
-        innerWallsTexture = GameServices.Content.Load<Texture2D>("dungeonWalls/ZeldaDungeonInnerWalls");
-        staircaseTexture  = GameServices.Content.Load<Texture2D>("dungeonWalls/Underground");
-        hudElements       = GameServices.Content.Load<Texture2D>("images/ZeldaUIElements");
-        GameServices.ItemSheet      = GameServices.Content.Load<Texture2D>("items/sheet");
-        GameServices.LinkSheet      = linkSheet;
-        GameServices.BoomerangSheet = GameServices.Content.Load<Texture2D>("items/boomerang");
-        doorSheet         = GameServices.Content.Load<Texture2D>("blocks/Doors");
-        GameServices.TileSheet = GameServices.Content.Load<Texture2D>("blocks/tiles");
+        textures = new Textures();
+        textures.UpdateGlobalRefs();
 
-        pixel = new Texture2D(GameServices.GraphicsDevice, 1, 1);
-        pixel.SetData([Color.White]);
-
-        link = new Link(linkSheet, dustSheet, new Vector2(GameServices.GameWidth / 2, GameServices.GameHeight / 2));
+        link = new Link(textures.linkSheet, textures.dustSheet, new Vector2(GameServices.GameWidth / 2, GameServices.GameHeight / 2));
         GameServices.Link = link;
 
-        items     = new ItemManager();
+        items = new ItemManager();
         inventory = new Inventory();
         inventory.Add(ItemFactory.CreateStillItem(ItemFactory.StillType.Bomb, Vector2.Zero, GameServices.ScaleFactor));
 
-        enemyFactory = new EnemyFactory(enemiesSheet, bossesSheet, linkSheet, dustSheet, NPCSheet);
+        enemyFactory = new EnemyFactory(textures.enemiesSheet, textures.bossesSheet, textures.linkSheet, textures.dustSheet, textures.NPCSheet);
 
-        dungeonWalls = new OuterDungeonWalls(outerWallsTexture);
+        dungeonWalls = new OuterDungeonWalls(textures.outerWallsTexture);
 
         GameServices.DungeonEntrancePosition = new Vector2(
             (dungeonWalls.BottomDoorLeft + dungeonWalls.BottomDoorRight) / 2,
@@ -108,14 +82,14 @@ class GameplayState : IGameState
         levelLoader = new LevelLoader();
 
         gameplayHUD = new GameplayHUD(
-            fontSheet, hudElements, innerWallsTexture, pixel,
+            textures.fontSheet, textures.hudElements, textures.innerWallsTexture, textures.pixel,
             link, inventory, levelLoader, dungeonWalls);
 
         invMap = gameplayHUD.InvMap;
 
-        doorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
+        doorManager = new DoorManager(textures.doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
 
-        gameOverText = TextWriter.CreateGameOverText(fontSheet);
+        gameOverText = TextWriter.CreateGameOverText(textures.fontSheet);
         gameOverTransition = new GameOverTransition(
             dungeonWalls.OuterBounds,
             Game1.Instance.GraphicsDevice,
@@ -123,9 +97,9 @@ class GameplayState : IGameState
 
         roomManager = new RoomManager(
             levelLoader, enemyFactory, gameplayHUD.UIManager, dungeonWalls,
-            staircaseTexture, () => collisionManager?.Rebuild(roomManager), items.SpawnItem);
+            textures.staircaseTexture, () => collisionManager?.Rebuild(roomManager), items.SpawnItem);
 
-        gameplayHUD.UpdateNPCText(fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
+        gameplayHUD.UpdateNPCText(textures.fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
 
         doorManager.Reset(
             roomManager.CurrentLevelData.doors,
@@ -144,7 +118,7 @@ class GameplayState : IGameState
             (data, level) =>
             {
                 roomManager.LoadRoom(data);
-                gameplayHUD.UpdateNPCText(fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
+                gameplayHUD.UpdateNPCText(textures.fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
             },
             () => collisionManager?.Rebuild(roomManager),
             gameplayHUD.HUD.Map.UpdateLinkMapPos,
@@ -159,7 +133,7 @@ class GameplayState : IGameState
         {
             DoorStateRegistry.Reset();
             roomManager.ResetToFirst();
-            gameplayHUD.UpdateNPCText(fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
+            gameplayHUD.UpdateNPCText(textures.fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
             doorManager.Reset(
                 roomManager.CurrentLevelData.doors,
                 roomManager.CurrentLevelData.doorTypes,
@@ -180,7 +154,7 @@ class GameplayState : IGameState
     {
         Level oldLevel = roomManager.CurrentLevel;
 
-        var oldDoorManager = new DoorManager(doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
+        var oldDoorManager = new DoorManager(textures.doorSheet, GameServices.ScaleFactor, 48 * GameServices.ScaleFactor);
         oldDoorManager.Reset(
             roomManager.CurrentLevelData.doors,
             roomManager.CurrentLevelData.doorTypes,
@@ -265,7 +239,7 @@ class GameplayState : IGameState
                     roomManager.CurrentLevelData.doorTypes,
                     roomManager.CurrentLevelData.doorOffsets,
                     roomManager.CurrentLevelName);
-                gameplayHUD.UpdateNPCText(fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
+                gameplayHUD.UpdateNPCText(textures.fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
             }
             if (mouse.LeftButton == ButtonState.Pressed && lmbReleased)
             {
@@ -276,7 +250,7 @@ class GameplayState : IGameState
                     roomManager.CurrentLevelData.doorTypes,
                     roomManager.CurrentLevelData.doorOffsets,
                     roomManager.CurrentLevelName);
-                gameplayHUD.UpdateNPCText(fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
+                gameplayHUD.UpdateNPCText(textures.fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
             }
             if (mouse.RightButton == ButtonState.Released) rmbReleased = true;
             if (mouse.LeftButton == ButtonState.Released) lmbReleased = true;
@@ -320,7 +294,7 @@ class GameplayState : IGameState
             roomManager.CurrentLevelData.doorOffsets,
             roomManager.CurrentLevelName);
         gameplayHUD.RefreshWallColor();
-        gameplayHUD.UpdateNPCText(fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
+        gameplayHUD.UpdateNPCText(textures.fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
         ResetMaps();
     }
     internal void DrawRoomContent(SpriteBatch sb, Level level, DoorManager doors, bool drawDoors)

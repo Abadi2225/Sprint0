@@ -2,7 +2,6 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint.Interfaces;
-using static GameplayState;
 
 namespace Sprint.Character;
 
@@ -40,9 +39,9 @@ public class Link : ILink
 
     internal readonly DeathSparkle DeathSparkleSprite;
 
-	private readonly LinkResources resources = new LinkResources();
+    private readonly LinkResources resources = new LinkResources();
 
-	private ISprite sprite;
+    private ISprite sprite;
     internal ISprite Sprite { get => sprite; set => sprite = value; }
     internal Directions Direction { get; set; } = Directions.Down;
 
@@ -80,9 +79,9 @@ public class Link : ILink
         {
             if (!stateMachine.IsAttacking || stateMachine.AttackHitLanded) return Rectangle.Empty;
 
-			Attacking currentAttack = GetAttackSprite(Direction);
+            Attacking currentAttack = GetAttackSprite(Direction);
 
-			return currentAttack.GetWeaponWorldRect(position);
+            return currentAttack.GetWeaponWorldRect(position);
         }
     }
 
@@ -101,19 +100,19 @@ public class Link : ILink
 
     public int Rupees => resources.Rupees;
 
-	public int Keys => resources.Keys;
-	public int Bombs => resources.Bombs;
-	public void AddKey() => resources.AddKey();
+    public int Keys => resources.Keys;
+    public int Bombs => resources.Bombs;
+    public void AddKey() => resources.AddKey();
     public bool UseKey() => resources.UseKey();
 
-	public bool UseBomb() => resources.UseBomb();
+    public bool UseBomb() => resources.UseBomb();
     public void AddBomb() => resources.AddBombs(4);
 
-	// For debug mode
-	public void SetBombs(int amount) => resources.SetBombs(amount);
-	public void SetKeys(int amount) => resources.SetKeys(amount);
+    // For debug mode
+    public void SetBombs(int amount) => resources.SetBombs(amount);
+    public void SetKeys(int amount) => resources.SetKeys(amount);
 
-	public Link(Texture2D texture, Texture2D dustTexture, Vector2 position)
+    public Link(Texture2D texture, Texture2D dustTexture, Vector2 position)
     {
         IdleDown = LinkFactory.IdleDown(texture);
         IdleUp = LinkFactory.IdleUp(texture);
@@ -156,36 +155,36 @@ public class Link : ILink
 
     public void Draw(SpriteBatch spriteBatch)
     {
-		if (stateMachine.IsSparkleStage)
-		{
-			Vector2 center = new Vector2(position.X + BODY_SIZE / 2f, position.Y + BODY_SIZE / 2f);
-			DeathSparkleSprite.Draw(spriteBatch, center);
-			return;
-		}
+        if (stateMachine.IsSparkleStage)
+        {
+            Vector2 center = new Vector2(position.X + BODY_SIZE / 2f, position.Y + BODY_SIZE / 2f);
+            DeathSparkleSprite.Draw(spriteBatch, center);
+            return;
+        }
 
-		if (stateMachine.DeathSequenceFinished) return;
-		if (!stateMachine.IsVisible) return;
+        if (stateMachine.DeathSequenceFinished) return;
+        if (!stateMachine.IsVisible) return;
 
-		sprite.Draw(spriteBatch, position);
+        sprite.Draw(spriteBatch, position);
 
-		if (stateMachine.PickUpItemRect.HasValue)
-		{
-			Rectangle rect = stateMachine.PickUpItemRect.Value;
-			Vector2 itemPos = GetPickedUpItemPosition(rect);
+        if (stateMachine.PickUpItemRect.HasValue)
+        {
+            Rectangle rect = stateMachine.PickUpItemRect.Value;
+            Vector2 itemPos = GetPickedUpItemPosition(rect);
 
-			spriteBatch.Draw(
-				GameServices.ItemSheet,
-				itemPos,
-				rect,
-				Color.White,
-				0f,
-				Vector2.Zero,
-				GameServices.ScaleFactor,
-				SpriteEffects.None,
-				0f
-			);
-		}
-	}
+            spriteBatch.Draw(
+                GameServices.ItemSheet,
+                itemPos,
+                rect,
+                Color.White,
+                0f,
+                Vector2.Zero,
+                GameServices.ScaleFactor,
+                SpriteEffects.None,
+                0f
+            );
+        }
+    }
 
     public void SetMove(Directions dir) => stateMachine.HandleSetMove(dir);
     public void StopMove() => stateMachine.HandleStopMove();
@@ -222,41 +221,41 @@ public class Link : ILink
 
     public void DecreaseRupees(int amount)
     {
-		resources.RemoveRupees(amount);
-	}
+        resources.RemoveRupees(amount);
+    }
     public int ReportRupees()
     {
         return Rupees;
     }
 
-	private Attacking GetAttackSprite(Directions direction)
-	{
-		if (direction == Directions.Up) return AttackUp;
-		if (direction == Directions.Down) return AttackDown;
-		if (direction == Directions.Left) return AttackLeft;
-		if (direction == Directions.Right) return AttackRight;
+    private Attacking GetAttackSprite(Directions direction)
+    {
+        if (direction == Directions.Up) return AttackUp;
+        if (direction == Directions.Down) return AttackDown;
+        if (direction == Directions.Left) return AttackLeft;
+        if (direction == Directions.Right) return AttackRight;
 
-		return AttackDown;
-	}
+        return AttackDown;
+    }
 
-	private Vector2 GetPickedUpItemPosition(Rectangle rect)
-	{
-		if (stateMachine.IsTriforcePickup)
-		{
-			return new Vector2(
-				position.X + rect.Width,
-				position.Y - rect.Height * GameServices.ScaleFactor - 4
-			);
-		}
+    private Vector2 GetPickedUpItemPosition(Rectangle rect)
+    {
+        if (stateMachine.IsTriforcePickup)
+        {
+            return new Vector2(
+                position.X + rect.Width,
+                position.Y - rect.Height * GameServices.ScaleFactor - 4
+            );
+        }
 
-		Vector2 handPos = new Vector2(
-			position.X + HAND_X * GameServices.ScaleFactor,
-			position.Y + HAND_Y * GameServices.ScaleFactor
-		);
+        Vector2 handPos = new Vector2(
+            position.X + HAND_X * GameServices.ScaleFactor,
+            position.Y + HAND_Y * GameServices.ScaleFactor
+        );
 
-		return new Vector2(
-			handPos.X - (rect.Width * GameServices.ScaleFactor) / 2f,
-			handPos.Y - rect.Height * GameServices.ScaleFactor
-		);
-	}
+        return new Vector2(
+            handPos.X - (rect.Width * GameServices.ScaleFactor) / 2f,
+            handPos.Y - rect.Height * GameServices.ScaleFactor
+        );
+    }
 }

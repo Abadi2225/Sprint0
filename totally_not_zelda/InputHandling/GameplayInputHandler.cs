@@ -1,12 +1,13 @@
 using Microsoft.Xna.Framework.Input;
 using Sprint.Character;
 using Sprint.Commands;
-using Sprint.GameStates;
+using Sprint.GameStates.Gameplay;
 using Sprint.Interfaces;
 using Sprint.Item;
 using Sprint.UI;
 using Sprint.UI.InventoryElements;
 using System.Collections.Generic;
+using Sprint.GameStates;
 
 namespace Sprint.InputHandling;
 

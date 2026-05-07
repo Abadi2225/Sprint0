@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint.Character;
 using Sprint.Doors;
 using Sprint.Interfaces;
-using Sprint.Levels;
 using Sprint.UI;
 using System;
+using Sprint.GameStates.Gameplay;
 
 namespace Sprint.GameStates;
 
@@ -49,11 +49,11 @@ internal class RoomTransitionState : IGameState
 
         (oldStart, newStart, scrollDelta) = direction switch
         {
-            "east"  => (Vector2.Zero, new Vector2( W, 0), new Vector2(-W,  0)),
-            "west"  => (Vector2.Zero, new Vector2(-W, 0), new Vector2( W,  0)),
-            "north" => (Vector2.Zero, new Vector2(0, -H), new Vector2( 0,  H)),
-            "south" => (Vector2.Zero, new Vector2(0,  H), new Vector2( 0, -H)),
-            _       => (Vector2.Zero, Vector2.Zero, Vector2.Zero)
+            "east" => (Vector2.Zero, new Vector2(W, 0), new Vector2(-W, 0)),
+            "west" => (Vector2.Zero, new Vector2(-W, 0), new Vector2(W, 0)),
+            "north" => (Vector2.Zero, new Vector2(0, -H), new Vector2(0, H)),
+            "south" => (Vector2.Zero, new Vector2(0, H), new Vector2(0, -H)),
+            _ => (Vector2.Zero, Vector2.Zero, Vector2.Zero)
         };
 
         scissorRasterizer = new RasterizerState

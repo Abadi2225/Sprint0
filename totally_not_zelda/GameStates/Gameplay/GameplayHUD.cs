@@ -8,7 +8,7 @@ using Sprint.UI;
 using Sprint.UI.InventoryElements;
 using Sprint.UI.Text;
 
-namespace Sprint.GameStates
+namespace Sprint.GameStates.Gameplay
 {
     internal class GameplayHUD
     {
