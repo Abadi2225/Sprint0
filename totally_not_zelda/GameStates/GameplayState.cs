@@ -172,6 +172,7 @@ class GameplayState : IGameState
 
         MusicPlayer.Play(MusicType.DUNGEON);
         collisionManager.Rebuild(roomManager);
+        GameStats.StartNewRun();
         ResetMaps();
     }
 

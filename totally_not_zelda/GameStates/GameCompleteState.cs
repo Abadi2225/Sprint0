@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,7 +13,10 @@ internal class GameCompleteState : IGameState
 {
     private Texture2D fontSheet;
     private Texture2D pixel;
-    private TextWriter gameOverText;
+    private TextWriter titleText;
+    private TextWriter enemiesText;
+    private TextWriter timeText;
+    private TextWriter rupeesText;
     private TextWriter pressRText;
 
     public void Enter()
@@ -30,21 +34,25 @@ internal class GameCompleteState : IGameState
         pixel = new Texture2D(GameServices.GraphicsDevice, 1, 1);
         pixel.SetData(new[] { Color.White });
 
-        gameOverText = new TextWriter(
-            fontSheet,
-            "GAME OVER",
-            new Vector2(260f, 300f),
-            3f,
-            false
-        );
+        int screenW = GameServices.GameWidth;
 
-        pressRText = new TextWriter(
-            fontSheet,
-            "PRESS R TO RESET",
-            new Vector2(240f, 370f),
-            2f,
-            false
-        );
+        titleText = CenterLine(fontSheet, "YOU WON!", 3f, 170f);
+
+        TimeSpan elapsed = GameStats.GetElapsedTime();
+        int minutes = (int)elapsed.TotalMinutes;
+        int seconds = elapsed.Seconds;
+
+        enemiesText = CenterLine(fontSheet, $"ENEMIES DEFEATED  {GameStats.EnemiesDefeated}", 2f, 280f);
+        timeText    = CenterLine(fontSheet, $"TIME  {minutes}M {seconds}S",                   2f, 340f);
+        rupeesText  = CenterLine(fontSheet, $"RUPEES  {GameServices.Link?.Rupees ?? 0}",       2f, 400f);
+        pressRText  = CenterLine(fontSheet, "PRESS R TO RESET",                                2f, 480f);
+    }
+
+    private static TextWriter CenterLine(Texture2D font, string text, float scale, float y)
+    {
+        float width = text.Length * 9f * scale;
+        float x = (GameServices.GameWidth - width) / 2f;
+        return new TextWriter(font, text, new Vector2(x, y), scale, false);
     }
 
     public void Update(GameTime gameTime)
@@ -60,7 +68,10 @@ internal class GameCompleteState : IGameState
             new Rectangle(0, 0, GameServices.GameWidth, GameServices.GameHeight),
             Color.Black
         );
-        gameOverText.Draw(spriteBatch);
+        titleText.Draw(spriteBatch);
+        enemiesText.Draw(spriteBatch);
+        timeText.Draw(spriteBatch);
+        rupeesText.Draw(spriteBatch);
         pressRText.Draw(spriteBatch);
     }
 }

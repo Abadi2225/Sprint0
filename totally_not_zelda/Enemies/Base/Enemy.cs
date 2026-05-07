@@ -130,6 +130,7 @@ namespace Sprint.Enemies.Base
 
             isAlive = false;
             GameServices.currentRoomState.DefeatedEnemies.Add(ID);
+            GameStats.RecordEnemyDefeated();
         }
 
         public virtual void Reset()
