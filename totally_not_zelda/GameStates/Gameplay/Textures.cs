@@ -5,6 +5,9 @@ namespace Sprint.GameStates.Gameplay;
 
 internal class Textures
 {
+    public Texture2D itemSheet = GameServices.Content.Load<Texture2D>("items/sheet");
+    public Texture2D boomerangSheet = GameServices.Content.Load<Texture2D>("items/boomerang");
+    public Texture2D tileSheet = GameServices.Content.Load<Texture2D>("blocks/tiles");
     public Texture2D fontSheet { get; } = GameServices.Content.Load<Texture2D>("images/Fonts");
     public Texture2D linkSheet { get; } = GameServices.Content.Load<Texture2D>("images/Link");
     public Texture2D enemiesSheet { get; } = GameServices.Content.Load<Texture2D>("images/enemiesSheet");
@@ -23,11 +26,11 @@ internal class Textures
         pixel.SetData([Color.White]);
     }
 
-    public void UpdateGlobalRefs()
+    public void SetGameServicesRefs()
     {
-        GameServices.ItemSheet = GameServices.Content.Load<Texture2D>("items/sheet");
+        GameServices.ItemSheet = itemSheet;
         GameServices.LinkSheet = linkSheet;
-        GameServices.BoomerangSheet = GameServices.Content.Load<Texture2D>("items/boomerang");
-        GameServices.TileSheet = GameServices.Content.Load<Texture2D>("blocks/tiles");
+        GameServices.BoomerangSheet = boomerangSheet;
+        GameServices.TileSheet = tileSheet;
     }
 }

@@ -23,7 +23,6 @@ using Sprint.GameStates.Gameplay;
 class GameplayState : IGameState
 {
     private Textures textures;
-
     private Link link;
     private ItemManager items;
     private Inventory inventory;
@@ -61,10 +60,9 @@ class GameplayState : IGameState
     public void LoadContent()
     {
         textures = new Textures();
-        textures.UpdateGlobalRefs();
+        textures.SetGameServicesRefs();
 
         link = new Link(textures.linkSheet, textures.dustSheet, new Vector2(GameServices.GameWidth / 2, GameServices.GameHeight / 2));
-        GameServices.Link = link;
 
         items = new ItemManager();
         inventory = new Inventory();
@@ -74,10 +72,9 @@ class GameplayState : IGameState
 
         dungeonWalls = new OuterDungeonWalls(textures.outerWallsTexture);
 
-        GameServices.DungeonEntrancePosition = new Vector2(
+        link.Position = new Vector2(
             (dungeonWalls.BottomDoorLeft + dungeonWalls.BottomDoorRight) / 2,
             dungeonWalls.BottomDoorTop - 16 * GameServices.ScaleFactor);
-        link.Position = GameServices.DungeonEntrancePosition;
 
         levelLoader = new LevelLoader();
 
@@ -129,6 +126,18 @@ class GameplayState : IGameState
             link, inventory, items, dungeonWalls, doorManager, HandleDoorExit);
         collisionManager.Rebuild(roomManager);
 
+        SetGameServicesRefs();
+
+        MusicPlayer.Play(MusicType.DUNGEON);
+        collisionManager.Rebuild(roomManager);
+        GameStats.StartNewRun();
+        ResetMaps();
+    }
+
+    private void SetGameServicesRefs()
+    {
+        GameServices.Link = link;
+        GameServices.DungeonEntrancePosition = link.Position;
         GameServices.OnLinkGrabbed = () =>
         {
             DoorStateRegistry.Reset();
@@ -143,11 +152,6 @@ class GameplayState : IGameState
             GameServices.hudMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
             GameServices.inventoryMap.SetLinkPos(levelLoader.GetCurrentLevelGridLoc());
         };
-
-        MusicPlayer.Play(MusicType.DUNGEON);
-        collisionManager.Rebuild(roomManager);
-        GameStats.StartNewRun();
-        ResetMaps();
     }
 
     private void HandleDoorExit(string direction)
