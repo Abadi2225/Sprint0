@@ -14,7 +14,7 @@ The *Sprint.csproj* project file contains:
 - 26 namespaces.
 - 168 named types.
 - 10,151 total lines of source code.
-- Approximately 3,100 lines of executable code.
+- Approximately 3,099 lines of executable code.
 - The highest cyclomatic complexity is 31 :exploding_head:.
 
 <details>
@@ -3653,7 +3653,7 @@ The `Sprint.InputHandling` namespace contains 2 named types.
 
 - 2 named types.
 - 119 total lines of source code.
-- Approximately 35 lines of executable code.
+- Approximately 34 lines of executable code.
 - The highest cyclomatic complexity is 11 :radioactive:.
 
 <details>
@@ -3666,22 +3666,22 @@ The `Sprint.InputHandling` namespace contains 2 named types.
 
 - The `GameplayInputHandler` contains 12 members.
 - 89 total lines of source code.
-- Approximately 31 lines of executable code.
+- Approximately 30 lines of executable code.
 - The highest cyclomatic complexity is 11 :radioactive:.
 
 | Member kind | Line number | Maintainability index | Cyclomatic complexity | Depth of inheritance | Class coupling | Lines of source / executable code |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L28' title='GameplayInputHandler.GameplayInputHandler(GameplayState thisState, Link link, Inventory inventory, ItemManager items, HUDBar hud)'>28</a> | 67 | 1 :heavy_check_mark: | 0 | 19 | 22 / 6 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L22' title='Dictionary<Keys, ICommand> GameplayInputHandler.commands'>22</a> | 100 | 0 :heavy_check_mark: | 0 | 3 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L24' title='bool GameplayInputHandler.cReleased'>24</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L24' title='bool GameplayInputHandler.cReleased'>24</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L51' title='void GameplayInputHandler.HandleInput()'>51</a> | 57 | 11 :radioactive: | 0 | 16 | 34 / 13 |
 | Method | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L86' title='void GameplayInputHandler.HandleMouseInput()'>86</a> | 64 | 5 :heavy_check_mark: | 0 | 3 | 16 / 9 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L20' title='HUDBar GameplayInputHandler.hud'>20</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L18' title='Inventory GameplayInputHandler.inventory'>18</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L19' title='ItemManager GameplayInputHandler.items'>19</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L17' title='Link GameplayInputHandler.link'>17</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L25' title='bool GameplayInputHandler.lmbReleased'>25</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 1 |
-| Property | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L26' title='bool GameplayInputHandler.rmbReleased'>26</a> | 100 | 2 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L25' title='bool GameplayInputHandler.lmbReleased'>25</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
+| Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L26' title='bool GameplayInputHandler.rmbReleased'>26</a> | 93 | 0 :heavy_check_mark: | 0 | 0 | 1 / 1 |
 | Field | <a href='https://github.com/Abadi2225/The_Legend_of_Zilda/blob/main/../InputHandling/GameplayInputHandler.cs#L16' title='GameplayState GameplayInputHandler.state'>16</a> | 100 | 0 :heavy_check_mark: | 0 | 1 | 1 / 0 |
 
 <a href="#GameplayInputHandler-class-diagram">:link: to `GameplayInputHandler` class diagram</a>
@@ -8354,9 +8354,9 @@ class GameplayInputHandler{
     -ItemManager items
     -HUDBar hud
     -Dictionary<Keys, ICommand> commands
-    +bool cReleased
-    +bool lmbReleased
-    +bool rmbReleased
+    -bool cReleased
+    -bool lmbReleased
+    -bool rmbReleased
     +.ctor(GameplayState thisState, Link link, Inventory inventory, ItemManager items, HUDBar hud) GameplayInputHandler
     +HandleInput() void
     +HandleMouseInput() void
