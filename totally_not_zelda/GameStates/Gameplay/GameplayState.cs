@@ -23,6 +23,7 @@ using Sprint.GameStates.Gameplay;
 class GameplayState : IGameState
 {
     private Textures textures;
+
     private Link link;
     private ItemManager items;
     private Inventory inventory;
@@ -37,9 +38,6 @@ class GameplayState : IGameState
     private DoorManager doorManager;
     private DoorTransitionHandler doorTransitionHandler;
     //  // for debug mode
-    private bool lmbReleased = true;
-    private bool rmbReleased = true;
-    private bool cReleased = true;
     private bool debugMode = false;
     // end debug mode
     private bool roomTransitionActive;
@@ -203,6 +201,7 @@ class GameplayState : IGameState
             collisionManager.HandleAll();
             if (roomTransitionActive) { roomTransitionActive = false; return; }
             inputHandler.HandleInput();
+            inputHandler.HandleMouseInput();
         }
 
         if (link.ShouldEndTriforceSequence())
@@ -221,46 +220,6 @@ class GameplayState : IGameState
             }
         }
 
-        // For debug mode
-        KeyboardState kb = Keyboard.GetState();
-        if (kb.IsKeyDown(Keys.C) && cReleased)
-        {
-            cReleased = false;
-            debugMode = !debugMode;
-            if (debugMode) GiveDebugItems();
-        }
-        if (kb.IsKeyUp(Keys.C)) cReleased = true;
-
-        if (debugMode)
-        {
-            MouseState mouse = Mouse.GetState();
-            if (mouse.RightButton == ButtonState.Pressed && rmbReleased)
-            {
-                rmbReleased = false;
-                roomManager.CycleNext();
-                doorManager.Reset(
-                    roomManager.CurrentLevelData.doors,
-                    roomManager.CurrentLevelData.doorTypes,
-                    roomManager.CurrentLevelData.doorOffsets,
-                    roomManager.CurrentLevelName);
-                gameplayHUD.UpdateNPCText(textures.fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
-            }
-            if (mouse.LeftButton == ButtonState.Pressed && lmbReleased)
-            {
-                lmbReleased = false;
-                roomManager.CyclePrevious();
-                doorManager.Reset(
-                    roomManager.CurrentLevelData.doors,
-                    roomManager.CurrentLevelData.doorTypes,
-                    roomManager.CurrentLevelData.doorOffsets,
-                    roomManager.CurrentLevelName);
-                gameplayHUD.UpdateNPCText(textures.fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
-            }
-            if (mouse.RightButton == ButtonState.Released) rmbReleased = true;
-            if (mouse.LeftButton == ButtonState.Released) lmbReleased = true;
-        }
-        // end debug mode
-
         if (link.IsDead && !gameOverTransition.Finished)
             gameOverTransition.Start();
 
@@ -275,6 +234,33 @@ class GameplayState : IGameState
             DungeonState.ResetProgess();
             return;
         }
+    }
+
+    // debug methods
+    public void DebugToggle()
+    {
+        debugMode = !debugMode;
+        if (debugMode) GiveDebugItems();
+    }
+
+    public void DebugCycleRoom(bool forwards)
+    {
+        if (!debugMode) return;
+
+        if (forwards)
+        {
+            roomManager.CycleNext();
+        }
+        else
+        {
+            roomManager.CyclePrevious();
+        }
+        doorManager.Reset(
+            roomManager.CurrentLevelData.doors,
+            roomManager.CurrentLevelData.doorTypes,
+            roomManager.CurrentLevelData.doorOffsets,
+            roomManager.CurrentLevelName);
+        gameplayHUD.UpdateNPCText(textures.fontSheet, roomManager.CurrentLevelData, GameServices.CurrentDungeon);
     }
 
     public void Draw(SpriteBatch spriteBatch)

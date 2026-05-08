@@ -21,6 +21,10 @@ internal class GameplayInputHandler : IInputHandler
 
     private Dictionary<Keys, ICommand> commands;
 
+    public bool cReleased { get; private set; } = true;
+    public bool lmbReleased { get; private set; } = true;
+    public bool rmbReleased { get; private set; } = true;
+
     public GameplayInputHandler(GameplayState thisState, Link link, Inventory inventory, ItemManager items, HUDBar hud)
     {
         this.state = thisState;
@@ -63,6 +67,13 @@ internal class GameplayInputHandler : IInputHandler
                         ));
         }
 
+        if (GameServices.KeyInput.IsKeyDown(Keys.C) && cReleased)
+        {
+            cReleased = false;
+            state.DebugToggle();
+        }
+        cReleased = !GameServices.KeyInput.IsKeyDown(Keys.C);
+
         foreach (var command in commands)
         {
             if (GameServices.KeyInput.IsKeyPressed(command.Key))
@@ -70,5 +81,22 @@ internal class GameplayInputHandler : IInputHandler
                 command.Value.Execute();
             }
         }
+    }
+
+    public void HandleMouseInput()
+    {
+        MouseState mouse = Mouse.GetState();
+        if (mouse.RightButton == ButtonState.Pressed && rmbReleased)
+        {
+            rmbReleased = false;
+            state.DebugCycleRoom(true);
+        }
+        if (mouse.LeftButton == ButtonState.Pressed && lmbReleased)
+        {
+            lmbReleased = false;
+            state.DebugCycleRoom(false);
+        }
+        rmbReleased = (mouse.RightButton == ButtonState.Released);
+        lmbReleased = (mouse.LeftButton == ButtonState.Released);
     }
 }
