@@ -21,9 +21,9 @@ internal class GameplayInputHandler : IInputHandler
 
     private Dictionary<Keys, ICommand> commands;
 
-    public bool cReleased { get; private set; } = true;
-    public bool lmbReleased { get; private set; } = true;
-    public bool rmbReleased { get; private set; } = true;
+    private bool cReleased = true;
+    private bool lmbReleased = true;
+    private bool rmbReleased = true;
 
     public GameplayInputHandler(GameplayState thisState, Link link, Inventory inventory, ItemManager items, HUDBar hud)
     {
